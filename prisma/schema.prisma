@@ -1,0 +1,103 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id        Int      @id @default(autoincrement())
+  email     String   @unique
+  password  String
+  auth      String? //authenticate with google or jwt
+  firstName String?
+  lastName  String?
+  birthDate String?
+  status    Boolean  @default(false)
+  img_path  String?
+  roleId    Int?
+  role      Role?    @relation(fields: [roleId], references: [id])
+  // activationCodes ActivationCode[]
+  orders    Order[]
+  reviews   Review[]
+}
+
+// model ActivationCode {
+//   id           Int    @id @default(autoincrement())
+//   userId       Int?
+//   token        String @unique
+//   creationDate Int
+//   lifetime     Int
+//   user         User?  @relation(fields: [userId], references: [id])
+// }
+
+model Role {
+  id       Int    @id @default(autoincrement())
+  roleName String
+  users    User[]
+}
+
+model Product {
+  id          Int       @id @default(autoincrement())
+  name        String
+  description String
+  price       Float
+  in_stock    Int
+  img_path    String?
+  categoryId  Int?
+  category    Category? @relation(fields: [categoryId], references: [id])
+  reviews     Review[]
+  buckets     Bucket[]
+  raiting     Float
+}
+
+model Category {
+  id           Int       @id @default(autoincrement())
+  categoryName String
+  img_path     String?
+  products     Product[]
+}
+
+model Order {
+  id        Int       @id @default(autoincrement())
+  userId    Int
+  user      User      @relation(fields: [userId], references: [id])
+  totalCost Float
+  status    String    @default("In process")
+  date      DateTime? @default(now())
+  buckets   Bucket[]
+}
+
+model Bucket {
+  id       Int      @id @default(autoincrement())
+  orderId  Int
+  order    Order    @relation(fields: [orderId], references: [id])
+  prodId   Int?
+  product  Product? @relation(fields: [prodId], references: [id])
+  quantity Int?
+}
+
+model Review {
+  id           Int      @id @default(autoincrement())
+  body         String
+  prodId       Int?
+  product      Product? @relation(fields: [prodId], references: [id])
+  userId       Int
+  user         User     @relation(fields: [userId], references: [id])
+  createdDate  String
+  raiting      Int
+  authorName   String
+  productdName String
+  text         String
+}
+
+model Currency {
+  id   Int       @id @default(autoincrement())
+  rate Float
+  date DateTime? @default(now())
+}
