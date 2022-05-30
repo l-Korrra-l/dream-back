@@ -57,7 +57,7 @@ export class ReviewRepository
     });
   }
 
-  async getStatsOfRecord(productId: string): Promise<StatsInfo> {
+  async getStatsOfProduct(productId: string): Promise<StatsInfo> {
     const aggregations = await this.prisma.review.aggregate({
       _count: {
         prodId: true,

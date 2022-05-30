@@ -47,7 +47,7 @@ model Product {
   id          Int       @id @default(autoincrement())
   name        String
   description String
-  price       Float
+  price       Decimal
   in_stock    Int
   img_path    String?
   categoryId  Int?

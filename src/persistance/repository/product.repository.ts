@@ -99,7 +99,7 @@ export class ProductRepository
     throw new NotFound('Not found product');
   }
 
-  async findWithreviewss(id: string): Promise<ProductWithReviews> {
+  async findWithReviews(id: string): Promise<ProductWithReviews> {
     const product = await this.prisma.product.findFirst({
       include: {
         reviews: true,

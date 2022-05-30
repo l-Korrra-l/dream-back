@@ -53,6 +53,14 @@ export class OrderRepository
     });
   }
 
+  async findByUser(id: string): Promise<Order[]> {
+    return await this.prisma.order.findMany({
+      where: {
+        userId: Number(id),
+      },
+    });
+  }
+
   findAll(): Promise<Order[]> {
     throw new Error('Method not implemented.');
   }
