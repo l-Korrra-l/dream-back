@@ -26,19 +26,30 @@ import { AuthType } from 'src/enums/authtype.enum';
 import { JoiValidationPipe } from 'src/validation/joivalidation.pipe';
 import { userForRegisterSchema } from 'src/validation/schemas/userForRegister.schema';
 import { userLoginSchema } from 'src/validation/schemas/userLogin.schema';
+import { diskStorage } from 'multer';
+import { imageFileFilter } from 'src/helpers/imageFilter.helpers';
 
 @Controller('auth')
 export class AuthController {
   constructor(private authService: AuthService) {}
 
   @Post('register')
-  @UseInterceptors(FileInterceptor('avatar'))
+  @UseInterceptors(
+    FileInterceptor('file', {
+      storage: diskStorage({
+        destination:
+          'C:/Users/User/Documents/courses/karalina.merhel.homework/images',
+      }),
+      fileFilter: imageFileFilter,
+    }),
+  )
   async userRegistration(
     @Body(new JoiValidationPipe(userForRegisterSchema))
     userForRegister: UserForRegister,
-    @UploadedFile() avatar: Express.Multer.File,
+    @UploadedFile() file: any,
   ) {
-    // userForRegister.avatar = avatar;??
+    userForRegister.img_path =
+      file.path + '.' + file.originalname.split('.')[1];
 
     const user: User = await this.authService.registerUser(
       userForRegister,
@@ -62,7 +73,7 @@ export class AuthController {
 
     const token = await this.authService.genToken({
       email: user.email,
-      role: user.roleId,
+      role: user.role,
       userId: user.id,
     });
 
@@ -73,12 +84,12 @@ export class AuthController {
     res.json(userForView);
   }
 
-  @Get('googlelogin')
+  @Get('google')
   @UseGuards(AuthGuard('google'))
   // eslint-disable-next-line @typescript-eslint/no-empty-function, @typescript-eslint/no-unused-vars
   async googleAuth(@Req() req) {}
 
-  @Get('google-callback')
+  @Get('google/callback')
   @UseGuards(AuthGuard('google'))
   async googleAuthRedirect(@CurrentUser() googleUser: GoogleUser, @Res() res) {
     if (!googleUser) {
@@ -88,10 +99,9 @@ export class AuthController {
       googleUser as GoogleUser,
       AuthType.Google,
     );
-
     const token = await this.authService.genToken({
       email: googleUser.email,
-      role: user.roleId,
+      role: user.role,
       userId: user.id,
     });
 

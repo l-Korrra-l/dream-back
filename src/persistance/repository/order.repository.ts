@@ -2,7 +2,6 @@ import { Injectable } from '@nestjs/common';
 import { Repository } from './repository.interface';
 import { Order, Prisma } from '@prisma/client';
 import { PrismaService } from 'nestjs-prisma';
-// import { OrderWithRecordAndUser } from 'src/types/prismatypes';
 
 @Injectable()
 export class OrderRepository
@@ -26,21 +25,22 @@ export class OrderRepository
     });
   }
 
-  delete(id: string): Promise<boolean> {
-    throw new Error('Method not implemented.');
+  async delete(id: string): Promise<boolean> {
+    if (
+      await this.prisma.order.deleteMany({
+        where: {
+          id: Number(id),
+        },
+      })
+    )
+      return true;
+    else return false;
   }
 
-  async deleteByRecordOrUserId(id: string) {
+  async deleteByUserId(id: string) {
     await this.prisma.order.deleteMany({
       where: {
-        // OR: [
-        // {
         userId: Number(id),
-        // },
-        //   {
-        //     productId: id,
-        //   },
-        // ],
       },
     });
   }
@@ -52,18 +52,6 @@ export class OrderRepository
       },
     });
   }
-
-  // async findWithRecordAndUser(id: string): Promise<OrderWithRecordAndUser> {
-  //   return await this.prisma.order.findUnique({
-  //     where: {
-  //       id: id,
-  //     },
-  //     include: {
-  //       user: true,
-  //       record: true,
-  //     },
-  //   });
-  // }
 
   findAll(): Promise<Order[]> {
     throw new Error('Method not implemented.');

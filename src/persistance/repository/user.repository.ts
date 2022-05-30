@@ -1,5 +1,6 @@
 import { Injectable } from '@nestjs/common';
 import { Prisma, User } from '@prisma/client';
+import { truncate } from 'fs/promises';
 import { PrismaService } from 'nestjs-prisma';
 import { NotFound } from 'src/errors/errors';
 //import { PrismaService } from '../prisma.service';
@@ -28,36 +29,32 @@ export class UserRepository
         lastName: true,
         email: true,
         birthDate: true,
-        // avatar: true,
-        // auth: true,
-        roleId: true,
-        // imageId: true,
+        img_path: true,
+        auth: true,
+        role: true,
         reviews: {
           select: {
             id: true,
             createdDate: true,
             raiting: true,
             authorName: true,
-            // recordName: true,
             text: true,
           },
         },
-        // order: {
-        //   select: {
-        //     id: true,
-        //     totalPrice: true,
-        //     orderDate: true,
-        //     amount: true,
-        //     status: true,
-        //     record: {
-        //       select: {
-        //         author: true,
-        //         name: true,
-        //         imageUrl: true,
-        //       },
-        //     },
-        //   },
-        // },
+        orders: {
+          select: {
+            id: true,
+            totalCost: true,
+            date: true,
+            status: true,
+            buckets: {
+              select: {
+                id: true,
+                quantity: true,
+              },
+            },
+          },
+        },
       },
       where: {
         id: Number(userId),
@@ -94,8 +91,8 @@ export class UserRepository
     throw new NotFound('Not found user');
   }
 
-  findAll(): Promise<User[]> {
-    throw new Error('Method not implemented.');
+  async findAll(): Promise<User[]> {
+    return await this.prisma.user.findMany();
   }
 
   async findForView(id: string): Promise<User> {
@@ -106,34 +103,30 @@ export class UserRepository
         lastName: true,
         email: true,
         birthDate: true,
-        // avatar: true,
-        // auth: true,
-        roleId: true,
-        // imageId: true,
+        img_path: true,
+        auth: true,
+        role: true,
         reviews: {
           select: {
             id: true,
             createdDate: true,
             raiting: true,
             authorName: true,
-            // recordName: true,
             text: true,
           },
         },
         orders: {
           select: {
             id: true,
-            // totalPrice: true,
-            // orderDate: true,
-            // amount: true,
+            totalCost: true,
+            date: true,
             status: true,
-            // product: {
-            //   select: {
-            //     author: true,
-            //     name: true,
-            //     imageUrl: true,
-            //   },
-            // },
+            buckets: {
+              select: {
+                id: true,
+                quantity: true,
+              },
+            },
           },
         },
       },
@@ -155,7 +148,6 @@ export class UserRepository
         email: email,
       },
     });
-
     if (user) {
       return user;
     }

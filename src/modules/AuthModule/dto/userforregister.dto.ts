@@ -12,4 +12,7 @@ export class UserForRegister {
 
   @ApiProperty()
   password: string;
+
+  @ApiProperty()
+  img_path: string;
 }

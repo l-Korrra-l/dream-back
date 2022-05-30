@@ -16,6 +16,6 @@ export type CurrentUserInfo = {
  * sum - sum of all raitings for this record
  */
 export type StatsInfo = {
-  count: number,
-  sum: number
+  count: number;
+  sum: number;
 };

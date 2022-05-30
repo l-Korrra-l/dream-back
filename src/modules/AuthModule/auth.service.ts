@@ -5,7 +5,6 @@ import { GoogleUser } from './dto/googleuser.dto';
 import { UserRepository } from 'src/persistance/repository/user.repository';
 import { AuthorizationError, RegisterError } from 'src/errors/errors';
 import { UserForRegister } from './dto/userforregister.dto';
-// import { ImageService } from '../ImageModule/image.service';
 import { Role } from 'src/enums/role.enum';
 import { UserLogin } from './dto/userlogin.dto';
 import { AuthType } from 'src/enums/authtype.enum';
@@ -17,7 +16,6 @@ export class AuthService {
     private jwtService: JwtService,
     private userRepository: UserRepository,
   ) {}
-  // private imageService: ImageService,
 
   async registerUser(
     inputUser: UserForRegister | GoogleUser,
@@ -34,28 +32,19 @@ export class AuthService {
     }
 
     if (authType == AuthType.Google) {
-      const { picture, ...googleUserForCreate } = inputUser as GoogleUser;
-
       userForCreate = {
         auth: authType,
         role: Role.User,
-        avatar: picture,
-        ...googleUserForCreate,
-      } as unknown as Prisma.UserCreateInput;
+        ...inputUser,
+      } as Prisma.UserCreateInput;
     }
 
     if (authType == AuthType.Basic) {
       const { password, ...defaultUser } = inputUser as UserForRegister;
 
-      // this.imageService.validateImage(avatar);
-
-      // const savedImage = await this.imageService.createImage(avatar);
-
       userForCreate = {
         auth: authType,
         role: Role.User,
-        // avatar: savedImage.imageUrl,
-        // imageId: savedImage.imageId,
         password: await bcrypt.hash(password, 5),
         ...defaultUser,
       } as Prisma.UserCreateInput;

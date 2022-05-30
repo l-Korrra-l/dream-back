@@ -4,7 +4,7 @@ import { Sort } from 'src/enums/sort.enum';
 import { PrismaService } from 'nestjs-prisma';
 import { Repository } from './repository.interface';
 import { NotFound } from 'src/errors/errors';
-// import { ProductWithreviewss } from 'src/types/prismatypes';
+import { ProductWithReviews } from 'src/types/prismatypes';
 
 @Injectable()
 export class ProductRepository
@@ -57,21 +57,33 @@ export class ProductRepository
       select: {
         id: true,
         name: true,
-        // author: true,
         description: true,
         img_path: true,
-        // imageId: true,
         price: true,
         raiting: true,
         in_stock: true,
         categoryId: true,
+        category: {
+          select: {
+            id: true,
+            categoryName: true,
+            img_path: true,
+          },
+        },
         reviews: {
           select: {
+            id: true,
             createdDate: true,
             raiting: true,
             authorName: true,
-            // productName: true,
+            productdName: true,
             text: true,
+          },
+        },
+        buckets: {
+          select: {
+            id: true,
+            quantity: true,
           },
         },
       },
@@ -87,22 +99,22 @@ export class ProductRepository
     throw new NotFound('Not found product');
   }
 
-  // async findWithreviewss(id: string): Promise<productWithreviewss> {
-  //   const product = await this.prisma.product.findFirst({
-  //     include: {
-  //       reviewss: true,
-  //     },
-  //     where: {
-  //       id: id,
-  //     },
-  //   });
+  async findWithreviewss(id: string): Promise<ProductWithReviews> {
+    const product = await this.prisma.product.findFirst({
+      include: {
+        reviews: true,
+      },
+      where: {
+        id: Number(id),
+      },
+    });
 
-  //   if (product) {
-  //     return product;
-  //   }
+    if (product) {
+      return product;
+    }
 
-  //   throw new NotFound('Not found product');
-  // }
+    throw new NotFound('Not found product');
+  }
 
   async findAll(): Promise<Product[]> {
     return await this.prisma.product.findMany({
@@ -111,23 +123,26 @@ export class ProductRepository
       },
     });
   }
-
+  //asc, desc
   async findAllWithSorting(sort: Sort): Promise<Product[]> {
     if (sort != Sort.none) {
       return (await this.prisma.product.findMany({
         select: {
           id: true,
           name: true,
-          // description: true,
+          description: true,
           img_path: true,
-          // imageId: false,
           price: true,
+          raiting: true,
+          in_stock: true,
+          categoryId: true,
           reviews: {
             select: {
+              id: true,
               createdDate: true,
               raiting: true,
               authorName: true,
-              // productName: true,
+              productdName: true,
               text: true,
             },
           },
@@ -142,16 +157,19 @@ export class ProductRepository
       select: {
         id: true,
         name: true,
-        // description: true,
+        description: true,
         img_path: true,
-        // imageId: false,
         price: true,
+        raiting: true,
+        in_stock: true,
+        categoryId: true,
         reviews: {
           select: {
+            id: true,
             createdDate: true,
             raiting: true,
             authorName: true,
-            // productName: true,
+            productdName: true,
             text: true,
           },
         },
@@ -159,32 +177,33 @@ export class ProductRepository
     })) as unknown as Product[];
   }
 
-  // async findByValue(name: string, author: string): Promise<Product[]> {
-  //   return (await this.prisma.product.findMany({
-  //     select: {
-  //       id: true,
-  //       name: true,
-  //       description: true,
-  //       img_path: true,
-  //       imageId: false,
-  //       price: true,
-  //       reviews: {
-  //         select: {
-  //           createdDate: true,
-  //           raiting: true,
-  //           authorName: true,
-  //           productName: true,
-  //           text: true,
-  //         },
-  //       },
-  //     },
-  //     where: {
-  //         {
-  //           name: {
-  //             contains: name,
-  //           },
-  //         },
-  //     },
-  //   })) as unknown as Product[];
-  // }
+  async findByValue(name: string, author: string): Promise<Product[]> {
+    return (await this.prisma.product.findMany({
+      select: {
+        id: true,
+        name: true,
+        description: true,
+        img_path: true,
+        price: true,
+        raiting: true,
+        in_stock: true,
+        categoryId: true,
+        reviews: {
+          select: {
+            id: true,
+            createdDate: true,
+            raiting: true,
+            authorName: true,
+            productdName: true,
+            text: true,
+          },
+        },
+      },
+      where: {
+        name: {
+          contains: name,
+        },
+      },
+    })) as unknown as Product[];
+  }
 }

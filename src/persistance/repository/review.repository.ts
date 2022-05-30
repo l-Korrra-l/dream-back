@@ -39,43 +39,40 @@ export class ReviewRepository
     throw new NotFound('Not found review for delete');
   }
   async findOne(id: string): Promise<Review> {
-    throw new Error('Method not implemented.');
+    return await this.prisma.review.findFirst({
+      where: {
+        id: Number(id),
+      },
+    });
   }
   async findAll(): Promise<Review[]> {
-    throw new Error('Method not implemented.');
+    return await this.prisma.review.findMany();
   }
 
-  async deleteByRecordOrUserId(id: string) {
+  async deleteByUserId(id: string) {
     await this.prisma.review.deleteMany({
       where: {
-        // OR: [
-        //   {
         userId: Number(id),
-        // },
-        //   {
-        //     productId: id,
-        //   },
-        // ],
       },
     });
   }
 
-  // async getStatsOfRecord(productId: string): Promise<StatsInfo> {
-  //   const aggregations = await this.prisma.review.aggregate({
-  //     _count: {
-  //       productId: true,
-  //     },
-  //     _sum: {
-  //       raiting: true,
-  //     },
-  //     where: {
-  //       productId: productId,
-  //     },
-  //   });
+  async getStatsOfRecord(productId: string): Promise<StatsInfo> {
+    const aggregations = await this.prisma.review.aggregate({
+      _count: {
+        prodId: true,
+      },
+      _sum: {
+        raiting: true,
+      },
+      where: {
+        prodId: Number(productId),
+      },
+    });
 
-  //   return {
-  //     count: aggregations._count.productId,
-  //     sum: aggregations._sum.raiting,
-  //   } as StatsInfo;
-  // }
+    return {
+      count: aggregations._count.prodId,
+      sum: aggregations._sum.raiting,
+    } as StatsInfo;
+  }
 }

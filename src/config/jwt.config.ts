@@ -6,7 +6,7 @@ export class JwtConfig {
     configService: ConfigService,
   ): Promise<JwtModuleOptions> {
     return {
-      secret: configService.get('JWTsecret'),
+      secret: configService.get('JWT_SECRET'),
     };
   }
 }
