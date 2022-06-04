@@ -10,13 +10,13 @@ async function bootstrap() {
   app.useGlobalPipes(new ValidationPipe());
 
   //-----documentation
-  // const config = new DocumentBuilder()
-  // .setTitle('Vinyl store')
-  // .setDescription('The store API description')
-  // .setVersion('1.0')
-  // .build();
-  // const document = SwaggerModule.createDocument(app, config);
-  // SwaggerModule.setup('swagger', app, document);
+  const config = new DocumentBuilder()
+    .setTitle('Vinyl store')
+    .setDescription('The store API description')
+    .setVersion('1.0')
+    .build();
+  const document = SwaggerModule.createDocument(app, config);
+  SwaggerModule.setup('swagger', app, document);
 
   await app.listen(PORT, () => {
     console.log(`Server started on port ${PORT}`);

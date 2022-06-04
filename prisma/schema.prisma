@@ -43,6 +43,7 @@ model Role {
   // users    User[]
 }
 
+//TODO: charact...
 model Product {
   id          Int       @id @default(autoincrement())
   name        String
@@ -102,3 +103,7 @@ model Currency {
   rate Float
   date DateTime? @default(now())
 }
+
+//TODO: token table
+//id, uid,token
+//date?
