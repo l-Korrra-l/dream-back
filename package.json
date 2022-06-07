@@ -48,9 +48,7 @@
     "rimraf": "^3.0.2",
     "rxjs": "^7.2.0",
     "stripe": "^8.207.0",
-    "swagger-ui-express": "^4.3.0"
-  },
-  "devDependencies": {
+    "swagger-ui-express": "^4.3.0",
     "@google-cloud/storage": "^5.18.2",
     "@nestjs-modules/mailer": "^1.6.1",
     "@nestjs/cli": "^8.0.0",
