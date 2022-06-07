@@ -8,6 +8,7 @@ async function bootstrap() {
   // app.setGlobalPrefix('api');
   const PORT = process.env.PORT || 5000;
   app.useGlobalPipes(new ValidationPipe());
+  app.enableCors();
 
   //-----documentation
   const config = new DocumentBuilder()
