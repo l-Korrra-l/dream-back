@@ -36,8 +36,7 @@ export class UserController {
   @UseInterceptors(
     FileInterceptor('file', {
       storage: diskStorage({
-        destination:
-          'C:/Users/User/Documents/courses/karalina.merhel.homework/images',
+         destination: "src/images",
       }),
       fileFilter: imageFileFilter,
     }),

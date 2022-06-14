@@ -7,6 +7,7 @@ import { AdminModule } from './modules/AdminModule/admin.module';
 import { DbModule } from './persistance/dbmodule.module';
 import { UserModule } from './modules/UserModule/user.module';
 import { ProductModule } from './modules/ProductModule/product.module';
+import { BucketModule } from './modules/BucketModule/bucket.module';
 
 @Module({
   imports: [
@@ -19,6 +20,7 @@ import { ProductModule } from './modules/ProductModule/product.module';
     AdminModule,
     UserModule,
     ProductModule,
+    BucketModule,
     // PaymentModule,
   ],
   controllers: [AppController],

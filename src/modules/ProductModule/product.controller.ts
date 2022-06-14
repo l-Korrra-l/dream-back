@@ -19,8 +19,6 @@ import { Role } from 'src/enums/role.enum';
 import { Sort } from 'src/enums/sort.enum';
 import { CurrentUserInfo } from 'src/types/types';
 import { JoiValidationPipe } from 'src/validation/joivalidation.pipe';
-// import { productForCreateSchema } from 'src/validation/schemas/productForCreate.schema';
-// import { productForUpdateSchema } from 'src/validation/schemas/productForUpdate';
 import { reviewFromUserSchema } from 'src/validation/schemas/reviewFromUser.schema';
 import { JwtAuthGuard } from '../AuthModule/guards/jwt.guard';
 import { RolesGuard } from '../AuthModule/guards/roles.guard';
@@ -41,8 +39,7 @@ export class ProductController {
   @UseInterceptors(
     FileInterceptor('file', {
       storage: diskStorage({
-        destination:
-          'C:/Users/User/Documents/courses/karalina.merhel.homework/images',
+        destination: 'src/images',
       }),
       fileFilter: imageFileFilter,
     }),
@@ -96,8 +93,7 @@ export class ProductController {
   @UseInterceptors(
     FileInterceptor('file', {
       storage: diskStorage({
-        destination:
-          'C:/Users/User/Documents/courses/karalina.merhel.homework/images',
+        destination: 'src/images',
       }),
       fileFilter: imageFileFilter,
     }),

@@ -8,7 +8,7 @@ import { UserForRegister } from './dto/userforregister.dto';
 import { Role } from 'src/enums/role.enum';
 import { UserLogin } from './dto/userlogin.dto';
 import { AuthType } from 'src/enums/authtype.enum';
-import * as bcrypt from 'bcryptjs';
+import * as bcrypt from 'bcrypt';
 
 @Injectable()
 export class AuthService {

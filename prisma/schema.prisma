@@ -78,7 +78,7 @@ model Order {
 model Bucket {
   id       Int      @id @default(autoincrement())
   orderId  Int
-  order    Order    @relation(fields: [orderId], references: [id])
+  order    Order?    @relation(fields: [orderId], references: [id])
   prodId   Int?
   product  Product? @relation(fields: [prodId], references: [id])
   quantity Int?

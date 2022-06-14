@@ -16,6 +16,7 @@ const admin_module_1 = require("./modules/AdminModule/admin.module");
 const dbmodule_module_1 = require("./persistance/dbmodule.module");
 const user_module_1 = require("./modules/UserModule/user.module");
 const product_module_1 = require("./modules/ProductModule/product.module");
+const bucket_module_1 = require("./modules/BucketModule/bucket.module");
 let AppModule = class AppModule {
 };
 AppModule = __decorate([
@@ -30,6 +31,7 @@ AppModule = __decorate([
             admin_module_1.AdminModule,
             user_module_1.UserModule,
             product_module_1.ProductModule,
+            bucket_module_1.BucketModule,
         ],
         controllers: [app_controller_1.AppController],
         providers: [app_service_1.AppService],

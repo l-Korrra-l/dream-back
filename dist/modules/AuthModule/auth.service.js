@@ -27,7 +27,7 @@ const user_repository_1 = require("../../persistance/repository/user.repository"
 const errors_1 = require("../../errors/errors");
 const role_enum_1 = require("../../enums/role.enum");
 const authtype_enum_1 = require("../../enums/authtype.enum");
-const bcrypt = require("bcryptjs");
+const bcrypt = require("bcrypt");
 let AuthService = class AuthService {
     constructor(jwtService, userRepository) {
         this.jwtService = jwtService;
