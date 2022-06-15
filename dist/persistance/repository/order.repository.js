@@ -29,6 +29,14 @@ let OrderRepository = class OrderRepository {
             },
         });
     }
+    async updateNumId(id, data) {
+        return await this.prisma.order.update({
+            data,
+            where: {
+                id: Number(id),
+            },
+        });
+    }
     async delete(id) {
         if (await this.prisma.order.deleteMany({
             where: {
@@ -60,8 +68,8 @@ let OrderRepository = class OrderRepository {
             },
         });
     }
-    findAll() {
-        throw new Error('Method not implemented.');
+    async findAll() {
+        return await this.prisma.order.findMany();
     }
 };
 OrderRepository = __decorate([

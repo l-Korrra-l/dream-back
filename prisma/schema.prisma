@@ -47,7 +47,9 @@ model Role {
 model Product {
   id          Int       @id @default(autoincrement())
   name        String
-  description String
+  short_descr String?
+  description String?
+  html_descr  String?
   price       Decimal
   in_stock    Int
   img_path    String?
@@ -68,9 +70,9 @@ model Category {
 model Order {
   id        Int       @id @default(autoincrement())
   userId    Int
-  user      User      @relation(fields: [userId], references: [id])
-  totalCost Float
-  status    String    @default("In process")
+  user      User?     @relation(fields: [userId], references: [id])
+  totalCost Float?
+  status    String    @default("оформлен")
   date      DateTime? @default(now())
   buckets   Bucket[]
 }
@@ -78,7 +80,7 @@ model Order {
 model Bucket {
   id       Int      @id @default(autoincrement())
   orderId  Int
-  order    Order?    @relation(fields: [orderId], references: [id])
+  order    Order?   @relation(fields: [orderId], references: [id])
   prodId   Int?
   product  Product? @relation(fields: [prodId], references: [id])
   quantity Int?

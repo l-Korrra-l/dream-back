@@ -25,6 +25,15 @@ export class OrderRepository
     });
   }
 
+  async updateNumId(id: number, data: Prisma.OrderUpdateInput): Promise<Order> {
+    return await this.prisma.order.update({
+      data,
+      where: {
+        id: Number(id),
+      },
+    });
+  }
+
   async delete(id: string): Promise<boolean> {
     if (
       await this.prisma.order.deleteMany({
@@ -61,7 +70,7 @@ export class OrderRepository
     });
   }
 
-  findAll(): Promise<Order[]> {
-    throw new Error('Method not implemented.');
+  async findAll(): Promise<Order[]> {
+    return await this.prisma.order.findMany();
   }
 }

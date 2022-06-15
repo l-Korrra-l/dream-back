@@ -7,5 +7,5 @@ export class BucketForCreate {
   @ApiProperty()
   prodId: string;
   @ApiProperty()
-  quantity: string;
+  quantity: number;
 }

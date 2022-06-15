@@ -9,21 +9,13 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.BucketForCreate = void 0;
+exports.OrderForCreate = void 0;
 const swagger_1 = require("@nestjs/swagger");
-class BucketForCreate {
+class OrderForCreate {
 }
 __decorate([
     (0, swagger_1.ApiProperty)(),
-    __metadata("design:type", String)
-], BucketForCreate.prototype, "orderId", void 0);
-__decorate([
-    (0, swagger_1.ApiProperty)(),
-    __metadata("design:type", String)
-], BucketForCreate.prototype, "prodId", void 0);
-__decorate([
-    (0, swagger_1.ApiProperty)(),
-    __metadata("design:type", Number)
-], BucketForCreate.prototype, "quantity", void 0);
-exports.BucketForCreate = BucketForCreate;
-//# sourceMappingURL=bucketforcreate.dto.js.map
+    __metadata("design:type", Array)
+], OrderForCreate.prototype, "buckets", void 0);
+exports.OrderForCreate = OrderForCreate;
+//# sourceMappingURL=OrderForCreate.js.map

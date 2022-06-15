@@ -11,6 +11,7 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 var __param = (this && this.__param) || function (paramIndex, decorator) {
     return function (target, key) { decorator(target, key, paramIndex); }
 };
+var _a, _b, _c, _d;
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.ProductController = void 0;
 const common_1 = require("@nestjs/common");
@@ -69,7 +70,7 @@ __decorate([
     })),
     __param(1, (0, common_1.UploadedFile)()),
     __metadata("design:type", Function),
-    __metadata("design:paramtypes", [productforcreate_dto_1.ProductForCreate, Object]),
+    __metadata("design:paramtypes", [typeof (_a = typeof productforcreate_dto_1.ProductForCreate !== "undefined" && productforcreate_dto_1.ProductForCreate) === "function" ? _a : Object, Object]),
     __metadata("design:returntype", Promise)
 ], ProductController.prototype, "createProduct", null);
 __decorate([
@@ -101,7 +102,7 @@ __decorate([
     __param(1, (0, currentuser_decorator_1.CurrentUser)()),
     __param(2, (0, common_1.Body)(new joivalidation_pipe_1.JoiValidationPipe(reviewFromUser_schema_1.reviewFromUserSchema))),
     __metadata("design:type", Function),
-    __metadata("design:paramtypes", [Object, Object, reviewformuser_dto_1.ReviewFromUser]),
+    __metadata("design:paramtypes", [Object, Object, typeof (_b = typeof reviewformuser_dto_1.ReviewFromUser !== "undefined" && reviewformuser_dto_1.ReviewFromUser) === "function" ? _b : Object]),
     __metadata("design:returntype", Promise)
 ], ProductController.prototype, "makeReviewForProduct", null);
 __decorate([
@@ -117,12 +118,12 @@ __decorate([
     __param(0, (0, common_1.Param)('id')),
     __param(2, (0, common_1.UploadedFile)()),
     __metadata("design:type", Function),
-    __metadata("design:paramtypes", [String, productforupdate_dto_1.ProductForUpdate, Object]),
+    __metadata("design:paramtypes", [String, typeof (_c = typeof productforupdate_dto_1.ProductForUpdate !== "undefined" && productforupdate_dto_1.ProductForUpdate) === "function" ? _c : Object, Object]),
     __metadata("design:returntype", Promise)
 ], ProductController.prototype, "updateProduct", null);
 ProductController = __decorate([
     (0, common_1.Controller)('product'),
-    __metadata("design:paramtypes", [product_service_1.ProductService])
+    __metadata("design:paramtypes", [typeof (_d = typeof product_service_1.ProductService !== "undefined" && product_service_1.ProductService) === "function" ? _d : Object])
 ], ProductController);
 exports.ProductController = ProductController;
 //# sourceMappingURL=product.controller.js.map

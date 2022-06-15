@@ -1,0 +1,71 @@
+import { ForbiddenException, Injectable } from '@nestjs/common';
+import { Order, Prisma, Product } from '@prisma/client';
+import { SaveImageInfo, StatsInfo } from 'src/types/types';
+import { Sort } from 'src/enums/sort.enum';
+import { ReviewRepository } from 'src/persistance/repository/review.repository';
+import { OrderRepository } from 'src/persistance/repository/order.repository';
+import { BucketRepository } from 'src/persistance/repository/bucket.repository';
+import { BucketForCreate } from '../BucketModule/dto/bucketforcreate.dto';
+import { OrderForCreate } from './dto/OrderForCreate';
+import { UserRepository } from 'src/persistance/repository/user.repository';
+import { ProductRepository } from 'src/persistance/repository/product.repository';
+import { Decimal } from '@prisma/client/runtime';
+
+@Injectable()
+export class OrderService {
+  constructor(
+    private orderRepository: OrderRepository,
+    private bucketRepository: BucketRepository,
+    private userRepository: UserRepository,
+    private productRepository: ProductRepository,
+  ) {}
+
+  async createOrder(
+    inputOrder: OrderForCreate,
+    userId: string,
+  ): Promise<Order> {
+    const user = await this.userRepository.getById(userId);
+    let newOrder = await this.orderRepository.create({
+      date: new Date(),
+      user: user as Prisma.UserCreateNestedOneWithoutOrdersInput,
+      status: 'оформлен',
+    });
+    // eslint-disable-next-line @typescript-eslint/no-inferrable-types
+    let cost: number = 0;
+    inputOrder.buckets.forEach(async (buck) => {
+      let prod = await this.productRepository.getById(buck.prodId);
+      prod = await this.productRepository.update(buck.prodId.toString(), {
+        in_stock: prod.in_stock - buck.quantity,
+      });
+      await this.bucketRepository.create({
+        order: newOrder as Prisma.OrderCreateNestedOneWithoutBucketsInput,
+        product: prod as Prisma.ProductCreateNestedOneWithoutBucketsInput,
+        quantity: buck.quantity,
+      });
+      cost += Number(prod.price) * buck.quantity;
+    });
+    newOrder = await this.orderRepository.updateNumId(newOrder.id, {
+      totalCost: cost,
+    });
+    return newOrder;
+  }
+
+  async getOne(id: string): Promise<Order> {
+    return await this.orderRepository.findOne(id);
+  }
+
+  async getAll(): Promise<Order[]> {
+    return await this.orderRepository.findAll();
+  }
+
+  // async findByValue(name: string, author: string) {
+  //   return await this.orderRepository.findByValue(name, author);
+  // }
+
+  async updateOrder() {
+    // newImage: string, // productForUpdate: ProductForUpdate, // productId: string,
+    // const product = await this.orderRepository.findOne(productId);
+    // productForUpdate.img_path = newImage;
+    // return await this.orderRepository.update(productId, productForUpdate);
+  }
+}

@@ -63,6 +63,8 @@ export class ProductRepository
         raiting: true,
         in_stock: true,
         categoryId: true,
+        short_descr: true,
+        html_descr: true,
         category: {
           select: {
             id: true,
@@ -106,6 +108,20 @@ export class ProductRepository
       },
       where: {
         id: Number(id),
+      },
+    });
+
+    if (product) {
+      return product;
+    }
+
+    throw new NotFound('Not found product');
+  }
+
+  async getById(id: number): Promise<Product> {
+    const product = await this.prisma.product.findFirst({
+      where: {
+        id: id,
       },
     });
 

@@ -155,6 +155,18 @@ export class UserRepository
     throw new NotFound('Not found user with this email');
   }
 
+  async getById(id: string) {
+    const user = await this.prisma.user.findFirst({
+      where: {
+        id: Number(id),
+      },
+    });
+    if (user) {
+      return user;
+    }
+    throw new NotFound('Not found user by id');
+  }
+
   async canRegister(email: string) {
     const user = await this.prisma.user.findFirst({
       where: {

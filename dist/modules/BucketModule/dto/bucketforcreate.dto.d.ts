@@ -1,5 +1,5 @@
 export declare class BucketForCreate {
     orderId: string;
     prodId: string;
-    quantity: string;
+    quantity: number;
 }

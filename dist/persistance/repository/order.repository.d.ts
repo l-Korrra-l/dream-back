@@ -6,6 +6,7 @@ export declare class OrderRepository implements Repository<string, Prisma.OrderC
     constructor(prisma: PrismaService);
     create(data: Prisma.OrderCreateInput): Promise<Order>;
     update(id: string, data: Prisma.OrderUpdateInput): Promise<Order>;
+    updateNumId(id: number, data: Prisma.OrderUpdateInput): Promise<Order>;
     delete(id: string): Promise<boolean>;
     deleteByUserId(id: string): Promise<void>;
     findOne(id: string): Promise<Order>;

@@ -11,6 +11,7 @@ export declare class ProductRepository implements Repository<string, Prisma.Prod
     delete(id: string): Promise<boolean>;
     findOne(id: string): Promise<Product>;
     findWithReviews(id: string): Promise<ProductWithReviews>;
+    getById(id: number): Promise<Product>;
     findAll(): Promise<Product[]>;
     findAllWithSorting(sort: Sort): Promise<Product[]>;
     findByValue(name: string, author: string): Promise<Product[]>;

@@ -11,5 +11,6 @@ export declare class UserRepository implements Repository<string, Prisma.UserCre
     findAll(): Promise<User[]>;
     findForView(id: string): Promise<User>;
     findByEmail(email: string): Promise<User>;
+    getById(id: string): Promise<User>;
     canRegister(email: string): Promise<boolean>;
 }

@@ -8,6 +8,7 @@ import { DbModule } from './persistance/dbmodule.module';
 import { UserModule } from './modules/UserModule/user.module';
 import { ProductModule } from './modules/ProductModule/product.module';
 import { BucketModule } from './modules/BucketModule/bucket.module';
+import { OrderModule } from './modules/OrderModule/order.module';
 
 @Module({
   imports: [
@@ -21,6 +22,7 @@ import { BucketModule } from './modules/BucketModule/bucket.module';
     UserModule,
     ProductModule,
     BucketModule,
+    OrderModule,
     // PaymentModule,
   ],
   controllers: [AppController],
