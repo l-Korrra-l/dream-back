@@ -22,9 +22,11 @@ const roles_guard_1 = require("../AuthModule/guards/roles.guard");
 const order_service_1 = require("./order.service");
 const OrderForCreate_1 = require("./dto/OrderForCreate");
 const swagger_1 = require("@nestjs/swagger");
+const email_service_1 = require("../EmailModule/email.service");
 let OrderController = class OrderController {
-    constructor(orderService) {
+    constructor(orderService, emailservice) {
         this.orderService = orderService;
+        this.emailservice = emailservice;
     }
     async createProduct(user, orderForCreate) {
         return await this.orderService.createOrder(orderForCreate, user.userId);
@@ -33,7 +35,13 @@ let OrderController = class OrderController {
         return await this.orderService.getOne(id);
     }
     async getAllproducts(user) {
-        return await this.orderService.getAll(user);
+        const order = await this.orderService.getAll(user);
+        this.emailservice.sendMail({
+            to: user.email,
+            subject: 'Dreamstore �����',
+            text: '��� ����� ��������',
+        });
+        return order;
     }
 };
 __decorate([
@@ -62,7 +70,8 @@ __decorate([
 ], OrderController.prototype, "getAllproducts", null);
 OrderController = __decorate([
     (0, common_1.Controller)('order'),
-    __metadata("design:paramtypes", [order_service_1.OrderService])
+    __metadata("design:paramtypes", [order_service_1.OrderService,
+        email_service_1.default])
 ], OrderController);
 exports.OrderController = OrderController;
 //# sourceMappingURL=order.controller.js.map

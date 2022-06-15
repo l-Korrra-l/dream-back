@@ -6,20 +6,16 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.OrderModule = void 0;
+exports.EmailModule = void 0;
 const common_1 = require("@nestjs/common");
-const dbmodule_module_1 = require("../../persistance/dbmodule.module");
-const email_service_1 = require("../EmailModule/email.service");
-const order_controller_1 = require("./order.controller");
-const order_service_1 = require("./order.service");
-let OrderModule = class OrderModule {
+const email_service_1 = require("./email.service");
+let EmailModule = class EmailModule {
 };
-OrderModule = __decorate([
+EmailModule = __decorate([
     (0, common_1.Module)({
-        imports: [dbmodule_module_1.DbModule],
-        controllers: [order_controller_1.OrderController],
-        providers: [order_service_1.OrderService, email_service_1.default],
+        providers: [email_service_1.default],
+        exports: [email_service_1.default],
     })
-], OrderModule);
-exports.OrderModule = OrderModule;
-//# sourceMappingURL=order.module.js.map
+], EmailModule);
+exports.EmailModule = EmailModule;
+//# sourceMappingURL=email.module.js.map

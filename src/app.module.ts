@@ -9,6 +9,7 @@ import { UserModule } from './modules/UserModule/user.module';
 import { ProductModule } from './modules/ProductModule/product.module';
 import { BucketModule } from './modules/BucketModule/bucket.module';
 import { OrderModule } from './modules/OrderModule/order.module';
+import { EmailModule } from './modules/EmailModule/email.module';
 
 @Module({
   imports: [
@@ -23,6 +24,7 @@ import { OrderModule } from './modules/OrderModule/order.module';
     ProductModule,
     BucketModule,
     OrderModule,
+    EmailModule,
     // PaymentModule,
   ],
   controllers: [AppController],

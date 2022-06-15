@@ -27,10 +27,14 @@ import { imageFileFilter } from 'src/helpers/imageFilter.helpers';
 import { OrderService } from './order.service';
 import { OrderForCreate } from './dto/OrderForCreate';
 import { ApiOperation } from '@nestjs/swagger';
+import EmailService from '../EmailModule/email.service';
 
 @Controller('order')
 export class OrderController {
-  constructor(private orderService: OrderService) {}
+  constructor(
+    private orderService: OrderService,
+    private emailservice: EmailService,
+  ) {}
 
   @Post()
   @UseGuards(JwtAuthGuard, RolesGuard)
@@ -51,7 +55,13 @@ export class OrderController {
 
   @Get()
   async getAllproducts(@CurrentUser() user: CurrentUserInfo) {
-    return await this.orderService.getAll(user);
+    const order = await this.orderService.getAll(user);
+    this.emailservice.sendMail({
+      to: user.email,
+      subject: 'Dreamstore заказ',
+      text: 'Ваш заказ оформлен',
+    });
+    return order;
   }
 
   // @Get('search/:value')
