@@ -42,7 +42,8 @@ export class OrderController {
   @ApiOperation({ summary: 'array of {buckets: {prodid:, quantity:}}' })
   async createProduct(
     @Body()
-    @CurrentUser() user: CurrentUserInfo,
+    @CurrentUser()
+    user: CurrentUserInfo,
     orderForCreate: OrderForCreate,
   ) {
     return await this.orderService.createOrder(orderForCreate, user.userId);
