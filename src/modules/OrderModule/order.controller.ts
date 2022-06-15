@@ -41,7 +41,7 @@ export class OrderController {
   @Roles(Role.User)
   @ApiOperation({ summary: 'array of {buckets: {prodid:, quantity:}}' })
   async createProduct(
-    // @Body(new JoiValidationPipe(productForCreateSchema))
+    @Body()
     @CurrentUser() user: CurrentUserInfo,
     orderForCreate: OrderForCreate,
   ) {

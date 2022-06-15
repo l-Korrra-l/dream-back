@@ -10,6 +10,7 @@ import { ProductModule } from './modules/ProductModule/product.module';
 import { BucketModule } from './modules/BucketModule/bucket.module';
 import { OrderModule } from './modules/OrderModule/order.module';
 import { EmailModule } from './modules/EmailModule/email.module';
+import { CurrencyModule } from './modules/Currencymodule/currency.module';
 
 @Module({
   imports: [
@@ -25,6 +26,7 @@ import { EmailModule } from './modules/EmailModule/email.module';
     BucketModule,
     OrderModule,
     EmailModule,
+    CurrencyModule,
     // PaymentModule,
   ],
   controllers: [AppController],

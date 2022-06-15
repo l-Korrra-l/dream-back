@@ -49,6 +49,7 @@ __decorate([
     (0, common_1.UseGuards)(jwt_guard_1.JwtAuthGuard, roles_guard_1.RolesGuard),
     (0, roles_decorator_1.Roles)(role_enum_1.Role.User),
     (0, swagger_1.ApiOperation)({ summary: 'array of {buckets: {prodid:, quantity:}}' }),
+    __param(0, (0, common_1.Body)()),
     __param(0, (0, currentuser_decorator_1.CurrentUser)()),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", [Object, OrderForCreate_1.OrderForCreate]),

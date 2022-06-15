@@ -45,7 +45,7 @@ export class ProductController {
     }),
   )
   async createProduct(
-    // @Body(new JoiValidationPipe(productForCreateSchema))
+    @Body()
     productForCreate: ProductForCreate,
     @UploadedFile() file: any,
   ) {
@@ -101,7 +101,7 @@ export class ProductController {
   @Patch(':id')
   async updateProduct(
     @Param('id') productId: string,
-    // @Body(new JoiValidationPipe(productForUpdateSchema))
+    @Body()
     productForUpdate: ProductForUpdate,
     @UploadedFile() file: any,
   ) {
