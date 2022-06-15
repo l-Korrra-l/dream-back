@@ -1,6 +1,6 @@
 export declare class GoogleUser {
-    firstName: string;
-    lastName: string;
+    firstName?: string;
+    lastName?: string;
     email: string;
-    img_path: string;
+    img_path?: string;
 }
