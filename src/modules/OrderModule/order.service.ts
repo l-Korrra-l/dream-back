@@ -57,7 +57,8 @@ export class OrderService {
   }
 
   async getAll(user: CurrentUserInfo): Promise<Order[]> {
-    if (user.role == Role.User) return await this.orderRepository.findByUser(user.userId);
+    if (user.role == Role.User)
+      return await this.orderRepository.findByUser(user.userId);
     else return await this.orderRepository.findAll();
   }
 
