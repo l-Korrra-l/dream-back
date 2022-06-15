@@ -2,14 +2,14 @@
 CREATE TABLE "User" (
     "id" SERIAL NOT NULL,
     "email" TEXT NOT NULL,
-    "password" TEXT NOT NULL,
+    "password" TEXT,
     "auth" TEXT,
     "firstName" TEXT,
     "lastName" TEXT,
     "birthDate" TEXT,
     "status" BOOLEAN NOT NULL DEFAULT false,
     "img_path" TEXT,
-    "roleId" INTEGER,
+    "role" TEXT NOT NULL,
 
     CONSTRAINT "User_pkey" PRIMARY KEY ("id")
 );
@@ -26,8 +26,10 @@ CREATE TABLE "Role" (
 CREATE TABLE "Product" (
     "id" SERIAL NOT NULL,
     "name" TEXT NOT NULL,
-    "description" TEXT NOT NULL,
-    "price" DOUBLE PRECISION NOT NULL,
+    "short_descr" TEXT,
+    "description" TEXT,
+    "html_descr" TEXT,
+    "price" DECIMAL(65,30) NOT NULL,
     "in_stock" INTEGER NOT NULL,
     "img_path" TEXT,
     "categoryId" INTEGER,
@@ -49,8 +51,8 @@ CREATE TABLE "Category" (
 CREATE TABLE "Order" (
     "id" SERIAL NOT NULL,
     "userId" INTEGER NOT NULL,
-    "totalCost" DOUBLE PRECISION NOT NULL,
-    "status" TEXT NOT NULL DEFAULT E'In process',
+    "totalCost" DOUBLE PRECISION,
+    "status" TEXT NOT NULL DEFAULT E'оформлен',
     "date" TIMESTAMP(3) DEFAULT CURRENT_TIMESTAMP,
 
     CONSTRAINT "Order_pkey" PRIMARY KEY ("id")
@@ -90,11 +92,19 @@ CREATE TABLE "Currency" (
     CONSTRAINT "Currency_pkey" PRIMARY KEY ("id")
 );
 
+-- CreateTable
+CREATE TABLE "Slider" (
+    "id" SERIAL NOT NULL,
+    "prodId" INTEGER,
+    "title" TEXT,
+    "description" TEXT,
+    "img_path" TEXT,
+
+    CONSTRAINT "Slider_pkey" PRIMARY KEY ("id")
+);
+
 -- CreateIndex
 CREATE UNIQUE INDEX "User_email_key" ON "User"("email");
-
--- AddForeignKey
-ALTER TABLE "User" ADD CONSTRAINT "User_roleId_fkey" FOREIGN KEY ("roleId") REFERENCES "Role"("id") ON DELETE SET NULL ON UPDATE CASCADE;
 
 -- AddForeignKey
 ALTER TABLE "Product" ADD CONSTRAINT "Product_categoryId_fkey" FOREIGN KEY ("categoryId") REFERENCES "Category"("id") ON DELETE SET NULL ON UPDATE CASCADE;
@@ -113,3 +123,6 @@ ALTER TABLE "Review" ADD CONSTRAINT "Review_userId_fkey" FOREIGN KEY ("userId") 
 
 -- AddForeignKey
 ALTER TABLE "Review" ADD CONSTRAINT "Review_prodId_fkey" FOREIGN KEY ("prodId") REFERENCES "Product"("id") ON DELETE SET NULL ON UPDATE CASCADE;
+
+-- AddForeignKey
+ALTER TABLE "Slider" ADD CONSTRAINT "Slider_prodId_fkey" FOREIGN KEY ("prodId") REFERENCES "Product"("id") ON DELETE SET NULL ON UPDATE CASCADE;

@@ -6,6 +6,7 @@ import { CurrencyRepository } from './repository/currency.repository';
 import { OrderRepository } from './repository/order.repository';
 import { ProductRepository } from './repository/product.repository';
 import { ReviewRepository } from './repository/review.repository';
+import { SliderRepository } from './repository/slider.repository';
 import { UserRepository } from './repository/user.repository';
 
 @Module({
@@ -17,6 +18,7 @@ import { UserRepository } from './repository/user.repository';
     OrderRepository,
     BucketRepository,
     CurrencyRepository,
+    SliderRepository,
   ],
   exports: [
     UserRepository,
@@ -25,6 +27,7 @@ import { UserRepository } from './repository/user.repository';
     OrderRepository,
     BucketRepository,
     CurrencyRepository,
+    SliderRepository,
   ],
 })
 export class DbModule {}

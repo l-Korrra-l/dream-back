@@ -20,6 +20,7 @@ const bucket_module_1 = require("./modules/BucketModule/bucket.module");
 const order_module_1 = require("./modules/OrderModule/order.module");
 const email_module_1 = require("./modules/EmailModule/email.module");
 const currency_module_1 = require("./modules/Currencymodule/currency.module");
+const slider_module_1 = require("./modules/SliderModule/slider.module");
 let AppModule = class AppModule {
 };
 AppModule = __decorate([
@@ -38,6 +39,7 @@ AppModule = __decorate([
             order_module_1.OrderModule,
             email_module_1.EmailModule,
             currency_module_1.CurrencyModule,
+            slider_module_1.SliderModule,
         ],
         controllers: [app_controller_1.AppController],
         providers: [app_service_1.AppService],

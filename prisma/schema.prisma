@@ -58,12 +58,14 @@ model Product {
   reviews     Review[]
   buckets     Bucket[]
   raiting     Float
+  sliders     Slider[]
 }
 
 model Category {
   id           Int       @id @default(autoincrement())
   categoryName String
   img_path     String?
+  block_type    String?
   products     Product[]
 }
 
@@ -106,6 +108,11 @@ model Currency {
   date DateTime? @default(now())
 }
 
-//TODO: token table
-//id, uid,token
-//date?
+model Slider {
+  id          Int      @id @default(autoincrement())
+  prodId      Int?
+  product     Product? @relation(fields: [prodId], references: [id])
+  title       String?
+  description String?
+  img_path    String?
+}
