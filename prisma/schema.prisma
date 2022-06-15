@@ -65,7 +65,8 @@ model Category {
   id           Int       @id @default(autoincrement())
   categoryName String
   img_path     String?
-  block_type    String?
+  block_type   String?
+  main_page    Boolean?  @default(false)
   products     Product[]
 }
 

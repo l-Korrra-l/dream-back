@@ -8,4 +8,6 @@ export class CategoryForCreate {
   img_path?: string;
   @ApiPropertyOptional()
   block_type?: string;
+  @ApiPropertyOptional()
+  main_page?: boolean;
 }

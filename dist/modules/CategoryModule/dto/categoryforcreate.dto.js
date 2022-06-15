@@ -25,5 +25,9 @@ __decorate([
     (0, swagger_1.ApiPropertyOptional)(),
     __metadata("design:type", String)
 ], CategoryForCreate.prototype, "block_type", void 0);
+__decorate([
+    (0, swagger_1.ApiPropertyOptional)(),
+    __metadata("design:type", Boolean)
+], CategoryForCreate.prototype, "main_page", void 0);
 exports.CategoryForCreate = CategoryForCreate;
 //# sourceMappingURL=categoryforcreate.dto.js.map
