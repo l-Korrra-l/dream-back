@@ -21,6 +21,7 @@ const order_module_1 = require("./modules/OrderModule/order.module");
 const email_module_1 = require("./modules/EmailModule/email.module");
 const currency_module_1 = require("./modules/Currencymodule/currency.module");
 const slider_module_1 = require("./modules/SliderModule/slider.module");
+const category_module_1 = require("./modules/CategoryModule/category.module");
 let AppModule = class AppModule {
 };
 AppModule = __decorate([
@@ -40,6 +41,7 @@ AppModule = __decorate([
             email_module_1.EmailModule,
             currency_module_1.CurrencyModule,
             slider_module_1.SliderModule,
+            category_module_1.CategoryModule,
         ],
         controllers: [app_controller_1.AppController],
         providers: [app_service_1.AppService],

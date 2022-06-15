@@ -1,12 +1,13 @@
+/* eslint-disable prettier/prettier */
 import { ApiProperty, ApiPropertyOptional } from '@nestjs/swagger';
 
 export class SliderForCreate {
   @ApiPropertyOptional()
-  prodId: number;
+  prodId?: number;
   @ApiPropertyOptional()
-  title: string;
+  title?: string;
   @ApiPropertyOptional()
-  description: string;
+  description?: string;
   @ApiPropertyOptional()
-  img_path: string;
+  img_path?: string;
 }

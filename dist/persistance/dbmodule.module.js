@@ -11,6 +11,7 @@ const common_1 = require("@nestjs/common");
 const nestjs_prisma_1 = require("nestjs-prisma");
 const prisma_config_1 = require("../config/prisma.config");
 const bucket_repository_1 = require("./repository/bucket.repository");
+const category_repository_1 = require("./repository/category.repository");
 const currency_repository_1 = require("./repository/currency.repository");
 const order_repository_1 = require("./repository/order.repository");
 const product_repository_1 = require("./repository/product.repository");
@@ -30,6 +31,7 @@ DbModule = __decorate([
             bucket_repository_1.BucketRepository,
             currency_repository_1.CurrencyRepository,
             slider_repository_1.SliderRepository,
+            category_repository_1.CategoryRepository,
         ],
         exports: [
             user_repository_1.UserRepository,
@@ -39,6 +41,7 @@ DbModule = __decorate([
             bucket_repository_1.BucketRepository,
             currency_repository_1.CurrencyRepository,
             slider_repository_1.SliderRepository,
+            category_repository_1.CategoryRepository,
         ],
     })
 ], DbModule);

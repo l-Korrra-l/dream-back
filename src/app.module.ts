@@ -12,6 +12,7 @@ import { OrderModule } from './modules/OrderModule/order.module';
 import { EmailModule } from './modules/EmailModule/email.module';
 import { CurrencyModule } from './modules/Currencymodule/currency.module';
 import { SliderModule } from './modules/SliderModule/slider.module';
+import { CategoryModule } from './modules/CategoryModule/category.module';
 
 @Module({
   imports: [
@@ -29,6 +30,7 @@ import { SliderModule } from './modules/SliderModule/slider.module';
     EmailModule,
     CurrencyModule,
     SliderModule,
+    CategoryModule,
   ],
   controllers: [AppController],
   providers: [AppService],
