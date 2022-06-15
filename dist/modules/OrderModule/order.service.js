@@ -15,6 +15,7 @@ const order_repository_1 = require("../../persistance/repository/order.repositor
 const bucket_repository_1 = require("../../persistance/repository/bucket.repository");
 const user_repository_1 = require("../../persistance/repository/user.repository");
 const product_repository_1 = require("../../persistance/repository/product.repository");
+const role_enum_1 = require("../../enums/role.enum");
 let OrderService = class OrderService {
     constructor(orderRepository, bucketRepository, userRepository, productRepository) {
         this.orderRepository = orderRepository;
@@ -50,8 +51,11 @@ let OrderService = class OrderService {
     async getOne(id) {
         return await this.orderRepository.findOne(id);
     }
-    async getAll() {
-        return await this.orderRepository.findAll();
+    async getAll(user) {
+        if (user.role == role_enum_1.Role.User)
+            return await this.orderRepository.findByUser(user.userId);
+        else
+            return await this.orderRepository.findAll();
     }
     async updateOrder() {
     }

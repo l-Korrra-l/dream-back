@@ -32,8 +32,8 @@ let OrderController = class OrderController {
     async getOrder(id) {
         return await this.orderService.getOne(id);
     }
-    async getAllproducts() {
-        return await this.orderService.getAll();
+    async getAllproducts(user) {
+        return await this.orderService.getAll(user);
     }
 };
 __decorate([
@@ -55,8 +55,9 @@ __decorate([
 ], OrderController.prototype, "getOrder", null);
 __decorate([
     (0, common_1.Get)(),
+    __param(0, (0, currentuser_decorator_1.CurrentUser)()),
     __metadata("design:type", Function),
-    __metadata("design:paramtypes", []),
+    __metadata("design:paramtypes", [Object]),
     __metadata("design:returntype", Promise)
 ], OrderController.prototype, "getAllproducts", null);
 OrderController = __decorate([

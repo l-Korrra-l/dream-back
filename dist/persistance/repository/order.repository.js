@@ -69,7 +69,17 @@ let OrderRepository = class OrderRepository {
         });
     }
     async findAll() {
-        return await this.prisma.order.findMany();
+        return await this.prisma.order.findMany({
+            select: {
+                id: true,
+                userId: true,
+                totalCost: true,
+                date: true,
+                status: true,
+                user: true,
+                buckets: true,
+            },
+        });
     }
 };
 OrderRepository = __decorate([

@@ -71,6 +71,16 @@ export class OrderRepository
   }
 
   async findAll(): Promise<Order[]> {
-    return await this.prisma.order.findMany();
+    return await this.prisma.order.findMany({
+      select: {
+        id: true,
+        userId: true,
+        totalCost: true,
+        date: true,
+        status: true,
+        user: true,
+        buckets: true,
+      },
+    });
   }
 }

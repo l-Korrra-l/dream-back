@@ -50,8 +50,8 @@ export class OrderController {
   }
 
   @Get()
-  async getAllproducts() {
-    return await this.orderService.getAll();
+  async getAllproducts(@CurrentUser() user: CurrentUserInfo) {
+    return await this.orderService.getAll(user);
   }
 
   // @Get('search/:value')

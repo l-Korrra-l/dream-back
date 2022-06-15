@@ -6,5 +6,5 @@ export declare class OrderController {
     constructor(orderService: OrderService);
     createProduct(user: CurrentUserInfo, orderForCreate: OrderForCreate): Promise<import(".prisma/client").Order>;
     getOrder(id: string): Promise<import(".prisma/client").Order>;
-    getAllproducts(): Promise<import(".prisma/client").Order[]>;
+    getAllproducts(user: CurrentUserInfo): Promise<import(".prisma/client").Order[]>;
 }

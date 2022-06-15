@@ -10,6 +10,8 @@ import { OrderForCreate } from './dto/OrderForCreate';
 import { UserRepository } from 'src/persistance/repository/user.repository';
 import { ProductRepository } from 'src/persistance/repository/product.repository';
 import { Decimal } from '@prisma/client/runtime';
+import { CurrentUserInfo } from 'src/types/types';
+import { Role } from 'src/enums/role.enum';
 
 @Injectable()
 export class OrderService {
@@ -54,8 +56,9 @@ export class OrderService {
     return await this.orderRepository.findOne(id);
   }
 
-  async getAll(): Promise<Order[]> {
-    return await this.orderRepository.findAll();
+  async getAll(user: CurrentUserInfo): Promise<Order[]> {
+    if (user.role == Role.User) return await this.orderRepository.findByUser(user.userId);
+    else return await this.orderRepository.findAll();
   }
 
   // async findByValue(name: string, author: string) {
