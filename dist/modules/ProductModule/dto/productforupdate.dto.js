@@ -41,5 +41,21 @@ __decorate([
     (0, swagger_1.ApiProperty)(),
     __metadata("design:type", Number)
 ], ProductForUpdate.prototype, "raiting", void 0);
+__decorate([
+    (0, swagger_1.ApiProperty)(),
+    __metadata("design:type", String)
+], ProductForUpdate.prototype, "producer", void 0);
+__decorate([
+    (0, swagger_1.ApiProperty)(),
+    __metadata("design:type", String)
+], ProductForUpdate.prototype, "charact", void 0);
+__decorate([
+    (0, swagger_1.ApiProperty)(),
+    __metadata("design:type", String)
+], ProductForUpdate.prototype, "short_descr", void 0);
+__decorate([
+    (0, swagger_1.ApiProperty)(),
+    __metadata("design:type", String)
+], ProductForUpdate.prototype, "html_descr", void 0);
 exports.ProductForUpdate = ProductForUpdate;
 //# sourceMappingURL=productforupdate.dto.js.map

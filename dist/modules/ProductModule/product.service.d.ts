@@ -5,10 +5,12 @@ import { Sort } from 'src/enums/sort.enum';
 import { ReviewFromUser } from './dto/reviewformuser.dto';
 import { ReviewRepository } from 'src/persistance/repository/review.repository';
 import { ProductForUpdate } from './dto/productforupdate.dto';
+import { CategoryRepository } from 'src/persistance/repository/category.repository';
 export declare class ProductService {
     private productRepository;
     private reviewRepository;
-    constructor(productRepository: ProductRepository, reviewRepository: ReviewRepository);
+    private categoryRepository;
+    constructor(productRepository: ProductRepository, reviewRepository: ReviewRepository, categoryRepository: CategoryRepository);
     createProduct(inputProduct: ProductForCreate): Promise<Product>;
     getOne(id: string): Promise<Product>;
     getAll(sort: Sort, sortby: string): Promise<Product[]>;

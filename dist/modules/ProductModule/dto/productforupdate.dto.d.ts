@@ -5,5 +5,9 @@ export declare class ProductForUpdate {
     price: number;
     in_stock: number;
     categoryId: number;
-    raiting: number;
+    raiting?: number;
+    producer?: string;
+    charact?: string;
+    short_descr?: string;
+    html_descr?: string;
 }

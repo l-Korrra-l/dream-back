@@ -7,19 +7,27 @@ import { Sort } from 'src/enums/sort.enum';
 import { ReviewFromUser } from './dto/reviewformuser.dto';
 import { ReviewRepository } from 'src/persistance/repository/review.repository';
 import { ProductForUpdate } from './dto/productforupdate.dto';
+import { CategoryRepository } from 'src/persistance/repository/category.repository';
 
 @Injectable()
 export class ProductService {
   constructor(
     private productRepository: ProductRepository,
     private reviewRepository: ReviewRepository,
+    private categoryRepository: CategoryRepository,
   ) {}
 
   async createProduct(inputProduct: ProductForCreate): Promise<Product> {
+    const cat = await this.categoryRepository.findOne(
+      inputProduct.categoryId.toString(),
+    );
+    const { categoryId, ...lProduct } = inputProduct;
     const product = await this.productRepository.create({
       raiting: 0,
+      // category: cat as Prisma.CategoryCreateNestedOneWithoutProductsInput,
+      categoryId: categoryId,
       ...inputProduct,
-    } as Prisma.ProductCreateInput);
+    });
 
     return product;
   }

@@ -5,9 +5,9 @@ export class ProductForCreate {
   @ApiProperty()
   name: string;
   @ApiProperty()
-  description: string;
+  description?: string;
   @ApiProperty()
-  img_path: string;
+  img_path?: string;
   @ApiProperty()
   price: number;
   @ApiProperty()

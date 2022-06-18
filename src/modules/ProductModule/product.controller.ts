@@ -36,8 +36,8 @@ export class ProductController {
   constructor(private productService: ProductService) {}
 
   @Post()
-  @UseGuards(JwtAuthGuard, RolesGuard)
-  @Roles(Role.Admin)
+  // @UseGuards(JwtAuthGuard, RolesGuard)
+  // @Roles(Role.Admin)
   @UseInterceptors(
     FileInterceptor('file', {
       storage: diskStorage({
@@ -53,7 +53,13 @@ export class ProductController {
   ) {
     productForCreate.img_path =
       file.path + '.' + file.originalname.split('.')[1];
-    return await this.productService.createProduct(productForCreate);
+    console.log(productForCreate.in_stock);
+    const { in_stock, categoryId, ...lprod } = productForCreate;
+    return await this.productService.createProduct({
+      in_stock: parseInt(in_stock.toString()),
+      categoryId: parseInt(categoryId.toString()),
+      ...lprod,
+    });
   }
 
   @Get()
