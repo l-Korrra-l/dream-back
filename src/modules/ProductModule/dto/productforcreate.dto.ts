@@ -14,4 +14,12 @@ export class ProductForCreate {
   in_stock: number;
   @ApiProperty()
   categoryId: number;
+  @ApiProperty()
+  producer?: string;
+  @ApiProperty()
+  charact?: string;
+  @ApiProperty()
+  short_descr?: string;
+  @ApiProperty()
+  html_descr?: string;
 }

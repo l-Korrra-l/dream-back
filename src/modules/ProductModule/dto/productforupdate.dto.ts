@@ -15,5 +15,13 @@ export class ProductForUpdate {
   @ApiProperty()
   categoryId: number;
   @ApiProperty()
-  raiting: number;
+  raiting?: number;
+  @ApiProperty()
+  producer?: string;
+  @ApiProperty()
+  charact?: string;
+  @ApiProperty()
+  short_descr?: string;
+  @ApiProperty()
+  html_descr?: string;
 }
