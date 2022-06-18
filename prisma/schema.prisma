@@ -3,6 +3,10 @@
 
 generator client {
   provider = "prisma-client-js"
+    //postgres
+  // previewFeatures = ["fullTextSearch"] 
+  // mysql
+  previewFeatures = ["fullTextSearch", "fullTextIndex"] 
 }
 
 datasource db {
@@ -21,36 +25,24 @@ model User {
   status    Boolean  @default(false)
   img_path  String?
   role      String
-  // roleId    Int?
-  // role      Role?    @relation(fields: [roleId], references: [id])
-  // activationCodes ActivationCode[]
   orders    Order[]
   reviews   Review[]
 }
 
-// model ActivationCode {
-//   id           Int    @id @default(autoincrement())
-//   userId       Int?
-//   token        String @unique
-//   creationDate Int
-//   lifetime     Int
-//   user         User?  @relation(fields: [userId], references: [id])
-// }
-
 model Role {
   id       Int    @id @default(autoincrement())
   roleName String
-  // users    User[]
 }
 
-//TODO: charact...
 model Product {
   id          Int       @id @default(autoincrement())
   name        String
   short_descr String?
   description String?
   html_descr  String?
+  producer    String?
   price       Decimal
+  charact     String?
   in_stock    Int
   img_path    String?
   categoryId  Int?
@@ -59,6 +51,7 @@ model Product {
   buckets     Bucket[]
   raiting     Float
   sliders     Slider[]
+  // @@fulltext([name, short_descr, description, html_descr])
 }
 
 model Category {

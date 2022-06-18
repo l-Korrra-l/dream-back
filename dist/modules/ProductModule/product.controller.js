@@ -30,6 +30,7 @@ const reviewformuser_dto_1 = require("./dto/reviewformuser.dto");
 const product_service_1 = require("./product.service");
 const multer_1 = require("multer");
 const imageFilter_helpers_1 = require("../../helpers/imageFilter.helpers");
+const sortbyheader_decorator_1 = require("../../decorators/sortbyheader.decorator");
 let ProductController = class ProductController {
     constructor(productService) {
         this.productService = productService;
@@ -39,22 +40,20 @@ let ProductController = class ProductController {
             file.path + '.' + file.originalname.split('.')[1];
         return await this.productService.createProduct(productForCreate);
     }
-    async getProduct(id) {
-        return await this.productService.getOne(id);
+    async getAllproducts(sort, sortby) {
+        return await this.productService.getAll(sort, sortby);
     }
-    async getAllproducts(sort) {
-        return await this.productService.getAll(sort);
-    }
-    async searchProducts(valueForSearch) {
-        const name = valueForSearch;
-        const author = valueForSearch;
-        return await this.productService.findByValue(name, author);
+    async searchProductss(sort, sortby, filters) {
+        return await this.productService.findByFilters(filters, sort, sortby);
     }
     async makeReviewForProduct(productId, currentUser, review) {
         return await this.productService.makeReview(currentUser.userId, currentUser.email, productId, review);
     }
     async updateProduct(productId, productForUpdate, file) {
         return await this.productService.updateProduct(productId, productForUpdate, file.path + '.' + file.originalname.split('.')[1]);
+    }
+    async getProduct(id) {
+        return await this.productService.getOne(id);
     }
 };
 __decorate([
@@ -74,26 +73,22 @@ __decorate([
     __metadata("design:returntype", Promise)
 ], ProductController.prototype, "createProduct", null);
 __decorate([
-    (0, common_1.Get)('/:id'),
-    __param(0, (0, common_1.Param)('id')),
-    __metadata("design:type", Function),
-    __metadata("design:paramtypes", [String]),
-    __metadata("design:returntype", Promise)
-], ProductController.prototype, "getProduct", null);
-__decorate([
     (0, common_1.Get)(),
     __param(0, (0, sortheader_decorator_1.Sorting)()),
+    __param(1, (0, sortbyheader_decorator_1.SortingBy)()),
     __metadata("design:type", Function),
-    __metadata("design:paramtypes", [String]),
+    __metadata("design:paramtypes", [String, String]),
     __metadata("design:returntype", Promise)
 ], ProductController.prototype, "getAllproducts", null);
 __decorate([
-    (0, common_1.Get)('search/:value'),
-    __param(0, (0, common_1.Param)('value')),
+    (0, common_1.Post)('search'),
+    __param(0, (0, sortheader_decorator_1.Sorting)()),
+    __param(1, (0, sortbyheader_decorator_1.SortingBy)()),
+    __param(2, (0, common_1.Body)()),
     __metadata("design:type", Function),
-    __metadata("design:paramtypes", [String]),
+    __metadata("design:paramtypes", [String, String, Object]),
     __metadata("design:returntype", Promise)
-], ProductController.prototype, "searchProducts", null);
+], ProductController.prototype, "searchProductss", null);
 __decorate([
     (0, common_1.UseGuards)(jwt_guard_1.JwtAuthGuard),
     (0, common_1.Post)('makereview/:productId'),
@@ -122,6 +117,13 @@ __decorate([
     __metadata("design:paramtypes", [String, productforupdate_dto_1.ProductForUpdate, Object]),
     __metadata("design:returntype", Promise)
 ], ProductController.prototype, "updateProduct", null);
+__decorate([
+    (0, common_1.Get)('/:id'),
+    __param(0, (0, common_1.Param)('id')),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [String]),
+    __metadata("design:returntype", Promise)
+], ProductController.prototype, "getProduct", null);
 ProductController = __decorate([
     (0, common_1.Controller)('product'),
     __metadata("design:paramtypes", [product_service_1.ProductService])

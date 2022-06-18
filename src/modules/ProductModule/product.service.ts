@@ -28,12 +28,39 @@ export class ProductService {
     return await this.productRepository.findOne(id);
   }
 
-  async getAll(sort: Sort): Promise<Product[]> {
-    return await this.productRepository.findAllWithSorting(sort);
+  async getAll(sort: Sort, sortby: string): Promise<Product[]> {
+    return await this.productRepository.findAllWithSorting(sort, sortby);
   }
 
   async findByValue(name: string, author: string) {
     return await this.productRepository.findByValue(name, author);
+  }
+
+  async findByFilters(
+    filters: any,
+    sort: Sort,
+    sortby: string,
+  ): Promise<Product[]> {
+    let arr;
+    if (filters.name != null && filters.name != undefined)
+      arr = await this.productRepository.findByName(filters.name, sort);
+    else if (filters.text != null && filters.text != undefined)
+      arr = await this.productRepository.findByText(filters.text, sort);
+    else if (filters.producer != null && filters.producer != undefined)
+      return await this.productRepository.findByProducer(
+        filters.producer,
+        sort,
+        sortby,
+      );
+    if (!filters.min_price) filters.min_price = -1;
+    if (!filters.max_price) filters.max_price = Number.MAX_VALUE / 2;
+    if (filters.producer != null && filters.producer != undefined)
+      arr.map((i) => {
+        if (i.producer.includes(filters.producer)) return i;
+      });
+    return arr.map((i) => {
+      if (i.price > filters.min_price && i.price < filters.max_price) return i;
+    });
   }
 
   async makeReview(

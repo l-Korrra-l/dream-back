@@ -59,12 +59,14 @@ export class ProductRepository
         name: true,
         description: true,
         img_path: true,
+        producer: true,
         price: true,
         raiting: true,
         in_stock: true,
         categoryId: true,
         short_descr: true,
         html_descr: true,
+        charact: true,
         category: {
           select: {
             id: true,
@@ -140,57 +142,26 @@ export class ProductRepository
     });
   }
   //asc, desc
-  async findAllWithSorting(sort: Sort): Promise<Product[]> {
-    if (sort != Sort.none) {
-      return (await this.prisma.product.findMany({
-        select: {
-          id: true,
-          name: true,
-          description: true,
-          img_path: true,
-          price: true,
-          raiting: true,
-          in_stock: true,
-          categoryId: true,
-          reviews: {
-            select: {
-              id: true,
-              createdDate: true,
-              raiting: true,
-              authorName: true,
-              productdName: true,
-              text: true,
-            },
-          },
-        },
+  async findAllWithSorting(sort: Sort, sortby: string): Promise<Product[]> {
+    if (sort == Sort.none) sort = Sort.asc;
+    if (sortby == 'price' || sortby == undefined || sortby == null)
+      return await this.prisma.product.findMany({
         orderBy: {
           price: sort,
         },
-      })) as unknown as Product[];
-    }
-
-    return (await this.prisma.product.findMany({
-      select: {
-        id: true,
-        name: true,
-        description: true,
-        img_path: true,
-        price: true,
-        raiting: true,
-        in_stock: true,
-        categoryId: true,
-        reviews: {
-          select: {
-            id: true,
-            createdDate: true,
-            raiting: true,
-            authorName: true,
-            productdName: true,
-            text: true,
-          },
+      });
+    if (sortby == 'raiting')
+      return await this.prisma.product.findMany({
+        orderBy: {
+          raiting: sort,
         },
-      },
-    })) as unknown as Product[];
+      });
+    if (sortby == 'name')
+      return await this.prisma.product.findMany({
+        orderBy: {
+          name: sort,
+        },
+      });
   }
 
   async findByValue(name: string, author: string): Promise<Product[]> {
@@ -221,5 +192,72 @@ export class ProductRepository
         },
       },
     })) as unknown as Product[];
+  }
+
+  async findByName(name: string, sort: Sort): Promise<Product[]> {
+    if (sort == Sort.none) sort = Sort.asc;
+    return await this.prisma.product.findMany({
+      orderBy: {
+        _relevance: {
+          fields: 'name',
+          search: name,
+          sort: sort,
+        },
+      },
+    });
+  }
+
+  async findByProducer(
+    prod: string,
+    sort: Sort,
+    sortby: string,
+  ): Promise<Product[]> {
+    if (sort == Sort.none) sort = Sort.asc;
+    if (sortby == 'price' || sortby == undefined || sortby == null)
+      return await this.prisma.product.findMany({
+        where: {
+          producer: {
+            search: prod,
+          },
+        },
+        orderBy: {
+          price: sort,
+        },
+      });
+    if (sortby == 'raiting')
+      return await this.prisma.product.findMany({
+        where: {
+          producer: {
+            search: prod,
+          },
+        },
+        orderBy: {
+          raiting: sort,
+        },
+      });
+    if (sortby == 'name')
+      return await this.prisma.product.findMany({
+        where: {
+          producer: {
+            search: prod,
+          },
+        },
+        orderBy: {
+          name: sort,
+        },
+      });
+  }
+
+  async findByText(text: string, sort: Sort): Promise<Product[]> {
+    if (sort == Sort.none) sort = Sort.asc;
+    return await this.prisma.product.findMany({
+      orderBy: {
+        _relevance: {
+          fields: ['description', 'name', 'short_descr', 'html_descr'],
+          search: text,
+          sort: sort,
+        },
+      },
+    });
   }
 }

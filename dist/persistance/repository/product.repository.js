@@ -53,12 +53,14 @@ let ProductRepository = class ProductRepository {
                 name: true,
                 description: true,
                 img_path: true,
+                producer: true,
                 price: true,
                 raiting: true,
                 in_stock: true,
                 categoryId: true,
                 short_descr: true,
                 html_descr: true,
+                charact: true,
                 category: {
                     select: {
                         id: true,
@@ -124,56 +126,27 @@ let ProductRepository = class ProductRepository {
             },
         });
     }
-    async findAllWithSorting(sort) {
-        if (sort != sort_enum_1.Sort.none) {
-            return (await this.prisma.product.findMany({
-                select: {
-                    id: true,
-                    name: true,
-                    description: true,
-                    img_path: true,
-                    price: true,
-                    raiting: true,
-                    in_stock: true,
-                    categoryId: true,
-                    reviews: {
-                        select: {
-                            id: true,
-                            createdDate: true,
-                            raiting: true,
-                            authorName: true,
-                            productdName: true,
-                            text: true,
-                        },
-                    },
-                },
+    async findAllWithSorting(sort, sortby) {
+        if (sort == sort_enum_1.Sort.none)
+            sort = sort_enum_1.Sort.asc;
+        if (sortby == 'price' || sortby == undefined || sortby == null)
+            return await this.prisma.product.findMany({
                 orderBy: {
                     price: sort,
                 },
-            }));
-        }
-        return (await this.prisma.product.findMany({
-            select: {
-                id: true,
-                name: true,
-                description: true,
-                img_path: true,
-                price: true,
-                raiting: true,
-                in_stock: true,
-                categoryId: true,
-                reviews: {
-                    select: {
-                        id: true,
-                        createdDate: true,
-                        raiting: true,
-                        authorName: true,
-                        productdName: true,
-                        text: true,
-                    },
+            });
+        if (sortby == 'raiting')
+            return await this.prisma.product.findMany({
+                orderBy: {
+                    raiting: sort,
                 },
-            },
-        }));
+            });
+        if (sortby == 'name')
+            return await this.prisma.product.findMany({
+                orderBy: {
+                    name: sort,
+                },
+            });
     }
     async findByValue(name, author) {
         return (await this.prisma.product.findMany({
@@ -203,6 +176,69 @@ let ProductRepository = class ProductRepository {
                 },
             },
         }));
+    }
+    async findByName(name, sort) {
+        if (sort == sort_enum_1.Sort.none)
+            sort = sort_enum_1.Sort.asc;
+        return await this.prisma.product.findMany({
+            orderBy: {
+                _relevance: {
+                    fields: 'name',
+                    search: name,
+                    sort: sort,
+                },
+            },
+        });
+    }
+    async findByProducer(prod, sort, sortby) {
+        if (sort == sort_enum_1.Sort.none)
+            sort = sort_enum_1.Sort.asc;
+        if (sortby == 'price' || sortby == undefined || sortby == null)
+            return await this.prisma.product.findMany({
+                where: {
+                    producer: {
+                        search: prod,
+                    },
+                },
+                orderBy: {
+                    price: sort,
+                },
+            });
+        if (sortby == 'raiting')
+            return await this.prisma.product.findMany({
+                where: {
+                    producer: {
+                        search: prod,
+                    },
+                },
+                orderBy: {
+                    raiting: sort,
+                },
+            });
+        if (sortby == 'name')
+            return await this.prisma.product.findMany({
+                where: {
+                    producer: {
+                        search: prod,
+                    },
+                },
+                orderBy: {
+                    name: sort,
+                },
+            });
+    }
+    async findByText(text, sort) {
+        if (sort == sort_enum_1.Sort.none)
+            sort = sort_enum_1.Sort.asc;
+        return await this.prisma.product.findMany({
+            orderBy: {
+                _relevance: {
+                    fields: ['description', 'name', 'short_descr', 'html_descr'],
+                    search: text,
+                    sort: sort,
+                },
+            },
+        });
     }
 };
 ProductRepository = __decorate([

@@ -7,6 +7,7 @@ import {
   Param,
   Patch,
   Post,
+  Query,
   UploadedFile,
   UseGuards,
   UseInterceptors,
@@ -28,6 +29,7 @@ import { ReviewFromUser } from './dto/reviewformuser.dto';
 import { ProductService } from './product.service';
 import { diskStorage } from 'multer';
 import { imageFileFilter } from 'src/helpers/imageFilter.helpers';
+import { SortingBy } from 'src/decorators/sortbyheader.decorator';
 
 @Controller('product')
 export class ProductController {
@@ -54,22 +56,27 @@ export class ProductController {
     return await this.productService.createProduct(productForCreate);
   }
 
-  @Get('/:id')
-  async getProduct(@Param('id') id: string) {
-    return await this.productService.getOne(id);
-  }
-
   @Get()
-  async getAllproducts(@Sorting() sort: Sort) {
-    return await this.productService.getAll(sort);
+  async getAllproducts(@Sorting() sort: Sort, @SortingBy() sortby: string) {
+    return await this.productService.getAll(sort, sortby);
   }
 
-  @Get('search/:value')
-  async searchProducts(@Param('value') valueForSearch: string) {
-    const name = valueForSearch;
-    const author = valueForSearch;
+  // @Get('search/:value')
+  // async searchProducts(@Param('value') valueForSearch: string) {
+  //   console.log('here');
+  // const name = valueForSearch;
+  // const author = valueForSearch;
 
-    return await this.productService.findByValue(name, author);
+  // return await this.productService.findByValue(name, author);
+  // }
+
+  @Post('search')
+  async searchProductss(
+    @Sorting() sort: Sort,
+    @SortingBy() sortby: string,
+    @Body() filters: any,
+  ) {
+    return await this.productService.findByFilters(filters, sort, sortby);
   }
 
   @UseGuards(JwtAuthGuard)
@@ -110,5 +117,10 @@ export class ProductController {
       productForUpdate,
       file.path + '.' + file.originalname.split('.')[1],
     );
+  }
+
+  @Get('/:id')
+  async getProduct(@Param('id') id: string) {
+    return await this.productService.getOne(id);
   }
 }
