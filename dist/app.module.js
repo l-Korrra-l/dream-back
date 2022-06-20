@@ -22,6 +22,8 @@ const email_module_1 = require("./modules/EmailModule/email.module");
 const currency_module_1 = require("./modules/Currencymodule/currency.module");
 const slider_module_1 = require("./modules/SliderModule/slider.module");
 const category_module_1 = require("./modules/CategoryModule/category.module");
+const serve_static_1 = require("@nestjs/serve-static");
+const path_1 = require("path");
 let AppModule = class AppModule {
 };
 AppModule = __decorate([
@@ -31,6 +33,15 @@ AppModule = __decorate([
                 isGlobal: true,
                 envFilePath: `.${process.env.NODE_ENV}.env`,
             }),
+            serve_static_1.ServeStaticModule.forRoot((() => {
+                const publicDir = (0, path_1.resolve)('./public');
+                const servePath = '/files';
+                return {
+                    rootPath: publicDir,
+                    serveRoot: servePath,
+                    exclude: ['/api/'],
+                };
+            })()),
             dbmodule_module_1.DbModule,
             auth_module_1.AuthModule,
             admin_module_1.AdminModule,

@@ -30,7 +30,7 @@ export class SliderController {
   @UseInterceptors(
     FileInterceptor('file', {
       storage: diskStorage({
-        destination: 'src/images',
+        destination: 'public',
       }),
       fileFilter: imageFileFilter,
     }),
@@ -51,7 +51,7 @@ export class SliderController {
   @UseInterceptors(
     FileInterceptor('file', {
       storage: diskStorage({
-        destination: 'src/images',
+        destination: 'public',
       }),
       fileFilter: imageFileFilter,
     }),

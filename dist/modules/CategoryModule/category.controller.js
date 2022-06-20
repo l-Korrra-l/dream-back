@@ -53,7 +53,7 @@ __decorate([
     (0, roles_decorator_1.Roles)(role_enum_1.Role.Admin),
     (0, common_1.UseInterceptors)((0, platform_express_1.FileInterceptor)('file', {
         storage: (0, multer_1.diskStorage)({
-            destination: 'src/images',
+            destination: 'public',
         }),
         fileFilter: imageFilter_helpers_1.imageFileFilter,
     })),
@@ -91,7 +91,7 @@ __decorate([
     (0, roles_decorator_1.Roles)(role_enum_1.Role.Admin),
     (0, common_1.UseInterceptors)((0, platform_express_1.FileInterceptor)('file', {
         storage: (0, multer_1.diskStorage)({
-            destination: 'src/images',
+            destination: 'public',
         }),
         fileFilter: imageFilter_helpers_1.imageFileFilter,
     })),

@@ -13,6 +13,8 @@ import { EmailModule } from './modules/EmailModule/email.module';
 import { CurrencyModule } from './modules/Currencymodule/currency.module';
 import { SliderModule } from './modules/SliderModule/slider.module';
 import { CategoryModule } from './modules/CategoryModule/category.module';
+import { ServeStaticModule } from '@nestjs/serve-static';
+import { join, resolve } from 'path';
 
 @Module({
   imports: [
@@ -20,6 +22,18 @@ import { CategoryModule } from './modules/CategoryModule/category.module';
       isGlobal: true,
       envFilePath: `.${process.env.NODE_ENV}.env`,
     }),
+    ServeStaticModule.forRoot(
+      (() => {
+        const publicDir = resolve('./public');
+        const servePath = '/files';
+
+        return {
+          rootPath: publicDir,
+          serveRoot: servePath,
+          exclude: ['/api/'],
+        };
+      })(),
+    ),
     DbModule,
     AuthModule,
     AdminModule,

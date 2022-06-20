@@ -41,7 +41,7 @@ export class ProductController {
   @UseInterceptors(
     FileInterceptor('file', {
       storage: diskStorage({
-        destination: 'src/images',
+        destination: 'public',
       }),
       fileFilter: imageFileFilter,
     }),
@@ -106,7 +106,7 @@ export class ProductController {
   @UseInterceptors(
     FileInterceptor('file', {
       storage: diskStorage({
-        destination: 'src/images',
+        destination: 'public',
       }),
       fileFilter: imageFileFilter,
     }),
