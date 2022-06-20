@@ -29,7 +29,9 @@ CREATE TABLE "Product" (
     "short_descr" TEXT,
     "description" TEXT,
     "html_descr" TEXT,
+    "producer" TEXT,
     "price" DECIMAL(65,30) NOT NULL,
+    "charact" TEXT,
     "in_stock" INTEGER NOT NULL,
     "img_path" TEXT,
     "categoryId" INTEGER,
@@ -43,6 +45,8 @@ CREATE TABLE "Category" (
     "id" SERIAL NOT NULL,
     "categoryName" TEXT NOT NULL,
     "img_path" TEXT,
+    "block_type" TEXT,
+    "main_page" BOOLEAN DEFAULT false,
 
     CONSTRAINT "Category_pkey" PRIMARY KEY ("id")
 );
