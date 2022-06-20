@@ -45,7 +45,7 @@ let AuthController = class AuthController {
     }
     async userRegistration(userForRegister, file) {
         userForRegister.img_path =
-            file.path + '.' + file.originalname.split('.')[1];
+            file.path.split('\\')[1] + '.' + file.originalname.split('.')[1];
         const user = await this.authService.registerUser(userForRegister, authtype_enum_1.AuthType.Basic);
         const { password } = user, userForView = __rest(user, ["password"]);
         return userForView;

@@ -37,7 +37,7 @@ let ProductController = class ProductController {
     }
     async createProduct(productForCreate, file) {
         productForCreate.img_path =
-            file.path + '.' + file.originalname.split('.')[1];
+            file.path.split('\\')[1] + '.' + file.originalname.split('.')[1];
         return await this.productService.createProduct(productForCreate);
     }
     async getProduct(id) {
@@ -55,7 +55,7 @@ let ProductController = class ProductController {
         return await this.productService.makeReview(currentUser.userId, currentUser.email, productId, review);
     }
     async updateProduct(productId, productForUpdate, file) {
-        return await this.productService.updateProduct(productId, productForUpdate, file.path + '.' + file.originalname.split('.')[1]);
+        return await this.productService.updateProduct(productId, productForUpdate, file.path.split('\\')[1] + '.' + file.originalname.split('.')[1]);
     }
 };
 __decorate([

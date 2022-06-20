@@ -48,7 +48,7 @@ export class AuthController {
     @UploadedFile() file: any,
   ) {
     userForRegister.img_path =
-      file.path + '.' + file.originalname.split('.')[1];
+      file.path.split('\\')[1] + '.' + file.originalname.split('.')[1];
 
     const user: User = await this.authService.registerUser(
       userForRegister,

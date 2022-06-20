@@ -109,7 +109,7 @@ export class OrderController {
   //   return await this.productService.updateProduct(
   //     productId,
   //     productForUpdate,
-  //     file.path + '.' + file.originalname.split('.')[1],
+  //     file.path.split('\\')[1] + '.' + file.originalname.split('.')[1],
   //   );
   // }
 }

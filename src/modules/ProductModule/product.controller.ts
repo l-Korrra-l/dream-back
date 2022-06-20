@@ -52,7 +52,7 @@ export class ProductController {
     @UploadedFile() file: any,
   ) {
     productForCreate.img_path =
-      file.path + '.' + file.originalname.split('.')[1];
+      file.path.split('\\')[1] + '.' + file.originalname.split('.')[1];
     console.log(productForCreate.in_stock);
     const { in_stock, categoryId, ...lprod } = productForCreate;
     return await this.productService.createProduct({
@@ -121,7 +121,7 @@ export class ProductController {
     return await this.productService.updateProduct(
       productId,
       productForUpdate,
-      file.path + '.' + file.originalname.split('.')[1],
+      file.path.split('\\')[1] + '.' + file.originalname.split('.')[1],
     );
   }
 

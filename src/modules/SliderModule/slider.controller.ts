@@ -43,7 +43,7 @@ export class SliderController {
     @UploadedFile() file: any,
   ) {
     sliderForCreate.img_path =
-      file.path + '.' + file.originalname.split('.')[1];
+      file.path.split('\\')[1] + '.' + file.originalname.split('.')[1];
     return await this.sliderService.createSlider(sliderForCreate);
   }
 
@@ -65,7 +65,7 @@ export class SliderController {
     @Param('id') id: string,
   ) {
     sliderForCreate.img_path =
-      file.path + '.' + file.originalname.split('.')[1];
+      file.path.split('\\')[1] + '.' + file.originalname.split('.')[1];
     return await this.sliderService.updateSlider(id, sliderForCreate);
   }
 

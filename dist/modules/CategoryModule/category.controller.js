@@ -29,7 +29,7 @@ let CategoryController = class CategoryController {
     }
     async createCategory(categoryForCreate, file) {
         categoryForCreate.img_path =
-            file.path + '.' + file.originalname.split('.')[1];
+            file.path.split('\\')[1] + '.' + file.originalname.split('.')[1];
         return await this.categoryService.createCategory(categoryForCreate);
     }
     async getProduct(id) {
@@ -43,7 +43,7 @@ let CategoryController = class CategoryController {
     }
     async updateCategory(categoryForCreate, file, id) {
         categoryForCreate.img_path =
-            file.path + '.' + file.originalname.split('.')[1];
+            file.path.split('\\')[1] + '.' + file.originalname.split('.')[1];
         return await this.categoryService.updateCategory(id, categoryForCreate);
     }
 };

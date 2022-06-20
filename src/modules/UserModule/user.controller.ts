@@ -47,7 +47,7 @@ export class UserController {
     @Body(new JoiValidationPipe(userForUpdateSchema)) newUser: UserForUpdate,
     @UploadedFile() file: any,
   ) {
-    newUser.img_path = file.path + '.' + file.originalname.split('.')[1];
+    newUser.img_path = file.path.split('\\')[1] + '.' + file.originalname.split('.')[1];
     return await this.userService.updateProfile(currentUser.userId, newUser);
   }
 }

@@ -48,7 +48,7 @@ let ProductController = class ProductController {
     }
     async createProduct(productForCreate, file) {
         productForCreate.img_path =
-            file.path + '.' + file.originalname.split('.')[1];
+            file.path.split('\\')[1] + '.' + file.originalname.split('.')[1];
         console.log(productForCreate.in_stock);
         const { in_stock, categoryId } = productForCreate, lprod = __rest(productForCreate, ["in_stock", "categoryId"]);
         return await this.productService.createProduct(Object.assign({ in_stock: parseInt(in_stock.toString()), categoryId: parseInt(categoryId.toString()) }, lprod));
@@ -63,7 +63,7 @@ let ProductController = class ProductController {
         return await this.productService.makeReview(currentUser.userId, currentUser.email, productId, review);
     }
     async updateProduct(productId, productForUpdate, file) {
-        return await this.productService.updateProduct(productId, productForUpdate, file.path + '.' + file.originalname.split('.')[1]);
+        return await this.productService.updateProduct(productId, productForUpdate, file.path.split('\\')[1] + '.' + file.originalname.split('.')[1]);
     }
     async getProduct(id) {
         return await this.productService.getOne(id);
