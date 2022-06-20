@@ -23,13 +23,15 @@ const multer_1 = require("multer");
 const imageFilter_helpers_1 = require("../../helpers/imageFilter.helpers");
 const category_service_1 = require("./category.service");
 const categoryforcreate_dto_1 = require("./dto/categoryforcreate.dto");
+const uuid_1 = require("uuid");
+const path_1 = require("path");
 let CategoryController = class CategoryController {
     constructor(categoryService) {
         this.categoryService = categoryService;
     }
     async createCategory(categoryForCreate, file) {
         categoryForCreate.img_path =
-            file.path.split('\\')[1] + '.' + file.originalname.split('.')[1];
+            file.path.split('\\')[1];
         return await this.categoryService.createCategory(categoryForCreate);
     }
     async getProduct(id) {
@@ -43,7 +45,7 @@ let CategoryController = class CategoryController {
     }
     async updateCategory(categoryForCreate, file, id) {
         categoryForCreate.img_path =
-            file.path.split('\\')[1] + '.' + file.originalname.split('.')[1];
+            file.path.split('\\')[1];
         return await this.categoryService.updateCategory(id, categoryForCreate);
     }
 };
@@ -54,6 +56,9 @@ __decorate([
     (0, common_1.UseInterceptors)((0, platform_express_1.FileInterceptor)('file', {
         storage: (0, multer_1.diskStorage)({
             destination: 'public',
+            filename: (req, file, cb) => {
+                cb(null, `${(0, uuid_1.v4)()}${(0, path_1.extname)(file.originalname)}`);
+            },
         }),
         fileFilter: imageFilter_helpers_1.imageFileFilter,
     })),
@@ -92,6 +97,9 @@ __decorate([
     (0, common_1.UseInterceptors)((0, platform_express_1.FileInterceptor)('file', {
         storage: (0, multer_1.diskStorage)({
             destination: 'public',
+            filename: (req, file, cb) => {
+                cb(null, `${(0, uuid_1.v4)()}${(0, path_1.extname)(file.originalname)}`);
+            },
         }),
         fileFilter: imageFilter_helpers_1.imageFileFilter,
     })),

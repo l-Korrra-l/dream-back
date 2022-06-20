@@ -28,6 +28,8 @@ import { userForRegisterSchema } from 'src/validation/schemas/userForRegister.sc
 import { userLoginSchema } from 'src/validation/schemas/userLogin.schema';
 import { diskStorage } from 'multer';
 import { imageFileFilter } from 'src/helpers/imageFilter.helpers';
+import { v4 as uuid } from 'uuid';
+import { extname } from 'path';
 
 @Controller('auth')
 export class AuthController {
@@ -38,6 +40,9 @@ export class AuthController {
     FileInterceptor('file', {
       storage: diskStorage({
         destination: 'public',
+        filename: (req: any, file: any, cb: any) => {
+          cb(null, `${uuid()}${extname(file.originalname)}`);
+        },
       }),
       fileFilter: imageFileFilter,
     }),
@@ -47,8 +52,7 @@ export class AuthController {
     userForRegister: UserForRegister,
     @UploadedFile() file: any,
   ) {
-    userForRegister.img_path =
-      file.path.split('\\')[1] + '.' + file.originalname.split('.')[1];
+    userForRegister.img_path = file.path.split('\\')[1];
 
     const user: User = await this.authService.registerUser(
       userForRegister,

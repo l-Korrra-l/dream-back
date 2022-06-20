@@ -23,18 +23,20 @@ const multer_1 = require("multer");
 const imageFilter_helpers_1 = require("../../helpers/imageFilter.helpers");
 const silder_service_1 = require("./silder.service");
 const SliderForCreate_1 = require("./dto/SliderForCreate");
+const uuid_1 = require("uuid");
+const path_1 = require("path");
 let SliderController = class SliderController {
     constructor(sliderService) {
         this.sliderService = sliderService;
     }
     async createProduct(sliderForCreate, file) {
         sliderForCreate.img_path =
-            file.path.split('\\')[1] + '.' + file.originalname.split('.')[1];
+            file.path.split('\\')[1];
         return await this.sliderService.createSlider(sliderForCreate);
     }
     async updateProduct(sliderForCreate, file, id) {
         sliderForCreate.img_path =
-            file.path.split('\\')[1] + '.' + file.originalname.split('.')[1];
+            file.path.split('\\')[1];
         return await this.sliderService.updateSlider(id, sliderForCreate);
     }
     async getSlider(id) {
@@ -53,6 +55,9 @@ __decorate([
     (0, common_1.UseInterceptors)((0, platform_express_1.FileInterceptor)('file', {
         storage: (0, multer_1.diskStorage)({
             destination: 'public',
+            filename: (req, file, cb) => {
+                cb(null, `${(0, uuid_1.v4)()}${(0, path_1.extname)(file.originalname)}`);
+            },
         }),
         fileFilter: imageFilter_helpers_1.imageFileFilter,
     })),
@@ -69,6 +74,9 @@ __decorate([
     (0, common_1.UseInterceptors)((0, platform_express_1.FileInterceptor)('file', {
         storage: (0, multer_1.diskStorage)({
             destination: 'public',
+            filename: (req, file, cb) => {
+                cb(null, `${(0, uuid_1.v4)()}${(0, path_1.extname)(file.originalname)}`);
+            },
         }),
         fileFilter: imageFilter_helpers_1.imageFileFilter,
     })),

@@ -21,6 +21,8 @@ import { diskStorage } from 'multer';
 import { imageFileFilter } from 'src/helpers/imageFilter.helpers';
 import { SliderService } from './silder.service';
 import { SliderForCreate } from './dto/SliderForCreate';
+import { v4 as uuid } from 'uuid';
+import { extname } from 'path';
 
 @Controller('slider')
 export class SliderController {
@@ -31,6 +33,9 @@ export class SliderController {
     FileInterceptor('file', {
       storage: diskStorage({
         destination: 'public',
+        filename: (req: any, file: any, cb: any) => {
+          cb(null, `${uuid()}${extname(file.originalname)}`);
+        },
       }),
       fileFilter: imageFileFilter,
     }),
@@ -43,7 +48,7 @@ export class SliderController {
     @UploadedFile() file: any,
   ) {
     sliderForCreate.img_path =
-      file.path.split('\\')[1] + '.' + file.originalname.split('.')[1];
+      file.path.split('\\')[1];
     return await this.sliderService.createSlider(sliderForCreate);
   }
 
@@ -52,6 +57,9 @@ export class SliderController {
     FileInterceptor('file', {
       storage: diskStorage({
         destination: 'public',
+        filename: (req: any, file: any, cb: any) => {
+          cb(null, `${uuid()}${extname(file.originalname)}`);
+        },
       }),
       fileFilter: imageFileFilter,
     }),
@@ -65,7 +73,7 @@ export class SliderController {
     @Param('id') id: string,
   ) {
     sliderForCreate.img_path =
-      file.path.split('\\')[1] + '.' + file.originalname.split('.')[1];
+      file.path.split('\\')[1];
     return await this.sliderService.updateSlider(id, sliderForCreate);
   }
 

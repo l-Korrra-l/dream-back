@@ -25,6 +25,8 @@ import { diskStorage } from 'multer';
 import { imageFileFilter } from 'src/helpers/imageFilter.helpers';
 import { CategoryService } from './category.service';
 import { CategoryForCreate } from './dto/categoryforcreate.dto';
+import { v4 as uuid } from 'uuid';
+import { extname } from 'path';
 
 @Controller('category')
 export class CategoryController {
@@ -37,6 +39,9 @@ export class CategoryController {
     FileInterceptor('file', {
       storage: diskStorage({
         destination: 'public',
+        filename: (req: any, file: any, cb: any) => {
+          cb(null, `${uuid()}${extname(file.originalname)}`);
+        },
       }),
       fileFilter: imageFileFilter,
     }),
@@ -47,7 +52,7 @@ export class CategoryController {
     @UploadedFile() file: any,
   ) {
     categoryForCreate.img_path =
-      file.path.split('\\')[1] + '.' + file.originalname.split('.')[1];
+      file.path.split('\\')[1];
     return await this.categoryService.createCategory(categoryForCreate);
   }
 
@@ -75,6 +80,9 @@ export class CategoryController {
     FileInterceptor('file', {
       storage: diskStorage({
         destination: 'public',
+        filename: (req: any, file: any, cb: any) => {
+          cb(null, `${uuid()}${extname(file.originalname)}`);
+        },
       }),
       fileFilter: imageFileFilter,
     }),
@@ -86,7 +94,7 @@ export class CategoryController {
     @Param('id') id: string,
   ) {
     categoryForCreate.img_path =
-      file.path.split('\\')[1] + '.' + file.originalname.split('.')[1];
+      file.path.split('\\')[1];
     return await this.categoryService.updateCategory(id, categoryForCreate);
   }
 }

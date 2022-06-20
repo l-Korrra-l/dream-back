@@ -39,13 +39,14 @@ const userForRegister_schema_1 = require("../../validation/schemas/userForRegist
 const userLogin_schema_1 = require("../../validation/schemas/userLogin.schema");
 const multer_1 = require("multer");
 const imageFilter_helpers_1 = require("../../helpers/imageFilter.helpers");
+const uuid_1 = require("uuid");
+const path_1 = require("path");
 let AuthController = class AuthController {
     constructor(authService) {
         this.authService = authService;
     }
     async userRegistration(userForRegister, file) {
-        userForRegister.img_path =
-            file.path.split('\\')[1] + '.' + file.originalname.split('.')[1];
+        userForRegister.img_path = file.path.split('\\')[1];
         const user = await this.authService.registerUser(userForRegister, authtype_enum_1.AuthType.Basic);
         const { password } = user, userForView = __rest(user, ["password"]);
         return userForView;
@@ -85,6 +86,9 @@ __decorate([
     (0, common_1.UseInterceptors)((0, platform_express_1.FileInterceptor)('file', {
         storage: (0, multer_1.diskStorage)({
             destination: 'public',
+            filename: (req, file, cb) => {
+                cb(null, `${(0, uuid_1.v4)()}${(0, path_1.extname)(file.originalname)}`);
+            },
         }),
         fileFilter: imageFilter_helpers_1.imageFileFilter,
     })),

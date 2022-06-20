@@ -19,6 +19,8 @@ import { UserForUpdate } from './dto/userforupdate.dto';
 import { UserService } from './user.service';
 import { diskStorage } from 'multer';
 import { imageFileFilter } from 'src/helpers/imageFilter.helpers';
+import { v4 as uuid } from 'uuid';
+import { extname } from 'path';
 
 @Controller('user')
 export class UserController {
@@ -37,6 +39,9 @@ export class UserController {
     FileInterceptor('file', {
       storage: diskStorage({
         destination: 'public',
+        filename: (req: any, file: any, cb: any) => {
+          cb(null, `${uuid()}${extname(file.originalname)}`);
+        },
       }),
       fileFilter: imageFileFilter,
     }),
@@ -47,7 +52,7 @@ export class UserController {
     @Body(new JoiValidationPipe(userForUpdateSchema)) newUser: UserForUpdate,
     @UploadedFile() file: any,
   ) {
-    newUser.img_path = file.path.split('\\')[1] + '.' + file.originalname.split('.')[1];
+    newUser.img_path = file.path.split('\\')[1];
     return await this.userService.updateProfile(currentUser.userId, newUser);
   }
 }

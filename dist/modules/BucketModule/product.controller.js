@@ -37,7 +37,7 @@ let ProductController = class ProductController {
     }
     async createProduct(productForCreate, file) {
         productForCreate.img_path =
-            file.path.split('\\')[1] + '.' + file.originalname.split('.')[1];
+            file.path.split('\\')[1];
         return await this.productService.createProduct(productForCreate);
     }
     async getProduct(id) {

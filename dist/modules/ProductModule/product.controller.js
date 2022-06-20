@@ -26,6 +26,8 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.ProductController = void 0;
 const common_1 = require("@nestjs/common");
 const platform_express_1 = require("@nestjs/platform-express");
+const uuid_1 = require("uuid");
+const path_1 = require("path");
 const currentuser_decorator_1 = require("../../decorators/currentuser.decorator");
 const roles_decorator_1 = require("../../decorators/roles.decorator");
 const sortheader_decorator_1 = require("../../decorators/sortheader.decorator");
@@ -47,8 +49,7 @@ let ProductController = class ProductController {
         this.productService = productService;
     }
     async createProduct(productForCreate, file) {
-        productForCreate.img_path =
-            file.path.split('\\')[1] + '.' + file.originalname.split('.')[1];
+        productForCreate.img_path = file.path.split('\\')[1];
         console.log(productForCreate.in_stock);
         const { in_stock, categoryId } = productForCreate, lprod = __rest(productForCreate, ["in_stock", "categoryId"]);
         return await this.productService.createProduct(Object.assign({ in_stock: parseInt(in_stock.toString()), categoryId: parseInt(categoryId.toString()) }, lprod));
@@ -74,6 +75,9 @@ __decorate([
     (0, common_1.UseInterceptors)((0, platform_express_1.FileInterceptor)('file', {
         storage: (0, multer_1.diskStorage)({
             destination: 'public',
+            filename: (req, file, cb) => {
+                cb(null, `${(0, uuid_1.v4)()}${(0, path_1.extname)(file.originalname)}`);
+            },
         }),
         fileFilter: imageFilter_helpers_1.imageFileFilter,
     })),
@@ -117,6 +121,9 @@ __decorate([
     (0, common_1.UseInterceptors)((0, platform_express_1.FileInterceptor)('file', {
         storage: (0, multer_1.diskStorage)({
             destination: 'public',
+            filename: (req, file, cb) => {
+                cb(null, `${(0, uuid_1.v4)()}${(0, path_1.extname)(file.originalname)}`);
+            },
         }),
         fileFilter: imageFilter_helpers_1.imageFileFilter,
     })),

@@ -25,6 +25,8 @@ const userforupdate_dto_1 = require("./dto/userforupdate.dto");
 const user_service_1 = require("./user.service");
 const multer_1 = require("multer");
 const imageFilter_helpers_1 = require("../../helpers/imageFilter.helpers");
+const uuid_1 = require("uuid");
+const path_1 = require("path");
 let UserController = class UserController {
     constructor(userService) {
         this.userService = userService;
@@ -33,7 +35,7 @@ let UserController = class UserController {
         return await this.userService.getProfile(user.userId);
     }
     async updateuserProfile(currentUser, newUser, file) {
-        newUser.img_path = file.path.split('\\')[1] + '.' + file.originalname.split('.')[1];
+        newUser.img_path = file.path.split('\\')[1];
         return await this.userService.updateProfile(currentUser.userId, newUser);
     }
 };
@@ -52,6 +54,9 @@ __decorate([
     (0, common_1.UseInterceptors)((0, platform_express_1.FileInterceptor)('file', {
         storage: (0, multer_1.diskStorage)({
             destination: 'public',
+            filename: (req, file, cb) => {
+                cb(null, `${(0, uuid_1.v4)()}${(0, path_1.extname)(file.originalname)}`);
+            },
         }),
         fileFilter: imageFilter_helpers_1.imageFileFilter,
     })),

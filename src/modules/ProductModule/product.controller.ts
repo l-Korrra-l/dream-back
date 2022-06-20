@@ -13,6 +13,8 @@ import {
   UseInterceptors,
 } from '@nestjs/common';
 import { FileInterceptor } from '@nestjs/platform-express';
+import { v4 as uuid } from 'uuid';
+import { extname } from 'path';
 import { CurrentUser } from 'src/decorators/currentuser.decorator';
 import { Roles } from 'src/decorators/roles.decorator';
 import { Sorting } from 'src/decorators/sortheader.decorator';
@@ -42,6 +44,9 @@ export class ProductController {
     FileInterceptor('file', {
       storage: diskStorage({
         destination: 'public',
+        filename: (req: any, file: any, cb: any) => {
+          cb(null, `${uuid()}${extname(file.originalname)}`);
+        },
       }),
       fileFilter: imageFileFilter,
     }),
@@ -49,10 +54,9 @@ export class ProductController {
   async createProduct(
     @Body()
     productForCreate: ProductForCreate,
-    @UploadedFile() file: any,
+    @UploadedFile() file: Express.Multer.File,
   ) {
-    productForCreate.img_path =
-      file.path.split('\\')[1] + '.' + file.originalname.split('.')[1];
+    productForCreate.img_path = file.path.split('\\')[1];
     console.log(productForCreate.in_stock);
     const { in_stock, categoryId, ...lprod } = productForCreate;
     return await this.productService.createProduct({
@@ -107,6 +111,9 @@ export class ProductController {
     FileInterceptor('file', {
       storage: diskStorage({
         destination: 'public',
+        filename: (req: any, file: any, cb: any) => {
+          cb(null, `${uuid()}${extname(file.originalname)}`);
+        },
       }),
       fileFilter: imageFileFilter,
     }),
