@@ -26,7 +26,6 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.AuthController = void 0;
 const common_1 = require("@nestjs/common");
 const passport_1 = require("@nestjs/passport");
-const platform_express_1 = require("@nestjs/platform-express");
 const errors_1 = require("../../errors/errors");
 const googleuser_dto_1 = require("./dto/googleuser.dto");
 const userforregister_dto_1 = require("./dto/userforregister.dto");
@@ -37,16 +36,11 @@ const authtype_enum_1 = require("../../enums/authtype.enum");
 const joivalidation_pipe_1 = require("../../validation/joivalidation.pipe");
 const userForRegister_schema_1 = require("../../validation/schemas/userForRegister.schema");
 const userLogin_schema_1 = require("../../validation/schemas/userLogin.schema");
-const multer_1 = require("multer");
-const imageFilter_helpers_1 = require("../../helpers/imageFilter.helpers");
-const uuid_1 = require("uuid");
-const path_1 = require("path");
 let AuthController = class AuthController {
     constructor(authService) {
         this.authService = authService;
     }
-    async userRegistration(userForRegister, file) {
-        userForRegister.img_path = file.path.split('\\')[1];
+    async userRegistration(userForRegister) {
         const user = await this.authService.registerUser(userForRegister, authtype_enum_1.AuthType.Basic);
         const { password } = user, userForView = __rest(user, ["password"]);
         return userForView;
@@ -83,19 +77,9 @@ let AuthController = class AuthController {
 };
 __decorate([
     (0, common_1.Post)('register'),
-    (0, common_1.UseInterceptors)((0, platform_express_1.FileInterceptor)('file', {
-        storage: (0, multer_1.diskStorage)({
-            destination: 'public',
-            filename: (req, file, cb) => {
-                cb(null, `${(0, uuid_1.v4)()}${(0, path_1.extname)(file.originalname)}`);
-            },
-        }),
-        fileFilter: imageFilter_helpers_1.imageFileFilter,
-    })),
     __param(0, (0, common_1.Body)(new joivalidation_pipe_1.JoiValidationPipe(userForRegister_schema_1.userForRegisterSchema))),
-    __param(1, (0, common_1.UploadedFile)()),
     __metadata("design:type", Function),
-    __metadata("design:paramtypes", [userforregister_dto_1.UserForRegister, Object]),
+    __metadata("design:paramtypes", [userforregister_dto_1.UserForRegister]),
     __metadata("design:returntype", Promise)
 ], AuthController.prototype, "userRegistration", null);
 __decorate([

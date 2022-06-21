@@ -36,24 +36,10 @@ export class AuthController {
   constructor(private authService: AuthService) {}
 
   @Post('register')
-  @UseInterceptors(
-    FileInterceptor('file', {
-      storage: diskStorage({
-        destination: 'public',
-        filename: (req: any, file: any, cb: any) => {
-          cb(null, `${uuid()}${extname(file.originalname)}`);
-        },
-      }),
-      fileFilter: imageFileFilter,
-    }),
-  )
   async userRegistration(
     @Body(new JoiValidationPipe(userForRegisterSchema))
     userForRegister: UserForRegister,
-    @UploadedFile() file: any,
   ) {
-    userForRegister.img_path = file.path.split('\\')[1];
-
     const user: User = await this.authService.registerUser(
       userForRegister,
       AuthType.Basic,

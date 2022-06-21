@@ -29,7 +29,6 @@ export class UserRepository
         lastName: true,
         email: true,
         birthDate: true,
-        img_path: true,
         auth: true,
         role: true,
         reviews: {
@@ -103,7 +102,6 @@ export class UserRepository
         lastName: true,
         email: true,
         birthDate: true,
-        img_path: true,
         auth: true,
         role: true,
         reviews: {

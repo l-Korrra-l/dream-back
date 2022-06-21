@@ -5,7 +5,7 @@ import { UserLogin } from './dto/userlogin.dto';
 export declare class AuthController {
     private authService;
     constructor(authService: AuthService);
-    userRegistration(userForRegister: UserForRegister, file: any): Promise<{
+    userRegistration(userForRegister: UserForRegister): Promise<{
         id: number;
         email: string;
         auth: string;
@@ -13,7 +13,6 @@ export declare class AuthController {
         lastName: string;
         birthDate: string;
         status: boolean;
-        img_path: string;
         role: string;
     }>;
     userLogin(userLogin: UserLogin, res: any): Promise<void>;

@@ -23,7 +23,6 @@ model User {
   lastName  String?
   birthDate String?
   status    Boolean  @default(false)
-  img_path  String?
   role      String
   orders    Order[]
   reviews   Review[]

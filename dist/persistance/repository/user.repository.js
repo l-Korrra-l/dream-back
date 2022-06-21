@@ -31,7 +31,6 @@ let UserRepository = class UserRepository {
                 lastName: true,
                 email: true,
                 birthDate: true,
-                img_path: true,
                 auth: true,
                 role: true,
                 reviews: {
@@ -97,7 +96,6 @@ let UserRepository = class UserRepository {
                 lastName: true,
                 email: true,
                 birthDate: true,
-                img_path: true,
                 auth: true,
                 role: true,
                 reviews: {

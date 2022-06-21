@@ -67,7 +67,6 @@ export class ProductRepository
         short_descr: true,
         html_descr: true,
         charact: true,
-        img_file:true,
         category: {
           select: {
             id: true,
