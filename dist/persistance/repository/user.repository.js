@@ -33,6 +33,7 @@ let UserRepository = class UserRepository {
                 birthDate: true,
                 auth: true,
                 role: true,
+                phoneNumber: true,
                 reviews: {
                     select: {
                         id: true,
@@ -96,6 +97,7 @@ let UserRepository = class UserRepository {
                 lastName: true,
                 email: true,
                 birthDate: true,
+                phoneNumber: true,
                 auth: true,
                 role: true,
                 reviews: {

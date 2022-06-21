@@ -1,4 +1,7 @@
 import { Bucket } from '@prisma/client';
 export declare class OrderForCreate {
-    buckets: Bucket[];
+    cartItems: Bucket[];
+    firstName?: string;
+    lastname?: string;
+    phoneNumber?: string;
 }

@@ -55,7 +55,7 @@ let AuthController = class AuthController {
             role: user.role,
             userId: user.id,
         });
-        const { password, img_path } = user, userForView = __rest(user, ["password", "img_path"]);
+        const { password } = user, userForView = __rest(user, ["password"]);
         res.set('Authorization', token.access_token);
         res.json(userForView);
     }
@@ -70,7 +70,7 @@ let AuthController = class AuthController {
             role: user.role,
             userId: user.id,
         });
-        const { password, img_path } = user, userForView = __rest(user, ["password", "img_path"]);
+        const { password } = user, userForView = __rest(user, ["password"]);
         res.set('Authorization', token.access_token);
         res.json({ user: userForView, token: token });
     }

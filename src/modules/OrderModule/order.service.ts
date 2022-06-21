@@ -26,7 +26,24 @@ export class OrderService {
     inputOrder: OrderForCreate,
     userId: string,
   ): Promise<Order> {
-    const user = await this.userRepository.getById(userId);
+    let user;
+    if (userId) {
+      user = await this.userRepository.getById(userId);
+      if (
+        user.phoneNumber == null ||
+        user.phoneNumber == undefined ||
+        user.phoneNumber == ''
+      )
+        user = await this.userRepository.update(userId, {
+          phoneNumber: inputOrder.phoneNumber,
+        });
+    } else
+      user = await this.userRepository.create({
+        firstName: inputOrder.firstName,
+        lastName: inputOrder.lastname,
+        role: Role.Guest,
+        phoneNumber: inputOrder.phoneNumber,
+      });
     let newOrder = await this.orderRepository.create({
       date: new Date(),
       user: user as Prisma.UserCreateNestedOneWithoutOrdersInput,
@@ -34,7 +51,7 @@ export class OrderService {
     });
     // eslint-disable-next-line @typescript-eslint/no-inferrable-types
     let cost: number = 0;
-    inputOrder.buckets.forEach(async (buck) => {
+    inputOrder.cartItems.forEach(async (buck) => {
       let prod = await this.productRepository.getById(buck.prodId);
       prod = await this.productRepository.update(buck.prodId.toString(), {
         in_stock: prod.in_stock - buck.quantity,

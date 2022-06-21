@@ -67,7 +67,7 @@ export class AuthController {
     });
 
     // eslint-disable-next-line @typescript-eslint/no-unused-vars
-    const { password, img_path, ...userForView } = user;
+    const { password, ...userForView } = user;
 
     res.set('Authorization', token.access_token);
     res.json(userForView);
@@ -95,7 +95,7 @@ export class AuthController {
     });
 
     // eslint-disable-next-line @typescript-eslint/no-unused-vars
-    const { password, img_path, ...userForView } = user;
+    const { password, ...userForView } = user;
 
     res.set('Authorization', token.access_token);
     res.json({ user: userForView, token: token });

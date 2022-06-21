@@ -24,14 +24,30 @@ let OrderService = class OrderService {
         this.productRepository = productRepository;
     }
     async createOrder(inputOrder, userId) {
-        const user = await this.userRepository.getById(userId);
+        let user;
+        if (userId) {
+            user = await this.userRepository.getById(userId);
+            if (user.phoneNumber == null ||
+                user.phoneNumber == undefined ||
+                user.phoneNumber == '')
+                user = await this.userRepository.update(userId, {
+                    phoneNumber: inputOrder.phoneNumber,
+                });
+        }
+        else
+            user = await this.userRepository.create({
+                firstName: inputOrder.firstName,
+                lastName: inputOrder.lastname,
+                role: role_enum_1.Role.Guest,
+                phoneNumber: inputOrder.phoneNumber,
+            });
         let newOrder = await this.orderRepository.create({
             date: new Date(),
             user: user,
             status: '��������',
         });
         let cost = 0;
-        inputOrder.buckets.forEach(async (buck) => {
+        inputOrder.cartItems.forEach(async (buck) => {
             let prod = await this.productRepository.getById(buck.prodId);
             prod = await this.productRepository.update(buck.prodId.toString(), {
                 in_stock: prod.in_stock - buck.quantity,

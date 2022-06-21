@@ -29,9 +29,5 @@ __decorate([
     (0, swagger_1.ApiProperty)(),
     __metadata("design:type", String)
 ], UserForRegister.prototype, "password", void 0);
-__decorate([
-    (0, swagger_1.ApiProperty)(),
-    __metadata("design:type", String)
-], UserForRegister.prototype, "img_path", void 0);
 exports.UserForRegister = UserForRegister;
 //# sourceMappingURL=userforregister.dto.js.map

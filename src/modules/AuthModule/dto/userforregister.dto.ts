@@ -8,11 +8,8 @@ export class UserForRegister {
   lastName: string;
 
   @ApiProperty()
-  email: string;
+  email?: string;
 
   @ApiProperty()
   password: string;
-
-  @ApiProperty()
-  img_path: string;
 }

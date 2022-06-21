@@ -16,6 +16,18 @@ class OrderForCreate {
 __decorate([
     (0, swagger_1.ApiProperty)(),
     __metadata("design:type", Array)
-], OrderForCreate.prototype, "buckets", void 0);
+], OrderForCreate.prototype, "cartItems", void 0);
+__decorate([
+    (0, swagger_1.ApiProperty)(),
+    __metadata("design:type", String)
+], OrderForCreate.prototype, "firstName", void 0);
+__decorate([
+    (0, swagger_1.ApiProperty)(),
+    __metadata("design:type", String)
+], OrderForCreate.prototype, "lastname", void 0);
+__decorate([
+    (0, swagger_1.ApiProperty)(),
+    __metadata("design:type", String)
+], OrderForCreate.prototype, "phoneNumber", void 0);
 exports.OrderForCreate = OrderForCreate;
 //# sourceMappingURL=OrderForCreate.js.map

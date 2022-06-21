@@ -3,5 +3,8 @@ import { Bucket } from '@prisma/client';
 import { Decimal } from '@prisma/client/runtime';
 
 export class OrderForCreate {
-  @ApiProperty() buckets: Bucket[];
+  @ApiProperty() cartItems: Bucket[];
+  @ApiProperty() firstName?: string;
+  @ApiProperty() lastname?: string;
+  @ApiProperty() phoneNumber?: string;
 }

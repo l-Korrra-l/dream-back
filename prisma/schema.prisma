@@ -2,11 +2,11 @@
 // learn more about it in the docs: https://pris.ly/d/prisma-schema
 
 generator client {
-  provider = "prisma-client-js"
-    //postgres
-  // previewFeatures = ["fullTextSearch"] 
+  provider        = "prisma-client-js"
+  //postgres
+  // previewFeatures = ["fullTextSearch"]
   // mysql
-  previewFeatures = ["fullTextSearch", "fullTextIndex"] 
+  previewFeatures = ["fullTextSearch", "fullTextIndex"]
 }
 
 datasource db {
@@ -15,17 +15,18 @@ datasource db {
 }
 
 model User {
-  id        Int      @id @default(autoincrement())
-  email     String   @unique
-  password  String?
-  auth      String? //authenticate with google or jwt
-  firstName String?
-  lastName  String?
-  birthDate String?
-  status    Boolean  @default(false)
-  role      String
-  orders    Order[]
-  reviews   Review[]
+  id          Int      @id @default(autoincrement())
+  email       String?   @unique
+  password    String?
+  auth        String? //authenticate with google or jwt
+  firstName   String?
+  lastName    String?
+  phoneNumber String?
+  birthDate   String?
+  status      Boolean  @default(false)
+  role        String
+  orders      Order[]
+  reviews     Review[]
 }
 
 model Role {

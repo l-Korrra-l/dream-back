@@ -11,6 +11,7 @@ export declare class AuthController {
         auth: string;
         firstName: string;
         lastName: string;
+        phoneNumber: string;
         birthDate: string;
         status: boolean;
         role: string;
