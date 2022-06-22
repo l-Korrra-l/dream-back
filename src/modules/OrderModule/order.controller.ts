@@ -41,11 +41,12 @@ export class OrderController {
   @Roles(Role.User)
   @ApiOperation({ summary: 'array of {buckets: {prodid:, quantity:}}' })
   async createProduct(
-    @Body()
     @CurrentUser()
     user: CurrentUserInfo,
+    @Body()
     orderForCreate: OrderForCreate,
   ) {
+    console.log(user);
     return await this.orderService.createOrder(orderForCreate, user.userId);
   }
 

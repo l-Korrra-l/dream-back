@@ -68,6 +68,26 @@ export class AuthController {
     res.json({ token: token.access_token, user: userForView });
   }
 
+  @Get('login')
+  @HttpCode(HttpStatus.OK)
+  @UsePipes(new JoiValidationPipe(userLoginSchema))
+  async userLoging(@Res() res) {
+    const token = await this.authService.genToken({
+      email: 'user.email',
+      role: 'user.role',
+      userId: 'user.id',
+    });
+
+    res.set('Authorization', token.access_token);
+    res.json({ token: token.access_token });
+  }
+
+  @Get('loginn')
+  @HttpCode(HttpStatus.OK)
+  async userLoginrg(@Req() req: any, @Res() res: any) {
+    res.json(req.headers);
+  }
+
   @Get('google')
   @UseGuards(AuthGuard('google'))
   // eslint-disable-next-line @typescript-eslint/no-empty-function, @typescript-eslint/no-unused-vars

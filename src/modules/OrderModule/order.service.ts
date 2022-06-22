@@ -43,28 +43,33 @@ export class OrderService {
         lastName: inputOrder.lastname,
         role: Role.Guest,
         phoneNumber: inputOrder.phoneNumber,
+        email: '',
       });
     let newOrder = await this.orderRepository.create({
       date: new Date(),
-      user: user as Prisma.UserCreateNestedOneWithoutOrdersInput,
+      userId: user.id,
+      // user: user,
       status: 'оформлен',
-    });
+    } as Prisma.OrderUncheckedCreateInput);
     // eslint-disable-next-line @typescript-eslint/no-inferrable-types
     let cost: number = 0;
-    inputOrder.cartItems.forEach(async (buck) => {
-      let prod = await this.productRepository.getById(buck.prodId);
-      prod = await this.productRepository.update(buck.prodId.toString(), {
-        in_stock: prod.in_stock - buck.quantity,
+    await Promise.all(
+      inputOrder.cartItems.map(async (buck) => {
+        let prod = await this.productRepository.getById(buck.prodId);
+        prod = await this.productRepository.update(buck.prodId.toString(), {
+          in_stock: prod.in_stock - buck.quantity,
+        });
+        await this.bucketRepository.create({
+          orderId: newOrder.id,
+          prodId: prod.id,
+          quantity: buck.quantity,
+        } as Prisma.BucketUncheckedCreateInput);
+        cost += Number(prod.price) * buck.quantity;
+      }),
+    ).then(async () => {
+      newOrder = await this.orderRepository.updateNumId(newOrder.id, {
+        totalCost: cost,
       });
-      await this.bucketRepository.create({
-        order: newOrder as Prisma.OrderCreateNestedOneWithoutBucketsInput,
-        product: prod as Prisma.ProductCreateNestedOneWithoutBucketsInput,
-        quantity: buck.quantity,
-      });
-      cost += Number(prod.price) * buck.quantity;
-    });
-    newOrder = await this.orderRepository.updateNumId(newOrder.id, {
-      totalCost: cost,
     });
     return newOrder;
   }

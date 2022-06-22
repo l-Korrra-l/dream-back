@@ -59,6 +59,18 @@ let AuthController = class AuthController {
         res.set('Authorization', token.access_token);
         res.json({ token: token.access_token, user: userForView });
     }
+    async userLoging(res) {
+        const token = await this.authService.genToken({
+            email: 'user.email',
+            role: 'user.role',
+            userId: 'user.id',
+        });
+        res.set('Authorization', token.access_token);
+        res.json({ token: token.access_token });
+    }
+    async userLoginrg(req, res) {
+        res.json(req.headers);
+    }
     async googleAuth(req) { }
     async googleAuthRedirect(googleUser, res) {
         if (!googleUser) {
@@ -92,6 +104,24 @@ __decorate([
     __metadata("design:paramtypes", [userlogin_dto_1.UserLogin, Object]),
     __metadata("design:returntype", Promise)
 ], AuthController.prototype, "userLogin", null);
+__decorate([
+    (0, common_1.Get)('login'),
+    (0, common_1.HttpCode)(common_1.HttpStatus.OK),
+    (0, common_1.UsePipes)(new joivalidation_pipe_1.JoiValidationPipe(userLogin_schema_1.userLoginSchema)),
+    __param(0, (0, common_1.Res)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [Object]),
+    __metadata("design:returntype", Promise)
+], AuthController.prototype, "userLoging", null);
+__decorate([
+    (0, common_1.Get)('loginn'),
+    (0, common_1.HttpCode)(common_1.HttpStatus.OK),
+    __param(0, (0, common_1.Req)()),
+    __param(1, (0, common_1.Res)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [Object, Object]),
+    __metadata("design:returntype", Promise)
+], AuthController.prototype, "userLoginrg", null);
 __decorate([
     (0, common_1.Get)('google'),
     (0, common_1.UseGuards)((0, passport_1.AuthGuard)('google')),

@@ -17,6 +17,8 @@ export declare class AuthController {
         role: string;
     }>;
     userLogin(userLogin: UserLogin, res: any): Promise<void>;
+    userLoging(res: any): Promise<void>;
+    userLoginrg(req: any, res: any): Promise<void>;
     googleAuth(req: any): Promise<void>;
     googleAuthRedirect(googleUser: GoogleUser, res: any): Promise<void>;
 }

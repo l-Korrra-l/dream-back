@@ -40,27 +40,29 @@ let OrderService = class OrderService {
                 lastName: inputOrder.lastname,
                 role: role_enum_1.Role.Guest,
                 phoneNumber: inputOrder.phoneNumber,
+                email: '',
             });
         let newOrder = await this.orderRepository.create({
             date: new Date(),
-            user: user,
+            userId: user.id,
             status: '��������',
         });
         let cost = 0;
-        inputOrder.cartItems.forEach(async (buck) => {
+        await Promise.all(inputOrder.cartItems.map(async (buck) => {
             let prod = await this.productRepository.getById(buck.prodId);
             prod = await this.productRepository.update(buck.prodId.toString(), {
                 in_stock: prod.in_stock - buck.quantity,
             });
             await this.bucketRepository.create({
-                order: newOrder,
-                product: prod,
+                orderId: newOrder.id,
+                prodId: prod.id,
                 quantity: buck.quantity,
             });
             cost += Number(prod.price) * buck.quantity;
-        });
-        newOrder = await this.orderRepository.updateNumId(newOrder.id, {
-            totalCost: cost,
+        })).then(async () => {
+            newOrder = await this.orderRepository.updateNumId(newOrder.id, {
+                totalCost: cost,
+            });
         });
         return newOrder;
     }
