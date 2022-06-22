@@ -57,7 +57,7 @@ let AuthController = class AuthController {
         });
         const { password } = user, userForView = __rest(user, ["password"]);
         res.set('Authorization', token.access_token);
-        res.json(userForView);
+        res.json({ token: token.access_token, user: userForView });
     }
     async googleAuth(req) { }
     async googleAuthRedirect(googleUser, res) {
