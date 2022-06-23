@@ -10,7 +10,7 @@ import { ProductForUpdate } from './dto/productforupdate.dto';
 import { CategoryRepository } from 'src/persistance/repository/category.repository';
 
 @Injectable()
-export class ProductService {
+export class ServiceService {
   constructor(
     private productRepository: ProductRepository,
     private reviewRepository: ReviewRepository,

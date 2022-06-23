@@ -5,7 +5,7 @@ import { ProductService } from './product.service';
 
 @Module({
   imports: [DbModule],
-  controllers: [ProductController],
-  providers: [ProductService],
+  controllers: [ServiceController],
+  providers: [ServiceService],
 })
 export class ProductModule {}

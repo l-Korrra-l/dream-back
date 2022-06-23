@@ -28,14 +28,14 @@ import { RolesGuard } from '../AuthModule/guards/roles.guard';
 import { ProductForCreate } from './dto/productforcreate.dto';
 import { ProductForUpdate } from './dto/productforupdate.dto';
 import { ReviewFromUser } from './dto/reviewformuser.dto';
-import { ProductService } from './product.service';
 import { diskStorage } from 'multer';
 import { imageFileFilter } from 'src/helpers/imageFilter.helpers';
 import { SortingBy } from 'src/decorators/sortbyheader.decorator';
+import { ServiceService } from './service.service';
 
-@Controller('product')
-export class ProductController {
-  constructor(private productService: ProductService) {}
+@Controller('service')
+export class ServiceController {
+  constructor(private productService: ServiceService) {}
 
   @Post()
   // @UseGuards(JwtAuthGuard, RolesGuard)
