@@ -96,7 +96,7 @@ CREATE TABLE "Review" (
     "createdDate" TEXT NOT NULL,
     "raiting" INTEGER NOT NULL,
     "authorName" TEXT NOT NULL,
-    "productdName" TEXT NOT NULL,
+    "productName" TEXT NOT NULL,
     "text" TEXT NOT NULL,
 
     CONSTRAINT "Review_pkey" PRIMARY KEY ("id")

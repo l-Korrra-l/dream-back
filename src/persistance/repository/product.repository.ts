@@ -65,7 +65,6 @@ export class ProductRepository
         in_stock: true,
         categoryId: true,
         short_descr: true,
-        html_descr: true,
         charact: true,
         category: {
           select: {
@@ -253,13 +252,7 @@ export class ProductRepository
     return await this.prisma.product.findMany({
       orderBy: {
         _relevance: {
-          fields: [
-            'description',
-            'name',
-            'short_descr',
-            'html_descr',
-            'charact',
-          ],
+          fields: ['description', 'name', 'short_descr', 'charact'],
           search: text,
           sort: sort,
         },

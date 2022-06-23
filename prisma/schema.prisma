@@ -108,7 +108,7 @@ model Review {
   createdDate  String
   raiting      Int
   authorName   String
-  productdName String
+  productName String
   text         String
 }
 
