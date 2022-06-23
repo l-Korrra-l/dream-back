@@ -36,7 +36,6 @@ model Product {
   name        String
   short_descr String?
   description String?
-  html_descr  String?
   producer    String?
   price       Decimal
   charact     String?
@@ -51,19 +50,37 @@ model Product {
   // @@fulltext([name, short_descr, description, html_descr])
 }
 
+model Service {
+  id          Int      @id @default(autoincrement())
+  name        String
+  short_descr String?
+  description String?
+  price       Decimal
+  img_path    String?
+  categoryId  Int?
+  reviews     Review[]
+  raiting     Float
+  // category    Category? @relation(fields: [categoryId], references: [id])
+  // sliders     Slider[]
+  // buckets     Bucket[]
+  // @@fulltext([name, short_descr, description, html_descr])
+}
+
 model Category {
   id           Int       @id @default(autoincrement())
   categoryName String
   img_path     String?
   block_type   String?
   main_page    Boolean?  @default(false)
+  c_items      Int       @default(0)
   products     Product[]
+  // services     Service[]
 }
 
 model Order {
   id        Int       @id @default(autoincrement())
   userId    Int?
-  user      User?      @relation(fields: [userId], references: [id])
+  user      User?     @relation(fields: [userId], references: [id])
   totalCost Float?
   status    String    @default("registered")
   date      DateTime? @default(now())
@@ -84,6 +101,8 @@ model Review {
   body         String
   prodId       Int?
   product      Product? @relation(fields: [prodId], references: [id])
+  serviceId    Int?
+  service      Service? @relation(fields: [serviceId], references: [id])
   userId       Int
   user         User     @relation(fields: [userId], references: [id])
   createdDate  String

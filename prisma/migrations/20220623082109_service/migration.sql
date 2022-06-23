@@ -1,14 +1,14 @@
 -- CreateTable
 CREATE TABLE "User" (
     "id" SERIAL NOT NULL,
-    "email" TEXT NOT NULL,
+    "email" TEXT,
     "password" TEXT,
     "auth" TEXT,
     "firstName" TEXT,
     "lastName" TEXT,
+    "phoneNumber" TEXT,
     "birthDate" TEXT,
     "status" BOOLEAN NOT NULL DEFAULT false,
-    "img_path" TEXT,
     "role" TEXT NOT NULL,
 
     CONSTRAINT "User_pkey" PRIMARY KEY ("id")
@@ -28,7 +28,6 @@ CREATE TABLE "Product" (
     "name" TEXT NOT NULL,
     "short_descr" TEXT,
     "description" TEXT,
-    "html_descr" TEXT,
     "producer" TEXT,
     "price" DECIMAL(65,30) NOT NULL,
     "charact" TEXT,
@@ -41,12 +40,27 @@ CREATE TABLE "Product" (
 );
 
 -- CreateTable
+CREATE TABLE "Service" (
+    "id" SERIAL NOT NULL,
+    "name" TEXT NOT NULL,
+    "short_descr" TEXT,
+    "description" TEXT,
+    "price" DECIMAL(65,30) NOT NULL,
+    "img_path" TEXT,
+    "categoryId" INTEGER,
+    "raiting" DOUBLE PRECISION NOT NULL,
+
+    CONSTRAINT "Service_pkey" PRIMARY KEY ("id")
+);
+
+-- CreateTable
 CREATE TABLE "Category" (
     "id" SERIAL NOT NULL,
     "categoryName" TEXT NOT NULL,
     "img_path" TEXT,
     "block_type" TEXT,
     "main_page" BOOLEAN DEFAULT false,
+    "c_items" INTEGER NOT NULL DEFAULT 0,
 
     CONSTRAINT "Category_pkey" PRIMARY KEY ("id")
 );
@@ -54,9 +68,9 @@ CREATE TABLE "Category" (
 -- CreateTable
 CREATE TABLE "Order" (
     "id" SERIAL NOT NULL,
-    "userId" INTEGER NOT NULL,
+    "userId" INTEGER,
     "totalCost" DOUBLE PRECISION,
-    "status" TEXT NOT NULL DEFAULT E'оформлен',
+    "status" TEXT NOT NULL DEFAULT E'registered',
     "date" TIMESTAMP(3) DEFAULT CURRENT_TIMESTAMP,
 
     CONSTRAINT "Order_pkey" PRIMARY KEY ("id")
@@ -77,6 +91,7 @@ CREATE TABLE "Review" (
     "id" SERIAL NOT NULL,
     "body" TEXT NOT NULL,
     "prodId" INTEGER,
+    "serviceId" INTEGER,
     "userId" INTEGER NOT NULL,
     "createdDate" TEXT NOT NULL,
     "raiting" INTEGER NOT NULL,
@@ -114,7 +129,7 @@ CREATE UNIQUE INDEX "User_email_key" ON "User"("email");
 ALTER TABLE "Product" ADD CONSTRAINT "Product_categoryId_fkey" FOREIGN KEY ("categoryId") REFERENCES "Category"("id") ON DELETE SET NULL ON UPDATE CASCADE;
 
 -- AddForeignKey
-ALTER TABLE "Order" ADD CONSTRAINT "Order_userId_fkey" FOREIGN KEY ("userId") REFERENCES "User"("id") ON DELETE RESTRICT ON UPDATE CASCADE;
+ALTER TABLE "Order" ADD CONSTRAINT "Order_userId_fkey" FOREIGN KEY ("userId") REFERENCES "User"("id") ON DELETE SET NULL ON UPDATE CASCADE;
 
 -- AddForeignKey
 ALTER TABLE "Bucket" ADD CONSTRAINT "Bucket_prodId_fkey" FOREIGN KEY ("prodId") REFERENCES "Product"("id") ON DELETE SET NULL ON UPDATE CASCADE;
@@ -127,6 +142,9 @@ ALTER TABLE "Review" ADD CONSTRAINT "Review_userId_fkey" FOREIGN KEY ("userId") 
 
 -- AddForeignKey
 ALTER TABLE "Review" ADD CONSTRAINT "Review_prodId_fkey" FOREIGN KEY ("prodId") REFERENCES "Product"("id") ON DELETE SET NULL ON UPDATE CASCADE;
+
+-- AddForeignKey
+ALTER TABLE "Review" ADD CONSTRAINT "Review_serviceId_fkey" FOREIGN KEY ("serviceId") REFERENCES "Service"("id") ON DELETE SET NULL ON UPDATE CASCADE;
 
 -- AddForeignKey
 ALTER TABLE "Slider" ADD CONSTRAINT "Slider_prodId_fkey" FOREIGN KEY ("prodId") REFERENCES "Product"("id") ON DELETE SET NULL ON UPDATE CASCADE;
