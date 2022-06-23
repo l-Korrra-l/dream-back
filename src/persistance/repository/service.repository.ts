@@ -61,7 +61,6 @@ export class ServiceRepository
         img_path: true,
         price: true,
         raiting: true,
-        categoryId: true,
         short_descr: true,
         reviews: {
           select: {
@@ -139,7 +138,6 @@ export class ServiceRepository
         img_path: true,
         price: true,
         raiting: true,
-        categoryId: true,
         reviews: {
           select: {
             id: true,

@@ -57,7 +57,7 @@ model Service {
   description String?
   price       Decimal
   img_path    String?
-  categoryId  Int?
+  // categoryId  Int?
   reviews     Review[]
   raiting     Float
   // category    Category? @relation(fields: [categoryId], references: [id])
