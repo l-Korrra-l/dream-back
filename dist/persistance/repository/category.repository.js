@@ -28,6 +28,11 @@ let CategoryRepository = class CategoryRepository {
             where: {
                 id: Number(id),
             },
+            include: {
+                _count: {
+                    select: { products: true },
+                },
+            },
             data,
         });
     }
@@ -35,6 +40,11 @@ let CategoryRepository = class CategoryRepository {
         return await this.prisma.category.update({
             where: {
                 id: id,
+            },
+            include: {
+                _count: {
+                    select: { products: true },
+                },
             },
             data,
         });
@@ -44,6 +54,11 @@ let CategoryRepository = class CategoryRepository {
             where: {
                 id: Number(id),
             },
+            include: {
+                _count: {
+                    select: { products: true },
+                },
+            },
         });
         if (slider) {
             return slider;
@@ -51,12 +66,23 @@ let CategoryRepository = class CategoryRepository {
         throw new errors_1.NotFound('Not found slider');
     }
     async findAll() {
-        return await this.prisma.category.findMany();
+        return await this.prisma.category.findMany({
+            include: {
+                _count: {
+                    select: { products: true },
+                },
+            },
+        });
     }
     async delete(id) {
         const slider = await this.prisma.category.delete({
             where: {
                 id: Number(id),
+            },
+            include: {
+                _count: {
+                    select: { products: true },
+                },
             },
         });
         if (slider) {

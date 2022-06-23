@@ -15,6 +15,7 @@ import { SliderModule } from './modules/SliderModule/slider.module';
 import { CategoryModule } from './modules/CategoryModule/category.module';
 import { ServeStaticModule } from '@nestjs/serve-static';
 import { join, resolve } from 'path';
+import { ServiceModule } from './modules/ServiceModule/service.module';
 
 @Module({
   imports: [
@@ -45,6 +46,7 @@ import { join, resolve } from 'path';
     CurrencyModule,
     SliderModule,
     CategoryModule,
+    ServiceModule,
   ],
   controllers: [AppController],
   providers: [AppService],

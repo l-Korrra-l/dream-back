@@ -12,4 +12,5 @@ export declare class ReviewRepository implements Repository<string, Prisma.Revie
     findAll(): Promise<Review[]>;
     deleteByUserId(id: string): Promise<void>;
     getStatsOfProduct(productId: string): Promise<StatsInfo>;
+    getStatsOfService(productId: string): Promise<StatsInfo>;
 }

@@ -24,6 +24,7 @@ const slider_module_1 = require("./modules/SliderModule/slider.module");
 const category_module_1 = require("./modules/CategoryModule/category.module");
 const serve_static_1 = require("@nestjs/serve-static");
 const path_1 = require("path");
+const service_module_1 = require("./modules/ServiceModule/service.module");
 let AppModule = class AppModule {
 };
 AppModule = __decorate([
@@ -53,6 +54,7 @@ AppModule = __decorate([
             currency_module_1.CurrencyModule,
             slider_module_1.SliderModule,
             category_module_1.CategoryModule,
+            service_module_1.ServiceModule,
         ],
         controllers: [app_controller_1.AppController],
         providers: [app_service_1.AppService],

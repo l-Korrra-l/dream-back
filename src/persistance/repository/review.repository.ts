@@ -75,4 +75,23 @@ export class ReviewRepository
       sum: aggregations._sum.raiting,
     } as StatsInfo;
   }
+
+  async getStatsOfService(productId: string): Promise<StatsInfo> {
+    const aggregations = await this.prisma.review.aggregate({
+      _count: {
+        serviceId: true,
+      },
+      _sum: {
+        raiting: true,
+      },
+      where: {
+        prodId: Number(productId),
+      },
+    });
+
+    return {
+      count: aggregations._count.serviceId,
+      sum: aggregations._sum.raiting,
+    } as StatsInfo;
+  }
 }

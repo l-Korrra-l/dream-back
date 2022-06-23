@@ -1,65 +1,49 @@
 import { ForbiddenException, Injectable } from '@nestjs/common';
-import { ProductForCreate } from './dto/productforcreate.dto';
-import { Prisma, Product } from '@prisma/client';
-import { ProductRepository } from 'src/persistance/repository/product.repository';
+import { ServiceForCreate } from './dto/serviceforcreate.dto';
+import { Prisma, Service } from '@prisma/client';
 import { SaveImageInfo, StatsInfo } from 'src/types/types';
 import { Sort } from 'src/enums/sort.enum';
 import { ReviewFromUser } from './dto/reviewformuser.dto';
 import { ReviewRepository } from 'src/persistance/repository/review.repository';
-import { ProductForUpdate } from './dto/productforupdate.dto';
+import { ServiceForUpdate } from './dto/serviceForupdate.dto';
 import { CategoryRepository } from 'src/persistance/repository/category.repository';
+import { ServiceRepository } from 'src/persistance/repository/service.repository';
 
 @Injectable()
 export class ServiceService {
   constructor(
-    private productRepository: ProductRepository,
+    private serviceRepository: ServiceRepository,
     private reviewRepository: ReviewRepository,
     private categoryRepository: CategoryRepository,
   ) {}
 
-  async createProduct(inputProduct: ProductForCreate): Promise<Product> {
-    const cat = await this.categoryRepository.findOne(
-      inputProduct.categoryId.toString(),
-    );
-    const { categoryId, ...lProduct } = inputProduct;
-    const product = await this.productRepository.create({
+  async createService(inputService: ServiceForCreate): Promise<Service> {
+    const service = await this.serviceRepository.create({
       raiting: 0,
-      // category: cat as Prisma.CategoryCreateNestedOneWithoutProductsInput,
-      categoryId: categoryId,
-      ...inputProduct,
+      ...inputService,
     });
 
-    return product;
+    return service;
   }
 
-  async getOne(id: string): Promise<Product> {
-    return await this.productRepository.findOne(id);
+  async getOne(id: string): Promise<Service> {
+    return await this.serviceRepository.findOne(id);
   }
 
-  async getAll(sort: Sort, sortby: string): Promise<Product[]> {
-    return await this.productRepository.findAllWithSorting(sort, sortby);
-  }
-
-  async findByValue(name: string, author: string) {
-    return await this.productRepository.findByValue(name, author);
+  async getAll(sort: Sort, sortby: string): Promise<Service[]> {
+    return await this.serviceRepository.findAllWithSorting(sort, sortby);
   }
 
   async findByFilters(
     filters: any,
     sort: Sort,
     sortby: string,
-  ): Promise<Product[]> {
+  ): Promise<Service[]> {
     let arr;
     if (filters.name != null && filters.name != undefined)
-      arr = await this.productRepository.findByName(filters.name, sort);
+      arr = await this.serviceRepository.findByName(filters.name, sort);
     else if (filters.text != null && filters.text != undefined)
-      arr = await this.productRepository.findByText(filters.text, sort);
-    else if (filters.producer != null && filters.producer != undefined)
-      return await this.productRepository.findByProducer(
-        filters.producer,
-        sort,
-        sortby,
-      );
+      arr = await this.serviceRepository.findByText(filters.text, sort);
     if (!filters.min_price) filters.min_price = -1;
     if (!filters.max_price) filters.max_price = Number.MAX_VALUE / 2;
     if (filters.producer != null && filters.producer != undefined)
@@ -74,44 +58,44 @@ export class ServiceService {
   async makeReview(
     userId: string,
     author: string,
-    productId: string,
+    serviceId: string,
     review: ReviewFromUser,
   ) {
-    const product = await this.productRepository.findWithReviews(productId);
+    const service = await this.serviceRepository.findWithReviews(serviceId);
 
-    if (product.reviews.find((rec) => rec.userId == Number(userId))) {
-      throw new ForbiddenException('Review for this product already exists');
+    if (service.reviews.find((rec) => rec.userId == Number(userId))) {
+      throw new ForbiddenException('Review for this service already exists');
     }
 
-    const productStats: StatsInfo =
-      await this.reviewRepository.getStatsOfProduct(productId);
+    const serviceStats: StatsInfo =
+      await this.reviewRepository.getStatsOfService(serviceId);
 
     const newRaiting = (
-      (productStats.sum + review.raiting) /
-      (productStats.count + 1)
+      (serviceStats.sum + review.raiting) /
+      (serviceStats.count + 1)
     ).toFixed(1);
 
-    await this.productRepository.update(productId, {
+    await this.serviceRepository.update(serviceId, {
       raiting: parseFloat(newRaiting),
     });
 
     return await this.reviewRepository.create({
-      prodId: productId,
+      prodId: serviceId,
       userId: userId,
       authorName: author,
-      productName: product.name,
+      productName: service.name,
       createdDate: new Date(),
       ...review,
     } as unknown as Prisma.ReviewCreateInput);
   }
 
-  async updateProduct(
-    productId: string,
-    productForUpdate: ProductForUpdate,
+  async updateService(
+    serviceId: string,
+    serviceForUpdate: ServiceForUpdate,
     newImage: string,
   ) {
-    const product = await this.productRepository.findOne(productId);
-    productForUpdate.img_path = newImage;
-    return await this.productRepository.update(productId, productForUpdate);
+    const service = await this.serviceRepository.findOne(serviceId);
+    serviceForUpdate.img_path = newImage;
+    return await this.serviceRepository.update(serviceId, serviceForUpdate);
   }
 }

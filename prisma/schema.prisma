@@ -72,7 +72,7 @@ model Category {
   img_path     String?
   block_type   String?
   main_page    Boolean?  @default(false)
-  c_items      Int       @default(0)
+  // c_items      Int       @default(0)
   products     Product[]
   // services     Service[]
 }

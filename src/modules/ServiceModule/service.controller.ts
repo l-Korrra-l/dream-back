@@ -25,21 +25,21 @@ import { JoiValidationPipe } from 'src/validation/joivalidation.pipe';
 import { reviewFromUserSchema } from 'src/validation/schemas/reviewFromUser.schema';
 import { JwtAuthGuard } from '../AuthModule/guards/jwt.guard';
 import { RolesGuard } from '../AuthModule/guards/roles.guard';
-import { ProductForCreate } from './dto/productforcreate.dto';
-import { ProductForUpdate } from './dto/productforupdate.dto';
 import { ReviewFromUser } from './dto/reviewformuser.dto';
 import { diskStorage } from 'multer';
 import { imageFileFilter } from 'src/helpers/imageFilter.helpers';
 import { SortingBy } from 'src/decorators/sortbyheader.decorator';
 import { ServiceService } from './service.service';
+import { ServiceForUpdate } from './dto/serviceForupdate.dto';
+import { ServiceForCreate } from './dto/serviceforcreate.dto';
 
 @Controller('service')
 export class ServiceController {
-  constructor(private productService: ServiceService) {}
+  constructor(private serviceService: ServiceService) {}
 
   @Post()
-  // @UseGuards(JwtAuthGuard, RolesGuard)
-  // @Roles(Role.Admin)
+  @UseGuards(JwtAuthGuard, RolesGuard)
+  @Roles(Role.Admin)
   @UseInterceptors(
     FileInterceptor('file', {
       storage: diskStorage({
@@ -51,24 +51,18 @@ export class ServiceController {
       fileFilter: imageFileFilter,
     }),
   )
-  async createProduct(
+  async createService(
     @Body()
-    productForCreate: ProductForCreate,
+    serviceForCreate: ServiceForCreate,
     @UploadedFile() file: Express.Multer.File,
   ) {
-    productForCreate.img_path = file.path.split('\\')[1];
-    console.log(productForCreate.in_stock);
-    const { in_stock, categoryId, ...lprod } = productForCreate;
-    return await this.productService.createProduct({
-      in_stock: parseInt(in_stock.toString()),
-      categoryId: parseInt(categoryId.toString()),
-      ...lprod,
-    });
+    serviceForCreate.img_path = file.path.split('\\')[1];
+    return await this.serviceService.createService(serviceForCreate);
   }
 
   @Get()
   async getAllproducts(@Sorting() sort: Sort, @SortingBy() sortby: string) {
-    return await this.productService.getAll(sort, sortby);
+    return await this.serviceService.getAll(sort, sortby);
   }
 
   // @Get('search/:value')
@@ -77,30 +71,30 @@ export class ServiceController {
   // const name = valueForSearch;
   // const author = valueForSearch;
 
-  // return await this.productService.findByValue(name, author);
+  // return await this.serviceService.findByValue(name, author);
   // }
 
   @Post('search')
-  async searchProductss(
+  async searchServices(
     @Sorting() sort: Sort,
     @SortingBy() sortby: string,
     @Body() filters: any,
   ) {
-    return await this.productService.findByFilters(filters, sort, sortby);
+    return await this.serviceService.findByFilters(filters, sort, sortby);
   }
 
   @UseGuards(JwtAuthGuard)
-  @Post('makereview/:productId')
+  @Post('makereview/:serviceId')
   @HttpCode(HttpStatus.CREATED)
-  async makeReviewForProduct(
-    @Param('productId') productId,
+  async makeReviewForService(
+    @Param('serviceId') serviceId,
     @CurrentUser() currentUser: CurrentUserInfo,
     @Body(new JoiValidationPipe(reviewFromUserSchema)) review: ReviewFromUser,
   ) {
-    return await this.productService.makeReview(
+    return await this.serviceService.makeReview(
       currentUser.userId,
       currentUser.email,
-      productId,
+      serviceId,
       review,
     );
   }
@@ -119,21 +113,21 @@ export class ServiceController {
     }),
   )
   @Patch(':id')
-  async updateProduct(
-    @Param('id') productId: string,
+  async updateService(
+    @Param('id') serviceId: string,
     @Body()
-    productForUpdate: ProductForUpdate,
+    serviceForUpdate: ServiceForUpdate,
     @UploadedFile() file: any,
   ) {
-    return await this.productService.updateProduct(
-      productId,
-      productForUpdate,
+    return await this.serviceService.updateService(
+      serviceId,
+      serviceForUpdate,
       file.path.split('\\')[1] + '.' + file.originalname.split('.')[1],
     );
   }
 
   @Get('/:id')
-  async getProduct(@Param('id') id: string) {
-    return await this.productService.getOne(id);
+  async getService(@Param('id') id: string) {
+    return await this.serviceService.getOne(id);
   }
 }

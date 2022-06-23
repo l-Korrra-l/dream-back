@@ -9,23 +9,23 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.ProductRepository = void 0;
+exports.ServiceRepository = void 0;
 const common_1 = require("@nestjs/common");
 const sort_enum_1 = require("../../enums/sort.enum");
 const nestjs_prisma_1 = require("nestjs-prisma");
 const errors_1 = require("../../errors/errors");
-let ProductRepository = class ProductRepository {
+let ServiceRepository = class ServiceRepository {
     constructor(prisma) {
         this.prisma = prisma;
     }
     async create(data) {
-        const product = await this.prisma.product.create({
+        const service = await this.prisma.service.create({
             data,
         });
-        return product;
+        return service;
     }
     async update(id, data) {
-        return await this.prisma.product.update({
+        return await this.prisma.service.update({
             include: {
                 reviews: true,
             },
@@ -36,37 +36,27 @@ let ProductRepository = class ProductRepository {
         });
     }
     async delete(id) {
-        const product = await this.prisma.product.delete({
+        const service = await this.prisma.service.delete({
             where: {
                 id: Number(id),
             },
         });
-        if (product) {
+        if (service) {
             return true;
         }
-        throw new errors_1.NotFound('Not found product for delete');
+        throw new errors_1.NotFound('Not found service for delete');
     }
     async findOne(id) {
-        const product = await this.prisma.product.findFirst({
+        const service = await this.prisma.service.findFirst({
             select: {
                 id: true,
                 name: true,
                 description: true,
                 img_path: true,
-                producer: true,
                 price: true,
                 raiting: true,
-                in_stock: true,
                 categoryId: true,
                 short_descr: true,
-                charact: true,
-                category: {
-                    select: {
-                        id: true,
-                        categoryName: true,
-                        img_path: true,
-                    },
-                },
                 reviews: {
                     select: {
                         id: true,
@@ -77,49 +67,29 @@ let ProductRepository = class ProductRepository {
                         text: true,
                     },
                 },
-                buckets: {
-                    select: {
-                        id: true,
-                        quantity: true,
-                    },
-                },
             },
             where: {
                 id: Number(id),
             },
         });
-        if (product) {
-            return product;
+        if (service) {
+            return service;
         }
-        throw new errors_1.NotFound('Not found product');
-    }
-    async findWithReviews(id) {
-        const product = await this.prisma.product.findFirst({
-            include: {
-                reviews: true,
-            },
-            where: {
-                id: Number(id),
-            },
-        });
-        if (product) {
-            return product;
-        }
-        throw new errors_1.NotFound('Not found product');
+        throw new errors_1.NotFound('Not found service');
     }
     async getById(id) {
-        const product = await this.prisma.product.findFirst({
+        const service = await this.prisma.service.findFirst({
             where: {
                 id: id,
             },
         });
-        if (product) {
-            return product;
+        if (service) {
+            return service;
         }
-        throw new errors_1.NotFound('Not found product');
+        throw new errors_1.NotFound('Not found service');
     }
     async findAll() {
-        return await this.prisma.product.findMany({
+        return await this.prisma.service.findMany({
             include: {
                 reviews: true,
             },
@@ -129,26 +99,26 @@ let ProductRepository = class ProductRepository {
         if (sort == sort_enum_1.Sort.none)
             sort = sort_enum_1.Sort.asc;
         if (sortby == 'price' || sortby == undefined || sortby == null)
-            return await this.prisma.product.findMany({
+            return await this.prisma.service.findMany({
                 orderBy: {
                     price: sort,
                 },
             });
         if (sortby == 'raiting')
-            return await this.prisma.product.findMany({
+            return await this.prisma.service.findMany({
                 orderBy: {
                     raiting: sort,
                 },
             });
         if (sortby == 'name')
-            return await this.prisma.product.findMany({
+            return await this.prisma.service.findMany({
                 orderBy: {
                     name: sort,
                 },
             });
     }
     async findByValue(name, author) {
-        return (await this.prisma.product.findMany({
+        return (await this.prisma.service.findMany({
             select: {
                 id: true,
                 name: true,
@@ -156,7 +126,6 @@ let ProductRepository = class ProductRepository {
                 img_path: true,
                 price: true,
                 raiting: true,
-                in_stock: true,
                 categoryId: true,
                 reviews: {
                     select: {
@@ -179,7 +148,7 @@ let ProductRepository = class ProductRepository {
     async findByName(name, sort) {
         if (sort == sort_enum_1.Sort.none)
             sort = sort_enum_1.Sort.asc;
-        return await this.prisma.product.findMany({
+        return await this.prisma.service.findMany({
             orderBy: {
                 _relevance: {
                     fields: 'name',
@@ -189,50 +158,27 @@ let ProductRepository = class ProductRepository {
             },
         });
     }
-    async findByProducer(prod, sort, sortby) {
-        if (sort == sort_enum_1.Sort.none)
-            sort = sort_enum_1.Sort.asc;
-        if (sortby == 'price' || sortby == undefined || sortby == null)
-            return await this.prisma.product.findMany({
-                where: {
-                    producer: {
-                        search: prod,
-                    },
-                },
-                orderBy: {
-                    price: sort,
-                },
-            });
-        if (sortby == 'raiting')
-            return await this.prisma.product.findMany({
-                where: {
-                    producer: {
-                        search: prod,
-                    },
-                },
-                orderBy: {
-                    raiting: sort,
-                },
-            });
-        if (sortby == 'name')
-            return await this.prisma.product.findMany({
-                where: {
-                    producer: {
-                        search: prod,
-                    },
-                },
-                orderBy: {
-                    name: sort,
-                },
-            });
+    async findWithReviews(id) {
+        const service = await this.prisma.service.findFirst({
+            include: {
+                reviews: true,
+            },
+            where: {
+                id: Number(id),
+            },
+        });
+        if (service) {
+            return service;
+        }
+        throw new errors_1.NotFound('Not found service');
     }
     async findByText(text, sort) {
         if (sort == sort_enum_1.Sort.none)
             sort = sort_enum_1.Sort.asc;
-        return await this.prisma.product.findMany({
+        return await this.prisma.service.findMany({
             orderBy: {
                 _relevance: {
-                    fields: ['description', 'name', 'short_descr', 'charact'],
+                    fields: ['description', 'name', 'short_descr'],
                     search: text,
                     sort: sort,
                 },
@@ -240,9 +186,9 @@ let ProductRepository = class ProductRepository {
         });
     }
 };
-ProductRepository = __decorate([
+ServiceRepository = __decorate([
     (0, common_1.Injectable)(),
     __metadata("design:paramtypes", [nestjs_prisma_1.PrismaService])
-], ProductRepository);
-exports.ProductRepository = ProductRepository;
-//# sourceMappingURL=product.repository.js.map
+], ServiceRepository);
+exports.ServiceRepository = ServiceRepository;
+//# sourceMappingURL=service.repository.js.map

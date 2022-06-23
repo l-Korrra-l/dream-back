@@ -5,3 +5,9 @@ export declare const productWithReviews: {
     };
 };
 export declare type ProductWithReviews = Prisma.ProductGetPayload<typeof productWithReviews>;
+export declare const serviceWithReviews: {
+    include: {
+        reviews: true;
+    };
+};
+export declare type ServiceWithReviews = Prisma.ServiceGetPayload<typeof productWithReviews>;

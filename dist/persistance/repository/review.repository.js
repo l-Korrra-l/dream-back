@@ -70,6 +70,23 @@ let ReviewRepository = class ReviewRepository {
             sum: aggregations._sum.raiting,
         };
     }
+    async getStatsOfService(productId) {
+        const aggregations = await this.prisma.review.aggregate({
+            _count: {
+                serviceId: true,
+            },
+            _sum: {
+                raiting: true,
+            },
+            where: {
+                prodId: Number(productId),
+            },
+        });
+        return {
+            count: aggregations._count.serviceId,
+            sum: aggregations._sum.raiting,
+        };
+    }
 };
 ReviewRepository = __decorate([
     (0, common_1.Injectable)(),

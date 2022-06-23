@@ -34,6 +34,11 @@ export class CategoryRepository
       where: {
         id: Number(id),
       },
+      include: {
+        _count: {
+          select: { products: true },
+        },
+      },
       data,
     });
   }
@@ -46,6 +51,11 @@ export class CategoryRepository
       where: {
         id: id,
       },
+      include: {
+        _count: {
+          select: { products: true },
+        },
+      },
       data,
     });
   }
@@ -54,6 +64,11 @@ export class CategoryRepository
     const slider = await this.prisma.category.findFirst({
       where: {
         id: Number(id),
+      },
+      include: {
+        _count: {
+          select: { products: true },
+        },
       },
     });
 
@@ -65,13 +80,24 @@ export class CategoryRepository
   }
 
   async findAll(): Promise<Category[]> {
-    return await this.prisma.category.findMany();
+    return await this.prisma.category.findMany({
+      include: {
+        _count: {
+          select: { products: true },
+        },
+      },
+    });
   }
 
   async delete(id: string): Promise<boolean> {
     const slider = await this.prisma.category.delete({
       where: {
         id: Number(id),
+      },
+      include: {
+        _count: {
+          select: { products: true },
+        },
       },
     });
 

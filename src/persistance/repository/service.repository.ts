@@ -4,6 +4,7 @@ import { Sort } from 'src/enums/sort.enum';
 import { PrismaService } from 'nestjs-prisma';
 import { Repository } from './repository.interface';
 import { NotFound } from 'src/errors/errors';
+import { ServiceWithReviews } from 'src/types/prismatypes';
 
 @Injectable()
 export class ServiceRepository
@@ -68,7 +69,7 @@ export class ServiceRepository
             createdDate: true,
             raiting: true,
             authorName: true,
-            productdName: true,
+            productName: true,
             text: true,
           },
         },
@@ -145,7 +146,7 @@ export class ServiceRepository
             createdDate: true,
             raiting: true,
             authorName: true,
-            productdName: true,
+            productName: true,
             text: true,
           },
         },
@@ -169,6 +170,23 @@ export class ServiceRepository
         },
       },
     });
+  }
+
+  async findWithReviews(id: string): Promise<ServiceWithReviews> {
+    const service = await this.prisma.service.findFirst({
+      include: {
+        reviews: true,
+      },
+      where: {
+        id: Number(id),
+      },
+    });
+
+    if (service) {
+      return service;
+    }
+
+    throw new NotFound('Not found service');
   }
 
   async findByText(text: string, sort: Sort): Promise<Service[]> {

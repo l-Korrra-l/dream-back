@@ -16,6 +16,7 @@ const currency_repository_1 = require("./repository/currency.repository");
 const order_repository_1 = require("./repository/order.repository");
 const product_repository_1 = require("./repository/product.repository");
 const review_repository_1 = require("./repository/review.repository");
+const service_repository_1 = require("./repository/service.repository");
 const slider_repository_1 = require("./repository/slider.repository");
 const user_repository_1 = require("./repository/user.repository");
 let DbModule = class DbModule {
@@ -32,6 +33,7 @@ DbModule = __decorate([
             currency_repository_1.CurrencyRepository,
             slider_repository_1.SliderRepository,
             category_repository_1.CategoryRepository,
+            service_repository_1.ServiceRepository,
         ],
         exports: [
             user_repository_1.UserRepository,
@@ -42,6 +44,7 @@ DbModule = __decorate([
             currency_repository_1.CurrencyRepository,
             slider_repository_1.SliderRepository,
             category_repository_1.CategoryRepository,
+            service_repository_1.ServiceRepository,
         ],
     })
 ], DbModule);

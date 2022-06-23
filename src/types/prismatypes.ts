@@ -9,3 +9,13 @@ export const productWithReviews = Prisma.validator<Prisma.ProductArgs>()({
 export type ProductWithReviews = Prisma.ProductGetPayload<
   typeof productWithReviews
 >;
+
+export const serviceWithReviews = Prisma.validator<Prisma.ServiceArgs>()({
+  include: {
+    reviews: true,
+  },
+});
+
+export type ServiceWithReviews = Prisma.ServiceGetPayload<
+  typeof productWithReviews
+>;
