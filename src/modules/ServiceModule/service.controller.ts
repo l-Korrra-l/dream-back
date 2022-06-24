@@ -31,7 +31,7 @@ import { imageFileFilter } from 'src/helpers/imageFilter.helpers';
 import { SortingBy } from 'src/decorators/sortbyheader.decorator';
 import { ServiceService } from './service.service';
 import { ServiceForCreate } from './dto/serviceforcreate.dto';
-import { ServiceForUpdate } from './dto/serviceForupdate.dto';
+import { ServiceForUpdate } from './dto/serviceforupdate.dto';
 
 @Controller('service')
 export class ServiceController {

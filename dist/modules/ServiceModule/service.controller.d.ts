@@ -4,7 +4,7 @@ import { CurrentUserInfo } from 'src/types/types';
 import { ReviewFromUser } from './dto/reviewformuser.dto';
 import { ServiceService } from './service.service';
 import { ServiceForCreate } from './dto/serviceforcreate.dto';
-import { ServiceForUpdate } from './dto/serviceForupdate.dto';
+import { ServiceForUpdate } from './dto/serviceforupdate.dto';
 export declare class ServiceController {
     private serviceService;
     constructor(serviceService: ServiceService);

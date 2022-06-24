@@ -32,7 +32,7 @@ const imageFilter_helpers_1 = require("../../helpers/imageFilter.helpers");
 const sortbyheader_decorator_1 = require("../../decorators/sortbyheader.decorator");
 const service_service_1 = require("./service.service");
 const serviceforcreate_dto_1 = require("./dto/serviceforcreate.dto");
-const serviceForupdate_dto_1 = require("./dto/serviceForupdate.dto");
+const serviceforupdate_dto_1 = require("./dto/serviceforupdate.dto");
 let ServiceController = class ServiceController {
     constructor(serviceService) {
         this.serviceService = serviceService;
@@ -121,7 +121,7 @@ __decorate([
     __param(1, (0, common_1.Body)()),
     __param(2, (0, common_1.UploadedFile)()),
     __metadata("design:type", Function),
-    __metadata("design:paramtypes", [String, serviceForupdate_dto_1.ServiceForUpdate, Object]),
+    __metadata("design:paramtypes", [String, serviceforupdate_dto_1.ServiceForUpdate, Object]),
     __metadata("design:returntype", Promise)
 ], ServiceController.prototype, "updateService", null);
 __decorate([
