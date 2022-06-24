@@ -7,4 +7,5 @@ export class OrderForCreate {
   @ApiProperty() firstName: string;
   @ApiProperty() lastname?: string;
   @ApiProperty() phoneNumber?: string;
+  @ApiProperty() equipment?: string;
 }

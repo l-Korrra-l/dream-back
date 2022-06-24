@@ -3,8 +3,8 @@ import { Sort } from 'src/enums/sort.enum';
 import { CurrentUserInfo } from 'src/types/types';
 import { ReviewFromUser } from './dto/reviewformuser.dto';
 import { ServiceService } from './service.service';
-import { ServiceForUpdate } from './dto/serviceForupdate.dto';
 import { ServiceForCreate } from './dto/serviceforcreate.dto';
+import { ServiceForUpdate } from './dto/serviceForupdate.dto';
 export declare class ServiceController {
     private serviceService;
     constructor(serviceService: ServiceService);

@@ -293,6 +293,7 @@ model Bucket {
   prodId   Int?
   product  Product? @relation(fields: [prodId], references: [id])
   quantity Int?
+  equipment String?
 }
 
 model Review {

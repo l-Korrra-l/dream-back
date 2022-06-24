@@ -29,5 +29,9 @@ __decorate([
     (0, swagger_1.ApiProperty)(),
     __metadata("design:type", String)
 ], OrderForCreate.prototype, "phoneNumber", void 0);
+__decorate([
+    (0, swagger_1.ApiProperty)(),
+    __metadata("design:type", String)
+], OrderForCreate.prototype, "equipment", void 0);
 exports.OrderForCreate = OrderForCreate;
 //# sourceMappingURL=OrderForCreate.js.map

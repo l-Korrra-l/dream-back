@@ -4,4 +4,5 @@ export declare class OrderForCreate {
     firstName: string;
     lastname?: string;
     phoneNumber?: string;
+    equipment?: string;
 }

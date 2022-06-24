@@ -57,6 +57,7 @@ let OrderService = class OrderService {
                 orderId: newOrder.id,
                 prodId: prod.id,
                 quantity: buck.quantity,
+                equipment: buck.equipment,
             });
             cost += Number(prod.price) * buck.quantity;
         })).then(async () => {

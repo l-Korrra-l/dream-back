@@ -63,6 +63,7 @@ export class OrderService {
           orderId: newOrder.id,
           prodId: prod.id,
           quantity: buck.quantity,
+          equipment: buck.equipment,
         } as Prisma.BucketUncheckedCreateInput);
         cost += Number(prod.price) * buck.quantity;
       }),
