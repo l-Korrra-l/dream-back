@@ -1,4 +1,3 @@
-import { ProductForCreate } from './dto/productforcreate.dto';
 import { Product } from '@prisma/client';
 import { ProductRepository } from 'src/persistance/repository/product.repository';
 import { Sort } from 'src/enums/sort.enum';
@@ -11,7 +10,7 @@ export declare class ProductService {
     private reviewRepository;
     private categoryRepository;
     constructor(productRepository: ProductRepository, reviewRepository: ReviewRepository, categoryRepository: CategoryRepository);
-    createProduct(inputProduct: ProductForCreate): Promise<Product>;
+    createProduct(inputProduct: any): Promise<Product>;
     getOne(id: string): Promise<Product>;
     getAll(sort: Sort, sortby: string): Promise<Product[]>;
     findByValue(name: string, author: string): Promise<Product[]>;

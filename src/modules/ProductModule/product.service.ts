@@ -17,7 +17,8 @@ export class ProductService {
     private categoryRepository: CategoryRepository,
   ) {}
 
-  async createProduct(inputProduct: ProductForCreate): Promise<Product> {
+  // async createProduct(inputProduct: ProductForCreate): Promise<Product> {
+    async createProduct(inputProduct: any): Promise<Product> {
     const cat = await this.categoryRepository.findOne(
       inputProduct.categoryId.toString(),
     );
