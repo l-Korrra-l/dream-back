@@ -52,8 +52,10 @@ export class ProductController {
     }),
   )
   async createProduct(
+    // @Body()
+    // productForCreate: ProductForCreate,
     @Body()
-    productForCreate: ProductForCreate,
+    productForCreate: any,
     @UploadedFile() file: Express.Multer.File,
   ) {
     productForCreate.img_path = file.path.split('\\')[1];
@@ -121,8 +123,10 @@ export class ProductController {
   @Patch(':id')
   async updateProduct(
     @Param('id') productId: string,
+    // @Body()
+    // productForUpdate: ProductForUpdate,
     @Body()
-    productForUpdate: ProductForUpdate,
+    productForUpdate: any,
     @UploadedFile() file: any,
   ) {
     return await this.productService.updateProduct(

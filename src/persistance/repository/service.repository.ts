@@ -52,26 +52,10 @@ export class ServiceRepository
     throw new NotFound('Not found service for delete');
   }
 
-  async findOne(id: string): Promise<Service> {
+  async findOne(id: string): Promise<ServiceWithReviews> {
     const service = await this.prisma.service.findFirst({
-      select: {
-        id: true,
-        name: true,
-        description: true,
-        img_path: true,
-        price: true,
-        raiting: true,
-        short_descr: true,
-        reviews: {
-          select: {
-            id: true,
-            createdDate: true,
-            raiting: true,
-            authorName: true,
-            productName: true,
-            text: true,
-          },
-        },
+      include: {
+        reviews: true,
       },
       where: {
         id: Number(id),

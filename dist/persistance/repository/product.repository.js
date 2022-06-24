@@ -48,41 +48,10 @@ let ProductRepository = class ProductRepository {
     }
     async findOne(id) {
         const product = await this.prisma.product.findFirst({
-            select: {
-                id: true,
-                name: true,
-                description: true,
-                img_path: true,
-                producer: true,
-                price: true,
-                raiting: true,
-                in_stock: true,
-                categoryId: true,
-                short_descr: true,
-                charact: true,
-                category: {
-                    select: {
-                        id: true,
-                        categoryName: true,
-                        img_path: true,
-                    },
-                },
-                reviews: {
-                    select: {
-                        id: true,
-                        createdDate: true,
-                        raiting: true,
-                        authorName: true,
-                        productName: true,
-                        text: true,
-                    },
-                },
-                buckets: {
-                    select: {
-                        id: true,
-                        quantity: true,
-                    },
-                },
+            include: {
+                reviews: true,
+                category: true,
+                buckets: true,
             },
             where: {
                 id: Number(id),
@@ -149,25 +118,8 @@ let ProductRepository = class ProductRepository {
     }
     async findByValue(name, author) {
         return (await this.prisma.product.findMany({
-            select: {
-                id: true,
-                name: true,
-                description: true,
-                img_path: true,
-                price: true,
-                raiting: true,
-                in_stock: true,
-                categoryId: true,
-                reviews: {
-                    select: {
-                        id: true,
-                        createdDate: true,
-                        raiting: true,
-                        authorName: true,
-                        productName: true,
-                        text: true,
-                    },
-                },
+            include: {
+                reviews: true,
             },
             where: {
                 name: {

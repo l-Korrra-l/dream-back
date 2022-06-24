@@ -37,8 +37,6 @@ const joivalidation_pipe_1 = require("../../validation/joivalidation.pipe");
 const reviewFromUser_schema_1 = require("../../validation/schemas/reviewFromUser.schema");
 const jwt_guard_1 = require("../AuthModule/guards/jwt.guard");
 const roles_guard_1 = require("../AuthModule/guards/roles.guard");
-const productforcreate_dto_1 = require("./dto/productforcreate.dto");
-const productforupdate_dto_1 = require("./dto/productforupdate.dto");
 const reviewformuser_dto_1 = require("./dto/reviewformuser.dto");
 const product_service_1 = require("./product.service");
 const multer_1 = require("multer");
@@ -84,7 +82,7 @@ __decorate([
     __param(0, (0, common_1.Body)()),
     __param(1, (0, common_1.UploadedFile)()),
     __metadata("design:type", Function),
-    __metadata("design:paramtypes", [productforcreate_dto_1.ProductForCreate, Object]),
+    __metadata("design:paramtypes", [Object, Object]),
     __metadata("design:returntype", Promise)
 ], ProductController.prototype, "createProduct", null);
 __decorate([
@@ -132,7 +130,7 @@ __decorate([
     __param(1, (0, common_1.Body)()),
     __param(2, (0, common_1.UploadedFile)()),
     __metadata("design:type", Function),
-    __metadata("design:paramtypes", [String, productforupdate_dto_1.ProductForUpdate, Object]),
+    __metadata("design:paramtypes", [String, Object, Object]),
     __metadata("design:returntype", Promise)
 ], ProductController.prototype, "updateProduct", null);
 __decorate([

@@ -32,86 +32,187 @@ model Role {
 }
 
 model Product {
-  id            Int          @id @unique @default(autoincrement())
-  name          String
-  short_descr   String?
-  description   String?
-  producer      String?
-  price         Decimal
-  charact       String?
-  in_stock      Int
-  img_path      String?
-  categoryId    Int?
-  category      Category?    @relation(fields: [categoryId], references: [id])
-  subcategoryId Int?
-  subcategory   Subcategory? @relation(fields: [subcategoryId], references: [id])
-  reviews       Review[]
-  buckets       Bucket[]
-  raiting       Float
-  sliders       Slider[]
-  options       Option[]
-}
-
-model Option {
-  id                 Int        @id @unique @default(autoincrement())
-  prodId             Int?
-  product            Product?   @relation(fields: [prodId], references: [id])
+  id                      Int          @id @unique @default(autoincrement())
+  name                    String
+  short_descr             String?
+  description             String?
+  producer                String?
+  price                   Decimal
+  charact                 String?
+  in_stock                Int
+  img_path                String?
+  categoryId              Int?
+  category                Category?    @relation(fields: [categoryId], references: [id])
+  subcategoryId           Int?
+  subcategory             Subcategory? @relation(fields: [subcategoryId], references: [id])
+  reviews                 Review[]
+  buckets                 Bucket[]
+  raiting                 Float
+  sliders                 Slider[]
+  // options       Option[]
   //characteristics
-  rel_date           DateTime?
-  storage            String?
+  rel_date                DateTime?
+  storage                 String?
   //TODO
   // colors
   //phone
-  operation_system   String?
-  os_version         String?
-  display_size       Float?
-  display_resolution String?
-  display_tecnology  String?
-  display_protection String?
-  weight             Float?
-  SIM                String?
-  chipset            String?
-  card_slot          String?
-  internal_memory    String?
-  camera             String?
-  video              String?
-  battery_type       String?
-  battery_charging   String?
-  battery_life       String?
-  shell_material     String?
-  cover_material     String?
-  equipment          String?
-  marks              String?
+  operation_system        String?
+  os_version              String?
+  display_size            Float?
+  display_resolution      String?
+  display_tecnology       String?
+  display_protection      String?
+  display_matrix          String?
+  weight                  Float?
+  SIM                     String?
+  chipset                 String?
+  card_slot               String?
+  internal_memory         String?
+  camera                  String?
+  video                   String?
+  battery_type            String?
+  battery_charging        String?
+  battery_life            String?
+  battery                 String?
+  shell_material          String?
+  cover_material          String?
+  equipment               String?
+  marks                   String?
   //CLOCKS
-  ram                String?
-  flash_memory       String?
-  buitInCamera       Boolean
-  c_matrixdotts      String?
-  childish           Boolean
-  bracelet_material  String?
-  bracelet_color     String?
-  mp3_player         Boolean
-  app_store          Boolean
-  alarms             Boolean
-  calls              String?
-  voice_control      Boolean
-  contactless_paymet Boolean
-  colors             Color[]
-  materials          Material[]
+  ram                     String?
+  flash_memory            String?
+  buitInCamera            Boolean?
+  c_matrixdotts           String?
+  childish                Boolean?
+  bracelet_material       String?
+  bracelet_color          String?
+  mp3_player              Boolean?
+  app_store               Boolean?
+  alarms                  Boolean?
+  calls                   String?
+  voice_control           Boolean?
+  contactless_paymet      Boolean?
+  waterproof              Boolean?
+  touch_screen            Boolean?
+  GPS                     Boolean?
+  //pads
+  wireless_charger        Boolean?
+  processor               String?
+  graphic_accelerator     String?
+  scratch_protection      Boolean?
+  dynamics                String?
+  Bluetooth               String?
+  usb_type                String?
+  cores_number            String?
+  clock_frequency         String?
+  turbo_frequency         String?
+  tdp                     String?
+  display_characteristics String?
+  ram_type                String?
+  memory_slots            String?
+  drive_type              String?
+  storage_capacity        String?
+  odd                     String?
+  memory_card             String?
+  discrete_graphics       Boolean?
+  graphics_card           String?
+
+
+  colors    Color[]
+  materials Material[]
 }
 
+// model Option {
+//   id                 Int        @id @unique @default(autoincrement())
+//   prodId             Int?
+//   product            Product?   @relation(fields: [prodId], references: [id])
+//   //characteristics
+//   rel_date           DateTime?
+//   storage            String?
+//   //TODO
+//   // colors
+//   //phone
+//   operation_system   String?
+//   os_version         String?
+//   display_size       Float?
+//   display_resolution String?
+//   display_tecnology  String?
+//   display_protection String?
+//     display_matrix String?
+//   weight             Float?
+//   SIM                String?
+//   chipset            String?
+//   card_slot          String?
+//   internal_memory    String?
+//   camera             String?
+//   video              String?
+//   battery_type       String?
+//   battery_charging   String?
+//   battery_life       String?
+//   battery String?
+//   shell_material     String?
+//   cover_material     String?
+//   equipment          String?
+//   marks              String?
+//   //CLOCKS
+//   ram                String?
+//   flash_memory       String?
+//   buitInCamera       Boolean
+//   c_matrixdotts      String?
+//   childish           Boolean?
+//   bracelet_material  String?
+//   bracelet_color     String?
+//   mp3_player         Boolean?
+//   app_store          Boolean?
+//   alarms             Boolean?
+//   calls              String?
+//   voice_control      Boolean?
+//   contactless_paymet Boolean?
+//   waterproof Boolean?
+//   touch_screen Boolean?
+//   GPS Boolean?
+//   //pads
+//   wireless_charger Boolean?
+//   processor String?
+//   graphic_accelerator String?
+//   scratch_protection Boolean?
+//   dynamics String?
+//   Bluetooth String?
+//   usb_type String?
+//   cores_number String?
+//   clock_frequency String?
+//   turbo_frequency String?
+//   tdp String?
+//   display_characteristics String?
+//   ram_type String?
+//   memory_slots String?
+//   drive_type String?
+//   storage_capacity String?
+//   odd String?
+//   memory_card String?
+//   discrete_graphics Boolean?
+//   graphics_card String?
+
+//   colors             Color[]
+//   materials          Material[]
+// }
+
 model Color {
-  id       Int     @id @default(autoincrement())
-  optionId Int?
-  option   Option? @relation(fields: [optionId], references: [id])
+  id       Int      @id @unique @default(autoincrement())
+  prodId   Int?
+  product  Product? @relation(fields: [prodId], references: [id])
+  // optionId Int?
+  // option   Option? @relation(fields: [optionId], references: [id])
   color    String
   img_path String?
 }
 
 model Material {
-  id       Int     @id @default(autoincrement())
-  optionId Int?
-  option   Option? @relation(fields: [optionId], references: [id])
+  id       Int      @id @unique @default(autoincrement())
+  prodId   Int?
+  product  Product? @relation(fields: [prodId], references: [id])
+  // optionId Int?
+  // option   Option? @relation(fields: [optionId], references: [id])
   material String
   img_path String?
 }
