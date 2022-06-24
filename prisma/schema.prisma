@@ -12,7 +12,7 @@ datasource db {
 }
 
 model User {
-  id          Int      @id @default(autoincrement())
+  id          Int      @id @unique @default(autoincrement())
   email       String?  @unique
   password    String?
   auth        String? //authenticate with google or jwt
@@ -32,22 +32,88 @@ model Role {
 }
 
 model Product {
-  id          Int       @id @default(autoincrement())
-  name        String
-  short_descr String?
-  description String?
-  producer    String?
-  price       Decimal
-  charact     String?
-  in_stock    Int
-  img_path    String?
-  categoryId  Int?
-  category    Category? @relation(fields: [categoryId], references: [id])
-  reviews     Review[]
-  buckets     Bucket[]
-  raiting     Float
-  sliders     Slider[]
-  // @@fulltext([name, short_descr, description, html_descr])
+  id            Int          @id @unique @default(autoincrement())
+  name          String
+  short_descr   String?
+  description   String?
+  producer      String?
+  price         Decimal
+  charact       String?
+  in_stock      Int
+  img_path      String?
+  categoryId    Int?
+  category      Category?    @relation(fields: [categoryId], references: [id])
+  subcategoryId Int?
+  subcategory   Subcategory? @relation(fields: [subcategoryId], references: [id])
+  reviews       Review[]
+  buckets       Bucket[]
+  raiting       Float
+  sliders       Slider[]
+  options       Option[]
+}
+
+model Option {
+  id                 Int        @id @unique @default(autoincrement())
+  prodId             Int?
+  product            Product?   @relation(fields: [prodId], references: [id])
+  //characteristics
+  rel_date           DateTime?
+  storage            String?
+  //TODO
+  // colors
+  //phone
+  operation_system   String?
+  os_version         String?
+  display_size       Float?
+  display_resolution String?
+  display_tecnology  String?
+  display_protection String?
+  weight             Float?
+  SIM                String?
+  chipset            String?
+  card_slot          String?
+  internal_memory    String?
+  camera             String?
+  video              String?
+  battery_type       String?
+  battery_charging   String?
+  battery_life       String?
+  shell_material     String?
+  cover_material     String?
+  equipment          String?
+  marks              String?
+  //CLOCKS
+  ram                String?
+  flash_memory       String?
+  buitInCamera       Boolean
+  c_matrixdotts      String?
+  childish           Boolean
+  bracelet_material  String?
+  bracelet_color     String?
+  mp3_player         Boolean
+  app_store          Boolean
+  alarms             Boolean
+  calls              String?
+  voice_control      Boolean
+  contactless_paymet Boolean
+  colors             Color[]
+  materials          Material[]
+}
+
+model Color {
+  id       Int     @id @default(autoincrement())
+  optionId Int?
+  option   Option? @relation(fields: [optionId], references: [id])
+  color    String
+  img_path String?
+}
+
+model Material {
+  id       Int     @id @default(autoincrement())
+  optionId Int?
+  option   Option? @relation(fields: [optionId], references: [id])
+  material String
+  img_path String?
 }
 
 model Service {
@@ -67,14 +133,22 @@ model Service {
 }
 
 model Category {
-  id           Int       @id @default(autoincrement())
+  id           Int           @id @default(autoincrement())
   categoryName String
   img_path     String?
   block_type   String?
-  main_page    Boolean?  @default(false)
-  // c_items      Int       @default(0)
+  main_page    Boolean?      @default(false)
   products     Product[]
-  // services     Service[]
+  subcats      Subcategory[]
+  // Option       Option[]
+}
+
+model Subcategory {
+  id         Int       @id @default(autoincrement())
+  name       String
+  products   Product[]
+  categoryId Int?
+  category   Category? @relation(fields: [categoryId], references: [id])
 }
 
 model Order {
@@ -97,19 +171,19 @@ model Bucket {
 }
 
 model Review {
-  id           Int      @id @default(autoincrement())
-  body         String
-  prodId       Int?
-  product      Product? @relation(fields: [prodId], references: [id])
-  serviceId    Int?
-  service      Service? @relation(fields: [serviceId], references: [id])
-  userId       Int
-  user         User     @relation(fields: [userId], references: [id])
-  createdDate  String
-  raiting      Int
-  authorName   String
+  id          Int      @id @default(autoincrement())
+  body        String
+  prodId      Int?
+  product     Product? @relation(fields: [prodId], references: [id])
+  serviceId   Int?
+  service     Service? @relation(fields: [serviceId], references: [id])
+  userId      Int
+  user        User     @relation(fields: [userId], references: [id])
+  createdDate String
+  raiting     Int
+  authorName  String
   productName String
-  text         String
+  text        String
 }
 
 model Currency {
