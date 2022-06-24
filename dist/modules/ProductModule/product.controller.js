@@ -47,7 +47,11 @@ let ProductController = class ProductController {
         this.productService = productService;
     }
     async createProduct(productForCreate, file) {
-        productForCreate.img_path = file.path.split('\\')[1];
+        var _a;
+        console.log(productForCreate);
+        console.log(file);
+        if (file != undefined)
+            productForCreate.img_path = (_a = file === null || file === void 0 ? void 0 : file.path) === null || _a === void 0 ? void 0 : _a.split('\\')[1];
         console.log(productForCreate.in_stock);
         const { in_stock, categoryId } = productForCreate, lprod = __rest(productForCreate, ["in_stock", "categoryId"]);
         return await this.productService.createProduct(Object.assign({ in_stock: parseInt(in_stock.toString()), categoryId: parseInt(categoryId.toString()) }, lprod));

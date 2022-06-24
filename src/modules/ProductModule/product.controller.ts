@@ -58,7 +58,10 @@ export class ProductController {
     productForCreate: any,
     @UploadedFile() file: Express.Multer.File,
   ) {
-    productForCreate.img_path = file.path.split('\\')[1];
+    console.log(productForCreate);
+    console.log(file);
+    if (file != undefined)
+      productForCreate.img_path = file?.path?.split('\\')[1];
     console.log(productForCreate.in_stock);
     const { in_stock, categoryId, ...lprod } = productForCreate;
     return await this.productService.createProduct({

@@ -51,11 +51,18 @@ model Product {
   sliders                 Slider[]
   // options       Option[]
   //characteristics
-  rel_date                DateTime?
+  rel_date                String?
   storage                 String?
   //TODO
   // colors
   //phone
+  camera_matrix           String?
+  photo_resolution        String?
+  zoom                    String?
+  stabilization           String?
+  camera_c_lens           String?
+  wifi_version            String?
+  nfc                     Boolean?
   operation_system        String?
   os_version              String?
   display_size            Float?
@@ -63,8 +70,15 @@ model Product {
   display_tecnology       String?
   display_protection      String?
   display_matrix          String?
-  weight                  Float?
-  SIM                     String?
+  display_type            String?
+  weight                  String?
+  heigth                  String?
+  width                   String?
+  thickness               String?
+  sim                     String?
+  class                   String?
+  sim_type                String?
+  sensors                 String?
   chipset                 String?
   card_slot               String?
   internal_memory         String?
@@ -73,11 +87,16 @@ model Product {
   battery_type            String?
   battery_charging        String?
   battery_life            String?
+  battery_capacity        String?
   battery                 String?
   shell_material          String?
   cover_material          String?
+  back_panel_material     String?
+  fingers_scaner          Boolean?
   equipment               String?
   marks                   String?
+  max_frequency           String?
+  os                      String?
   //CLOCKS
   ram                     String?
   flash_memory            String?
@@ -96,11 +115,15 @@ model Product {
   touch_screen            Boolean?
   GPS                     Boolean?
   //pads
-  wireless_charger        Boolean?
+  wireless_charger        String?
+  fast_charging           String?
   processor               String?
   graphic_accelerator     String?
   scratch_protection      Boolean?
   dynamics                String?
+  audio_port_3            Boolean?
+  dolby_atmos             Boolean?
+  max_volume              String?
   Bluetooth               String?
   usb_type                String?
   cores_number            String?
@@ -109,6 +132,7 @@ model Product {
   tdp                     String?
   display_characteristics String?
   ram_type                String?
+  ram_frequency           String?
   memory_slots            String?
   drive_type              String?
   storage_capacity        String?
@@ -116,7 +140,7 @@ model Product {
   memory_card             String?
   discrete_graphics       Boolean?
   graphics_card           String?
-
+  condition               String?
 
   colors    Color[]
   materials Material[]
