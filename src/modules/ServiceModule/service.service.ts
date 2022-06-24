@@ -5,7 +5,7 @@ import { SaveImageInfo, StatsInfo } from 'src/types/types';
 import { Sort } from 'src/enums/sort.enum';
 import { ReviewFromUser } from './dto/reviewformuser.dto';
 import { ReviewRepository } from 'src/persistance/repository/review.repository';
-import { ServiceForUpdate } from './dto/serviceForupdate.dto';
+import { ServiceForUpdate } from './dto/serviceforupdate.dto';
 import { CategoryRepository } from 'src/persistance/repository/category.repository';
 import { ServiceRepository } from 'src/persistance/repository/service.repository';
 
