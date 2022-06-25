@@ -39,7 +39,6 @@
     "@nestjs/serve-static": "^2.2.2",
     "@nestjs/swagger": "^5.2.1",
     "@nestjs/testing": "^8.4.7",
-    "@prisma/client": "^3.15.2",
     "@types/bcrypt": "^5.0.0",
     "@types/express": "^4.17.13",
     "@types/jest": "^27.4.0",
@@ -101,6 +100,7 @@
     "testEnvironment": "node"
   },
   "devDependencies": {
+    "@prisma/client": "^3.15.2",
     "cross-env": "^7.0.3"
   }
 }
