@@ -38,4 +38,4 @@ __decorate([
     __metadata("design:type", String)
 ], ServiceForUpdate.prototype, "short_descr", void 0);
 exports.ServiceForUpdate = ServiceForUpdate;
-//# sourceMappingURL=serviceForupdate.dto.js.map
+//# sourceMappingURL=serviceforupdate.dto.js.map

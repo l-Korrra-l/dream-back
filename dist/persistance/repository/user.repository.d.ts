@@ -10,7 +10,7 @@ export declare class UserRepository implements Repository<string, Prisma.UserCre
     findOne(id: string): Promise<User>;
     findAll(): Promise<User[]>;
     findForView(id: string): Promise<User>;
-    findByEmail(email: string): Promise<any>;
-    getById(id: string): Promise<any>;
+    findByEmail(email: string): Promise<User>;
+    getById(id: string): Promise<User>;
     canRegister(email: string): Promise<boolean>;
 }
