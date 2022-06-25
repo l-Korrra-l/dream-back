@@ -17,12 +17,12 @@ let OrderRepository = class OrderRepository {
         this.prisma = prisma;
     }
     async create(data) {
-        return await this.prisma.order.create({
+        return await this.prisma.order_.create({
             data,
         });
     }
     async update(id, data) {
-        return await this.prisma.order.update({
+        return await this.prisma.order_.update({
             data,
             where: {
                 id: Number(id),
@@ -30,7 +30,7 @@ let OrderRepository = class OrderRepository {
         });
     }
     async updateNumId(id, data) {
-        return await this.prisma.order.update({
+        return await this.prisma.order_.update({
             data,
             where: {
                 id: Number(id),
@@ -38,7 +38,7 @@ let OrderRepository = class OrderRepository {
         });
     }
     async delete(id) {
-        if (await this.prisma.order.deleteMany({
+        if (await this.prisma.order_.deleteMany({
             where: {
                 id: Number(id),
             },
@@ -48,28 +48,28 @@ let OrderRepository = class OrderRepository {
             return false;
     }
     async deleteByUserId(id) {
-        await this.prisma.order.deleteMany({
+        await this.prisma.order_.deleteMany({
             where: {
                 userId: Number(id),
             },
         });
     }
     async findOne(id) {
-        return await this.prisma.order.findUnique({
+        return await this.prisma.order_.findUnique({
             where: {
                 id: Number(id),
             },
         });
     }
     async findByUser(id) {
-        return await this.prisma.order.findMany({
+        return await this.prisma.order_.findMany({
             where: {
                 userId: Number(id),
             },
         });
     }
     async findAll() {
-        return await this.prisma.order.findMany({
+        return await this.prisma.order_.findMany({
             select: {
                 id: true,
                 userId: true,

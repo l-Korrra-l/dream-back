@@ -1,23 +1,28 @@
 import { Injectable } from '@nestjs/common';
 import { Repository } from './repository.interface';
-import { Order, Prisma } from '@prisma/client';
+import { Order_, Prisma } from '@prisma/client';
 import { PrismaService } from 'nestjs-prisma';
 
 @Injectable()
 export class OrderRepository
   implements
-    Repository<string, Prisma.OrderCreateInput, Prisma.OrderUpdateInput, Order>
+    Repository<
+      string,
+      Prisma.Order_CreateInput,
+      Prisma.Order_UpdateInput,
+      Order_
+    >
 {
   constructor(private prisma: PrismaService) {}
 
-  async create(data: Prisma.OrderCreateInput): Promise<Order> {
-    return await this.prisma.order.create({
+  async create(data: Prisma.Order_CreateInput): Promise<Order_> {
+    return await this.prisma.order_.create({
       data,
     });
   }
 
-  async update(id: string, data: Prisma.OrderUpdateInput): Promise<Order> {
-    return await this.prisma.order.update({
+  async update(id: string, data: Prisma.Order_UpdateInput): Promise<Order_> {
+    return await this.prisma.order_.update({
       data,
       where: {
         id: Number(id),
@@ -25,8 +30,11 @@ export class OrderRepository
     });
   }
 
-  async updateNumId(id: number, data: Prisma.OrderUpdateInput): Promise<Order> {
-    return await this.prisma.order.update({
+  async updateNumId(
+    id: number,
+    data: Prisma.Order_UpdateInput,
+  ): Promise<Order_> {
+    return await this.prisma.order_.update({
       data,
       where: {
         id: Number(id),
@@ -36,7 +44,7 @@ export class OrderRepository
 
   async delete(id: string): Promise<boolean> {
     if (
-      await this.prisma.order.deleteMany({
+      await this.prisma.order_.deleteMany({
         where: {
           id: Number(id),
         },
@@ -47,31 +55,31 @@ export class OrderRepository
   }
 
   async deleteByUserId(id: string) {
-    await this.prisma.order.deleteMany({
+    await this.prisma.order_.deleteMany({
       where: {
         userId: Number(id),
       },
     });
   }
 
-  async findOne(id: string): Promise<Order> {
-    return await this.prisma.order.findUnique({
+  async findOne(id: string): Promise<Order_> {
+    return await this.prisma.order_.findUnique({
       where: {
         id: Number(id),
       },
     });
   }
 
-  async findByUser(id: string): Promise<Order[]> {
-    return await this.prisma.order.findMany({
+  async findByUser(id: string): Promise<Order_[]> {
+    return await this.prisma.order_.findMany({
       where: {
         userId: Number(id),
       },
     });
   }
 
-  async findAll(): Promise<Order[]> {
-    return await this.prisma.order.findMany({
+  async findAll(): Promise<Order_[]> {
+    return await this.prisma.order_.findMany({
       select: {
         id: true,
         userId: true,

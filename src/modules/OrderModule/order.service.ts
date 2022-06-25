@@ -1,5 +1,5 @@
 import { ForbiddenException, Injectable } from '@nestjs/common';
-import { Order, Prisma, Product } from '@prisma/client';
+import { Order_, Prisma, Product } from '@prisma/client';
 import { SaveImageInfo, StatsInfo } from 'src/types/types';
 import { Sort } from 'src/enums/sort.enum';
 import { ReviewRepository } from 'src/persistance/repository/review.repository';
@@ -25,7 +25,7 @@ export class OrderService {
   async createOrder(
     inputOrder: OrderForCreate,
     userId: string,
-  ): Promise<Order> {
+  ): Promise<Order_> {
     let user;
     if (userId) {
       user = await this.userRepository.getById(userId);
@@ -50,7 +50,7 @@ export class OrderService {
       userId: user.id,
       // user: user,
       status: 'оформлен',
-    } as Prisma.OrderUncheckedCreateInput);
+    } as Prisma.Order_UncheckedCreateInput);
     // eslint-disable-next-line @typescript-eslint/no-inferrable-types
     let cost: number = 0;
     await Promise.all(
@@ -75,11 +75,11 @@ export class OrderService {
     return newOrder;
   }
 
-  async getOne(id: string): Promise<Order> {
+  async getOne(id: string): Promise<Order_> {
     return await this.orderRepository.findOne(id);
   }
 
-  async getAll(user: CurrentUserInfo): Promise<Order[]> {
+  async getAll(user: CurrentUserInfo): Promise<Order_[]> {
     if (user.role == Role.User)
       return await this.orderRepository.findByUser(user.userId);
     else return await this.orderRepository.findAll();

@@ -7,7 +7,7 @@ generator client {
 }
 
 datasource db {
-  provider = "postgresql"
+  provider = "mysql"
   url      = env("DATABASE_URL")
 }
 
@@ -22,7 +22,7 @@ model User {
   birthDate   String?
   status      Boolean  @default(false)
   role        String
-  orders      Order[]
+  orders       Order_[]
   reviews     Review[]
 }
 
@@ -140,8 +140,7 @@ model Product {
   memory_card             String?
   discrete_graphics       Boolean?
   graphics_card           String?
-  condition               String?
-
+  condition_               String?
   colors    Color[]
   materials Material[]
 }
@@ -276,7 +275,7 @@ model Subcategory {
   category   Category? @relation(fields: [categoryId], references: [id])
 }
 
-model Order {
+model Order_ {
   id        Int       @id @default(autoincrement())
   userId    Int?
   user      User?     @relation(fields: [userId], references: [id])
@@ -289,7 +288,7 @@ model Order {
 model Bucket {
   id       Int      @id @default(autoincrement())
   orderId  Int
-  order    Order?   @relation(fields: [orderId], references: [id])
+  order     Order_?   @relation(fields: [orderId], references: [id])
   prodId   Int?
   product  Product? @relation(fields: [prodId], references: [id])
   quantity Int?

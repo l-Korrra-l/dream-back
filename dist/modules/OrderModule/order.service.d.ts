@@ -1,4 +1,4 @@
-import { Order } from '@prisma/client';
+import { Order_ } from '@prisma/client';
 import { OrderRepository } from 'src/persistance/repository/order.repository';
 import { BucketRepository } from 'src/persistance/repository/bucket.repository';
 import { OrderForCreate } from './dto/OrderForCreate';
@@ -11,8 +11,8 @@ export declare class OrderService {
     private userRepository;
     private productRepository;
     constructor(orderRepository: OrderRepository, bucketRepository: BucketRepository, userRepository: UserRepository, productRepository: ProductRepository);
-    createOrder(inputOrder: OrderForCreate, userId: string): Promise<Order>;
-    getOne(id: string): Promise<Order>;
-    getAll(user: CurrentUserInfo): Promise<Order[]>;
+    createOrder(inputOrder: OrderForCreate, userId: string): Promise<Order_>;
+    getOne(id: string): Promise<Order_>;
+    getAll(user: CurrentUserInfo): Promise<Order_[]>;
     updateOrder(): Promise<void>;
 }
