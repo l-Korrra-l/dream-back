@@ -5,17 +5,7 @@ import { UserLogin } from './dto/userlogin.dto';
 export declare class AuthController {
     private authService;
     constructor(authService: AuthService);
-    userRegistration(userForRegister: UserForRegister): Promise<{
-        id: number;
-        email: string;
-        auth: string;
-        firstName: string;
-        lastName: string;
-        phoneNumber: string;
-        birthDate: string;
-        status: boolean;
-        role: string;
-    }>;
+    userRegistration(userForRegister: UserForRegister): Promise<User>;
     userLogin(userLogin: UserLogin, res: any): Promise<void>;
     userLoging(res: any): Promise<void>;
     userLoginrg(req: any, res: any): Promise<void>;
