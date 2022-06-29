@@ -82,7 +82,7 @@ export class ProductController {
         charact: null,
         in_stock: 3,
         img_path:
-          'http://localhost:7000/files/f3b50542-041d-4b7b-b940-ec0c3453897a.png',
+          'http://194.62.19.52:7000/f3b50542-041d-4b7b-b940-ec0c3453897a.png',
         categoryId: 1,
         subcategoryId: null,
         raiting: 0,
@@ -183,7 +183,7 @@ export class ProductController {
         charact: null,
         in_stock: 3,
         img_path:
-          'http://localhost:7000/files/f3b50542-041d-4b7b-b940-ec0c3453897a.png',
+          'http://194.62.19.52:7000/f3b50542-041d-4b7b-b940-ec0c3453897a.png',
         categoryId: 1,
         subcategoryId: null,
         raiting: 0,
@@ -284,7 +284,7 @@ export class ProductController {
         charact: null,
         in_stock: 3,
         img_path:
-          'http://localhost:7000/files/f3b50542-041d-4b7b-b940-ec0c3453897a.png',
+          'http://194.62.19.52:7000/f3b50542-041d-4b7b-b940-ec0c3453897a.png',
         categoryId: 1,
         rel_date: '2022',
         storage: null,
@@ -381,7 +381,7 @@ export class ProductController {
         producer: 'xiaomi',
         price: 600,
         in_stock: 3,
-        img_path: 'http://localhost:7000/files/pms_1632297746.27263270.png',
+        img_path: 'http://194.62.19.52:7000/pms_1632297746.27263270.png',
         categoryId: 1,
         rel_date: '2022',
         camera_matrix: '12 мегапикселей',
