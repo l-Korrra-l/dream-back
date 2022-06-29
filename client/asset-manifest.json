@@ -1,0 +1,34 @@
+{
+  "files": {
+    "main.css": "/static/css/main.45dd67bd.css",
+    "main.js": "/static/js/main.bb6025b3.js",
+    "static/media/slider_back.png": "/static/media/slider_back.720cd33db502b1517281.png",
+    "static/media/galery_example.png": "/static/media/galery_example.2020e93685a71202137e.png",
+    "static/media/item_page_example.png": "/static/media/item_page_example.f7e267f0b6d26b3132cb.png",
+    "static/media/service_page_example.png": "/static/media/service_page_example.f7e267f0b6d26b3132cb.png",
+    "static/media/category_card_example_wide_2.png": "/static/media/category_card_example_wide_2.799edbc072cc652aafe7.png",
+    "static/media/item_info_example_2.png": "/static/media/item_info_example_2.a3010c30f7b7f9b6b1ae.png",
+    "static/media/slider_image.png": "/static/media/slider_image.2e365631d474c285f270.png",
+    "static/media/category_card_example_wide.png": "/static/media/category_card_example_wide.d4de9142324f4720299a.png",
+    "static/media/item_info_example_1.png": "/static/media/item_info_example_1.d99c6791ddca4e1ccfe0.png",
+    "static/media/category_card_example_high.png": "/static/media/category_card_example_high.74b5c8faf10adccd8ff0.png",
+    "static/media/item_image_example.png": "/static/media/item_image_example.3e3c8dc476ae64881083.png",
+    "static/media/item_info_example_3.png": "/static/media/item_info_example_3.603dee9615caf9e4ba4d.png",
+    "static/media/category_card_example.png": "/static/media/category_card_example.0d88a1ff6d9167b8fbb7.png",
+    "static/media/common_service_example.png": "/static/media/common_service_example.bdadfd3ccd90bdf28828.png",
+    "static/media/logout.svg": "/static/media/logout.48e2e56cce245945ae58388fa7566d2b.svg",
+    "static/media/example_1.png": "/static/media/example_1.0567f31f94d035a091a9.png",
+    "static/media/compare.svg": "/static/media/compare.4cdd9fa8a9b8c21fe152cb4833ca6efb.svg",
+    "static/media/buy.svg": "/static/media/buy.f7188f20879b26398b8034a8f79210bc.svg",
+    "static/media/favorite.svg": "/static/media/favorite.ae0331b242dfe266a07bf31ac3d917dc.svg",
+    "index.html": "/index.html",
+    "static/media/available.svg": "/static/media/available.69d27e6571c5e43352a7359a30660e96.svg",
+    "static/media/unavailable.svg": "/static/media/unavailable.5cfcc058435262d04198b402e2d02024.svg",
+    "main.45dd67bd.css.map": "/static/css/main.45dd67bd.css.map",
+    "main.bb6025b3.js.map": "/static/js/main.bb6025b3.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.45dd67bd.css",
+    "static/js/main.bb6025b3.js"
+  ]
+}
