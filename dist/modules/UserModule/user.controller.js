@@ -35,7 +35,7 @@ let UserController = class UserController {
         return await this.userService.getProfile(user.userId);
     }
     async updateuserProfile(currentUser, newUser, file) {
-        newUser.img_path = file.path.split('\\')[1];
+        newUser.img_path = 'http://194.62.19.52:7000/' + file.path.split('\\')[1];
         return await this.userService.updateProfile(currentUser.userId, newUser);
     }
 };

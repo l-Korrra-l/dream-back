@@ -56,7 +56,8 @@ export class ServiceController {
     serviceForCreate: ServiceForCreate,
     @UploadedFile() file: Express.Multer.File,
   ) {
-    serviceForCreate.img_path = file.path.split('\\')[1];
+    serviceForCreate.img_path =
+      'http://194.62.19.52:7000/' + file.path.split('\\')[1];
     return await this.serviceService.createService(serviceForCreate);
   }
 
@@ -122,7 +123,7 @@ export class ServiceController {
     return await this.serviceService.updateService(
       serviceId,
       serviceForUpdate,
-      file.path.split('\\')[1] + '.' + file.originalname.split('.')[1],
+      'http://194.62.19.52:7000/' + file.path.split('\\')[1],
     );
   }
 

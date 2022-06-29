@@ -31,12 +31,12 @@ let SliderController = class SliderController {
     }
     async createProduct(sliderForCreate, file) {
         sliderForCreate.img_path =
-            file.path.split('\\')[1];
+            'http://194.62.19.52:7000/' + file.path.split('\\')[1];
         return await this.sliderService.createSlider(sliderForCreate);
     }
     async updateProduct(sliderForCreate, file, id) {
         sliderForCreate.img_path =
-            file.path.split('\\')[1];
+            'http://194.62.19.52:7000/' + file.path.split('\\')[1];
         return await this.sliderService.updateSlider(id, sliderForCreate);
     }
     async getSlider(id) {

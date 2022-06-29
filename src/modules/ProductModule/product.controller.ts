@@ -59,7 +59,8 @@ export class ProductController {
     @UploadedFile() file: Express.Multer.File,
   ) {
     if (file != undefined)
-      productForCreate.img_path = file?.path?.split('\\')[1];
+      productForCreate.img_path =
+        'http://194.62.19.52:7000/' + file?.path?.split('\\')[1];
     console.log(productForCreate.in_stock);
     const { in_stock, categoryId, ...lprod } = productForCreate;
     return await this.productService.createProduct({
@@ -517,7 +518,7 @@ export class ProductController {
     return await this.productService.updateProduct(
       productId,
       productForUpdate,
-      file.path.split('\\')[1] + '.' + file.originalname.split('.')[1],
+      'http://194.62.19.52:7000/' + file.path.split('\\')[1],
     );
   }
 

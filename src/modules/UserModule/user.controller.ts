@@ -52,7 +52,7 @@ export class UserController {
     @Body(new JoiValidationPipe(userForUpdateSchema)) newUser: UserForUpdate,
     @UploadedFile() file: any,
   ) {
-    newUser.img_path = file.path.split('\\')[1];
+    newUser.img_path = 'http://194.62.19.52:7000/' + file.path.split('\\')[1];
     return await this.userService.updateProfile(currentUser.userId, newUser);
   }
 }

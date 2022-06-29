@@ -38,7 +38,8 @@ let ServiceController = class ServiceController {
         this.serviceService = serviceService;
     }
     async createService(serviceForCreate, file) {
-        serviceForCreate.img_path = file.path.split('\\')[1];
+        serviceForCreate.img_path =
+            'http://194.62.19.52:7000/' + file.path.split('\\')[1];
         return await this.serviceService.createService(serviceForCreate);
     }
     async getAllproducts(sort, sortby) {
@@ -51,7 +52,7 @@ let ServiceController = class ServiceController {
         return await this.serviceService.makeReview(currentUser.userId, currentUser.email, serviceId, review);
     }
     async updateService(serviceId, serviceForUpdate, file) {
-        return await this.serviceService.updateService(serviceId, serviceForUpdate, file.path.split('\\')[1] + '.' + file.originalname.split('.')[1]);
+        return await this.serviceService.updateService(serviceId, serviceForUpdate, 'http://194.62.19.52:7000/' + file.path.split('\\')[1]);
     }
     async getService(id) {
         return await this.serviceService.getOne(id);

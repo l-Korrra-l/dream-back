@@ -49,7 +49,8 @@ let ProductController = class ProductController {
     async createProduct(productForCreate, file) {
         var _a;
         if (file != undefined)
-            productForCreate.img_path = (_a = file === null || file === void 0 ? void 0 : file.path) === null || _a === void 0 ? void 0 : _a.split('\\')[1];
+            productForCreate.img_path =
+                'http://194.62.19.52:7000/' + ((_a = file === null || file === void 0 ? void 0 : file.path) === null || _a === void 0 ? void 0 : _a.split('\\')[1]);
         console.log(productForCreate.in_stock);
         const { in_stock, categoryId } = productForCreate, lprod = __rest(productForCreate, ["in_stock", "categoryId"]);
         return await this.productService.createProduct(Object.assign({ in_stock: parseInt(in_stock.toString()), categoryId: parseInt(categoryId.toString()) }, lprod));
@@ -437,7 +438,7 @@ let ProductController = class ProductController {
         return await this.productService.makeReview(currentUser.userId, currentUser.email, productId, review);
     }
     async updateProduct(productId, productForUpdate, file) {
-        return await this.productService.updateProduct(productId, productForUpdate, file.path.split('\\')[1] + '.' + file.originalname.split('.')[1]);
+        return await this.productService.updateProduct(productId, productForUpdate, 'http://194.62.19.52:7000/' + file.path.split('\\')[1]);
     }
     async getProduct(id) {
         return await this.productService.getOne(id);
