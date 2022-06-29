@@ -9,7 +9,7 @@
       "port": 5432,
       "username": "postgres",
       "password": "12345",
-      "database": "leverx-course",
+      "database": "dreamstore",
       "entities": ["dist/**/*.entity{.ts,.js}"],
       "synchronize": true,
       "migrations": ["dist/migrations/*{.ts,.js}"],

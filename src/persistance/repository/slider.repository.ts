@@ -18,9 +18,9 @@ export class SliderRepository
 {
   constructor(private prisma: PrismaService) {}
   async create(data: Prisma.SliderCreateInput): Promise<Slider> {
-    const slider = await this.prisma.slider.create({
-      data,
-    });
+      const slider = await this.prisma.slider.create({
+        data,
+      });
 
     return slider;
   }
