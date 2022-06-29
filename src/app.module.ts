@@ -22,6 +22,8 @@ import { ServeStaticModule } from '@nestjs/serve-static';
 import { join, resolve } from 'path';
 import { ServiceModule } from './modules/ServiceModule/service.module';
 import { FrontendMiddleware } from './middlewares/index.middleware';
+import { routes } from 'src/routes/routes';
+import { RouterModule } from 'nest-router';
 
 @Module({
   imports: [
@@ -41,6 +43,7 @@ import { FrontendMiddleware } from './middlewares/index.middleware';
         };
       })(),
     ),
+    RouterModule.forRoutes(routes),
     DbModule,
     AuthModule,
     AdminModule,
@@ -60,7 +63,7 @@ import { FrontendMiddleware } from './middlewares/index.middleware';
 export class AppModule implements NestModule {
   configure(consumer: MiddlewareConsumer) {
     consumer.apply(FrontendMiddleware).forRoutes({
-      path: '/**',
+      path: '/',
       method: RequestMethod.ALL,
     });
   }

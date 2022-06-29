@@ -1,17 +1,26 @@
-import { Injectable, NestMiddleware } from '@nestjs/common';
-import { Request, Response, NextFunction } from 'express';
-import path, { join } from 'path';
+import path, { join, resolve } from 'path';
 
-const resolvePath = (file: string) => path.resolve(`../dist/${file}`);
+const allowedExt = [
+  '.js',
+  '.ico',
+  '.css',
+  '.png',
+  '.jpg',
+  '.woff2',
+  '.woff',
+  '.ttf',
+  '.svg',
+];
 
-@Injectable()
-export class FrontendMiddleware implements NestMiddleware {
-  use(req: Request, res: Response, next: NextFunction) {
-    const { url } = req;
-    if (url.indexOf('/api') === 1) {
-      next();
-    } else {
-      res.sendFile(join(__dirname, '..','..', 'client/index.html'));
-    }
+const resolvePath = (file: string) => resolve(`./client/${file}`);
+
+export function FrontendMiddleware(req, res, next) {
+  const { url } = req;
+  if (url.indexOf('/api') === 0) {
+    return next();
+  } else if (allowedExt.filter((ext) => url.indexOf(ext) > 0).length > 0) {
+    return res.sendFile(resolvePath(url));
+  } else {
+    return res.sendFile(resolvePath('index.html'));
   }
 }

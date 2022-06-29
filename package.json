@@ -64,6 +64,7 @@
     "jest": "^27.5.1",
     "jest-cli": "^27.5.1",
     "joi": "^17.6.0",
+    "nest-router": "^1.0.9",
     "nestjs-prisma": "^0.15.1",
     "nestjs-stripe": "^1.0.0",
     "node-xlsx": "^0.21.0",

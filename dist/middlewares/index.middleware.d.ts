@@ -1,5 +1,1 @@
-import { NestMiddleware } from '@nestjs/common';
-import { Request, Response, NextFunction } from 'express';
-export declare class FrontendMiddleware implements NestMiddleware {
-    use(req: Request, res: Response, next: NextFunction): void;
-}
+export declare function FrontendMiddleware(req: any, res: any, next: any): any;
