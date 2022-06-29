@@ -38,8 +38,8 @@ export class ProductController {
   constructor(private productService: ProductService) {}
 
   @Post()
-  // @UseGuards(JwtAuthGuard, RolesGuard)
-  // @Roles(Role.Admin)
+  @UseGuards(JwtAuthGuard, RolesGuard)
+  @Roles(Role.Admin)
   @UseInterceptors(
     FileInterceptor('file', {
       storage: diskStorage({
@@ -58,8 +58,6 @@ export class ProductController {
     productForCreate: any,
     @UploadedFile() file: Express.Multer.File,
   ) {
-    console.log(productForCreate);
-    console.log(file);
     if (file != undefined)
       productForCreate.img_path = file?.path?.split('\\')[1];
     console.log(productForCreate.in_stock);
@@ -174,7 +172,7 @@ export class ProductController {
         memory_card: null,
         discrete_graphics: null,
         graphics_card: null,
-        condition: 'новый',
+        condition_: 'новый',
       });
       this.productService.createProduct({
         name: 'iPhone 14',
@@ -275,7 +273,7 @@ export class ProductController {
         memory_card: null,
         discrete_graphics: null,
         graphics_card: null,
-        condition: 'новый',
+        condition_: 'новый',
       });
       this.productService.createProduct({
         name: 'Samsumg 14',
@@ -374,7 +372,7 @@ export class ProductController {
         memory_card: null,
         discrete_graphics: null,
         graphics_card: null,
-        condition: 'новый',
+        condition_: 'новый',
       });
       this.productService.createProduct({
         name: 'Samsumg 14',
@@ -453,7 +451,7 @@ export class ProductController {
         memory_card: null,
         discrete_graphics: null,
         graphics_card: null,
-        condition: 'новый',
+        condition_: 'новый',
       });
       return await this.productService.getAll(sort, sortby);
     }

@@ -51,8 +51,8 @@ export class CategoryController {
     categoryForCreate: CategoryForCreate,
     @UploadedFile() file: any,
   ) {
-    categoryForCreate.img_path =
-      file.path.split('\\')[1];
+    if (file != undefined)
+      categoryForCreate.img_path = file.path.split('\\')[1];
     return await this.categoryService.createCategory(categoryForCreate);
   }
 
@@ -93,8 +93,7 @@ export class CategoryController {
     @UploadedFile() file: any,
     @Param('id') id: string,
   ) {
-    categoryForCreate.img_path =
-      file.path.split('\\')[1];
+    categoryForCreate.img_path = file.path.split('\\')[1];
     return await this.categoryService.updateCategory(id, categoryForCreate);
   }
 }
