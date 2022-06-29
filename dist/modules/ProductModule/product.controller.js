@@ -48,8 +48,6 @@ let ProductController = class ProductController {
     }
     async createProduct(productForCreate, file) {
         var _a;
-        console.log(productForCreate);
-        console.log(file);
         if (file != undefined)
             productForCreate.img_path = (_a = file === null || file === void 0 ? void 0 : file.path) === null || _a === void 0 ? void 0 : _a.split('\\')[1];
         console.log(productForCreate.in_stock);
@@ -155,7 +153,7 @@ let ProductController = class ProductController {
                 memory_card: null,
                 discrete_graphics: null,
                 graphics_card: null,
-                condition: 'новый',
+                condition_: 'новый',
             });
             this.productService.createProduct({
                 name: 'iPhone 14',
@@ -253,7 +251,7 @@ let ProductController = class ProductController {
                 memory_card: null,
                 discrete_graphics: null,
                 graphics_card: null,
-                condition: 'новый',
+                condition_: 'новый',
             });
             this.productService.createProduct({
                 name: 'Samsumg 14',
@@ -349,7 +347,7 @@ let ProductController = class ProductController {
                 memory_card: null,
                 discrete_graphics: null,
                 graphics_card: null,
-                condition: 'новый',
+                condition_: 'новый',
             });
             this.productService.createProduct({
                 name: 'Samsumg 14',
@@ -426,7 +424,7 @@ let ProductController = class ProductController {
                 memory_card: null,
                 discrete_graphics: null,
                 graphics_card: null,
-                condition: 'новый',
+                condition_: 'новый',
             });
             return await this.productService.getAll(sort, sortby);
         }
@@ -447,6 +445,8 @@ let ProductController = class ProductController {
 };
 __decorate([
     (0, common_1.Post)(),
+    (0, common_1.UseGuards)(jwt_guard_1.JwtAuthGuard, roles_guard_1.RolesGuard),
+    (0, roles_decorator_1.Roles)(role_enum_1.Role.Admin),
     (0, common_1.UseInterceptors)((0, platform_express_1.FileInterceptor)('file', {
         storage: (0, multer_1.diskStorage)({
             destination: 'public',

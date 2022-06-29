@@ -30,8 +30,8 @@ let CategoryController = class CategoryController {
         this.categoryService = categoryService;
     }
     async createCategory(categoryForCreate, file) {
-        categoryForCreate.img_path =
-            file.path.split('\\')[1];
+        if (file != undefined)
+            categoryForCreate.img_path = file.path.split('\\')[1];
         return await this.categoryService.createCategory(categoryForCreate);
     }
     async getProduct(id) {
@@ -44,8 +44,7 @@ let CategoryController = class CategoryController {
         return await this.categoryService.delete(id);
     }
     async updateCategory(categoryForCreate, file, id) {
-        categoryForCreate.img_path =
-            file.path.split('\\')[1];
+        categoryForCreate.img_path = file.path.split('\\')[1];
         return await this.categoryService.updateCategory(id, categoryForCreate);
     }
 };
