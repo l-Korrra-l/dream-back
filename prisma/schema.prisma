@@ -1,8 +1,5 @@
 generator client {
   provider        = "prisma-client-js"
-  //postgres
-  // previewFeatures = ["fullTextSearch"]
-  // mysql
   previewFeatures = ["fullTextSearch", "fullTextIndex"]
 }
 
@@ -15,14 +12,14 @@ model User {
   id          Int      @id @unique @default(autoincrement())
   email       String?  @unique
   password    String?
-  auth        String? //authenticate with google or jwt
+  auth        String?
   firstName   String?
   lastName    String?
   phoneNumber String?
   birthDate   String?
   status      Boolean  @default(false)
   role        String
-  orders       Order_[]
+  orders      Order_[]
   reviews     Review[]
 }
 
@@ -42,20 +39,10 @@ model Product {
   in_stock                Int
   img_path                String?
   categoryId              Int?
-  category                Category?    @relation(fields: [categoryId], references: [id])
   subcategoryId           Int?
-  subcategory             Subcategory? @relation(fields: [subcategoryId], references: [id])
-  reviews                 Review[]
-  buckets                 Bucket[]
   raiting                 Float
-  sliders                 Slider[]
-  // options       Option[]
-  //characteristics
   rel_date                String?
   storage                 String?
-  //TODO
-  // colors
-  //phone
   camera_matrix           String?
   photo_resolution        String?
   zoom                    String?
@@ -97,7 +84,6 @@ model Product {
   marks                   String?
   max_frequency           String?
   os                      String?
-  //CLOCKS
   ram                     String?
   flash_memory            String?
   buitInCamera            Boolean?
@@ -114,7 +100,6 @@ model Product {
   waterproof              Boolean?
   touch_screen            Boolean?
   GPS                     Boolean?
-  //pads
   wireless_charger        String?
   fast_charging           String?
   processor               String?
@@ -140,104 +125,30 @@ model Product {
   memory_card             String?
   discrete_graphics       Boolean?
   graphics_card           String?
-  condition_               String?
-  colors    Color[]
-  materials Material[]
+  condition_              String?
+  category                Category?    @relation(fields: [categoryId], references: [id])
+  subcategory             Subcategory? @relation(fields: [subcategoryId], references: [id])
+  buckets                 Bucket[]
+  colors                  Color[]
+  materials               Material[]
+  reviews                 Review[]
+  sliders                 Slider[]
 }
-
-// model Option {
-//   id                 Int        @id @unique @default(autoincrement())
-//   prodId             Int?
-//   product            Product?   @relation(fields: [prodId], references: [id])
-//   //characteristics
-//   rel_date           DateTime?
-//   storage            String?
-//   //TODO
-//   // colors
-//   //phone
-//   operation_system   String?
-//   os_version         String?
-//   display_size       Float?
-//   display_resolution String?
-//   display_tecnology  String?
-//   display_protection String?
-//     display_matrix String?
-//   weight             Float?
-//   SIM                String?
-//   chipset            String?
-//   card_slot          String?
-//   internal_memory    String?
-//   camera             String?
-//   video              String?
-//   battery_type       String?
-//   battery_charging   String?
-//   battery_life       String?
-//   battery String?
-//   shell_material     String?
-//   cover_material     String?
-//   equipment          String?
-//   marks              String?
-//   //CLOCKS
-//   ram                String?
-//   flash_memory       String?
-//   buitInCamera       Boolean
-//   c_matrixdotts      String?
-//   childish           Boolean?
-//   bracelet_material  String?
-//   bracelet_color     String?
-//   mp3_player         Boolean?
-//   app_store          Boolean?
-//   alarms             Boolean?
-//   calls              String?
-//   voice_control      Boolean?
-//   contactless_paymet Boolean?
-//   waterproof Boolean?
-//   touch_screen Boolean?
-//   GPS Boolean?
-//   //pads
-//   wireless_charger Boolean?
-//   processor String?
-//   graphic_accelerator String?
-//   scratch_protection Boolean?
-//   dynamics String?
-//   Bluetooth String?
-//   usb_type String?
-//   cores_number String?
-//   clock_frequency String?
-//   turbo_frequency String?
-//   tdp String?
-//   display_characteristics String?
-//   ram_type String?
-//   memory_slots String?
-//   drive_type String?
-//   storage_capacity String?
-//   odd String?
-//   memory_card String?
-//   discrete_graphics Boolean?
-//   graphics_card String?
-
-//   colors             Color[]
-//   materials          Material[]
-// }
 
 model Color {
   id       Int      @id @unique @default(autoincrement())
   prodId   Int?
-  product  Product? @relation(fields: [prodId], references: [id])
-  // optionId Int?
-  // option   Option? @relation(fields: [optionId], references: [id])
   color    String
   img_path String?
+  product  Product? @relation(fields: [prodId], references: [id])
 }
 
 model Material {
   id       Int      @id @unique @default(autoincrement())
   prodId   Int?
-  product  Product? @relation(fields: [prodId], references: [id])
-  // optionId Int?
-  // option   Option? @relation(fields: [optionId], references: [id])
   material String
   img_path String?
+  product  Product? @relation(fields: [prodId], references: [id])
 }
 
 model Service {
@@ -247,13 +158,8 @@ model Service {
   description String?
   price       Decimal
   img_path    String?
-  // categoryId  Int?
-  reviews     Review[]
   raiting     Float
-  // category    Category? @relation(fields: [categoryId], references: [id])
-  // sliders     Slider[]
-  // buckets     Bucket[]
-  // @@fulltext([name, short_descr, description, html_descr])
+  reviews     Review[]
 }
 
 model Category {
@@ -264,51 +170,50 @@ model Category {
   main_page    Boolean?      @default(false)
   products     Product[]
   subcats      Subcategory[]
-  // Option       Option[]
 }
 
 model Subcategory {
   id         Int       @id @default(autoincrement())
   name       String
-  products   Product[]
   categoryId Int?
   category   Category? @relation(fields: [categoryId], references: [id])
+  products   Product[]
 }
 
 model Order_ {
   id        Int       @id @default(autoincrement())
   userId    Int?
-  user      User?     @relation(fields: [userId], references: [id])
   totalCost Float?
   status    String    @default("registered")
   date      DateTime? @default(now())
+  user      User?     @relation(fields: [userId], references: [id])
   buckets   Bucket[]
 }
 
 model Bucket {
-  id       Int      @id @default(autoincrement())
-  orderId  Int
-  order     Order_?   @relation(fields: [orderId], references: [id])
-  prodId   Int?
-  product  Product? @relation(fields: [prodId], references: [id])
-  quantity Int?
+  id        Int      @id @default(autoincrement())
+  orderId   Int
+  prodId    Int?
+  quantity  Int?
   equipment String?
+  order     Order_   @relation(fields: [orderId], references: [id])
+  product   Product? @relation(fields: [prodId], references: [id])
 }
 
 model Review {
   id          Int      @id @default(autoincrement())
   body        String
   prodId      Int?
-  product     Product? @relation(fields: [prodId], references: [id])
   serviceId   Int?
-  service     Service? @relation(fields: [serviceId], references: [id])
   userId      Int
-  user        User     @relation(fields: [userId], references: [id])
   createdDate String
   raiting     Int
   authorName  String
   productName String
   text        String
+  product     Product? @relation(fields: [prodId], references: [id])
+  service     Service? @relation(fields: [serviceId], references: [id])
+  user        User     @relation(fields: [userId], references: [id])
 }
 
 model Currency {
@@ -320,8 +225,8 @@ model Currency {
 model Slider {
   id          Int      @id @default(autoincrement())
   prodId      Int?
-  product     Product? @relation(fields: [prodId], references: [id])
   title       String?
   description String?
   img_path    String?
+  product     Product? @relation(fields: [prodId], references: [id])
 }

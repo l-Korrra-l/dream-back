@@ -63,7 +63,7 @@ import { RouterModule } from 'nest-router';
 export class AppModule implements NestModule {
   configure(consumer: MiddlewareConsumer) {
     consumer.apply(FrontendMiddleware).forRoutes({
-      path: '/',
+      path: '/**',
       method: RequestMethod.ALL,
     });
   }

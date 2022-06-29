@@ -31,7 +31,7 @@ const nest_router_1 = require("nest-router");
 let AppModule = class AppModule {
     configure(consumer) {
         consumer.apply(index_middleware_1.FrontendMiddleware).forRoutes({
-            path: '/',
+            path: '/**',
             method: common_1.RequestMethod.ALL,
         });
     }
