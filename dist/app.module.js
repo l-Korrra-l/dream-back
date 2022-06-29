@@ -25,7 +25,14 @@ const category_module_1 = require("./modules/CategoryModule/category.module");
 const serve_static_1 = require("@nestjs/serve-static");
 const path_1 = require("path");
 const service_module_1 = require("./modules/ServiceModule/service.module");
+const index_middleware_1 = require("./middlewares/index.middleware");
 let AppModule = class AppModule {
+    configure(consumer) {
+        consumer.apply(index_middleware_1.FrontendMiddleware).forRoutes({
+            path: '/**',
+            method: common_1.RequestMethod.ALL,
+        });
+    }
 };
 AppModule = __decorate([
     (0, common_1.Module)({

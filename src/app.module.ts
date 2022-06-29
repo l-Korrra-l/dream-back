@@ -1,4 +1,9 @@
-import { Module } from '@nestjs/common';
+import {
+  Module,
+  NestModule,
+  MiddlewareConsumer,
+  RequestMethod,
+} from '@nestjs/common';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { ConfigModule } from '@nestjs/config';
@@ -16,6 +21,7 @@ import { CategoryModule } from './modules/CategoryModule/category.module';
 import { ServeStaticModule } from '@nestjs/serve-static';
 import { join, resolve } from 'path';
 import { ServiceModule } from './modules/ServiceModule/service.module';
+import { FrontendMiddleware } from './middlewares/index.middleware';
 
 @Module({
   imports: [
@@ -51,4 +57,11 @@ import { ServiceModule } from './modules/ServiceModule/service.module';
   controllers: [AppController],
   providers: [AppService],
 })
-export class AppModule {}
+export class AppModule implements NestModule {
+  configure(consumer: MiddlewareConsumer) {
+    consumer.apply(FrontendMiddleware).forRoutes({
+      path: '/**',
+      method: RequestMethod.ALL,
+    });
+  }
+}
