@@ -1,0 +1,45 @@
+[{
+    "categoryName": "Телефоны",
+    "img_path": "http://194.62.19.52:7000/b092433699fbe302444fc5f7e75417bb.png",
+    "main_page": true
+},
+{
+    "categoryName": "Планшеты",
+    "img_path": "http://194.62.19.52:7000/7eb06ff13d4986b36f81e5a87b0624ba.png",
+    "main_page": true
+},
+{
+    "categoryName": "Умный дом",
+    "img_path": "http://194.62.19.52:7000/868a54a717f98ca20e921ae290ce35af.png",
+    "main_page": true
+},
+{
+    "categoryName": "Аксессуары",
+    "img_path": "http://194.62.19.52:7000/015c211007ac5858dbb2db2ab9aba190.png",
+    "main_page": true
+},
+{
+    "categoryName": "Часы и фитнес-браслеты",
+    "img_path": "http://194.62.19.52:7000/0ddac41a6c2decd8ce19009b0e7a1185.png",
+    "main_page": true
+},
+{
+    "categoryName": "Аксессуары для машины",
+    "img_path": "http://194.62.19.52:7000/b343e72da65b0ed343d2025fd5d5d892.png",
+    "main_page": true
+},
+{
+    "categoryName": "Фото и видеотехника",
+    "img_path": "http://194.62.19.52:7000/18c88e553b87f2aab42d2fa37bf980d8.png",
+    "main_page": true
+},
+{
+    "categoryName": "Товары для дома",
+    "img_path": "http://194.62.19.52:7000/84e6d9e8e4b70c6c04efda438602833c.png",
+    "main_page": true
+},
+{
+    "categoryName": "Компьютеры и сеть",
+    "img_path": "http://194.62.19.52:7000/fa807c4520549be72f4c52e7c212c5dc.png",
+    "main_page": true
+}]
