@@ -30,6 +30,10 @@ export class ProductRepository
     return await this.prisma.product.update({
       include: {
         reviews: true,
+        CharactValue: true,
+        colors: true,
+        Memory: true,
+        materials: true,
       },
       where: {
         id: Number(id),
@@ -56,8 +60,12 @@ export class ProductRepository
     const product = await this.prisma.product.findFirst({
       include: {
         reviews: true,
+        CharactValue: true,
+        colors: true,
+        Memory: true,
+        materials: true,
         category: true,
-        buckets: true,
+        subcategory: true,
       },
       where: {
         id: Number(id),
@@ -90,6 +98,15 @@ export class ProductRepository
 
   async getById(id: number): Promise<Product> {
     const product = await this.prisma.product.findFirst({
+      include: {
+        reviews: true,
+        CharactValue: true,
+        colors: true,
+        Memory: true,
+        materials: true,
+        category: true,
+        subcategory: true,
+      },
       where: {
         id: id,
       },
@@ -136,6 +153,12 @@ export class ProductRepository
     return (await this.prisma.product.findMany({
       include: {
         reviews: true,
+        CharactValue: true,
+        colors: true,
+        Memory: true,
+        materials: true,
+        category: true,
+        subcategory: true,
       },
       where: {
         name: {
@@ -148,6 +171,15 @@ export class ProductRepository
   async findByName(name: string, sort: Sort): Promise<Product[]> {
     if (sort == Sort.none) sort = Sort.asc;
     return await this.prisma.product.findMany({
+      include: {
+        reviews: true,
+        CharactValue: true,
+        colors: true,
+        Memory: true,
+        materials: true,
+        category: true,
+        subcategory: true,
+      },
       orderBy: {
         _relevance: {
           fields: 'name',

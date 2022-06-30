@@ -3,7 +3,12 @@ import { PrismaModule } from 'nestjs-prisma';
 import { prismaConfigAsync } from 'src/config/prisma.config';
 import { BucketRepository } from './repository/bucket.repository';
 import { CategoryRepository } from './repository/category.repository';
+import { CharacteristicRepository } from './repository/characteristic.repository';
+import { CharactValueRepository } from './repository/charactValue.repository';
+import { ColorRepository } from './repository/color.repository';
 import { CurrencyRepository } from './repository/currency.repository';
+import { MaterialRepository } from './repository/material.repository';
+import { MemoryRepository } from './repository/memory.repository';
 import { OrderRepository } from './repository/order.repository';
 import { ProductRepository } from './repository/product.repository';
 import { ReviewRepository } from './repository/review.repository';
@@ -23,6 +28,11 @@ import { UserRepository } from './repository/user.repository';
     SliderRepository,
     CategoryRepository,
     ServiceRepository,
+    CharacteristicRepository,
+    CharactValueRepository,
+    MaterialRepository,
+    MemoryRepository,
+    ColorRepository,
   ],
   exports: [
     UserRepository,
@@ -34,6 +44,11 @@ import { UserRepository } from './repository/user.repository';
     SliderRepository,
     CategoryRepository,
     ServiceRepository,
+    CharacteristicRepository,
+    CharactValueRepository,
+    MaterialRepository,
+    MemoryRepository,
+    ColorRepository,
   ],
 })
 export class DbModule {}

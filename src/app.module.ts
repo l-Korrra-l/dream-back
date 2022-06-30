@@ -24,6 +24,7 @@ import { ServiceModule } from './modules/ServiceModule/service.module';
 import { FrontendMiddleware } from './middlewares/index.middleware';
 import { routes } from 'src/routes/routes';
 import { RouterModule } from 'nest-router';
+import { ColorModule } from './modules/ColorModule/color.module';
 
 @Module({
   imports: [
@@ -56,6 +57,7 @@ import { RouterModule } from 'nest-router';
     SliderModule,
     CategoryModule,
     ServiceModule,
+    ColorModule,
   ],
   controllers: [AppController],
   providers: [AppService],

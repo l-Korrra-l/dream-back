@@ -3,6 +3,7 @@ import { AdminModule } from 'src/modules/AdminModule/admin.module';
 import { AuthModule } from 'src/modules/AuthModule/auth.module';
 import { BucketModule } from 'src/modules/BucketModule/bucket.module';
 import { CategoryModule } from 'src/modules/CategoryModule/category.module';
+import { ColorModule } from 'src/modules/ColorModule/color.module';
 import { CurrencyModule } from 'src/modules/Currencymodule/currency.module';
 import { EmailModule } from 'src/modules/EmailModule/email.module';
 import { OrderModule } from 'src/modules/OrderModule/order.module';
@@ -61,5 +62,9 @@ export const routes: Routes = [
   {
     path: '/api',
     module: CurrencyModule,
+  },
+  {
+    path: '/api',
+    module: ColorModule,
   },
 ];
