@@ -204,7 +204,7 @@ export class ProductRepository
     return await this.prisma.product.findMany({
       orderBy: {
         _relevance: {
-          fields: ['description', 'name', 'short_descr', 'charact'],
+          fields: ['description', 'name', 'short_descr'],
           search: text,
           sort: sort,
         },
