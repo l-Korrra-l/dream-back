@@ -4,7 +4,7 @@ import { prismaConfigAsync } from 'src/config/prisma.config';
 import { BucketRepository } from './repository/bucket.repository';
 import { CategoryRepository } from './repository/category.repository';
 import { CharacteristicRepository } from './repository/characteristic.repository';
-import { CharactValueRepository } from './repository/charactValue.repository';
+import { CharactValueRepository } from './repository/charactvalue.repository';
 import { ColorRepository } from './repository/color.repository';
 import { CurrencyRepository } from './repository/currency.repository';
 import { MaterialRepository } from './repository/material.repository';

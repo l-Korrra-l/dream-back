@@ -8,6 +8,7 @@ import { ReviewFromUser } from './dto/reviewformuser.dto';
 import { ReviewRepository } from 'src/persistance/repository/review.repository';
 import { ProductForUpdate } from './dto/productforupdate.dto';
 import { CategoryRepository } from 'src/persistance/repository/category.repository';
+import { CharactValueRepository } from 'src/persistance/repository/charactvalue.repository';
 
 @Injectable()
 export class ProductService {
@@ -15,10 +16,11 @@ export class ProductService {
     private productRepository: ProductRepository,
     private reviewRepository: ReviewRepository,
     private categoryRepository: CategoryRepository,
+    private caractValueRepository: CharactValueRepository,
   ) {}
 
   // async createProduct(inputProduct: ProductForCreate): Promise<Product> {
-    async createProduct(inputProduct: any): Promise<Product> {
+  async createProduct(inputProduct: any): Promise<Product> {
     const cat = await this.categoryRepository.findOne(
       inputProduct.categoryId.toString(),
     );
@@ -29,6 +31,10 @@ export class ProductService {
       categoryId: categoryId,
       ...inputProduct,
     });
+
+    const characteristic = await this.caractValueRepository.findByProduct(
+      product.id.toString(),
+    );
 
     return product;
   }

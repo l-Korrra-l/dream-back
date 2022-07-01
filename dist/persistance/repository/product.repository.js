@@ -20,9 +20,29 @@ let ProductRepository = class ProductRepository {
     }
     async create(data) {
         const product = await this.prisma.product.create({
+            include: {
+                reviews: true,
+                CharactValue: true,
+                colors: true,
+                Memory: true,
+                materials: true,
+            },
             data,
         });
-        return product;
+        return await this.prisma.product.findFirst({
+            include: {
+                reviews: true,
+                CharactValue: true,
+                colors: true,
+                Memory: true,
+                materials: true,
+                category: true,
+                subcategory: true,
+            },
+            where: {
+                id: product.id,
+            },
+        });
     }
     async update(id, data) {
         return await this.prisma.product.update({

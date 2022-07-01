@@ -63,7 +63,7 @@ let CategoryRepository = class CategoryRepository {
         if (slider) {
             return slider;
         }
-        throw new errors_1.NotFound('Not found slider');
+        throw new errors_1.NotFound('Not found category');
     }
     async findAll() {
         return await this.prisma.category.findMany({

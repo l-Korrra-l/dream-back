@@ -13,7 +13,7 @@ const prisma_config_1 = require("../config/prisma.config");
 const bucket_repository_1 = require("./repository/bucket.repository");
 const category_repository_1 = require("./repository/category.repository");
 const characteristic_repository_1 = require("./repository/characteristic.repository");
-const charactValue_repository_1 = require("./repository/charactValue.repository");
+const charactvalue_repository_1 = require("./repository/charactvalue.repository");
 const color_repository_1 = require("./repository/color.repository");
 const currency_repository_1 = require("./repository/currency.repository");
 const material_repository_1 = require("./repository/material.repository");
@@ -43,7 +43,7 @@ DbModule = __decorate([
             material_repository_1.MaterialRepository,
             memory_repository_1.MemoryRepository,
             color_repository_1.ColorRepository,
-            charactValue_repository_1.CharactValueRepository,
+            charactvalue_repository_1.CharactValueRepository,
         ],
         exports: [
             user_repository_1.UserRepository,
@@ -59,7 +59,7 @@ DbModule = __decorate([
             material_repository_1.MaterialRepository,
             memory_repository_1.MemoryRepository,
             color_repository_1.ColorRepository,
-            charactValue_repository_1.CharactValueRepository,
+            charactvalue_repository_1.CharactValueRepository,
         ],
     })
 ], DbModule);

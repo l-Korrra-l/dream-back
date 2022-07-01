@@ -76,7 +76,7 @@ export class CategoryRepository
       return slider;
     }
 
-    throw new NotFound('Not found slider');
+    throw new NotFound('Not found category');
   }
 
   async findAll(): Promise<Category[]> {

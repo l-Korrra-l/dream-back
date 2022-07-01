@@ -49,7 +49,7 @@ model Product {
   reviews       Review[]
   sliders       Slider[]
   CharactValue  CharactValue[]
-  Memory Memory[]
+  Memory        Memory[]
 }
 
 model Characteristic {
@@ -76,10 +76,10 @@ model Color {
 }
 
 model Memory {
-  id       Int      @id @unique @default(autoincrement())
-  prodId   Int?
+  id      Int      @id @unique @default(autoincrement())
+  prodId  Int?
   size    String
-  product  Product? @relation(fields: [prodId], references: [id])
+  product Product? @relation(fields: [prodId], references: [id])
 }
 
 model Material {

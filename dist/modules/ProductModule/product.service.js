@@ -25,16 +25,19 @@ const common_1 = require("@nestjs/common");
 const product_repository_1 = require("../../persistance/repository/product.repository");
 const review_repository_1 = require("../../persistance/repository/review.repository");
 const category_repository_1 = require("../../persistance/repository/category.repository");
+const charactvalue_repository_1 = require("../../persistance/repository/charactvalue.repository");
 let ProductService = class ProductService {
-    constructor(productRepository, reviewRepository, categoryRepository) {
+    constructor(productRepository, reviewRepository, categoryRepository, caractValueRepository) {
         this.productRepository = productRepository;
         this.reviewRepository = reviewRepository;
         this.categoryRepository = categoryRepository;
+        this.caractValueRepository = caractValueRepository;
     }
     async createProduct(inputProduct) {
         const cat = await this.categoryRepository.findOne(inputProduct.categoryId.toString());
         const { categoryId } = inputProduct, lProduct = __rest(inputProduct, ["categoryId"]);
         const product = await this.productRepository.create(Object.assign({ raiting: 0, categoryId: categoryId }, inputProduct));
+        const characteristic = await this.caractValueRepository.findByProduct(product.id.toString());
         return product;
     }
     async getOne(id) {
@@ -91,7 +94,8 @@ ProductService = __decorate([
     (0, common_1.Injectable)(),
     __metadata("design:paramtypes", [product_repository_1.ProductRepository,
         review_repository_1.ReviewRepository,
-        category_repository_1.CategoryRepository])
+        category_repository_1.CategoryRepository,
+        charactvalue_repository_1.CharactValueRepository])
 ], ProductService);
 exports.ProductService = ProductService;
 //# sourceMappingURL=product.service.js.map

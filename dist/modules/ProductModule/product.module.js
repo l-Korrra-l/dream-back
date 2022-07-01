@@ -9,6 +9,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.ProductModule = void 0;
 const common_1 = require("@nestjs/common");
 const dbmodule_module_1 = require("../../persistance/dbmodule.module");
+const charactValue_service_1 = require("../CharactValueModule/charactValue.service");
 const product_controller_1 = require("./product.controller");
 const product_service_1 = require("./product.service");
 let ProductModule = class ProductModule {
@@ -17,7 +18,7 @@ ProductModule = __decorate([
     (0, common_1.Module)({
         imports: [dbmodule_module_1.DbModule],
         controllers: [product_controller_1.ProductController],
-        providers: [product_service_1.ProductService],
+        providers: [product_service_1.ProductService, charactValue_service_1.CharactValueService],
     })
 ], ProductModule);
 exports.ProductModule = ProductModule;
