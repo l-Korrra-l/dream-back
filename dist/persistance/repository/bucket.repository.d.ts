@@ -6,7 +6,7 @@ export declare class BucketRepository implements Repository<string, Prisma.Bucke
     private prisma;
     private orderRepo;
     constructor(prisma: PrismaService, orderRepo: OrderRepository);
-    create(data: Prisma.BucketCreateInput): Promise<Bucket>;
+    create(data: any): Promise<Bucket>;
     update(id: string, data: Prisma.BucketUpdateInput): Promise<Bucket>;
     findOne(id: string): Promise<Bucket>;
     findByOrder(id: string): Promise<Bucket[]>;

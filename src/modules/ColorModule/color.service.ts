@@ -32,7 +32,7 @@ export class ColorService {
     return await this.colorRepository.findAll();
   }
 
-  async findByProduct(id: number): Promise<Color[]> {
+  async findByProduct(id: string): Promise<Color[]> {
     return await this.colorRepository.findByProduct(id);
   }
 

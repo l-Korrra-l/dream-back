@@ -53,6 +53,20 @@ export class CharacteristicRepository
     throw new NotFound('Not found characteristic for delete');
   }
 
+  async deleteByName(id: string): Promise<boolean> {
+    const characteristic = await this.prisma.characteristic.deleteMany({
+      where: {
+        name: id,
+      },
+    });
+
+    if (characteristic) {
+      return true;
+    }
+
+    throw new NotFound('Not found characteristic for delete');
+  }
+
   async findOne(id: string): Promise<Characteristic> {
     const characteristic = await this.prisma.characteristic.findFirst({
       where: {

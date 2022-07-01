@@ -116,10 +116,10 @@ export class ColorRepository
     })) as unknown as Color[];
   }
 
-  async findByProduct(id: number): Promise<Color[]> {
+  async findByProduct(id: string): Promise<Color[]> {
     return (await this.prisma.color.findMany({
       where: {
-        prodId: id,
+        prodId: Number(id),
       },
     })) as unknown as Color[];
   }

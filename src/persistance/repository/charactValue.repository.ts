@@ -51,6 +51,49 @@ export class CharactValueRepository
     throw new NotFound('Not found charactvalue for delete');
   }
 
+  async deleteByProduct(id: string): Promise<boolean> {
+    const charactvalue = await this.prisma.charactValue.deleteMany({
+      where: {
+        prodId: Number(id),
+      },
+    });
+
+    if (charactvalue) {
+      return true;
+    }
+
+    throw new NotFound('Not found charactvalue for delete');
+  }
+
+  async deleteByProductAndValue(id: string, value: string): Promise<boolean> {
+    const charactvalue = await this.prisma.charactValue.deleteMany({
+      where: {
+        prodId: Number(id),
+        value: value,
+      },
+    });
+
+    if (charactvalue) {
+      return true;
+    }
+
+    throw new NotFound('Not found charactvalue for delete');
+  }
+
+  async deleteByCharact(id: string): Promise<boolean> {
+    const charactvalue = await this.prisma.charactValue.deleteMany({
+      where: {
+        charactId: Number(id),
+      },
+    });
+
+    if (charactvalue) {
+      return true;
+    }
+
+    throw new NotFound('Not found charactvalue for delete');
+  }
+
   async findOne(id: string): Promise<CharactValue> {
     const charactvalue = await this.prisma.charactValue.findFirst({
       where: {
@@ -89,6 +132,14 @@ export class CharactValueRepository
         value: {
           contains: name,
         },
+      },
+    })) as unknown as CharactValue[];
+  }
+
+  async findByProduct(name: string): Promise<CharactValue[]> {
+    return (await this.prisma.charactValue.findMany({
+      where: {
+        prodId: Number(name),
       },
     })) as unknown as CharactValue[];
   }

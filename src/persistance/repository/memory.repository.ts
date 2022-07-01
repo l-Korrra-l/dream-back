@@ -48,6 +48,37 @@ export class MemoryRepository
     throw new NotFound('Not found memory for delete');
   }
 
+  async deleteByProduct(id: string): Promise<boolean> {
+    const memory = await this.prisma.memory.deleteMany({
+      where: {
+        prodId: Number(id),
+      },
+    });
+
+    if (memory) {
+      return true;
+    }
+
+    throw new NotFound('Not found memory for delete');
+  }
+
+  async deleteByProductAndName(id: string, name: string): Promise<boolean> {
+    const memory = await this.prisma.memory.deleteMany({
+      where: {
+        prodId: Number(id),
+        size: {
+          contains: name,
+        },
+      },
+    });
+
+    if (memory) {
+      return true;
+    }
+
+    throw new NotFound('Not found memory for delete');
+  }
+
   async findOne(id: string): Promise<Memory> {
     const memory = await this.prisma.memory.findFirst({
       where: {
@@ -86,6 +117,14 @@ export class MemoryRepository
         size: {
           contains: name,
         },
+      },
+    })) as unknown as Memory[];
+  }
+
+  async findByProduct(id: string): Promise<Memory[]> {
+    return (await this.prisma.memory.findMany({
+      where: {
+        prodId: Number(id),
       },
     })) as unknown as Memory[];
   }

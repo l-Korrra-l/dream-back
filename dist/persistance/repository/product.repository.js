@@ -28,6 +28,10 @@ let ProductRepository = class ProductRepository {
         return await this.prisma.product.update({
             include: {
                 reviews: true,
+                CharactValue: true,
+                colors: true,
+                Memory: true,
+                materials: true,
             },
             where: {
                 id: Number(id),
@@ -50,8 +54,12 @@ let ProductRepository = class ProductRepository {
         const product = await this.prisma.product.findFirst({
             include: {
                 reviews: true,
+                CharactValue: true,
+                colors: true,
+                Memory: true,
+                materials: true,
                 category: true,
-                buckets: true,
+                subcategory: true,
             },
             where: {
                 id: Number(id),
@@ -78,6 +86,15 @@ let ProductRepository = class ProductRepository {
     }
     async getById(id) {
         const product = await this.prisma.product.findFirst({
+            include: {
+                reviews: true,
+                CharactValue: true,
+                colors: true,
+                Memory: true,
+                materials: true,
+                category: true,
+                subcategory: true,
+            },
             where: {
                 id: id,
             },
@@ -120,6 +137,12 @@ let ProductRepository = class ProductRepository {
         return (await this.prisma.product.findMany({
             include: {
                 reviews: true,
+                CharactValue: true,
+                colors: true,
+                Memory: true,
+                materials: true,
+                category: true,
+                subcategory: true,
             },
             where: {
                 name: {
@@ -132,6 +155,15 @@ let ProductRepository = class ProductRepository {
         if (sort == sort_enum_1.Sort.none)
             sort = sort_enum_1.Sort.asc;
         return await this.prisma.product.findMany({
+            include: {
+                reviews: true,
+                CharactValue: true,
+                colors: true,
+                Memory: true,
+                materials: true,
+                category: true,
+                subcategory: true,
+            },
             orderBy: {
                 _relevance: {
                     fields: 'name',
@@ -184,7 +216,7 @@ let ProductRepository = class ProductRepository {
         return await this.prisma.product.findMany({
             orderBy: {
                 _relevance: {
-                    fields: ['description', 'name', 'short_descr', 'charact'],
+                    fields: ['description', 'name', 'short_descr'],
                     search: text,
                     sort: sort,
                 },

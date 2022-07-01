@@ -25,6 +25,10 @@ import { FrontendMiddleware } from './middlewares/index.middleware';
 import { routes } from 'src/routes/routes';
 import { RouterModule } from 'nest-router';
 import { ColorModule } from './modules/ColorModule/color.module';
+import { MemoryModule } from './modules/MemoryModule/memory.module';
+import { MaterialModule } from './modules/MaterialModule/material.module';
+import { CharacteristicModule } from './modules/CharacteristicModule/characteristic.module';
+import { CharactValueModule } from './modules/CharactValueModule/charactValue.module';
 
 @Module({
   imports: [
@@ -58,6 +62,10 @@ import { ColorModule } from './modules/ColorModule/color.module';
     CategoryModule,
     ServiceModule,
     ColorModule,
+    MemoryModule,
+    MaterialModule,
+    CharacteristicModule,
+    CharactValueModule,
   ],
   controllers: [AppController],
   providers: [AppService],

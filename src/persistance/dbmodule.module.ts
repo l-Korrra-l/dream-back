@@ -29,10 +29,10 @@ import { UserRepository } from './repository/user.repository';
     CategoryRepository,
     ServiceRepository,
     CharacteristicRepository,
-    CharactValueRepository,
     MaterialRepository,
     MemoryRepository,
     ColorRepository,
+    CharactValueRepository,
   ],
   exports: [
     UserRepository,
@@ -45,10 +45,10 @@ import { UserRepository } from './repository/user.repository';
     CategoryRepository,
     ServiceRepository,
     CharacteristicRepository,
-    CharactValueRepository,
     MaterialRepository,
     MemoryRepository,
     ColorRepository,
+    CharactValueRepository,
   ],
 })
 export class DbModule {}

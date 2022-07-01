@@ -51,6 +51,37 @@ export class MaterialRepository
     throw new NotFound('Not found material for delete');
   }
 
+  async deleteByProduct(id: string): Promise<boolean> {
+    const material = await this.prisma.material.deleteMany({
+      where: {
+        prodId: Number(id),
+      },
+    });
+
+    if (material) {
+      return true;
+    }
+
+    throw new NotFound('Not found material for delete');
+  }
+
+  async deleteByProductAndName(id: string, name: string): Promise<boolean> {
+    const material = await this.prisma.material.deleteMany({
+      where: {
+        prodId: Number(id),
+        material: {
+          contains: name,
+        },
+      },
+    });
+
+    if (material) {
+      return true;
+    }
+
+    throw new NotFound('Not found material for delete');
+  }
+
   async findOne(id: string): Promise<Material> {
     const material = await this.prisma.material.findFirst({
       where: {
@@ -89,6 +120,14 @@ export class MaterialRepository
         material: {
           contains: name,
         },
+      },
+    })) as unknown as Material[];
+  }
+
+  async findByProduct(id: string): Promise<Material[]> {
+    return (await this.prisma.material.findMany({
+      where: {
+        prodId: Number(id),
       },
     })) as unknown as Material[];
   }

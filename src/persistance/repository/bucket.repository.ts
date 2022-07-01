@@ -19,7 +19,7 @@ export class BucketRepository
     private orderRepo: OrderRepository,
   ) {}
 
-  async create(data: Prisma.BucketCreateInput): Promise<Bucket> {
+  async create(data: any): Promise<Bucket> {
     return await this.prisma.bucket.create({
       data,
     });

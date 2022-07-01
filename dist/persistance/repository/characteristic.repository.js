@@ -11,7 +11,6 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.CharacteristicRepository = void 0;
 const common_1 = require("@nestjs/common");
-const sort_enum_1 = require("../../enums/sort.enum");
 const nestjs_prisma_1 = require("nestjs-prisma");
 const errors_1 = require("../../errors/errors");
 let CharacteristicRepository = class CharacteristicRepository {
@@ -26,9 +25,6 @@ let CharacteristicRepository = class CharacteristicRepository {
     }
     async update(id, data) {
         return await this.prisma.characteristic.update({
-            include: {
-                reviews: true,
-            },
             where: {
                 id: Number(id),
             },
@@ -39,6 +35,17 @@ let CharacteristicRepository = class CharacteristicRepository {
         const characteristic = await this.prisma.characteristic.delete({
             where: {
                 id: Number(id),
+            },
+        });
+        if (characteristic) {
+            return true;
+        }
+        throw new errors_1.NotFound('Not found characteristic for delete');
+    }
+    async deleteByName(id) {
+        const characteristic = await this.prisma.characteristic.deleteMany({
+            where: {
+                name: id,
             },
         });
         if (characteristic) {
@@ -79,32 +86,6 @@ let CharacteristicRepository = class CharacteristicRepository {
                 },
             },
         }));
-    }
-    async findByName(name, sort) {
-        if (sort == sort_enum_1.Sort.none)
-            sort = sort_enum_1.Sort.asc;
-        return await this.prisma.characteristic.findMany({
-            orderBy: {
-                _relevance: {
-                    fields: 'name',
-                    search: name,
-                    sort: sort,
-                },
-            },
-        });
-    }
-    async findByText(text, sort) {
-        if (sort == sort_enum_1.Sort.none)
-            sort = sort_enum_1.Sort.asc;
-        return await this.prisma.characteristic.findMany({
-            orderBy: {
-                _relevance: {
-                    fields: ['description', 'name', 'short_descr', 'charact'],
-                    search: text,
-                    sort: sort,
-                },
-            },
-        });
     }
 };
 CharacteristicRepository = __decorate([

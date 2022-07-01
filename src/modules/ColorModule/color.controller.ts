@@ -16,20 +16,13 @@ import {
 import { FileInterceptor } from '@nestjs/platform-express';
 import { v4 as uuid } from 'uuid';
 import { extname } from 'path';
-import { CurrentUser } from 'src/decorators/currentuser.decorator';
 import { Roles } from 'src/decorators/roles.decorator';
-import { Sorting } from 'src/decorators/sortheader.decorator';
 import { Role } from 'src/enums/role.enum';
-import { Sort } from 'src/enums/sort.enum';
-import { CurrentUserInfo } from 'src/types/types';
-import { JoiValidationPipe } from 'src/validation/joivalidation.pipe';
-import { reviewFromUserSchema } from 'src/validation/schemas/reviewFromUser.schema';
 import { JwtAuthGuard } from '../AuthModule/guards/jwt.guard';
 import { RolesGuard } from '../AuthModule/guards/roles.guard';
 import { ColorService } from './color.service';
 import { diskStorage } from 'multer';
 import { imageFileFilter } from 'src/helpers/imageFilter.helpers';
-import { SortingBy } from 'src/decorators/sortbyheader.decorator';
 
 @Controller('color')
 export class ColorController {
@@ -90,7 +83,9 @@ export class ColorController {
   }
 
   @Get()
-  async getAllcolors() {
+  async getAllcolors(@Query('prod') prod: string) {
+    if (prod != '' && prod != undefined && prod != null)
+      return await this.colorService.findByProduct(prod);
     return await this.colorService.getAll();
   }
   @Get('/:id')
@@ -107,7 +102,7 @@ export class ColorController {
       return await this.colorService.deleteColorByProductAndName(prod, name);
     return await this.colorService.deleteColorByProduct(prod);
   }
-  x;
+  
   @Delete('/:id')
   async deleteColor(@Param('id') id: string) {
     return await this.colorService.deleteColor(id);

@@ -12,7 +12,12 @@ const nestjs_prisma_1 = require("nestjs-prisma");
 const prisma_config_1 = require("../config/prisma.config");
 const bucket_repository_1 = require("./repository/bucket.repository");
 const category_repository_1 = require("./repository/category.repository");
+const characteristic_repository_1 = require("./repository/characteristic.repository");
+const charactValue_repository_1 = require("./repository/charactValue.repository");
+const color_repository_1 = require("./repository/color.repository");
 const currency_repository_1 = require("./repository/currency.repository");
+const material_repository_1 = require("./repository/material.repository");
+const memory_repository_1 = require("./repository/memory.repository");
 const order_repository_1 = require("./repository/order.repository");
 const product_repository_1 = require("./repository/product.repository");
 const review_repository_1 = require("./repository/review.repository");
@@ -34,6 +39,11 @@ DbModule = __decorate([
             slider_repository_1.SliderRepository,
             category_repository_1.CategoryRepository,
             service_repository_1.ServiceRepository,
+            characteristic_repository_1.CharacteristicRepository,
+            material_repository_1.MaterialRepository,
+            memory_repository_1.MemoryRepository,
+            color_repository_1.ColorRepository,
+            charactValue_repository_1.CharactValueRepository,
         ],
         exports: [
             user_repository_1.UserRepository,
@@ -45,6 +55,11 @@ DbModule = __decorate([
             slider_repository_1.SliderRepository,
             category_repository_1.CategoryRepository,
             service_repository_1.ServiceRepository,
+            characteristic_repository_1.CharacteristicRepository,
+            material_repository_1.MaterialRepository,
+            memory_repository_1.MemoryRepository,
+            color_repository_1.ColorRepository,
+            charactValue_repository_1.CharactValueRepository,
         ],
     })
 ], DbModule);
