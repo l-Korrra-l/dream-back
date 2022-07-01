@@ -10,6 +10,6 @@ export declare class CharactValueService {
     getOne(id: string): Promise<CharactValue>;
     getAll(): Promise<CharactValue[]>;
     findByProduct(id: string): Promise<CharactValue[]>;
-    findByValue(name: string): Promise<any>;
-    updateCharactValue(charactvalueId: string, charactvalueForUpdate: any): Promise<any>;
+    findByValue(name: string): Promise<CharactValue[]>;
+    updateCharactValue(charactvalueId: string, charactvalueForUpdate: any): Promise<CharactValue>;
 }
