@@ -37,7 +37,7 @@ model Product {
   price         Decimal
   // charact                 String?
   in_stock      Int
-  img_path                String?
+  img_path      String?
   categoryId    Int?
   subcategoryId Int?
   raiting       Float
