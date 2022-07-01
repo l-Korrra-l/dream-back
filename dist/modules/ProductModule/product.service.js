@@ -19,13 +19,14 @@ var __rest = (this && this.__rest) || function (s, e) {
         }
     return t;
 };
+var _a;
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.ProductService = void 0;
 const common_1 = require("@nestjs/common");
 const product_repository_1 = require("../../persistance/repository/product.repository");
 const review_repository_1 = require("../../persistance/repository/review.repository");
 const category_repository_1 = require("../../persistance/repository/category.repository");
-const charactvalue_repository_1 = require("../../persistance/repository/charactvalue.repository");
+const charactvalue_repository_1 = require("src/persistance/repository/charactvalue.repository");
 let ProductService = class ProductService {
     constructor(productRepository, reviewRepository, categoryRepository, caractValueRepository) {
         this.productRepository = productRepository;
@@ -94,8 +95,7 @@ ProductService = __decorate([
     (0, common_1.Injectable)(),
     __metadata("design:paramtypes", [product_repository_1.ProductRepository,
         review_repository_1.ReviewRepository,
-        category_repository_1.CategoryRepository,
-        charactvalue_repository_1.CharactValueRepository])
+        category_repository_1.CategoryRepository, typeof (_a = typeof charactvalue_repository_1.CharactValueRepository !== "undefined" && charactvalue_repository_1.CharactValueRepository) === "function" ? _a : Object])
 ], ProductService);
 exports.ProductService = ProductService;
 //# sourceMappingURL=product.service.js.map

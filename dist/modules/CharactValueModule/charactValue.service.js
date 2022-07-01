@@ -8,10 +8,11 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
+var _a;
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.CharactValueService = void 0;
 const common_1 = require("@nestjs/common");
-const charactvalue_repository_1 = require("../../persistance/repository/charactvalue.repository");
+const charactvalue_repository_1 = require("src/persistance/repository/charactvalue.repository");
 let CharactValueService = class CharactValueService {
     constructor(charactvalueRepository) {
         this.charactvalueRepository = charactvalueRepository;
@@ -47,7 +48,7 @@ let CharactValueService = class CharactValueService {
 };
 CharactValueService = __decorate([
     (0, common_1.Injectable)(),
-    __metadata("design:paramtypes", [charactvalue_repository_1.CharactValueRepository])
+    __metadata("design:paramtypes", [typeof (_a = typeof charactvalue_repository_1.CharactValueRepository !== "undefined" && charactvalue_repository_1.CharactValueRepository) === "function" ? _a : Object])
 ], CharactValueService);
 exports.CharactValueService = CharactValueService;
 //# sourceMappingURL=charactValue.service.js.map
