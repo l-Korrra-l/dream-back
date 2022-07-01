@@ -5,7 +5,7 @@ import { ReviewFromUser } from './dto/reviewformuser.dto';
 import { ReviewRepository } from 'src/persistance/repository/review.repository';
 import { ProductForUpdate } from './dto/productforupdate.dto';
 import { CategoryRepository } from 'src/persistance/repository/category.repository';
-import { CharactValueRepository } from 'src/persistance/repository/charactvalue.repository';
+import { CharactValueRepository } from 'src/persistance/repository/charactValue.repository';
 export declare class ProductService {
     private productRepository;
     private reviewRepository;
