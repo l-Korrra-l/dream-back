@@ -1,5 +1,5 @@
 import { CharactValue } from '@prisma/client';
-import { CharactValueRepository } from 'src/persistance/repository/charactvalue.repository';
+import { CharactValueRepository } from 'src/persistance/repository/charactValue.repository';
 export declare class CharactValueService {
     private charactvalueRepository;
     constructor(charactvalueRepository: CharactValueRepository);

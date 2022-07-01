@@ -25,7 +25,7 @@ const common_1 = require("@nestjs/common");
 const product_repository_1 = require("../../persistance/repository/product.repository");
 const review_repository_1 = require("../../persistance/repository/review.repository");
 const category_repository_1 = require("../../persistance/repository/category.repository");
-const charactvalue_repository_1 = require("../../persistance/repository/charactvalue.repository");
+const charactValue_repository_1 = require("../../persistance/repository/charactValue.repository");
 let ProductService = class ProductService {
     constructor(productRepository, reviewRepository, categoryRepository, caractValueRepository) {
         this.productRepository = productRepository;
@@ -95,7 +95,7 @@ ProductService = __decorate([
     __metadata("design:paramtypes", [product_repository_1.ProductRepository,
         review_repository_1.ReviewRepository,
         category_repository_1.CategoryRepository,
-        charactvalue_repository_1.CharactValueRepository])
+        charactValue_repository_1.CharactValueRepository])
 ], ProductService);
 exports.ProductService = ProductService;
 //# sourceMappingURL=product.service.js.map

@@ -1,6 +1,6 @@
 import { Injectable } from '@nestjs/common';
 import { CharactValue, Prisma } from '@prisma/client';
-import { CharactValueRepository } from 'src/persistance/repository/charactvalue.repository';
+import { CharactValueRepository } from 'src/persistance/repository/charactValue.repository';
 
 @Injectable()
 export class CharactValueService {
