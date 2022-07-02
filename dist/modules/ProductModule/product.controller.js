@@ -93,11 +93,18 @@ let ProductController = class ProductController {
     async getProduct(id) {
         const prod = await this.productService.getOne(id);
         const characteristic = (await this.charactValueService.findByProductGroupbyValue(prod.id.toString())).map((i) => {
-            return {
-                name: i.characteristic.name,
-                value: i.value,
-                section: i.characteristic.section.value,
-            };
+            if (i.section != null)
+                return {
+                    name: i.characteristic.name,
+                    value: i.value,
+                    section: i.characteristic.section.value,
+                };
+            else
+                return {
+                    name: i.characteristic.name,
+                    value: i.value,
+                    section: '������',
+                };
         });
         const charact = characteristic.reduce((r, _a) => {
             var { section: name } = _a, object = __rest(_a, ["section"]);

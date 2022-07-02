@@ -190,11 +190,18 @@ export class ProductController {
         prod.id.toString(),
       )
     ).map((i) => {
-      return {
-        name: i.characteristic.name,
-        value: i.value,
-        section: i.characteristic.section.value,
-      };
+      if (i.section != null)
+        return {
+          name: i.characteristic.name,
+          value: i.value,
+          section: i.characteristic.section.value,
+        };
+      else
+        return {
+          name: i.characteristic.name,
+          value: i.value,
+          section: 'Другое',
+        };
     });
 
     const charact: any = characteristic.reduce(
