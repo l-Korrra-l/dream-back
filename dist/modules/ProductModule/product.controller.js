@@ -71,7 +71,10 @@ let ProductController = class ProductController {
         return await this.productService.makeReview(currentUser.userId, currentUser.email, productId, review);
     }
     async updateProduct(productId, productForUpdate, file) {
-        return await this.productService.updateProduct(productId, productForUpdate, 'http://194.62.19.52:7000/' + file.path.split('\\')[1]);
+        if (file != undefined)
+            return await this.productService.updateProduct(productId, productForUpdate, 'http://194.62.19.52:7000/' + file.path.split('\\')[1]);
+        else
+            return await this.productService.updateProductWithoutImage(productId, productForUpdate);
     }
     async getProduct(id) {
         return await this.productService.getOne(id);

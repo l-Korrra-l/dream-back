@@ -89,6 +89,9 @@ let ProductService = class ProductService {
         productForUpdate.img_path = newImage;
         return await this.productRepository.update(productId, productForUpdate);
     }
+    async updateProductWithoutImage(productId, productForUpdate) {
+        return await this.productRepository.update(productId, productForUpdate);
+    }
 };
 ProductService = __decorate([
     (0, common_1.Injectable)(),

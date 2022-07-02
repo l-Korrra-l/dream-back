@@ -121,4 +121,11 @@ export class ProductService {
     productForUpdate.img_path = newImage;
     return await this.productRepository.update(productId, productForUpdate);
   }
+
+  async updateProductWithoutImage(
+    productId: string,
+    productForUpdate: ProductForUpdate,
+  ) {
+    return await this.productRepository.update(productId, productForUpdate);
+  }
 }

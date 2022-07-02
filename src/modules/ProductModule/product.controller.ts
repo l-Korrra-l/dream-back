@@ -148,11 +148,17 @@ export class ProductController {
     productForUpdate: any,
     @UploadedFile() file: any,
   ) {
-    return await this.productService.updateProduct(
-      productId,
-      productForUpdate,
-      'http://194.62.19.52:7000/' + file.path.split('\\')[1],
-    );
+    if (file != undefined)
+      return await this.productService.updateProduct(
+        productId,
+        productForUpdate,
+        'http://194.62.19.52:7000/' + file.path.split('\\')[1],
+      );
+    else
+      return await this.productService.updateProductWithoutImage(
+        productId,
+        productForUpdate,
+      );
   }
 
   @Get('/:id')

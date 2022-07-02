@@ -10,7 +10,7 @@ import { CurrencyRepository } from './repository/currency.repository';
 import { MaterialRepository } from './repository/material.repository';
 import { MemoryRepository } from './repository/memory.repository';
 import { OrderRepository } from './repository/order.repository';
-import { ProductRepository } from './repository/product.repository'; 
+import { ProductRepository } from './repository/product.repository';
 import { ReviewRepository } from './repository/review.repository';
 import { ServiceRepository } from './repository/service.repository';
 import { SliderRepository } from './repository/slider.repository';
