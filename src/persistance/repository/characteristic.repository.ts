@@ -21,6 +21,9 @@ export class CharacteristicRepository
     data: Prisma.CharacteristicCreateInput,
   ): Promise<Characteristic> {
     const characteristic = await this.prisma.characteristic.create({
+      include: {
+        section: true,
+      },
       data,
     });
 
@@ -34,6 +37,9 @@ export class CharacteristicRepository
     return await this.prisma.characteristic.update({
       where: {
         id: Number(id),
+      },
+      include: {
+        section: true,
       },
       data,
     });
@@ -67,10 +73,27 @@ export class CharacteristicRepository
     throw new NotFound('Not found characteristic for delete');
   }
 
+  async deleteBySection(id: string): Promise<boolean> {
+    const characteristic = await this.prisma.characteristic.deleteMany({
+      where: {
+        sectionId: Number(id),
+      },
+    });
+
+    if (characteristic) {
+      return true;
+    }
+
+    throw new NotFound('Not found characteristic for delete');
+  }
+
   async findOne(id: string): Promise<Characteristic> {
     const characteristic = await this.prisma.characteristic.findFirst({
       where: {
         id: Number(id),
+      },
+      include: {
+        section: true,
       },
     });
 
@@ -86,6 +109,9 @@ export class CharacteristicRepository
       where: {
         id: id,
       },
+      include: {
+        section: true,
+      },
     });
 
     if (characteristic) {
@@ -96,11 +122,18 @@ export class CharacteristicRepository
   }
 
   async findAll(): Promise<Characteristic[]> {
-    return await this.prisma.characteristic.findMany();
+    return await this.prisma.characteristic.findMany({
+      include: {
+        section: true,
+      },
+    });
   }
 
   async findByValue(name: string): Promise<Characteristic[]> {
     return (await this.prisma.characteristic.findMany({
+      include: {
+        section: true,
+      },
       where: {
         name: {
           contains: name,

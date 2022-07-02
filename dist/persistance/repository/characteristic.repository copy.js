@@ -123,4 +123,4 @@ CharacteristicRepository = __decorate([
     __metadata("design:paramtypes", [nestjs_prisma_1.PrismaService])
 ], CharacteristicRepository);
 exports.CharacteristicRepository = CharacteristicRepository;
-//# sourceMappingURL=characteristic.repository.js.map
+//# sourceMappingURL=characteristic.repository%20copy.js.map
