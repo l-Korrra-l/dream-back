@@ -186,9 +186,7 @@ export class ProductController {
   async getProduct(@Param('id') id: string) {
     const prod = await this.productService.getOne(id);
     const characteristic = (
-      await this.charactValueService.findByProductGroupbyValue(
-        prod.id.toString(),
-      )
+      await this.charactValueService.findByProductGroupbyValue(id)
     ).map((i) => {
       if (i.characteristic.section != null)
         return {
