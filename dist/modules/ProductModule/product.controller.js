@@ -73,8 +73,7 @@ let ProductController = class ProductController {
         memory === null || memory === void 0 ? void 0 : memory.map((c) => {
             this.memoryService.createMemory(Object.assign({ prodId: prod.id }, c));
         });
-        const characteristic = await this.charactValueService.findByProduct(prod.id.toString());
-        return { prod: prod, characts: characteristic };
+        return prod;
     }
     async getAllproducts(sort, sortby) {
         return await this.productService.getAll(sort, sortby);
@@ -93,13 +92,27 @@ let ProductController = class ProductController {
     }
     async getProduct(id) {
         const prod = await this.productService.getOne(id);
-        const characteristic = await this.charactValueService.findByProduct(prod.id.toString());
+        const characteristic = (await this.charactValueService.findByProductGroupbyValue(prod.id.toString())).map((i) => {
+            return {
+                name: i.characteristic.name,
+                value: i.value,
+                section: i.characteristic.section.value,
+            };
+        });
+        const charact = characteristic.reduce((r, _a) => {
+            var { section: name } = _a, object = __rest(_a, ["section"]);
+            let temp = r.find((o) => o.name === name);
+            if (!temp)
+                r.push((temp = { name, children: [] }));
+            temp.children.push(object);
+            return r;
+        }, []);
         const colors = await this.colorService.findByProduct(prod.id.toString());
         const memory = await this.memoryService.findByProduct(prod.id.toString());
         const material = await this.materialService.findByProduct(prod.id.toString());
         return {
             product: prod,
-            characts: characteristic,
+            characts: charact,
             color: colors,
             memory: memory,
             material: material,

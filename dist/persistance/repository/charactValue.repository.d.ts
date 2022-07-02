@@ -15,4 +15,5 @@ export declare class CharactValueRepository implements Repository<string, Prisma
     findAll(): Promise<CharactValue[]>;
     findByValue(name: string): Promise<CharactValue[]>;
     findByProduct(name: string): Promise<CharactValue[]>;
+    findByProductGroupByValue(id: string): Promise<any[]>;
 }

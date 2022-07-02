@@ -143,4 +143,26 @@ export class CharactValueRepository
       },
     })) as unknown as CharactValue[];
   }
+
+  async findByProductGroupByValue(id: string): Promise<any[]> {
+    return (await this.prisma.charactValue.findMany({
+      // by: ['value'],
+      where: {
+        prodId: Number(id),
+      },
+      select:{
+        value: true,
+        characteristic:{
+          select:{
+            name: true,
+            section:{
+              select:{
+                value:true,
+              }
+            }
+          }
+        }
+      }
+    })) as unknown as CharactValue[];
+  }
 }

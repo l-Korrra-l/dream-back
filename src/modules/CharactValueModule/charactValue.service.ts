@@ -36,6 +36,10 @@ export class CharactValueService {
     return await this.charactvalueRepository.findByProduct(id);
   }
 
+  async findByProductGroupbyValue(id: string): Promise<any[]> {
+    return await this.charactvalueRepository.findByProductGroupByValue(id);
+  }
+
   async findByValue(name: string) {
     return await this.charactvalueRepository.findByValue(name);
   }

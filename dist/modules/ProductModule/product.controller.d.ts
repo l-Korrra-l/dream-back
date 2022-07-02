@@ -14,17 +14,14 @@ export declare class ProductController {
     private memoryService;
     private materialService;
     constructor(productService: ProductService, charactValueService: CharactValueService, colorService: ColorService, memoryService: MemoryService, materialService: MaterialService);
-    createProduct(productForCreate: any, file: Express.Multer.File): Promise<{
-        prod: import(".prisma/client").Product;
-        characts: import(".prisma/client").CharactValue[];
-    }>;
+    createProduct(productForCreate: any, file: Express.Multer.File): Promise<import(".prisma/client").Product>;
     getAllproducts(sort: Sort, sortby: string): Promise<import(".prisma/client").Product[]>;
     searchProductss(sort: Sort, sortby: string, filters: any): Promise<import(".prisma/client").Product[]>;
     makeReviewForProduct(productId: any, currentUser: CurrentUserInfo, review: ReviewFromUser): Promise<import(".prisma/client").Review>;
     updateProduct(productId: string, productForUpdate: any, file: any): Promise<import(".prisma/client").Product>;
     getProduct(id: string): Promise<{
         product: import(".prisma/client").Product;
-        characts: import(".prisma/client").CharactValue[];
+        characts: any;
         color: import(".prisma/client").Color[];
         memory: import(".prisma/client").Memory[];
         material: import(".prisma/client").Material[];

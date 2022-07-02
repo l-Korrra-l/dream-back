@@ -117,6 +117,26 @@ let CharactValueRepository = class CharactValueRepository {
             },
         }));
     }
+    async findByProductGroupByValue(id) {
+        return (await this.prisma.charactValue.findMany({
+            where: {
+                prodId: Number(id),
+            },
+            select: {
+                value: true,
+                characteristic: {
+                    select: {
+                        name: true,
+                        section: {
+                            select: {
+                                value: true,
+                            }
+                        }
+                    }
+                }
+            }
+        }));
+    }
 };
 CharactValueRepository = __decorate([
     (0, common_1.Injectable)(),

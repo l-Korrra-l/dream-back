@@ -37,6 +37,9 @@ let CharactValueService = class CharactValueService {
     async findByProduct(id) {
         return await this.charactvalueRepository.findByProduct(id);
     }
+    async findByProductGroupbyValue(id) {
+        return await this.charactvalueRepository.findByProductGroupByValue(id);
+    }
     async findByValue(name) {
         return await this.charactvalueRepository.findByValue(name);
     }

@@ -105,11 +105,7 @@ export class ProductController {
       this.memoryService.createMemory({ prodId: prod.id, ...c });
     });
 
-    const characteristic = await this.charactValueService.findByProduct(
-      prod.id.toString(),
-    );
-
-    return { prod: prod, characts: characteristic };
+    return prod;
   }
 
   @Get()
@@ -189,8 +185,26 @@ export class ProductController {
   @Get('/:id')
   async getProduct(@Param('id') id: string) {
     const prod = await this.productService.getOne(id);
-    const characteristic = await this.charactValueService.findByProduct(
-      prod.id.toString(),
+    const characteristic = (
+      await this.charactValueService.findByProductGroupbyValue(
+        prod.id.toString(),
+      )
+    ).map((i) => {
+      return {
+        name: i.characteristic.name,
+        value: i.value,
+        section: i.characteristic.section.value,
+      };
+    });
+
+    const charact: any = characteristic.reduce(
+      (r, { section: name, ...object }) => {
+        let temp = r.find((o) => o.name === name);
+        if (!temp) r.push((temp = { name, children: [] }));
+        temp.children.push(object);
+        return r;
+      },
+      [],
     );
     const colors = await this.colorService.findByProduct(prod.id.toString());
     const memory = await this.memoryService.findByProduct(prod.id.toString());
@@ -200,7 +214,7 @@ export class ProductController {
 
     return {
       product: prod,
-      characts: characteristic,
+      characts: charact,
       color: colors,
       memory: memory,
       material: material,
