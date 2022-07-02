@@ -12,6 +12,7 @@ import { MemoryRepository } from './repository/memory.repository';
 import { OrderRepository } from './repository/order.repository';
 import { ProductRepository } from './repository/product.repository';
 import { ReviewRepository } from './repository/review.repository';
+import { SectionRepository } from './repository/section.repository';
 import { ServiceRepository } from './repository/service.repository';
 import { SliderRepository } from './repository/slider.repository';
 import { UserRepository } from './repository/user.repository';
@@ -33,6 +34,7 @@ import { UserRepository } from './repository/user.repository';
     MemoryRepository,
     ColorRepository,
     CharactValueRepository,
+    SectionRepository,
   ],
   exports: [
     UserRepository,
@@ -49,6 +51,7 @@ import { UserRepository } from './repository/user.repository';
     MemoryRepository,
     ColorRepository,
     CharactValueRepository,
+    SectionRepository,
   ],
 })
 export class DbModule {}

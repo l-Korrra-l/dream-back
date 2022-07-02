@@ -33,6 +33,7 @@ const memory_module_1 = require("./modules/MemoryModule/memory.module");
 const material_module_1 = require("./modules/MaterialModule/material.module");
 const characteristic_module_1 = require("./modules/CharacteristicModule/characteristic.module");
 const charactValue_module_1 = require("./modules/CharactValueModule/charactValue.module");
+const section_module_1 = require("./modules/SectionModule/section.module");
 let AppModule = class AppModule {
     configure(consumer) {
         consumer.apply(index_middleware_1.FrontendMiddleware).forRoutes({
@@ -75,6 +76,7 @@ AppModule = __decorate([
             material_module_1.MaterialModule,
             characteristic_module_1.CharacteristicModule,
             charactValue_module_1.CharactValueModule,
+            section_module_1.SectionModule,
         ],
         controllers: [app_controller_1.AppController],
         providers: [app_service_1.AppService],

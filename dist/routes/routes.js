@@ -14,6 +14,7 @@ const material_module_1 = require("../modules/MaterialModule/material.module");
 const memory_module_1 = require("../modules/MemoryModule/memory.module");
 const order_module_1 = require("../modules/OrderModule/order.module");
 const product_module_1 = require("../modules/ProductModule/product.module");
+const section_module_1 = require("../modules/SectionModule/section.module");
 const service_module_1 = require("../modules/ServiceModule/service.module");
 const slider_module_1 = require("../modules/SliderModule/slider.module");
 const user_module_1 = require("../modules/UserModule/user.module");
@@ -86,6 +87,10 @@ exports.routes = [
     {
         path: '/api',
         module: charactValue_module_1.CharactValueModule,
+    },
+    {
+        path: '/api',
+        module: section_module_1.SectionModule,
     },
 ];
 //# sourceMappingURL=routes.js.map

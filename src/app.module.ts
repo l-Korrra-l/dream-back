@@ -29,6 +29,7 @@ import { MemoryModule } from './modules/MemoryModule/memory.module';
 import { MaterialModule } from './modules/MaterialModule/material.module';
 import { CharacteristicModule } from './modules/CharacteristicModule/characteristic.module';
 import { CharactValueModule } from './modules/CharactValueModule/charactValue.module';
+import { SectionModule } from './modules/SectionModule/section.module';
 
 @Module({
   imports: [
@@ -66,6 +67,7 @@ import { CharactValueModule } from './modules/CharactValueModule/charactValue.mo
     MaterialModule,
     CharacteristicModule,
     CharactValueModule,
+    SectionModule,
   ],
   controllers: [AppController],
   providers: [AppService],

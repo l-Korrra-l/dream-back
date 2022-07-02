@@ -12,6 +12,7 @@ import { MaterialModule } from 'src/modules/MaterialModule/material.module';
 import { MemoryModule } from 'src/modules/MemoryModule/memory.module';
 import { OrderModule } from 'src/modules/OrderModule/order.module';
 import { ProductModule } from 'src/modules/ProductModule/product.module';
+import { SectionModule } from 'src/modules/SectionModule/section.module';
 import { ServiceModule } from 'src/modules/ServiceModule/service.module';
 import { SliderModule } from 'src/modules/SliderModule/slider.module';
 import { UserModule } from 'src/modules/UserModule/user.module';
@@ -86,5 +87,9 @@ export const routes: Routes = [
   {
     path: '/api',
     module: CharactValueModule,
+  },
+  {
+    path: '/api',
+    module: SectionModule,
   },
 ];
