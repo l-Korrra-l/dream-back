@@ -11,6 +11,7 @@ const common_1 = require("@nestjs/common");
 const dbmodule_module_1 = require("../../persistance/dbmodule.module");
 const charactValue_service_1 = require("../CharactValueModule/charactValue.service");
 const color_service_1 = require("../ColorModule/color.service");
+const information_service_1 = require("../InformationModule/information.service");
 const material_service_1 = require("../MaterialModule/material.service");
 const memory_service_1 = require("../MemoryModule/memory.service");
 const product_controller_1 = require("./product.controller");
@@ -27,6 +28,7 @@ ProductModule = __decorate([
             color_service_1.ColorService,
             memory_service_1.MemoryService,
             material_service_1.MaterialService,
+            information_service_1.InformationService,
         ],
     })
 ], ProductModule);

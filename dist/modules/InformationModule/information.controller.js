@@ -12,7 +12,7 @@ var __param = (this && this.__param) || function (paramIndex, decorator) {
     return function (target, key) { decorator(target, key, paramIndex); }
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.ColorController = void 0;
+exports.InformationController = void 0;
 const common_1 = require("@nestjs/common");
 const platform_express_1 = require("@nestjs/platform-express");
 const uuid_1 = require("uuid");
@@ -21,41 +21,39 @@ const roles_decorator_1 = require("../../decorators/roles.decorator");
 const role_enum_1 = require("../../enums/role.enum");
 const jwt_guard_1 = require("../AuthModule/guards/jwt.guard");
 const roles_guard_1 = require("../AuthModule/guards/roles.guard");
-const color_service_1 = require("./color.service");
+const information_service_1 = require("./information.service");
 const multer_1 = require("multer");
 const imageFilter_helpers_1 = require("../../helpers/imageFilter.helpers");
-let ColorController = class ColorController {
-    constructor(colorService) {
-        this.colorService = colorService;
+let InformationController = class InformationController {
+    constructor(informationService) {
+        this.informationService = informationService;
     }
-    async createColor(colorForCreate, file) {
+    async createInformation(informationForCreate, file) {
         var _a;
         if (file != undefined)
-            colorForCreate.img_path =
+            informationForCreate.img_path =
                 'http://194.62.19.52:7000/' + ((_a = file === null || file === void 0 ? void 0 : file.path) === null || _a === void 0 ? void 0 : _a.split('\\')[1]);
-        return await this.colorService.createColor(colorForCreate);
+        return await this.informationService.createInformation(informationForCreate);
     }
-    async updateColor(colorId, colorForUpdate, file) {
+    async updateInformation(informationId, informationForUpdate, file) {
         if (file != undefined)
-            return await this.colorService.updateColor(colorId, colorForUpdate, 'http://194.62.19.52:7000/' + file.path.split('\\')[1]);
+            return await this.informationService.updateInformation(informationId, informationForUpdate, 'http://194.62.19.52:7000/' + file.path.split('\\')[1]);
         else
-            return await this.colorService.updateColorWithoutPicture(colorId, colorForUpdate);
+            return await this.informationService.updateInformationWithoutPicture(informationId, informationForUpdate);
     }
-    async getAllcolors(prod) {
+    async getAllinformations(prod) {
         if (prod != '' && prod != undefined && prod != null)
-            return await this.colorService.findByProduct(prod);
-        return await this.colorService.getAll();
+            return await this.informationService.findByProduct(prod);
+        return await this.informationService.getAll();
     }
-    async getColor(id) {
-        return await this.colorService.getOne(id);
+    async getInformation(id) {
+        return await this.informationService.getOne(id);
     }
-    async deleteColorByProductAndName(prod, name) {
-        if (name != null && name != undefined)
-            return await this.colorService.deleteColorByProductAndName(prod, name);
-        return await this.colorService.deleteColorByProduct(prod);
+    async deleteInformationByProductAndName(prod) {
+        return await this.informationService.deleteInformationByProduct(prod);
     }
-    async deleteColor(id) {
-        return await this.colorService.deleteColor(id);
+    async deleteInformation(id) {
+        return await this.informationService.deleteInformation(id);
     }
 };
 __decorate([
@@ -76,7 +74,7 @@ __decorate([
     __metadata("design:type", Function),
     __metadata("design:paramtypes", [Object, Object]),
     __metadata("design:returntype", Promise)
-], ColorController.prototype, "createColor", null);
+], InformationController.prototype, "createInformation", null);
 __decorate([
     (0, common_1.UseGuards)(jwt_guard_1.JwtAuthGuard, roles_guard_1.RolesGuard),
     (0, roles_decorator_1.Roles)(role_enum_1.Role.Admin),
@@ -96,39 +94,38 @@ __decorate([
     __metadata("design:type", Function),
     __metadata("design:paramtypes", [String, Object, Object]),
     __metadata("design:returntype", Promise)
-], ColorController.prototype, "updateColor", null);
+], InformationController.prototype, "updateInformation", null);
 __decorate([
     (0, common_1.Get)(),
     __param(0, (0, common_1.Query)('prod')),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", [String]),
     __metadata("design:returntype", Promise)
-], ColorController.prototype, "getAllcolors", null);
+], InformationController.prototype, "getAllinformations", null);
 __decorate([
     (0, common_1.Get)('/:id'),
     __param(0, (0, common_1.Param)('id')),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", [String]),
     __metadata("design:returntype", Promise)
-], ColorController.prototype, "getColor", null);
+], InformationController.prototype, "getInformation", null);
 __decorate([
     (0, common_1.Delete)('/'),
     __param(0, (0, common_1.Query)('prod')),
-    __param(1, (0, common_1.Query)('name')),
     __metadata("design:type", Function),
-    __metadata("design:paramtypes", [String, String]),
+    __metadata("design:paramtypes", [String]),
     __metadata("design:returntype", Promise)
-], ColorController.prototype, "deleteColorByProductAndName", null);
+], InformationController.prototype, "deleteInformationByProductAndName", null);
 __decorate([
     (0, common_1.Delete)('/:id'),
     __param(0, (0, common_1.Param)('id')),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", [String]),
     __metadata("design:returntype", Promise)
-], ColorController.prototype, "deleteColor", null);
-ColorController = __decorate([
-    (0, common_1.Controller)('color'),
-    __metadata("design:paramtypes", [color_service_1.ColorService])
-], ColorController);
-exports.ColorController = ColorController;
-//# sourceMappingURL=color.controller.js.map
+], InformationController.prototype, "deleteInformation", null);
+InformationController = __decorate([
+    (0, common_1.Controller)('information'),
+    __metadata("design:paramtypes", [information_service_1.InformationService])
+], InformationController);
+exports.InformationController = InformationController;
+//# sourceMappingURL=information.controller.js.map

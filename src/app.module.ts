@@ -30,6 +30,7 @@ import { MaterialModule } from './modules/MaterialModule/material.module';
 import { CharacteristicModule } from './modules/CharacteristicModule/characteristic.module';
 import { CharactValueModule } from './modules/CharactValueModule/charactValue.module';
 import { SectionModule } from './modules/SectionModule/section.module';
+import { InformationModule } from './modules/InformationModule/information.module';
 
 @Module({
   imports: [
@@ -68,6 +69,7 @@ import { SectionModule } from './modules/SectionModule/section.module';
     CharacteristicModule,
     CharactValueModule,
     SectionModule,
+    InformationModule,
   ],
   controllers: [AppController],
   providers: [AppService],

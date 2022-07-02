@@ -45,4 +45,8 @@ export class ColorService {
     colorForUpdate.img_path = newImage;
     return await this.colorRepository.update(colorId, colorForUpdate);
   }
+
+  async updateColorWithoutPicture(colorId: string, colorForUpdate: any) {
+    return await this.colorRepository.update(colorId, colorForUpdate);
+  }
 }

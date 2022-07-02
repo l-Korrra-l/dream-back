@@ -8,6 +8,7 @@ import { CharactValueModule } from 'src/modules/CharactValueModule/charactValue.
 import { ColorModule } from 'src/modules/ColorModule/color.module';
 import { CurrencyModule } from 'src/modules/Currencymodule/currency.module';
 import { EmailModule } from 'src/modules/EmailModule/email.module';
+import { InformationModule } from 'src/modules/InformationModule/information.module';
 import { MaterialModule } from 'src/modules/MaterialModule/material.module';
 import { MemoryModule } from 'src/modules/MemoryModule/memory.module';
 import { OrderModule } from 'src/modules/OrderModule/order.module';
@@ -91,5 +92,9 @@ export const routes: Routes = [
   {
     path: '/api',
     module: SectionModule,
+  },
+  {
+    path: '/api',
+    module: InformationModule,
   },
 ];

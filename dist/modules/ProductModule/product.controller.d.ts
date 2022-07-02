@@ -7,13 +7,15 @@ import { CharactValueService } from '../CharactValueModule/charactValue.service'
 import { ColorService } from '../ColorModule/color.service';
 import { MemoryService } from '../MemoryModule/memory.service';
 import { MaterialService } from '../MaterialModule/material.service';
+import { InformationService } from '../InformationModule/information.service';
 export declare class ProductController {
     private productService;
     private charactValueService;
     private colorService;
     private memoryService;
     private materialService;
-    constructor(productService: ProductService, charactValueService: CharactValueService, colorService: ColorService, memoryService: MemoryService, materialService: MaterialService);
+    private informationService;
+    constructor(productService: ProductService, charactValueService: CharactValueService, colorService: ColorService, memoryService: MemoryService, materialService: MaterialService, informationService: InformationService);
     createProduct(productForCreate: any, file: Express.Multer.File): Promise<import(".prisma/client").Product>;
     getAllproducts(sort: Sort, sortby: string): Promise<import(".prisma/client").Product[]>;
     searchProductss(sort: Sort, sortby: string, filters: any): Promise<import(".prisma/client").Product[]>;

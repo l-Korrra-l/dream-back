@@ -20,13 +20,13 @@ import { Roles } from 'src/decorators/roles.decorator';
 import { Role } from 'src/enums/role.enum';
 import { JwtAuthGuard } from '../AuthModule/guards/jwt.guard';
 import { RolesGuard } from '../AuthModule/guards/roles.guard';
-import { ColorService } from './color.service';
+import { InformationService } from './information.service';
 import { diskStorage } from 'multer';
 import { imageFileFilter } from 'src/helpers/imageFilter.helpers';
 
-@Controller('color')
-export class ColorController {
-  constructor(private colorService: ColorService) {}
+@Controller('information')
+export class InformationController {
+  constructor(private informationService: InformationService) {}
 
   @Post()
   @UseGuards(JwtAuthGuard, RolesGuard)
@@ -42,17 +42,19 @@ export class ColorController {
       fileFilter: imageFileFilter,
     }),
   )
-  async createColor(
+  async createInformation(
     // @Body()
-    // colorForCreate: ColorForCreate,
+    // informationForCreate: InformationForCreate,
     @Body()
-    colorForCreate: any,
+    informationForCreate: any,
     @UploadedFile() file: Express.Multer.File,
   ) {
     if (file != undefined)
-      colorForCreate.img_path =
+      informationForCreate.img_path =
         'http://194.62.19.52:7000/' + file?.path?.split('\\')[1];
-    return await this.colorService.createColor(colorForCreate);
+    return await this.informationService.createInformation(
+      informationForCreate,
+    );
   }
 
   @UseGuards(JwtAuthGuard, RolesGuard)
@@ -69,48 +71,43 @@ export class ColorController {
     }),
   )
   @Patch(':id')
-  async updateColor(
-    @Param('id') colorId: string,
+  async updateInformation(
+    @Param('id') informationId: string,
     @Body()
-    colorForUpdate: any,
+    informationForUpdate: any,
     @UploadedFile() file: any,
   ) {
     if (file != undefined)
-      return await this.colorService.updateColor(
-        colorId,
-        colorForUpdate,
+      return await this.informationService.updateInformation(
+        informationId,
+        informationForUpdate,
         'http://194.62.19.52:7000/' + file.path.split('\\')[1],
       );
     else
-      return await this.colorService.updateColorWithoutPicture(
-        colorId,
-        colorForUpdate,
+      return await this.informationService.updateInformationWithoutPicture(
+        informationId,
+        informationForUpdate,
       );
   }
 
   @Get()
-  async getAllcolors(@Query('prod') prod: string) {
+  async getAllinformations(@Query('prod') prod: string) {
     if (prod != '' && prod != undefined && prod != null)
-      return await this.colorService.findByProduct(prod);
-    return await this.colorService.getAll();
+      return await this.informationService.findByProduct(prod);
+    return await this.informationService.getAll();
   }
   @Get('/:id')
-  async getColor(@Param('id') id: string) {
-    return await this.colorService.getOne(id);
+  async getInformation(@Param('id') id: string) {
+    return await this.informationService.getOne(id);
   }
 
   @Delete('/')
-  async deleteColorByProductAndName(
-    @Query('prod') prod: string,
-    @Query('name') name: string,
-  ) {
-    if (name != null && name != undefined)
-      return await this.colorService.deleteColorByProductAndName(prod, name);
-    return await this.colorService.deleteColorByProduct(prod);
+  async deleteInformationByProductAndName(@Query('prod') prod: string) {
+    return await this.informationService.deleteInformationByProduct(prod);
   }
 
   @Delete('/:id')
-  async deleteColor(@Param('id') id: string) {
-    return await this.colorService.deleteColor(id);
+  async deleteInformation(@Param('id') id: string) {
+    return await this.informationService.deleteInformation(id);
   }
 }

@@ -36,6 +36,7 @@ import { CharactValueService } from '../CharactValueModule/charactValue.service'
 import { ColorService } from '../ColorModule/color.service';
 import { MemoryService } from '../MemoryModule/memory.service';
 import { MaterialService } from '../MaterialModule/material.service';
+import { InformationService } from '../InformationModule/information.service';
 
 @Controller('product')
 export class ProductController {
@@ -45,6 +46,7 @@ export class ProductController {
     private colorService: ColorService,
     private memoryService: MemoryService,
     private materialService: MaterialService,
+    private informationService: InformationService,
   ) {}
 
   @Post()
@@ -78,6 +80,7 @@ export class ProductController {
       colors,
       materials,
       memory,
+      information,
       ...lprod
     } = productForCreate;
     // subcategoryId,
@@ -103,6 +106,10 @@ export class ProductController {
 
     memory?.map((c) => {
       this.memoryService.createMemory({ prodId: prod.id, ...c });
+    });
+
+    information?.map((c) => {
+      this.informationService.createInformation({ prodId: prod.id, ...c });
     });
 
     return prod;

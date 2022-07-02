@@ -46,20 +46,22 @@ const charactValue_service_1 = require("../CharactValueModule/charactValue.servi
 const color_service_1 = require("../ColorModule/color.service");
 const memory_service_1 = require("../MemoryModule/memory.service");
 const material_service_1 = require("../MaterialModule/material.service");
+const information_service_1 = require("../InformationModule/information.service");
 let ProductController = class ProductController {
-    constructor(productService, charactValueService, colorService, memoryService, materialService) {
+    constructor(productService, charactValueService, colorService, memoryService, materialService, informationService) {
         this.productService = productService;
         this.charactValueService = charactValueService;
         this.colorService = colorService;
         this.memoryService = memoryService;
         this.materialService = materialService;
+        this.informationService = informationService;
     }
     async createProduct(productForCreate, file) {
         var _a;
         if (file != undefined)
             productForCreate.img_path =
                 'http://194.62.19.52:7000/' + ((_a = file === null || file === void 0 ? void 0 : file.path) === null || _a === void 0 ? void 0 : _a.split('\\')[1]);
-        const { in_stock, categoryId, characteristics, colors, materials, memory } = productForCreate, lprod = __rest(productForCreate, ["in_stock", "categoryId", "characteristics", "colors", "materials", "memory"]);
+        const { in_stock, categoryId, characteristics, colors, materials, memory, information } = productForCreate, lprod = __rest(productForCreate, ["in_stock", "categoryId", "characteristics", "colors", "materials", "memory", "information"]);
         const prod = await this.productService.createProduct(Object.assign({ in_stock: parseInt(in_stock.toString()), categoryId: parseInt(categoryId.toString()) }, lprod));
         characteristics === null || characteristics === void 0 ? void 0 : characteristics.map((c) => {
             this.charactValueService.createCharactValue(Object.assign({ prodId: prod.id }, c));
@@ -72,6 +74,9 @@ let ProductController = class ProductController {
         });
         memory === null || memory === void 0 ? void 0 : memory.map((c) => {
             this.memoryService.createMemory(Object.assign({ prodId: prod.id }, c));
+        });
+        information === null || information === void 0 ? void 0 : information.map((c) => {
+            this.informationService.createInformation(Object.assign({ prodId: prod.id }, c));
         });
         return prod;
     }
@@ -200,7 +205,8 @@ ProductController = __decorate([
         charactValue_service_1.CharactValueService,
         color_service_1.ColorService,
         memory_service_1.MemoryService,
-        material_service_1.MaterialService])
+        material_service_1.MaterialService,
+        information_service_1.InformationService])
 ], ProductController);
 exports.ProductController = ProductController;
 //# sourceMappingURL=product.controller.js.map

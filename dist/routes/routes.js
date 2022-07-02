@@ -10,6 +10,7 @@ const charactValue_module_1 = require("../modules/CharactValueModule/charactValu
 const color_module_1 = require("../modules/ColorModule/color.module");
 const currency_module_1 = require("../modules/Currencymodule/currency.module");
 const email_module_1 = require("../modules/EmailModule/email.module");
+const information_module_1 = require("../modules/InformationModule/information.module");
 const material_module_1 = require("../modules/MaterialModule/material.module");
 const memory_module_1 = require("../modules/MemoryModule/memory.module");
 const order_module_1 = require("../modules/OrderModule/order.module");
@@ -91,6 +92,10 @@ exports.routes = [
     {
         path: '/api',
         module: section_module_1.SectionModule,
+    },
+    {
+        path: '/api',
+        module: information_module_1.InformationModule,
     },
 ];
 //# sourceMappingURL=routes.js.map

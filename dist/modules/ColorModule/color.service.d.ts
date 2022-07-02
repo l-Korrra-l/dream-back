@@ -12,4 +12,5 @@ export declare class ColorService {
     findByProduct(id: string): Promise<Color[]>;
     findByValue(name: string): Promise<Color[]>;
     updateColor(colorId: string, colorForUpdate: any, newImage: string): Promise<Color>;
+    updateColorWithoutPicture(colorId: string, colorForUpdate: any): Promise<Color>;
 }

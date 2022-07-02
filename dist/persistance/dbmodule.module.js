@@ -16,6 +16,7 @@ const characteristic_repository_1 = require("./repository/characteristic.reposit
 const charactValue_repository_1 = require("./repository/charactValue.repository");
 const color_repository_1 = require("./repository/color.repository");
 const currency_repository_1 = require("./repository/currency.repository");
+const information_repository_1 = require("./repository/information.repository");
 const material_repository_1 = require("./repository/material.repository");
 const memory_repository_1 = require("./repository/memory.repository");
 const order_repository_1 = require("./repository/order.repository");
@@ -46,6 +47,7 @@ DbModule = __decorate([
             color_repository_1.ColorRepository,
             charactValue_repository_1.CharactValueRepository,
             section_repository_1.SectionRepository,
+            information_repository_1.InformationRepository,
         ],
         exports: [
             user_repository_1.UserRepository,
@@ -63,6 +65,7 @@ DbModule = __decorate([
             color_repository_1.ColorRepository,
             charactValue_repository_1.CharactValueRepository,
             section_repository_1.SectionRepository,
+            information_repository_1.InformationRepository,
         ],
     })
 ], DbModule);

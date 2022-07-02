@@ -110,6 +110,13 @@ let ProductRepository = class ProductRepository {
                         name: true,
                     },
                 },
+                Information: {
+                    select: {
+                        color: true,
+                        img_path: true,
+                        text: true,
+                    },
+                },
             },
             where: {
                 id: Number(id),

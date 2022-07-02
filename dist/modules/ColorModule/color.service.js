@@ -45,6 +45,9 @@ let ColorService = class ColorService {
         colorForUpdate.img_path = newImage;
         return await this.colorRepository.update(colorId, colorForUpdate);
     }
+    async updateColorWithoutPicture(colorId, colorForUpdate) {
+        return await this.colorRepository.update(colorId, colorForUpdate);
+    }
 };
 ColorService = __decorate([
     (0, common_1.Injectable)(),
