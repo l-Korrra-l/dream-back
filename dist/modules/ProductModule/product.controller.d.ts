@@ -4,10 +4,16 @@ import { CurrentUserInfo } from 'src/types/types';
 import { ReviewFromUser } from './dto/reviewformuser.dto';
 import { ProductService } from './product.service';
 import { CharactValueService } from '../CharactValueModule/charactValue.service';
+import { ColorService } from '../ColorModule/color.service';
+import { MemoryService } from '../MemoryModule/memory.service';
+import { MaterialService } from '../MaterialModule/material.service';
 export declare class ProductController {
     private productService;
     private charactValueService;
-    constructor(productService: ProductService, charactValueService: CharactValueService);
+    private colorService;
+    private memoryService;
+    private materialService;
+    constructor(productService: ProductService, charactValueService: CharactValueService, colorService: ColorService, memoryService: MemoryService, materialService: MaterialService);
     createProduct(productForCreate: any, file: Express.Multer.File): Promise<{
         prod: import(".prisma/client").Product;
         characts: import(".prisma/client").CharactValue[];
@@ -16,5 +22,11 @@ export declare class ProductController {
     searchProductss(sort: Sort, sortby: string, filters: any): Promise<import(".prisma/client").Product[]>;
     makeReviewForProduct(productId: any, currentUser: CurrentUserInfo, review: ReviewFromUser): Promise<import(".prisma/client").Review>;
     updateProduct(productId: string, productForUpdate: any, file: any): Promise<import(".prisma/client").Product>;
-    getProduct(id: string): Promise<import(".prisma/client").Product>;
+    getProduct(id: string): Promise<{
+        product: import(".prisma/client").Product;
+        characts: import(".prisma/client").CharactValue[];
+        color: import(".prisma/client").Color[];
+        memory: import(".prisma/client").Memory[];
+        material: import(".prisma/client").Material[];
+    }>;
 }

@@ -43,20 +43,35 @@ const multer_1 = require("multer");
 const imageFilter_helpers_1 = require("../../helpers/imageFilter.helpers");
 const sortbyheader_decorator_1 = require("../../decorators/sortbyheader.decorator");
 const charactValue_service_1 = require("../CharactValueModule/charactValue.service");
+const color_service_1 = require("../ColorModule/color.service");
+const memory_service_1 = require("../MemoryModule/memory.service");
+const material_service_1 = require("../MaterialModule/material.service");
 let ProductController = class ProductController {
-    constructor(productService, charactValueService) {
+    constructor(productService, charactValueService, colorService, memoryService, materialService) {
         this.productService = productService;
         this.charactValueService = charactValueService;
+        this.colorService = colorService;
+        this.memoryService = memoryService;
+        this.materialService = materialService;
     }
     async createProduct(productForCreate, file) {
         var _a;
         if (file != undefined)
             productForCreate.img_path =
                 'http://194.62.19.52:7000/' + ((_a = file === null || file === void 0 ? void 0 : file.path) === null || _a === void 0 ? void 0 : _a.split('\\')[1]);
-        const { in_stock, categoryId, characteristics } = productForCreate, lprod = __rest(productForCreate, ["in_stock", "categoryId", "characteristics"]);
+        const { in_stock, categoryId, characteristics, colors, materials, memory } = productForCreate, lprod = __rest(productForCreate, ["in_stock", "categoryId", "characteristics", "colors", "materials", "memory"]);
         const prod = await this.productService.createProduct(Object.assign({ in_stock: parseInt(in_stock.toString()), categoryId: parseInt(categoryId.toString()) }, lprod));
-        characteristics.map((c) => {
+        characteristics === null || characteristics === void 0 ? void 0 : characteristics.map((c) => {
             this.charactValueService.createCharactValue(Object.assign({ prodId: prod.id }, c));
+        });
+        colors === null || colors === void 0 ? void 0 : colors.map((c) => {
+            this.colorService.createColor(Object.assign({ prodId: prod.id }, c));
+        });
+        materials === null || materials === void 0 ? void 0 : materials.map((c) => {
+            this.materialService.createMaterial(Object.assign({ prodId: prod.id }, c));
+        });
+        memory === null || memory === void 0 ? void 0 : memory.map((c) => {
+            this.memoryService.createMemory(Object.assign({ prodId: prod.id }, c));
         });
         const characteristic = await this.charactValueService.findByProduct(prod.id.toString());
         return { prod: prod, characts: characteristic };
@@ -77,7 +92,18 @@ let ProductController = class ProductController {
             return await this.productService.updateProductWithoutImage(productId, productForUpdate);
     }
     async getProduct(id) {
-        return await this.productService.getOne(id);
+        const prod = await this.productService.getOne(id);
+        const characteristic = await this.charactValueService.findByProduct(prod.id.toString());
+        const colors = await this.colorService.findByProduct(prod.id.toString());
+        const memory = await this.memoryService.findByProduct(prod.id.toString());
+        const material = await this.materialService.findByProduct(prod.id.toString());
+        return {
+            product: prod,
+            characts: characteristic,
+            color: colors,
+            memory: memory,
+            material: material,
+        };
     }
 };
 __decorate([
@@ -157,7 +183,10 @@ __decorate([
 ProductController = __decorate([
     (0, common_1.Controller)('product'),
     __metadata("design:paramtypes", [product_service_1.ProductService,
-        charactValue_service_1.CharactValueService])
+        charactValue_service_1.CharactValueService,
+        color_service_1.ColorService,
+        memory_service_1.MemoryService,
+        material_service_1.MaterialService])
 ], ProductController);
 exports.ProductController = ProductController;
 //# sourceMappingURL=product.controller.js.map

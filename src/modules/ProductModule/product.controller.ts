@@ -33,12 +33,18 @@ import { diskStorage } from 'multer';
 import { imageFileFilter } from 'src/helpers/imageFilter.helpers';
 import { SortingBy } from 'src/decorators/sortbyheader.decorator';
 import { CharactValueService } from '../CharactValueModule/charactValue.service';
+import { ColorService } from '../ColorModule/color.service';
+import { MemoryService } from '../MemoryModule/memory.service';
+import { MaterialService } from '../MaterialModule/material.service';
 
 @Controller('product')
 export class ProductController {
   constructor(
     private productService: ProductService,
     private charactValueService: CharactValueService,
+    private colorService: ColorService,
+    private memoryService: MemoryService,
+    private materialService: MaterialService,
   ) {}
 
   @Post()
@@ -65,8 +71,15 @@ export class ProductController {
     if (file != undefined)
       productForCreate.img_path =
         'http://194.62.19.52:7000/' + file?.path?.split('\\')[1];
-    const { in_stock, categoryId, characteristics, ...lprod } =
-      productForCreate;
+    const {
+      in_stock,
+      categoryId,
+      characteristics,
+      colors,
+      materials,
+      memory,
+      ...lprod
+    } = productForCreate;
     // subcategoryId,
 
     const prod = await this.productService.createProduct({
@@ -76,8 +89,20 @@ export class ProductController {
       ...lprod,
     });
 
-    characteristics.map((c) => {
+    characteristics?.map((c) => {
       this.charactValueService.createCharactValue({ prodId: prod.id, ...c });
+    });
+
+    colors?.map((c) => {
+      this.colorService.createColor({ prodId: prod.id, ...c });
+    });
+
+    materials?.map((c) => {
+      this.materialService.createMaterial({ prodId: prod.id, ...c });
+    });
+
+    memory?.map((c) => {
+      this.memoryService.createMemory({ prodId: prod.id, ...c });
     });
 
     const characteristic = await this.charactValueService.findByProduct(
@@ -163,6 +188,22 @@ export class ProductController {
 
   @Get('/:id')
   async getProduct(@Param('id') id: string) {
-    return await this.productService.getOne(id);
+    const prod = await this.productService.getOne(id);
+    const characteristic = await this.charactValueService.findByProduct(
+      prod.id.toString(),
+    );
+    const colors = await this.colorService.findByProduct(prod.id.toString());
+    const memory = await this.memoryService.findByProduct(prod.id.toString());
+    const material = await this.materialService.findByProduct(
+      prod.id.toString(),
+    );
+
+    return {
+      product: prod,
+      characts: characteristic,
+      color: colors,
+      memory: memory,
+      material: material,
+    };
   }
 }
