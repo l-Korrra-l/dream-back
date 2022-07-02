@@ -78,7 +78,7 @@ export class ProductRepository
 
   async findOne(id: string): Promise<any> {
     const product = await this.prisma.product.findFirst({
-      select: {
+      include: {
         reviews: {
           select: {
             body: true,

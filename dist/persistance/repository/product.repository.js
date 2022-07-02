@@ -72,7 +72,7 @@ let ProductRepository = class ProductRepository {
     }
     async findOne(id) {
         const product = await this.prisma.product.findFirst({
-            select: {
+            include: {
                 reviews: {
                     select: {
                         body: true,
