@@ -190,7 +190,7 @@ export class ProductController {
         prod.id.toString(),
       )
     ).map((i) => {
-      if (i.section != null)
+      if (i.characteristic.section != null)
         return {
           name: i.characteristic.name,
           value: i.value,
@@ -200,7 +200,7 @@ export class ProductController {
         return {
           name: i.characteristic.name,
           value: i.value,
-          section: 'Другое',
+          section: 'Р”СЂСѓРіРѕРµ',
         };
     });
 

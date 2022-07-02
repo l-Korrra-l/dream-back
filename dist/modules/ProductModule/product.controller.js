@@ -93,7 +93,7 @@ let ProductController = class ProductController {
     async getProduct(id) {
         const prod = await this.productService.getOne(id);
         const characteristic = (await this.charactValueService.findByProductGroupbyValue(prod.id.toString())).map((i) => {
-            if (i.section != null)
+            if (i.characteristic.section != null)
                 return {
                     name: i.characteristic.name,
                     value: i.value,
@@ -103,7 +103,7 @@ let ProductController = class ProductController {
                 return {
                     name: i.characteristic.name,
                     value: i.value,
-                    section: '������',
+                    section: 'Другое',
                 };
         });
         const charact = characteristic.reduce((r, _a) => {
