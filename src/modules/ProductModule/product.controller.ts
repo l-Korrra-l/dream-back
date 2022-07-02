@@ -213,18 +213,10 @@ export class ProductController {
       },
       [],
     );
-    const colors = await this.colorService.findByProduct(prod.id.toString());
-    const memory = await this.memoryService.findByProduct(prod.id.toString());
-    const material = await this.materialService.findByProduct(
-      prod.id.toString(),
-    );
 
     return {
       product: prod,
       characts: charact,
-      color: colors,
-      memory: memory,
-      material: material,
     };
   }
 }

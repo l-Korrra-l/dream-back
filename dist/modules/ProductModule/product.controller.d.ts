@@ -20,10 +20,7 @@ export declare class ProductController {
     makeReviewForProduct(productId: any, currentUser: CurrentUserInfo, review: ReviewFromUser): Promise<import(".prisma/client").Review>;
     updateProduct(productId: string, productForUpdate: any, file: any): Promise<import(".prisma/client").Product>;
     getProduct(id: string): Promise<{
-        product: import(".prisma/client").Product;
+        product: any;
         characts: any;
-        color: import(".prisma/client").Color[];
-        memory: import(".prisma/client").Memory[];
-        material: import(".prisma/client").Material[];
     }>;
 }

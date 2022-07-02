@@ -9,7 +9,7 @@ export declare class ProductRepository implements Repository<string, Prisma.Prod
     create(data: Prisma.ProductCreateInput): Promise<Product>;
     update(id: string, data: Prisma.ProductUpdateInput): Promise<Product>;
     delete(id: string): Promise<boolean>;
-    findOne(id: string): Promise<Product>;
+    findOne(id: string): Promise<any>;
     findWithReviews(id: string): Promise<ProductWithReviews>;
     getById(id: number): Promise<Product>;
     findAll(): Promise<Product[]>;

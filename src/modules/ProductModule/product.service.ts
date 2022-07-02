@@ -39,7 +39,7 @@ export class ProductService {
     return product;
   }
 
-  async getOne(id: string): Promise<Product> {
+  async getOne(id: string): Promise<any> {
     return await this.productRepository.findOne(id);
   }
 

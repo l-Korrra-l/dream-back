@@ -13,7 +13,7 @@ export declare class ProductService {
     private caractValueRepository;
     constructor(productRepository: ProductRepository, reviewRepository: ReviewRepository, categoryRepository: CategoryRepository, caractValueRepository: CharactValueRepository);
     createProduct(inputProduct: any): Promise<Product>;
-    getOne(id: string): Promise<Product>;
+    getOne(id: string): Promise<any>;
     getAll(sort: Sort, sortby: string): Promise<Product[]>;
     findByValue(name: string, author: string): Promise<Product[]>;
     findByFilters(filters: any, sort: Sort, sortby: string): Promise<Product[]>;

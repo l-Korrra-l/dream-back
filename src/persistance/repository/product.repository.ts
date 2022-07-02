@@ -76,16 +76,46 @@ export class ProductRepository
     throw new NotFound('Not found product for delete');
   }
 
-  async findOne(id: string): Promise<Product> {
+  async findOne(id: string): Promise<any> {
     const product = await this.prisma.product.findFirst({
-      include: {
-        reviews: true,
-        CharactValue: true,
-        colors: true,
-        Memory: true,
-        materials: true,
-        category: true,
-        subcategory: true,
+      select: {
+        reviews: {
+          select: {
+            body: true,
+            createdDate: true,
+            raiting: true,
+            authorName: true,
+            productName: true,
+            text: true,
+          },
+        },
+        colors: {
+          select: {
+            color: true,
+            img_path: true,
+          },
+        },
+        Memory: {
+          select: {
+            size: true,
+          },
+        },
+        materials: {
+          select: {
+            material: true,
+            img_path: true,
+          },
+        },
+        category: {
+          select: {
+            categoryName: true,
+          },
+        },
+        subcategory: {
+          select: {
+            name: true,
+          },
+        },
       },
       where: {
         id: Number(id),
