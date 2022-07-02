@@ -87,9 +87,9 @@ model Color {
 model Information {
   id       Int      @id @unique @default(autoincrement())
   prodId   Int?
-  color    String
+  color    String?
   img_path String?
-  text     String?
+  text     String
   product  Product? @relation(fields: [prodId], references: [id])
 }
 
