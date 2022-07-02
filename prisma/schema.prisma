@@ -50,6 +50,7 @@ model Product {
   sliders       Slider[]
   CharactValue  CharactValue[]
   Memory        Memory[]
+  Information   Information[]
 }
 
 model Characteristic {
@@ -70,8 +71,8 @@ model CharactValue {
 }
 
 model Section {
-  id             Int             @id @unique @default(autoincrement())
-  value          String
+  id              Int              @id @unique @default(autoincrement())
+  value           String
   characteristics Characteristic[]
 }
 
@@ -80,6 +81,15 @@ model Color {
   prodId   Int?
   color    String
   img_path String?
+  product  Product? @relation(fields: [prodId], references: [id])
+}
+
+model Information {
+  id       Int      @id @unique @default(autoincrement())
+  prodId   Int?
+  color    String
+  img_path String?
+  text     String?
   product  Product? @relation(fields: [prodId], references: [id])
 }
 
