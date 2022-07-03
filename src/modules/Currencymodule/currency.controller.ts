@@ -33,15 +33,7 @@ export class CurrencyController {
     return await this.currencyService.createCurrency(rate);
   }
 
-  @Post()
-  @UseGuards(JwtAuthGuard, RolesGuard)
-  @Roles(Role.Admin)
-  async updateCurrencyPost(@Body() rate: string) {
-    return await this.currencyService.createCurrency(rate);
-  }
-
   @Get()
-  @UseGuards(JwtAuthGuard, RolesGuard)
   async getCurrency() {
     return await this.currencyService.getOne();
   }

@@ -77,11 +77,12 @@ model Section {
 }
 
 model Color {
-  id       Int      @id @unique @default(autoincrement())
-  prodId   Int?
-  color    String
-  img_path String?
-  product  Product? @relation(fields: [prodId], references: [id])
+  id         Int      @id @unique @default(autoincrement())
+  prodId     Int?
+  color      String
+  color_code String?
+  img_path   String?
+  product    Product? @relation(fields: [prodId], references: [id])
 }
 
 model Information {
