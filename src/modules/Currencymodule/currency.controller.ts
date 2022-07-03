@@ -42,7 +42,6 @@ export class CurrencyController {
 
   @Get()
   @UseGuards(JwtAuthGuard, RolesGuard)
-  @Roles(Role.Admin)
   async getCurrency() {
     return await this.currencyService.getOne();
   }
