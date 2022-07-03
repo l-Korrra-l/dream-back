@@ -134,7 +134,11 @@ export class ProductController {
     @Sorting() sort: Sort,
     @SortingBy() sortby: string,
     @Body() filters: any,
+    @Query('name') name: string,
+    @Query('text') text: string,
   ) {
+    filters.name = name;
+    filters.text = text;
     return await this.productService.findByFilters(filters, sort, sortby);
   }
 

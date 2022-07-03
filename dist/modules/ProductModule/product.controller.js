@@ -83,7 +83,9 @@ let ProductController = class ProductController {
     async getAllproducts(sort, sortby) {
         return await this.productService.getAll(sort, sortby);
     }
-    async searchProductss(sort, sortby, filters) {
+    async searchProductss(sort, sortby, filters, name, text) {
+        filters.name = name;
+        filters.text = text;
         return await this.productService.findByFilters(filters, sort, sortby);
     }
     async makeReviewForProduct(productId, currentUser, review) {
@@ -167,8 +169,10 @@ __decorate([
     __param(0, (0, sortheader_decorator_1.Sorting)()),
     __param(1, (0, sortbyheader_decorator_1.SortingBy)()),
     __param(2, (0, common_1.Body)()),
+    __param(3, (0, common_1.Query)('name')),
+    __param(4, (0, common_1.Query)('text')),
     __metadata("design:type", Function),
-    __metadata("design:paramtypes", [String, String, Object]),
+    __metadata("design:paramtypes", [String, String, Object, String, String]),
     __metadata("design:returntype", Promise)
 ], ProductController.prototype, "searchProductss", null);
 __decorate([
