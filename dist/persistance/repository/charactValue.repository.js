@@ -130,11 +130,11 @@ let CharactValueRepository = class CharactValueRepository {
                         section: {
                             select: {
                                 value: true,
-                            }
-                        }
-                    }
-                }
-            }
+                            },
+                        },
+                    },
+                },
+            },
         }));
     }
 };

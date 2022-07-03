@@ -150,19 +150,19 @@ export class CharactValueRepository
       where: {
         prodId: Number(id),
       },
-      select:{
+      select: {
         value: true,
-        characteristic:{
-          select:{
+        characteristic: {
+          select: {
             name: true,
-            section:{
-              select:{
-                value:true,
-              }
-            }
-          }
-        }
-      }
+            section: {
+              select: {
+                value: true,
+              },
+            },
+          },
+        },
+      },
     })) as unknown as CharactValue[];
   }
 }

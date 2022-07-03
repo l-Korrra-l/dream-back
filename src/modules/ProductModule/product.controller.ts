@@ -218,10 +218,18 @@ export class ProductController {
       },
       [],
     );
+    const color = await this.colorService.findByProduct(prod.id);
+    const colors: any = color.reduce((r, { color: name, ...object }) => {
+      let temp = r.find((o) => o.name === name);
+      if (!temp) r.push((temp = { name, children: [] }));
+      temp.children.push(object);
+      return r;
+    }, []);
 
     return {
       product: prod,
       characts: charact,
+      colors: colors,
     };
   }
 }

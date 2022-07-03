@@ -24,5 +24,6 @@ export declare class ProductController {
     getProduct(id: string): Promise<{
         product: any;
         characts: any;
+        colors: any;
     }>;
 }

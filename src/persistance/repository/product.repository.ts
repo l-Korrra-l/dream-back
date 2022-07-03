@@ -89,12 +89,7 @@ export class ProductRepository
             text: true,
           },
         },
-        colors: {
-          select: {
-            color: true,
-            img_path: true,
-          },
-        },
+        colors: false,
         Memory: {
           select: {
             size: true,
