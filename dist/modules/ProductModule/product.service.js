@@ -51,8 +51,11 @@ let ProductService = class ProductService {
     }
     async findByFilters(filters, sort, sortby) {
         let arr;
-        if (filters.name != null && filters.name != undefined)
+        console.log(filters.name);
+        if (filters.name != null && filters.name != undefined) {
             arr = await this.productRepository.findByName(filters.name, sort);
+            console.log(arr);
+        }
         else if (filters.text != null && filters.text != undefined)
             arr = await this.productRepository.findByText(filters.text, sort);
         else if (filters.producer != null && filters.producer != undefined)

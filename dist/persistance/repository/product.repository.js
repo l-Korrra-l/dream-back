@@ -205,7 +205,7 @@ let ProductRepository = class ProductRepository {
     }
     async findByName(name, sort) {
         if (sort == sort_enum_1.Sort.none)
-            sort = sort_enum_1.Sort.asc;
+            sort = sort_enum_1.Sort.desc;
         return await this.prisma.product.findMany({
             include: {
                 reviews: true,

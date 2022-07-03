@@ -221,7 +221,7 @@ export class ProductRepository
   }
 
   async findByName(name: string, sort: Sort): Promise<Product[]> {
-    if (sort == Sort.none) sort = Sort.asc;
+    if (sort == Sort.none) sort = Sort.desc;
     return await this.prisma.product.findMany({
       include: {
         reviews: true,
