@@ -219,12 +219,15 @@ export class ProductController {
       [],
     );
     const color = await this.colorService.findByProduct(prod.id);
-    const colors: any = color.reduce((r, { color: name, ...object }) => {
-      let temp = r.find((o) => o.name === name);
-      if (!temp) r.push((temp = { name, img_path: [] }));
-      temp.img_path.push(object.img_path);
-      return r;
-    }, []);
+    const colors: any = color.reduce(
+      (r, { color: name, color_code, ...object }) => {
+        let temp = r.find((o) => o.name === name);
+        if (!temp) r.push((temp = { name, color_code, img_path: [] }));
+        temp.img_path.push(object.img_path);
+        return r;
+      },
+      [],
+    );
 
     return {
       product: prod,
