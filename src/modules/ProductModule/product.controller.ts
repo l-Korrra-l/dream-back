@@ -66,10 +66,8 @@ export class ProductController {
     }),
   )
   async createProduct(
-    // @Body()
-    // productForCreate: ProductForCreate,
     @Body()
-    productForCreate: any,
+    productForCreate: ProductForCreate,
     @UploadedFile() file: Express.Multer.File,
   ) {
     if (file != undefined)
@@ -168,7 +166,6 @@ export class ProductController {
       review,
     );
   }
-
 
   @ApiOperation({ summary: 'изменить продукт по id' })
   @UseGuards(JwtAuthGuard, RolesGuard)

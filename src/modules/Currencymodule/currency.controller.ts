@@ -9,6 +9,7 @@ import {
   Post,
   UseGuards,
 } from '@nestjs/common';
+import { ApiOperation } from '@nestjs/swagger';
 import { Roles } from 'src/decorators/roles.decorator';
 import { Role } from 'src/enums/role.enum';
 import { JwtAuthGuard } from '../AuthModule/guards/jwt.guard';
@@ -19,6 +20,9 @@ import { CurrencyService } from './currency.service';
 export class CurrencyController {
   constructor(private currencyService: CurrencyService) {}
 
+  @ApiOperation({
+    summary: 'добавить курс валюты',
+  })
   @Post()
   @UseGuards(JwtAuthGuard, RolesGuard)
   @Roles(Role.Admin)
@@ -26,6 +30,9 @@ export class CurrencyController {
     return await this.currencyService.createCurrency(rate.rate);
   }
 
+  @ApiOperation({
+    summary: 'изменить курс валюты',
+  })
   @Patch()
   @UseGuards(JwtAuthGuard, RolesGuard)
   @Roles(Role.Admin)
@@ -33,6 +40,9 @@ export class CurrencyController {
     return await this.currencyService.createCurrency(rate);
   }
 
+  @ApiOperation({
+    summary: 'получить курс валюты',
+  })
   @Get()
   async getCurrency() {
     return await this.currencyService.getOne();

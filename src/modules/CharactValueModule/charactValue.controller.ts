@@ -18,6 +18,7 @@ import { Role } from 'src/enums/role.enum';
 import { JwtAuthGuard } from '../AuthModule/guards/jwt.guard';
 import { RolesGuard } from '../AuthModule/guards/roles.guard';
 import { CharactValueService } from './charactValue.service';
+import { CharacteristicValueForCreate } from './dto/characteristicvalueforcreate.dto';
 
 @Controller('charactvalue')
 export class CharactValueController {
@@ -27,10 +28,8 @@ export class CharactValueController {
   @UseGuards(JwtAuthGuard, RolesGuard)
   @Roles(Role.Admin)
   async createCharactValue(
-    // @Body()
-    // charactvalueForCreate: CharactValueForCreate,
     @Body()
-    charactvalueForCreate: any,
+    charactvalueForCreate: CharacteristicValueForCreate,
   ) {
     return await this.charactvalueService.createCharactValue(
       charactvalueForCreate,
@@ -51,7 +50,6 @@ export class CharactValueController {
     );
   }
 
-  
   @Get()
   async getAllcharactvalues(@Query('prod') prod: string) {
     if (prod != '' && prod != undefined && prod != null)

@@ -23,6 +23,7 @@ import { RolesGuard } from '../AuthModule/guards/roles.guard';
 import { MaterialService } from './material.service';
 import { diskStorage } from 'multer';
 import { imageFileFilter } from 'src/helpers/imageFilter.helpers';
+import { MaterialForCreate } from './dto/materailforcreate.dto';
 
 @Controller('material')
 export class MaterialController {
@@ -43,10 +44,8 @@ export class MaterialController {
     }),
   )
   async createMaterial(
-    // @Body()
-    // materialForCreate: MaterialForCreate,
     @Body()
-    materialForCreate: any,
+    materialForCreate: MaterialForCreate,
     @UploadedFile() file: Express.Multer.File,
   ) {
     if (file != undefined)
@@ -105,7 +104,7 @@ export class MaterialController {
       );
     return await this.materialService.deleteMaterialByProduct(prod);
   }
-  
+
   @Delete('/:id')
   async deleteMaterial(@Param('id') id: string) {
     return await this.materialService.deleteMaterial(id);

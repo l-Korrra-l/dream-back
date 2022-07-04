@@ -23,6 +23,7 @@ import { RolesGuard } from '../AuthModule/guards/roles.guard';
 import { MemoryService } from './memory.service';
 import { diskStorage } from 'multer';
 import { imageFileFilter } from 'src/helpers/imageFilter.helpers';
+import { MemoryForCreate } from './dto/memoryforcreate.dto';
 
 @Controller('memory')
 export class MemoryController {
@@ -31,55 +32,22 @@ export class MemoryController {
   @Post()
   @UseGuards(JwtAuthGuard, RolesGuard)
   @Roles(Role.Admin)
-  @UseInterceptors(
-    FileInterceptor('file', {
-      storage: diskStorage({
-        destination: 'public',
-        filename: (req: any, file: any, cb: any) => {
-          cb(null, `${uuid()}${extname(file.originalname)}`);
-        },
-      }),
-      fileFilter: imageFileFilter,
-    }),
-  )
   async createMemory(
-    // @Body()
-    // memoryForCreate: MemoryForCreate,
     @Body()
-    memoryForCreate: any,
-    @UploadedFile() file: Express.Multer.File,
+    memoryForCreate: MemoryForCreate,
   ) {
-    if (file != undefined)
-      memoryForCreate.img_path =
-        'http://194.62.19.52:7000/' + file?.path?.split('\\')[1];
     return await this.memoryService.createMemory(memoryForCreate);
   }
 
   @UseGuards(JwtAuthGuard, RolesGuard)
   @Roles(Role.Admin)
-  @UseInterceptors(
-    FileInterceptor('file', {
-      storage: diskStorage({
-        destination: 'public',
-        filename: (req: any, file: any, cb: any) => {
-          cb(null, `${uuid()}${extname(file.originalname)}`);
-        },
-      }),
-      fileFilter: imageFileFilter,
-    }),
-  )
   @Patch(':id')
   async updateMemory(
     @Param('id') memoryId: string,
     @Body()
     memoryForUpdate: any,
-    @UploadedFile() file: any,
   ) {
-    return await this.memoryService.updateMemory(
-      memoryId,
-      memoryForUpdate,
-      'http://194.62.19.52:7000/' + file.path.split('\\')[1],
-    );
+    return await this.memoryService.updateMemory(memoryId, memoryForUpdate);
   }
 
   @Get()

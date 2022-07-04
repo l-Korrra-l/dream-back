@@ -19,6 +19,7 @@ const role_enum_1 = require("../../enums/role.enum");
 const jwt_guard_1 = require("../AuthModule/guards/jwt.guard");
 const roles_guard_1 = require("../AuthModule/guards/roles.guard");
 const charactValue_service_1 = require("./charactValue.service");
+const characteristicvalueforcreate_dto_1 = require("./dto/characteristicvalueforcreate.dto");
 let CharactValueController = class CharactValueController {
     constructor(charactvalueService) {
         this.charactvalueService = charactvalueService;
@@ -52,7 +53,7 @@ __decorate([
     (0, roles_decorator_1.Roles)(role_enum_1.Role.Admin),
     __param(0, (0, common_1.Body)()),
     __metadata("design:type", Function),
-    __metadata("design:paramtypes", [Object]),
+    __metadata("design:paramtypes", [characteristicvalueforcreate_dto_1.CharacteristicValueForCreate]),
     __metadata("design:returntype", Promise)
 ], CharactValueController.prototype, "createCharactValue", null);
 __decorate([

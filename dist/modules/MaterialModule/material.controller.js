@@ -24,6 +24,7 @@ const roles_guard_1 = require("../AuthModule/guards/roles.guard");
 const material_service_1 = require("./material.service");
 const multer_1 = require("multer");
 const imageFilter_helpers_1 = require("../../helpers/imageFilter.helpers");
+const materailforcreate_dto_1 = require("./dto/materailforcreate.dto");
 let MaterialController = class MaterialController {
     constructor(materialService) {
         this.materialService = materialService;
@@ -71,7 +72,7 @@ __decorate([
     __param(0, (0, common_1.Body)()),
     __param(1, (0, common_1.UploadedFile)()),
     __metadata("design:type", Function),
-    __metadata("design:paramtypes", [Object, Object]),
+    __metadata("design:paramtypes", [materailforcreate_dto_1.MaterialForCreate, Object]),
     __metadata("design:returntype", Promise)
 ], MaterialController.prototype, "createMaterial", null);
 __decorate([

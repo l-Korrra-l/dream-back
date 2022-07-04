@@ -11,5 +11,5 @@ export declare class MemoryService {
     getAll(): Promise<Memory[]>;
     findByProduct(id: string): Promise<Memory[]>;
     findByValue(name: string): Promise<Memory[]>;
-    updateMemory(memoryId: string, memoryForUpdate: any, newImage: string): Promise<Memory>;
+    updateMemory(memoryId: string, memoryForUpdate: any): Promise<Memory>;
 }

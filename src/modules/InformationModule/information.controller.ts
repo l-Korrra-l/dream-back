@@ -23,6 +23,7 @@ import { RolesGuard } from '../AuthModule/guards/roles.guard';
 import { InformationService } from './information.service';
 import { diskStorage } from 'multer';
 import { imageFileFilter } from 'src/helpers/imageFilter.helpers';
+import { InformationForCreate } from './dto/informationforcreate.dto';
 
 @Controller('information')
 export class InformationController {
@@ -43,10 +44,8 @@ export class InformationController {
     }),
   )
   async createInformation(
-    // @Body()
-    // informationForCreate: InformationForCreate,
     @Body()
-    informationForCreate: any,
+    informationForCreate: InformationForCreate,
     @UploadedFile() file: Express.Multer.File,
   ) {
     if (file != undefined)

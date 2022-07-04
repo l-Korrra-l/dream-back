@@ -40,9 +40,7 @@ export class MemoryService {
     return await this.memoryRepository.findByValue(name);
   }
 
-  async updateMemory(memoryId: string, memoryForUpdate: any, newImage: string) {
-    const memory = await this.memoryRepository.findOne(memoryId);
-    memoryForUpdate.img_path = newImage;
+  async updateMemory(memoryId: string, memoryForUpdate: any) {
     return await this.memoryRepository.update(memoryId, memoryForUpdate);
   }
 }

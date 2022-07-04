@@ -1,6 +1,7 @@
 /// <reference types="multer" />
 import { Sort } from 'src/enums/sort.enum';
 import { CurrentUserInfo } from 'src/types/types';
+import { ProductForCreate } from './dto/productforcreate.dto';
 import { ReviewFromUser } from './dto/reviewformuser.dto';
 import { ProductService } from './product.service';
 import { CharactValueService } from '../CharactValueModule/charactValue.service';
@@ -16,7 +17,7 @@ export declare class ProductController {
     private materialService;
     private informationService;
     constructor(productService: ProductService, charactValueService: CharactValueService, colorService: ColorService, memoryService: MemoryService, materialService: MaterialService, informationService: InformationService);
-    createProduct(productForCreate: any, file: Express.Multer.File): Promise<import(".prisma/client").Product>;
+    createProduct(productForCreate: ProductForCreate, file: Express.Multer.File): Promise<import(".prisma/client").Product>;
     getAllproducts(sort: Sort, sortby: string): Promise<import(".prisma/client").Product[]>;
     searchProductss(sort: Sort, sortby: string, filters: any, name: string, text: string, min_price: string, max_price: string, producer: string): Promise<import(".prisma/client").Product[]>;
     makeReviewForProduct(productId: any, currentUser: CurrentUserInfo, review: ReviewFromUser): Promise<import(".prisma/client").Review>;

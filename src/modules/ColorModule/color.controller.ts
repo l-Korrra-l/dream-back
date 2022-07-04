@@ -23,6 +23,7 @@ import { RolesGuard } from '../AuthModule/guards/roles.guard';
 import { ColorService } from './color.service';
 import { diskStorage } from 'multer';
 import { imageFileFilter } from 'src/helpers/imageFilter.helpers';
+import { ColorForCreate } from './dto/colorforcreate.dto';
 
 @Controller('color')
 export class ColorController {
@@ -43,10 +44,8 @@ export class ColorController {
     }),
   )
   async createColor(
-    // @Body()
-    // colorForCreate: ColorForCreate,
     @Body()
-    colorForCreate: any,
+    colorForCreate: ColorForCreate,
     @UploadedFile() file: Express.Multer.File,
   ) {
     if (file != undefined)

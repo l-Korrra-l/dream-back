@@ -24,6 +24,7 @@ const roles_guard_1 = require("../AuthModule/guards/roles.guard");
 const color_service_1 = require("./color.service");
 const multer_1 = require("multer");
 const imageFilter_helpers_1 = require("../../helpers/imageFilter.helpers");
+const colorforcreate_dto_1 = require("./dto/colorforcreate.dto");
 let ColorController = class ColorController {
     constructor(colorService) {
         this.colorService = colorService;
@@ -74,7 +75,7 @@ __decorate([
     __param(0, (0, common_1.Body)()),
     __param(1, (0, common_1.UploadedFile)()),
     __metadata("design:type", Function),
-    __metadata("design:paramtypes", [Object, Object]),
+    __metadata("design:paramtypes", [colorforcreate_dto_1.ColorForCreate, Object]),
     __metadata("design:returntype", Promise)
 ], ColorController.prototype, "createColor", null);
 __decorate([

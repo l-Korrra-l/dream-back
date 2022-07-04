@@ -27,8 +27,8 @@ let OrderController = class OrderController {
     async createProduct(user, orderForCreate) {
         this.emailservice.sendMail({
             to: user.email,
-            subject: 'Dreamstore �����',
-            text: '��� ����� ��������',
+            subject: 'Dreamstore заказ',
+            text: 'Ваш заказ оформлен',
         });
         return await this.orderService.createOrder(orderForCreate, user.userId);
     }
@@ -42,7 +42,7 @@ let OrderController = class OrderController {
 __decorate([
     (0, common_1.Post)(),
     (0, swagger_1.ApiOperation)({
-        summary: '���������� ������ ������ ������ {buckets: {prodid:, quantity:}}',
+        summary: 'добавление заказа массив корзин {buckets: {prodid:, quantity:}}',
     }),
     __param(0, (0, currentuser_decorator_1.CurrentUser)()),
     __param(1, (0, common_1.Body)()),
@@ -51,7 +51,7 @@ __decorate([
     __metadata("design:returntype", Promise)
 ], OrderController.prototype, "createProduct", null);
 __decorate([
-    (0, swagger_1.ApiOperation)({ summary: '�������� ����� �� id' }),
+    (0, swagger_1.ApiOperation)({ summary: 'получить заказ по id' }),
     (0, common_1.Get)('/:id'),
     __param(0, (0, common_1.Param)('id')),
     __metadata("design:type", Function),
@@ -61,7 +61,7 @@ __decorate([
 __decorate([
     (0, common_1.Get)(),
     (0, swagger_1.ApiOperation)({
-        summary: '��� ������ �������� ������������, ���� ��� ��� �����������������/������',
+        summary: 'все заказы текущего пользователя, либо все для неавторизованного/админа',
     }),
     __param(0, (0, currentuser_decorator_1.CurrentUser)()),
     __metadata("design:type", Function),

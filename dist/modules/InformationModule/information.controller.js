@@ -24,6 +24,7 @@ const roles_guard_1 = require("../AuthModule/guards/roles.guard");
 const information_service_1 = require("./information.service");
 const multer_1 = require("multer");
 const imageFilter_helpers_1 = require("../../helpers/imageFilter.helpers");
+const informationforcreate_dto_1 = require("./dto/informationforcreate.dto");
 let InformationController = class InformationController {
     constructor(informationService) {
         this.informationService = informationService;
@@ -72,7 +73,7 @@ __decorate([
     __param(0, (0, common_1.Body)()),
     __param(1, (0, common_1.UploadedFile)()),
     __metadata("design:type", Function),
-    __metadata("design:paramtypes", [Object, Object]),
+    __metadata("design:paramtypes", [informationforcreate_dto_1.InformationForCreate, Object]),
     __metadata("design:returntype", Promise)
 ], InformationController.prototype, "createInformation", null);
 __decorate([
