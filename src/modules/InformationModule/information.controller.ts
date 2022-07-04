@@ -32,8 +32,7 @@ export class InformationController {
 
   @Post()
   @UseGuards(JwtAuthGuard, RolesGuard)
-  @Roles(Role.Admin)
-  @ApiBearerAuth('access-token')
+ 
   @UseInterceptors(
     FileInterceptor('file', {
       storage: diskStorage({
@@ -59,8 +58,7 @@ export class InformationController {
   }
 
   @UseGuards(JwtAuthGuard, RolesGuard)
-  @Roles(Role.Admin)
-  @ApiBearerAuth('access-token')
+ 
   @UseInterceptors(
     FileInterceptor('file', {
       storage: diskStorage({

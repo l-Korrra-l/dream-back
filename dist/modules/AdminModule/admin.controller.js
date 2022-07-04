@@ -14,9 +14,6 @@ var __param = (this && this.__param) || function (paramIndex, decorator) {
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.AdminController = void 0;
 const common_1 = require("@nestjs/common");
-const swagger_1 = require("@nestjs/swagger");
-const roles_decorator_1 = require("../../decorators/roles.decorator");
-const role_enum_1 = require("../../enums/role.enum");
 const jwt_guard_1 = require("../AuthModule/guards/jwt.guard");
 const roles_guard_1 = require("../AuthModule/guards/roles.guard");
 const admin_service_1 = require("./admin.service");
@@ -36,8 +33,6 @@ let AdminController = class AdminController {
 };
 __decorate([
     (0, common_1.UseGuards)(jwt_guard_1.JwtAuthGuard, roles_guard_1.RolesGuard),
-    (0, roles_decorator_1.Roles)(role_enum_1.Role.Admin),
-    (0, swagger_1.ApiBearerAuth)('access-token'),
     (0, common_1.Delete)('/user/:id'),
     (0, common_1.HttpCode)(common_1.HttpStatus.OK),
     __param(0, (0, common_1.Param)('id')),
@@ -47,8 +42,6 @@ __decorate([
 ], AdminController.prototype, "deleteUserByAdmin", null);
 __decorate([
     (0, common_1.UseGuards)(jwt_guard_1.JwtAuthGuard, roles_guard_1.RolesGuard),
-    (0, roles_decorator_1.Roles)(role_enum_1.Role.Admin),
-    (0, swagger_1.ApiBearerAuth)('access-token'),
     (0, common_1.Delete)('/productd/:id'),
     (0, common_1.HttpCode)(common_1.HttpStatus.OK),
     __param(0, (0, common_1.Param)('id')),
@@ -58,8 +51,6 @@ __decorate([
 ], AdminController.prototype, "deleteProductByAdmin", null);
 __decorate([
     (0, common_1.UseGuards)(jwt_guard_1.JwtAuthGuard, roles_guard_1.RolesGuard),
-    (0, roles_decorator_1.Roles)(role_enum_1.Role.Admin),
-    (0, swagger_1.ApiBearerAuth)('access-token'),
     (0, common_1.Delete)('/review/:id'),
     (0, common_1.HttpCode)(common_1.HttpStatus.OK),
     __param(0, (0, common_1.Param)('id')),

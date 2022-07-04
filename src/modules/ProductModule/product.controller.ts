@@ -53,8 +53,7 @@ export class ProductController {
   @ApiOperation({ summary: 'добавить продукт' })
   @Post()
   @UseGuards(JwtAuthGuard, RolesGuard)
-  @Roles(Role.Admin)
-  @ApiBearerAuth('access-token')
+ 
   @UseInterceptors(
     FileInterceptor('file', {
       storage: diskStorage({
@@ -170,8 +169,7 @@ export class ProductController {
 
   @ApiOperation({ summary: 'изменить продукт по id' })
   @UseGuards(JwtAuthGuard, RolesGuard)
-  @Roles(Role.Admin)
-  @ApiBearerAuth('access-token')
+ 
   @UseInterceptors(
     FileInterceptor('file', {
       storage: diskStorage({

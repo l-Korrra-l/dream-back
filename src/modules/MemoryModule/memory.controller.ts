@@ -32,8 +32,7 @@ export class MemoryController {
 
   @Post()
   @UseGuards(JwtAuthGuard, RolesGuard)
-  @Roles(Role.Admin)
-  @ApiBearerAuth('access-token')
+ 
   async createMemory(
     @Body()
     memoryForCreate: MemoryForCreate,
@@ -42,8 +41,7 @@ export class MemoryController {
   }
 
   @UseGuards(JwtAuthGuard, RolesGuard)
-  @Roles(Role.Admin)
-  @ApiBearerAuth('access-token')
+ 
   @Patch(':id')
   async updateMemory(
     @Param('id') memoryId: string,

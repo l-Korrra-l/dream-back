@@ -27,8 +27,7 @@ export class SectionController {
   @ApiOperation({ summary: 'добавить раздел описания' })
   @Post()
   @UseGuards(JwtAuthGuard, RolesGuard)
-  @Roles(Role.Admin)
-  @ApiBearerAuth('access-token')
+ 
   async createSection(
     @Body()
     sectionForCreate: any,
@@ -40,8 +39,7 @@ export class SectionController {
     summary: 'изменить раздел описания по id',
   })
   @UseGuards(JwtAuthGuard, RolesGuard)
-  @Roles(Role.Admin)
-  @ApiBearerAuth('access-token')
+ 
   @Patch(':id')
   async updateSection(
     @Param('id') sectionId: string,

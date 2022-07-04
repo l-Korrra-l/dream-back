@@ -14,9 +14,6 @@ var __param = (this && this.__param) || function (paramIndex, decorator) {
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.CharactValueController = void 0;
 const common_1 = require("@nestjs/common");
-const swagger_1 = require("@nestjs/swagger");
-const roles_decorator_1 = require("../../decorators/roles.decorator");
-const role_enum_1 = require("../../enums/role.enum");
 const jwt_guard_1 = require("../AuthModule/guards/jwt.guard");
 const roles_guard_1 = require("../AuthModule/guards/roles.guard");
 const charactValue_service_1 = require("./charactValue.service");
@@ -51,8 +48,6 @@ let CharactValueController = class CharactValueController {
 __decorate([
     (0, common_1.Post)(),
     (0, common_1.UseGuards)(jwt_guard_1.JwtAuthGuard, roles_guard_1.RolesGuard),
-    (0, roles_decorator_1.Roles)(role_enum_1.Role.Admin),
-    (0, swagger_1.ApiBearerAuth)('access-token'),
     __param(0, (0, common_1.Body)()),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", [characteristicvalueforcreate_dto_1.CharacteristicValueForCreate]),
@@ -60,8 +55,6 @@ __decorate([
 ], CharactValueController.prototype, "createCharactValue", null);
 __decorate([
     (0, common_1.UseGuards)(jwt_guard_1.JwtAuthGuard, roles_guard_1.RolesGuard),
-    (0, roles_decorator_1.Roles)(role_enum_1.Role.Admin),
-    (0, swagger_1.ApiBearerAuth)('access-token'),
     (0, common_1.Patch)(':id'),
     __param(0, (0, common_1.Param)('id')),
     __param(1, (0, common_1.Body)()),

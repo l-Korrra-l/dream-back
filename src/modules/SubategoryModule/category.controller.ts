@@ -35,8 +35,7 @@ export class CategoryController {
 
   @Post()
   @UseGuards(JwtAuthGuard, RolesGuard)
-  @Roles(Role.Admin)
-  @ApiBearerAuth('access-token')
+ 
   @UseInterceptors(
     FileInterceptor('file', {
       storage: diskStorage({
@@ -73,16 +72,14 @@ export class CategoryController {
 
   @Delete('/:id')
   @UseGuards(JwtAuthGuard, RolesGuard)
-  @Roles(Role.Admin)
-  @ApiBearerAuth('access-token')
+ 
   async deleteProduct(@Param('id') id: string) {
     return await this.categoryService.delete(id);
   }
 
   @Patch('/:id')
   @UseGuards(JwtAuthGuard, RolesGuard)
-  @Roles(Role.Admin)
-  @ApiBearerAuth('access-token')
+ 
   @UseInterceptors(
     FileInterceptor('file', {
       storage: diskStorage({

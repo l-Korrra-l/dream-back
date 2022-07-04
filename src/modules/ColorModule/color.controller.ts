@@ -32,8 +32,7 @@ export class ColorController {
 
   @Post()
   @UseGuards(JwtAuthGuard, RolesGuard)
-  @Roles(Role.Admin)
-  @ApiBearerAuth('access-token')
+ 
   @UseInterceptors(
     FileInterceptor('file', {
       storage: diskStorage({
@@ -57,8 +56,7 @@ export class ColorController {
   }
 
   @UseGuards(JwtAuthGuard, RolesGuard)
-  @Roles(Role.Admin)
-  @ApiBearerAuth('access-token')
+ 
   @UseInterceptors(
     FileInterceptor('file', {
       storage: diskStorage({

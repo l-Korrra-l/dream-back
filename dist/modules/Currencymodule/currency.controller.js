@@ -15,8 +15,6 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.CurrencyController = void 0;
 const common_1 = require("@nestjs/common");
 const swagger_1 = require("@nestjs/swagger");
-const roles_decorator_1 = require("../../decorators/roles.decorator");
-const role_enum_1 = require("../../enums/role.enum");
 const jwt_guard_1 = require("../AuthModule/guards/jwt.guard");
 const roles_guard_1 = require("../AuthModule/guards/roles.guard");
 const currency_service_1 = require("./currency.service");
@@ -40,8 +38,6 @@ __decorate([
     }),
     (0, common_1.Post)(),
     (0, common_1.UseGuards)(jwt_guard_1.JwtAuthGuard, roles_guard_1.RolesGuard),
-    (0, roles_decorator_1.Roles)(role_enum_1.Role.Admin),
-    (0, swagger_1.ApiBearerAuth)('access-token'),
     __param(0, (0, common_1.Body)()),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", [Object]),
@@ -53,8 +49,6 @@ __decorate([
     }),
     (0, common_1.Patch)(),
     (0, common_1.UseGuards)(jwt_guard_1.JwtAuthGuard, roles_guard_1.RolesGuard),
-    (0, roles_decorator_1.Roles)(role_enum_1.Role.Admin),
-    (0, swagger_1.ApiBearerAuth)('access-token'),
     __param(0, (0, common_1.Body)()),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", [String]),

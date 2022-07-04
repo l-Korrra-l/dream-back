@@ -18,8 +18,7 @@ export class AdminController {
   constructor(private adminService: AdminService) {}
 
   @UseGuards(JwtAuthGuard, RolesGuard)
-  @Roles(Role.Admin)
-  @ApiBearerAuth('access-token')
+ 
   @Delete('/user/:id')
   @HttpCode(HttpStatus.OK)
   async deleteUserByAdmin(@Param('id') userId) {
@@ -27,8 +26,7 @@ export class AdminController {
   }
 
   @UseGuards(JwtAuthGuard, RolesGuard)
-  @Roles(Role.Admin)
-  @ApiBearerAuth('access-token')
+ 
   @Delete('/productd/:id')
   @HttpCode(HttpStatus.OK)
   async deleteProductByAdmin(@Param('id') productId) {
@@ -36,8 +34,7 @@ export class AdminController {
   }
 
   @UseGuards(JwtAuthGuard, RolesGuard)
-  @Roles(Role.Admin)
-  @ApiBearerAuth('access-token')
+ 
   @Delete('/review/:id')
   @HttpCode(HttpStatus.OK)
   async deleteReviewByAdmin(@Param('id') recordId) {
