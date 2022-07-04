@@ -29,9 +29,7 @@ const platform_express_1 = require("@nestjs/platform-express");
 const uuid_1 = require("uuid");
 const path_1 = require("path");
 const currentuser_decorator_1 = require("../../decorators/currentuser.decorator");
-const roles_decorator_1 = require("../../decorators/roles.decorator");
 const sortheader_decorator_1 = require("../../decorators/sortheader.decorator");
-const role_enum_1 = require("../../enums/role.enum");
 const sort_enum_1 = require("../../enums/sort.enum");
 const joivalidation_pipe_1 = require("../../validation/joivalidation.pipe");
 const reviewFromUser_schema_1 = require("../../validation/schemas/reviewFromUser.schema");
@@ -146,7 +144,6 @@ __decorate([
     (0, swagger_1.ApiOperation)({ summary: 'добавить продукт' }),
     (0, common_1.Post)(),
     (0, common_1.UseGuards)(jwt_guard_1.JwtAuthGuard, roles_guard_1.RolesGuard),
-    (0, roles_decorator_1.Roles)(role_enum_1.Role.Admin),
     (0, swagger_1.ApiBearerAuth)('access-token'),
     (0, common_1.UseInterceptors)((0, platform_express_1.FileInterceptor)('file', {
         storage: (0, multer_1.diskStorage)({
@@ -202,7 +199,6 @@ __decorate([
 __decorate([
     (0, swagger_1.ApiOperation)({ summary: 'изменить продукт по id' }),
     (0, common_1.UseGuards)(jwt_guard_1.JwtAuthGuard, roles_guard_1.RolesGuard),
-    (0, roles_decorator_1.Roles)(role_enum_1.Role.Admin),
     (0, swagger_1.ApiBearerAuth)('access-token'),
     (0, common_1.UseInterceptors)((0, platform_express_1.FileInterceptor)('file', {
         storage: (0, multer_1.diskStorage)({

@@ -40,7 +40,7 @@ export class ServiceController {
 
   @Post()
   @UseGuards(JwtAuthGuard, RolesGuard)
-  @Roles(Role.Admin)
+ 
   @ApiBearerAuth('access-token')
   @UseInterceptors(
     FileInterceptor('file', {
@@ -114,7 +114,7 @@ export class ServiceController {
     summary: 'изменить информацию о услуге по id',
   })
   @UseGuards(JwtAuthGuard, RolesGuard)
-  @Roles(Role.Admin)
+ 
   @ApiBearerAuth('access-token')
   @UseInterceptors(
     FileInterceptor('file', {

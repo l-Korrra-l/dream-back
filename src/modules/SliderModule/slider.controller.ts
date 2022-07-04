@@ -43,7 +43,7 @@ export class SliderController {
     }),
   )
   @UseGuards(JwtAuthGuard, RolesGuard)
-  @Roles(Role.Admin)
+ 
   @ApiBearerAuth('access-token')
   async createProduct(
     @Body()
@@ -71,7 +71,7 @@ export class SliderController {
     }),
   )
   @UseGuards(JwtAuthGuard, RolesGuard)
-  @Roles(Role.Admin)
+ 
   @ApiBearerAuth('access-token')
   async updateProduct(
     @Body()
@@ -105,7 +105,7 @@ export class SliderController {
     summary: 'удалить объект карусели по id',
   })
   @UseGuards(JwtAuthGuard, RolesGuard)
-  @Roles(Role.Admin)
+ 
   @ApiBearerAuth('access-token')
   @Delete('/:id')
   async deleteSlider(@Param('id') id: string) {

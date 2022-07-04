@@ -26,7 +26,7 @@ export class CharacteristicController {
 
   @Post()
   @UseGuards(JwtAuthGuard, RolesGuard)
-  @Roles(Role.Admin)
+ 
   @ApiBearerAuth('access-token')
   async createCharacteristic(
     @Body()
@@ -38,7 +38,7 @@ export class CharacteristicController {
   }
 
   @UseGuards(JwtAuthGuard, RolesGuard)
-  @Roles(Role.Admin)
+ 
   @ApiBearerAuth('access-token')
   @Patch(':id')
   async updateCharacteristic(

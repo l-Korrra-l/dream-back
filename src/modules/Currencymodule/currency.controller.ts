@@ -25,7 +25,7 @@ export class CurrencyController {
   })
   @Post()
   @UseGuards(JwtAuthGuard, RolesGuard)
-  @Roles(Role.Admin)
+ 
   @ApiBearerAuth('access-token')
   async createCurrency(@Body() rate: any) {
     return await this.currencyService.createCurrency(rate.rate);
@@ -36,7 +36,7 @@ export class CurrencyController {
   })
   @Patch()
   @UseGuards(JwtAuthGuard, RolesGuard)
-  @Roles(Role.Admin)
+ 
   @ApiBearerAuth('access-token')
   async updateCurrency(@Body() rate: string) {
     return await this.currencyService.createCurrency(rate);

@@ -31,7 +31,7 @@ export class DiscountSeasonController {
 
   @Post()
   @UseGuards(JwtAuthGuard, RolesGuard)
-  @Roles(Role.Admin)
+ 
   @ApiBearerAuth('access-token')
   async createDiscountSeason(
     // @Body()
@@ -45,7 +45,7 @@ export class DiscountSeasonController {
   }
 
   @UseGuards(JwtAuthGuard, RolesGuard)
-  @Roles(Role.Admin)
+ 
   @ApiBearerAuth('access-token')
   @Patch(':id')
   async updateDiscountSeason(

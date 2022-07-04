@@ -27,7 +27,7 @@ export class CharactValueController {
 
   @Post()
   @UseGuards(JwtAuthGuard, RolesGuard)
-  @Roles(Role.Admin)
+ 
   @ApiBearerAuth('access-token')
   async createCharactValue(
     @Body()
@@ -39,7 +39,7 @@ export class CharactValueController {
   }
 
   @UseGuards(JwtAuthGuard, RolesGuard)
-  @Roles(Role.Admin)
+ 
   @ApiBearerAuth('access-token')
   @Patch(':id')
   async updateCharactValue(

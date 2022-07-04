@@ -32,7 +32,7 @@ export class MaterialController {
 
   @Post()
   @UseGuards(JwtAuthGuard, RolesGuard)
-  @Roles(Role.Admin)
+ 
   @ApiBearerAuth('access-token')
   @UseInterceptors(
     FileInterceptor('file', {
@@ -57,7 +57,7 @@ export class MaterialController {
   }
 
   @UseGuards(JwtAuthGuard, RolesGuard)
-  @Roles(Role.Admin)
+ 
   @ApiBearerAuth('access-token')
   @UseInterceptors(
     FileInterceptor('file', {

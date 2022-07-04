@@ -31,7 +31,7 @@ export class DiscountController {
 
   @Post()
   @UseGuards(JwtAuthGuard, RolesGuard)
-  @Roles(Role.Admin)
+ 
   @ApiBearerAuth('access-token')
   async createDiscount(
     // @Body()
@@ -43,7 +43,7 @@ export class DiscountController {
   }
 
   @UseGuards(JwtAuthGuard, RolesGuard)
-  @Roles(Role.Admin)
+ 
   @ApiBearerAuth('access-token')
   @Patch(':id')
   async updateDiscount(
