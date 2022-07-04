@@ -56,7 +56,7 @@ export class InformationController {
     );
   }
 
-  @UseGuards(JwtAuthGuard, RolesGuard)
+  // @UseGuards(JwtAuthGuard, RolesGuard)
   @UseInterceptors(
     FileInterceptor('file', {
       storage: diskStorage({

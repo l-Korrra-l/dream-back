@@ -35,7 +35,7 @@ export class CharacteristicController {
     );
   }
 
-  @UseGuards(JwtAuthGuard, RolesGuard)
+  // @UseGuards(JwtAuthGuard, RolesGuard)
  
   @Patch(':id')
   async updateCharacteristic(

@@ -27,16 +27,16 @@ import { ApiOperation } from '@nestjs/swagger';
 export class UserController {
   constructor(private userService: UserService) {}
 
-  @UseGuards(JwtAuthGuard)
-  @Roles(Role.User, Role.Admin)
+  // @UseGuards(JwtAuthGuard)
+  // @Roles(Role.User, Role.Admin)
   @Get()
   @ApiOperation({ summary: 'получить данные авторизованного пользователя' })
   async getUserProfile(@CurrentUser() user: CurrentUserInfo) {
     return await this.userService.getProfile(user.userId);
   }
 
-  @UseGuards(JwtAuthGuard)
-  @Roles(Role.User, Role.Admin)
+  // @UseGuards(JwtAuthGuard)
+  // @Roles(Role.User, Role.Admin)
   @UseInterceptors(
     FileInterceptor('file', {
       storage: diskStorage({

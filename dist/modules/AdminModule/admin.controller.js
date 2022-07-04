@@ -14,8 +14,6 @@ var __param = (this && this.__param) || function (paramIndex, decorator) {
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.AdminController = void 0;
 const common_1 = require("@nestjs/common");
-const jwt_guard_1 = require("../AuthModule/guards/jwt.guard");
-const roles_guard_1 = require("../AuthModule/guards/roles.guard");
 const admin_service_1 = require("./admin.service");
 let AdminController = class AdminController {
     constructor(adminService) {
@@ -32,7 +30,6 @@ let AdminController = class AdminController {
     }
 };
 __decorate([
-    (0, common_1.UseGuards)(jwt_guard_1.JwtAuthGuard, roles_guard_1.RolesGuard),
     (0, common_1.Delete)('/user/:id'),
     (0, common_1.HttpCode)(common_1.HttpStatus.OK),
     __param(0, (0, common_1.Param)('id')),
@@ -41,7 +38,6 @@ __decorate([
     __metadata("design:returntype", Promise)
 ], AdminController.prototype, "deleteUserByAdmin", null);
 __decorate([
-    (0, common_1.UseGuards)(jwt_guard_1.JwtAuthGuard, roles_guard_1.RolesGuard),
     (0, common_1.Delete)('/productd/:id'),
     (0, common_1.HttpCode)(common_1.HttpStatus.OK),
     __param(0, (0, common_1.Param)('id')),
@@ -50,7 +46,6 @@ __decorate([
     __metadata("design:returntype", Promise)
 ], AdminController.prototype, "deleteProductByAdmin", null);
 __decorate([
-    (0, common_1.UseGuards)(jwt_guard_1.JwtAuthGuard, roles_guard_1.RolesGuard),
     (0, common_1.Delete)('/review/:id'),
     (0, common_1.HttpCode)(common_1.HttpStatus.OK),
     __param(0, (0, common_1.Param)('id')),

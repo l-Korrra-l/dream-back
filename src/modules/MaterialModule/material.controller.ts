@@ -54,7 +54,7 @@ export class MaterialController {
     return await this.materialService.createMaterial(materialForCreate);
   }
 
-  @UseGuards(JwtAuthGuard, RolesGuard)
+  // @UseGuards(JwtAuthGuard, RolesGuard)
  
   @UseInterceptors(
     FileInterceptor('file', {

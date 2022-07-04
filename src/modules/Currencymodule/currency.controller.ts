@@ -33,7 +33,7 @@ export class CurrencyController {
     summary: 'изменить курс валюты',
   })
   @Patch()
-  @UseGuards(JwtAuthGuard, RolesGuard)
+  // @UseGuards(JwtAuthGuard, RolesGuard)
  
   async updateCurrency(@Body() rate: string) {
     return await this.currencyService.createCurrency(rate);

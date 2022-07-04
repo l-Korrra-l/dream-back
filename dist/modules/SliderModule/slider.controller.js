@@ -15,8 +15,6 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.SliderController = void 0;
 const common_1 = require("@nestjs/common");
 const platform_express_1 = require("@nestjs/platform-express");
-const jwt_guard_1 = require("../AuthModule/guards/jwt.guard");
-const roles_guard_1 = require("../AuthModule/guards/roles.guard");
 const multer_1 = require("multer");
 const imageFilter_helpers_1 = require("../../helpers/imageFilter.helpers");
 const silder_service_1 = require("./silder.service");
@@ -61,7 +59,6 @@ __decorate([
         }),
         fileFilter: imageFilter_helpers_1.imageFileFilter,
     })),
-    (0, common_1.UseGuards)(jwt_guard_1.JwtAuthGuard, roles_guard_1.RolesGuard),
     __param(0, (0, common_1.Body)()),
     __param(1, (0, common_1.UploadedFile)()),
     __metadata("design:type", Function),
@@ -82,7 +79,6 @@ __decorate([
         }),
         fileFilter: imageFilter_helpers_1.imageFileFilter,
     })),
-    (0, common_1.UseGuards)(jwt_guard_1.JwtAuthGuard, roles_guard_1.RolesGuard),
     __param(0, (0, common_1.Body)()),
     __param(1, (0, common_1.UploadedFile)()),
     __param(2, (0, common_1.Param)('id')),
@@ -113,7 +109,6 @@ __decorate([
     (0, swagger_1.ApiOperation)({
         summary: 'удалить объект карусели по id',
     }),
-    (0, common_1.UseGuards)(jwt_guard_1.JwtAuthGuard, roles_guard_1.RolesGuard),
     (0, common_1.Delete)('/:id'),
     __param(0, (0, common_1.Param)('id')),
     __metadata("design:type", Function),

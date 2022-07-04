@@ -39,7 +39,7 @@ export class MemoryController {
     return await this.memoryService.createMemory(memoryForCreate);
   }
 
-  @UseGuards(JwtAuthGuard, RolesGuard)
+  // @UseGuards(JwtAuthGuard, RolesGuard)
  
   @Patch(':id')
   async updateMemory(

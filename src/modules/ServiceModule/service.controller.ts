@@ -92,7 +92,7 @@ export class ServiceController {
   @ApiOperation({
     summary: 'оставить отзыв о услуге по id',
   })
-  @UseGuards(JwtAuthGuard)
+  // @UseGuards(JwtAuthGuard)
   @Post('makereview/:serviceId')
   @HttpCode(HttpStatus.CREATED)
   async makeReviewForService(
@@ -111,7 +111,7 @@ export class ServiceController {
   @ApiOperation({
     summary: 'изменить информацию о услуге по id',
   })
-  @UseGuards(JwtAuthGuard, RolesGuard)
+  // @UseGuards(JwtAuthGuard, RolesGuard)
  
   @UseInterceptors(
     FileInterceptor('file', {

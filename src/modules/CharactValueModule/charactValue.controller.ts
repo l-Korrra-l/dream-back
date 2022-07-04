@@ -26,7 +26,6 @@ export class CharactValueController {
   constructor(private charactvalueService: CharactValueService) {}
 
    @Post()
- 
   async createCharactValue(
     @Body()
     charactvalueForCreate: CharacteristicValueForCreate,
@@ -36,7 +35,7 @@ export class CharactValueController {
     );
   }
 
-  @UseGuards(JwtAuthGuard, RolesGuard)
+  // @UseGuards(JwtAuthGuard, RolesGuard)
  
   @Patch(':id')
   async updateCharactValue(

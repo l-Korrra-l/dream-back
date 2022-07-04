@@ -17,15 +17,14 @@ import { AdminService } from './admin.service';
 export class AdminController {
   constructor(private adminService: AdminService) {}
 
-  @UseGuards(JwtAuthGuard, RolesGuard)
- 
+  // @UseGuards(JwtAuthGuard, RolesGuard)
   @Delete('/user/:id')
   @HttpCode(HttpStatus.OK)
   async deleteUserByAdmin(@Param('id') userId) {
     await this.adminService.deleteUser(userId);
   }
 
-  @UseGuards(JwtAuthGuard, RolesGuard)
+  // @UseGuards(JwtAuthGuard, RolesGuard)
  
   @Delete('/productd/:id')
   @HttpCode(HttpStatus.OK)
@@ -33,7 +32,7 @@ export class AdminController {
     await this.adminService.deleteProduct(productId);
   }
 
-  @UseGuards(JwtAuthGuard, RolesGuard)
+  // @UseGuards(JwtAuthGuard, RolesGuard)
  
   @Delete('/review/:id')
   @HttpCode(HttpStatus.OK)

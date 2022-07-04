@@ -37,7 +37,7 @@ export class SectionController {
   @ApiOperation({
     summary: 'изменить раздел описания по id',
   })
-  @UseGuards(JwtAuthGuard, RolesGuard)
+  // @UseGuards(JwtAuthGuard, RolesGuard)
  
   @Patch(':id')
   async updateSection(

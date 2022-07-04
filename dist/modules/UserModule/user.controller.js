@@ -16,11 +16,8 @@ exports.UserController = void 0;
 const common_1 = require("@nestjs/common");
 const platform_express_1 = require("@nestjs/platform-express");
 const currentuser_decorator_1 = require("../../decorators/currentuser.decorator");
-const roles_decorator_1 = require("../../decorators/roles.decorator");
-const role_enum_1 = require("../../enums/role.enum");
 const joivalidation_pipe_1 = require("../../validation/joivalidation.pipe");
 const userForUpdate_schema_1 = require("../../validation/schemas/userForUpdate.schema");
-const jwt_guard_1 = require("../AuthModule/guards/jwt.guard");
 const userforupdate_dto_1 = require("./dto/userforupdate.dto");
 const user_service_1 = require("./user.service");
 const multer_1 = require("multer");
@@ -41,8 +38,6 @@ let UserController = class UserController {
     }
 };
 __decorate([
-    (0, common_1.UseGuards)(jwt_guard_1.JwtAuthGuard),
-    (0, roles_decorator_1.Roles)(role_enum_1.Role.User, role_enum_1.Role.Admin),
     (0, common_1.Get)(),
     (0, swagger_1.ApiOperation)({ summary: 'получить данные авторизованного пользователя' }),
     __param(0, (0, currentuser_decorator_1.CurrentUser)()),
@@ -51,8 +46,6 @@ __decorate([
     __metadata("design:returntype", Promise)
 ], UserController.prototype, "getUserProfile", null);
 __decorate([
-    (0, common_1.UseGuards)(jwt_guard_1.JwtAuthGuard),
-    (0, roles_decorator_1.Roles)(role_enum_1.Role.User, role_enum_1.Role.Admin),
     (0, common_1.UseInterceptors)((0, platform_express_1.FileInterceptor)('file', {
         storage: (0, multer_1.diskStorage)({
             destination: 'public',

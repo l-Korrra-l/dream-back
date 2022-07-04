@@ -70,14 +70,14 @@ export class CategoryController {
   }
 
   @Delete('/:id')
-  @UseGuards(JwtAuthGuard, RolesGuard)
+  // @UseGuards(JwtAuthGuard, RolesGuard)
  
   async deleteProduct(@Param('id') id: string) {
     return await this.categoryService.delete(id);
   }
 
   @Patch('/:id')
-  @UseGuards(JwtAuthGuard, RolesGuard)
+  // @UseGuards(JwtAuthGuard, RolesGuard)
  
   @UseInterceptors(
     FileInterceptor('file', {

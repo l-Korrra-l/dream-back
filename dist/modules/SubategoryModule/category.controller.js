@@ -15,8 +15,6 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.CategoryController = void 0;
 const common_1 = require("@nestjs/common");
 const platform_express_1 = require("@nestjs/platform-express");
-const jwt_guard_1 = require("../AuthModule/guards/jwt.guard");
-const roles_guard_1 = require("../AuthModule/guards/roles.guard");
 const multer_1 = require("multer");
 const imageFilter_helpers_1 = require("../../helpers/imageFilter.helpers");
 const category_service_1 = require("./category.service");
@@ -83,7 +81,6 @@ __decorate([
 ], CategoryController.prototype, "getAllproducts", null);
 __decorate([
     (0, common_1.Delete)('/:id'),
-    (0, common_1.UseGuards)(jwt_guard_1.JwtAuthGuard, roles_guard_1.RolesGuard),
     __param(0, (0, common_1.Param)('id')),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", [String]),
@@ -91,7 +88,6 @@ __decorate([
 ], CategoryController.prototype, "deleteProduct", null);
 __decorate([
     (0, common_1.Patch)('/:id'),
-    (0, common_1.UseGuards)(jwt_guard_1.JwtAuthGuard, roles_guard_1.RolesGuard),
     (0, common_1.UseInterceptors)((0, platform_express_1.FileInterceptor)('file', {
         storage: (0, multer_1.diskStorage)({
             destination: 'public',

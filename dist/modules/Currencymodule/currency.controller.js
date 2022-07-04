@@ -15,8 +15,6 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.CurrencyController = void 0;
 const common_1 = require("@nestjs/common");
 const swagger_1 = require("@nestjs/swagger");
-const jwt_guard_1 = require("../AuthModule/guards/jwt.guard");
-const roles_guard_1 = require("../AuthModule/guards/roles.guard");
 const currency_service_1 = require("./currency.service");
 let CurrencyController = class CurrencyController {
     constructor(currencyService) {
@@ -47,7 +45,6 @@ __decorate([
         summary: 'изменить курс валюты',
     }),
     (0, common_1.Patch)(),
-    (0, common_1.UseGuards)(jwt_guard_1.JwtAuthGuard, roles_guard_1.RolesGuard),
     __param(0, (0, common_1.Body)()),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", [String]),

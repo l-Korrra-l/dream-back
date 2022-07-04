@@ -41,7 +41,7 @@ export class DiscountSeasonController {
     );
   }
 
-  @UseGuards(JwtAuthGuard, RolesGuard)
+  // @UseGuards(JwtAuthGuard, RolesGuard)
   @Patch(':id')
   async updateDiscountSeason(
     @Param('id') discountseasonId: string,

@@ -14,8 +14,6 @@ var __param = (this && this.__param) || function (paramIndex, decorator) {
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.DiscountSeasonController = void 0;
 const common_1 = require("@nestjs/common");
-const jwt_guard_1 = require("../AuthModule/guards/jwt.guard");
-const roles_guard_1 = require("../AuthModule/guards/roles.guard");
 const discountSeason_service_1 = require("./discountSeason.service");
 let DiscountSeasonController = class DiscountSeasonController {
     constructor(discountseasonService) {
@@ -51,7 +49,6 @@ __decorate([
     __metadata("design:returntype", Promise)
 ], DiscountSeasonController.prototype, "createDiscountSeason", null);
 __decorate([
-    (0, common_1.UseGuards)(jwt_guard_1.JwtAuthGuard, roles_guard_1.RolesGuard),
     (0, common_1.Patch)(':id'),
     __param(0, (0, common_1.Param)('id')),
     __param(1, (0, common_1.Body)()),

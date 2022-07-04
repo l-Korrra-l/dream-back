@@ -22,8 +22,6 @@ const sortheader_decorator_1 = require("../../decorators/sortheader.decorator");
 const sort_enum_1 = require("../../enums/sort.enum");
 const joivalidation_pipe_1 = require("../../validation/joivalidation.pipe");
 const reviewFromUser_schema_1 = require("../../validation/schemas/reviewFromUser.schema");
-const jwt_guard_1 = require("../AuthModule/guards/jwt.guard");
-const roles_guard_1 = require("../AuthModule/guards/roles.guard");
 const reviewformuser_dto_1 = require("./dto/reviewformuser.dto");
 const multer_1 = require("multer");
 const imageFilter_helpers_1 = require("../../helpers/imageFilter.helpers");
@@ -99,7 +97,6 @@ __decorate([
     (0, swagger_1.ApiOperation)({
         summary: 'оставить отзыв о услуге по id',
     }),
-    (0, common_1.UseGuards)(jwt_guard_1.JwtAuthGuard),
     (0, common_1.Post)('makereview/:serviceId'),
     (0, common_1.HttpCode)(common_1.HttpStatus.CREATED),
     __param(0, (0, common_1.Param)('serviceId')),
@@ -113,7 +110,6 @@ __decorate([
     (0, swagger_1.ApiOperation)({
         summary: 'изменить информацию о услуге по id',
     }),
-    (0, common_1.UseGuards)(jwt_guard_1.JwtAuthGuard, roles_guard_1.RolesGuard),
     (0, common_1.UseInterceptors)((0, platform_express_1.FileInterceptor)('file', {
         storage: (0, multer_1.diskStorage)({
             destination: 'public',

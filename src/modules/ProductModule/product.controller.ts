@@ -150,7 +150,7 @@ export class ProductController {
   }
 
   @ApiOperation({ summary: 'оставить отзыв на продукт по id' })
-  @UseGuards(JwtAuthGuard)
+  // @UseGuards(JwtAuthGuard)
   @Post('makereview/:productId')
   @HttpCode(HttpStatus.CREATED)
   async makeReviewForProduct(
@@ -167,7 +167,7 @@ export class ProductController {
   }
 
   @ApiOperation({ summary: 'изменить продукт по id' })
-  @UseGuards(JwtAuthGuard, RolesGuard)
+  // @UseGuards(JwtAuthGuard, RolesGuard)
   @UseInterceptors(
     FileInterceptor('file', {
       storage: diskStorage({

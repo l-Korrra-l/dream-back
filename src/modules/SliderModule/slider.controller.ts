@@ -42,7 +42,7 @@ export class SliderController {
       fileFilter: imageFileFilter,
     }),
   )
-  @UseGuards(JwtAuthGuard, RolesGuard)
+  // @UseGuards(JwtAuthGuard, RolesGuard)
  
   async createProduct(
     @Body()
@@ -69,7 +69,7 @@ export class SliderController {
       fileFilter: imageFileFilter,
     }),
   )
-  @UseGuards(JwtAuthGuard, RolesGuard)
+  // @UseGuards(JwtAuthGuard, RolesGuard)
  
   async updateProduct(
     @Body()
@@ -102,7 +102,7 @@ export class SliderController {
   @ApiOperation({
     summary: 'удалить объект карусели по id',
   })
-  @UseGuards(JwtAuthGuard, RolesGuard)
+  // @UseGuards(JwtAuthGuard, RolesGuard)
  
   @Delete('/:id')
   async deleteSlider(@Param('id') id: string) {

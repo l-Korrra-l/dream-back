@@ -40,7 +40,7 @@ export class DiscountController {
     return await this.discountService.createDiscount(discountForCreate);
   }
 
-  @UseGuards(JwtAuthGuard, RolesGuard)
+  // @UseGuards(JwtAuthGuard, RolesGuard)
  
   @Patch(':id')
   async updateDiscount(

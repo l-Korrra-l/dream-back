@@ -15,8 +15,6 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.CharacteristicController = void 0;
 const common_1 = require("@nestjs/common");
 const swagger_1 = require("@nestjs/swagger");
-const jwt_guard_1 = require("../AuthModule/guards/jwt.guard");
-const roles_guard_1 = require("../AuthModule/guards/roles.guard");
 const characteristic_service_1 = require("./characteristic.service");
 let CharacteristicController = class CharacteristicController {
     constructor(characteristicService) {
@@ -52,7 +50,6 @@ __decorate([
     __metadata("design:returntype", Promise)
 ], CharacteristicController.prototype, "createCharacteristic", null);
 __decorate([
-    (0, common_1.UseGuards)(jwt_guard_1.JwtAuthGuard, roles_guard_1.RolesGuard),
     (0, common_1.Patch)(':id'),
     __param(0, (0, common_1.Param)('id')),
     __param(1, (0, common_1.Body)()),
