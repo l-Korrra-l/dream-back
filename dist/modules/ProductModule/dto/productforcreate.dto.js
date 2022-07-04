@@ -54,7 +54,7 @@ __decorate([
     __metadata("design:type", Number)
 ], ProductForCreate.prototype, "categoryId", void 0);
 __decorate([
-    (0, swagger_1.ApiPropertyOptional)(),
+    (0, swagger_1.ApiPropertyOptional)({ default: null }),
     __metadata("design:type", Number)
 ], ProductForCreate.prototype, "subcategoryId", void 0);
 __decorate([

@@ -28,7 +28,7 @@ export class ProductForCreate {
   img_path?: string;
   @ApiProperty({ default: 3 })
   categoryId: number;
-  @ApiPropertyOptional()
+  @ApiPropertyOptional({ default: null })
   subcategoryId: number;
   @ApiPropertyOptional({ default: 0 })
   raiting: Decimal;
