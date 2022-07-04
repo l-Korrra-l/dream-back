@@ -25,8 +25,7 @@ import { CharacteristicValueForCreate } from './dto/characteristicvalueforcreate
 export class CharactValueController {
   constructor(private charactvalueService: CharactValueService) {}
 
-  @Post()
-  @UseGuards(JwtAuthGuard, RolesGuard)
+   @Post()
  
   async createCharactValue(
     @Body()

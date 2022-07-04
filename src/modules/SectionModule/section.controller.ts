@@ -25,8 +25,7 @@ export class SectionController {
   constructor(private sectionService: SectionService) {}
 
   @ApiOperation({ summary: 'добавить раздел описания' })
-  @Post()
-  @UseGuards(JwtAuthGuard, RolesGuard)
+   @Post()
  
   async createSection(
     @Body()

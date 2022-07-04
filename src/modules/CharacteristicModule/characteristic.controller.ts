@@ -24,8 +24,7 @@ import { CharacteristicService } from './characteristic.service';
 export class CharacteristicController {
   constructor(private characteristicService: CharacteristicService) {}
 
-  @Post()
-  @UseGuards(JwtAuthGuard, RolesGuard)
+   @Post()
  
   async createCharacteristic(
     @Body()

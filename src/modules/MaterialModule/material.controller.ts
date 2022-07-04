@@ -30,8 +30,7 @@ import { ApiBearerAuth } from '@nestjs/swagger';
 export class MaterialController {
   constructor(private materialService: MaterialService) {}
 
-  @Post()
-  @UseGuards(JwtAuthGuard, RolesGuard)
+   @Post()
  
   @UseInterceptors(
     FileInterceptor('file', {

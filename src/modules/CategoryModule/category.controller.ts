@@ -34,8 +34,6 @@ export class CategoryController {
   constructor(private categoryService: CategoryService) {}
 
   @Post()
-  @UseGuards(JwtAuthGuard, RolesGuard)
- 
   @UseInterceptors(
     FileInterceptor('file', {
       storage: diskStorage({

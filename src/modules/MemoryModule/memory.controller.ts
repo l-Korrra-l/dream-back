@@ -30,8 +30,7 @@ import { ApiBearerAuth } from '@nestjs/swagger';
 export class MemoryController {
   constructor(private memoryService: MemoryService) {}
 
-  @Post()
-  @UseGuards(JwtAuthGuard, RolesGuard)
+   @Post()
  
   async createMemory(
     @Body()

@@ -51,8 +51,7 @@ export class ProductController {
   ) {}
 
   @ApiOperation({ summary: 'добавить продукт' })
-  @Post()
-  @UseGuards(JwtAuthGuard, RolesGuard)
+   @Post()
  
   @UseInterceptors(
     FileInterceptor('file', {

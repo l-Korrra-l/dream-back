@@ -30,8 +30,7 @@ import { ApiBearerAuth } from '@nestjs/swagger';
 export class ColorController {
   constructor(private colorService: ColorService) {}
 
-  @Post()
-  @UseGuards(JwtAuthGuard, RolesGuard)
+   @Post()
 
   @UseInterceptors(
     FileInterceptor('file', {

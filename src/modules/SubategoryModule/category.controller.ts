@@ -33,8 +33,7 @@ import { ApiBearerAuth, ApiOperation } from '@nestjs/swagger';
 export class CategoryController {
   constructor(private categoryService: CategoryService) {}
 
-  @Post()
-  @UseGuards(JwtAuthGuard, RolesGuard)
+   @Post()
  
   @UseInterceptors(
     FileInterceptor('file', {

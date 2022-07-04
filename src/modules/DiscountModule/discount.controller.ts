@@ -29,8 +29,7 @@ import { ApiBearerAuth } from '@nestjs/swagger';
 export class DiscountController {
   constructor(private discountService: DiscountService) {}
 
-  @Post()
-  @UseGuards(JwtAuthGuard, RolesGuard)
+   @Post()
  
   async createDiscount(
     // @Body()

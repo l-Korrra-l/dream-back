@@ -29,8 +29,7 @@ import { ApiBearerAuth } from '@nestjs/swagger';
 export class DiscountSeasonController {
   constructor(private discountseasonService: DiscountSeasonService) {}
 
-  @Post()
-  @UseGuards(JwtAuthGuard, RolesGuard)
+   @Post()
   async createDiscountSeason(
     // @Body()
     // discountseasonForCreate: DiscountSeasonForCreate,
