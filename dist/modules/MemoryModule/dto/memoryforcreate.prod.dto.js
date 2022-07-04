@@ -14,10 +14,6 @@ const swagger_1 = require("@nestjs/swagger");
 class MemoryForCreateFromProd {
 }
 __decorate([
-    (0, swagger_1.ApiProperty)({ default: 21 }),
-    __metadata("design:type", Number)
-], MemoryForCreateFromProd.prototype, "prodId", void 0);
-__decorate([
     (0, swagger_1.ApiProperty)({ default: '128 ��' }),
     __metadata("design:type", String)
 ], MemoryForCreateFromProd.prototype, "size", void 0);
