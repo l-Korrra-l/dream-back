@@ -25,6 +25,7 @@ const category_service_1 = require("./category.service");
 const categoryforcreate_dto_1 = require("./dto/categoryforcreate.dto");
 const uuid_1 = require("uuid");
 const path_1 = require("path");
+const swagger_1 = require("@nestjs/swagger");
 let CategoryController = class CategoryController {
     constructor(categoryService) {
         this.categoryService = categoryService;
@@ -70,6 +71,7 @@ __decorate([
     __metadata("design:returntype", Promise)
 ], CategoryController.prototype, "createCategory", null);
 __decorate([
+    (0, swagger_1.ApiOperation)({ summary: 'get product by id' }),
     (0, common_1.Get)('/:id'),
     __param(0, (0, common_1.Param)('id')),
     __metadata("design:type", Function),
@@ -77,6 +79,7 @@ __decorate([
     __metadata("design:returntype", Promise)
 ], CategoryController.prototype, "getProduct", null);
 __decorate([
+    (0, swagger_1.ApiOperation)({ summary: 'get all products' }),
     (0, common_1.Get)(),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", []),

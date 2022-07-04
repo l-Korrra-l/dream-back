@@ -32,6 +32,7 @@ import { SortingBy } from 'src/decorators/sortbyheader.decorator';
 import { ServiceService } from './service.service';
 import { ServiceForCreate } from './dto/serviceforcreate.dto';
 import { ServiceForUpdate } from './dto/serviceforupdate.dto';
+import { ApiOperation } from '@nestjs/swagger';
 
 @Controller('service')
 export class ServiceController {
@@ -61,6 +62,9 @@ export class ServiceController {
     return await this.serviceService.createService(serviceForCreate);
   }
 
+  @ApiOperation({
+    summary: 'получить все продукты (параметры сортировки asc/desc)',
+  })
   @Get()
   async getAllproducts(@Sorting() sort: Sort, @SortingBy() sortby: string) {
     return await this.serviceService.getAll(sort, sortby);

@@ -39,7 +39,7 @@ export class OrderController {
   @Post()
   @UseGuards(JwtAuthGuard, RolesGuard)
   @Roles(Role.User)
-  @ApiOperation({ summary: 'array of {buckets: {prodid:, quantity:}}' })
+  @ApiOperation({ summary: ' add array of {buckets: {prodid:, quantity:}}' })
   async createProduct(
     @CurrentUser()
     user: CurrentUserInfo,
@@ -50,6 +50,7 @@ export class OrderController {
     return await this.orderService.createOrder(orderForCreate, user.userId);
   }
 
+  @ApiOperation({ summary: 'get order by id' })
   @Get('/:id')
   async getOrder(@Param('id') id: string) {
     return await this.orderService.getOne(id);

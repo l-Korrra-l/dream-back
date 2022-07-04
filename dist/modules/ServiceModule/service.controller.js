@@ -33,6 +33,7 @@ const sortbyheader_decorator_1 = require("../../decorators/sortbyheader.decorato
 const service_service_1 = require("./service.service");
 const serviceforcreate_dto_1 = require("./dto/serviceforcreate.dto");
 const serviceforupdate_dto_1 = require("./dto/serviceforupdate.dto");
+const swagger_1 = require("@nestjs/swagger");
 let ServiceController = class ServiceController {
     constructor(serviceService) {
         this.serviceService = serviceService;
@@ -78,6 +79,9 @@ __decorate([
     __metadata("design:returntype", Promise)
 ], ServiceController.prototype, "createService", null);
 __decorate([
+    (0, swagger_1.ApiOperation)({
+        summary: 'получить все продукты (параметры сортировки asc/desc)',
+    }),
     (0, common_1.Get)(),
     __param(0, (0, sortheader_decorator_1.Sorting)()),
     __param(1, (0, sortbyheader_decorator_1.SortingBy)()),

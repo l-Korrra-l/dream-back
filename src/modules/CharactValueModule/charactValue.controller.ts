@@ -51,6 +51,7 @@ export class CharactValueController {
     );
   }
 
+  
   @Get()
   async getAllcharactvalues(@Query('prod') prod: string) {
     if (prod != '' && prod != undefined && prod != null)

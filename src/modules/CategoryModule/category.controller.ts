@@ -27,6 +27,7 @@ import { CategoryService } from './category.service';
 import { CategoryForCreate } from './dto/categoryforcreate.dto';
 import { v4 as uuid } from 'uuid';
 import { extname } from 'path';
+import { ApiOperation } from '@nestjs/swagger';
 
 @Controller('category')
 export class CategoryController {
@@ -57,11 +58,13 @@ export class CategoryController {
     return await this.categoryService.createCategory(categoryForCreate);
   }
 
+  @ApiOperation({ summary: 'get product by id' })
   @Get('/:id')
   async getProduct(@Param('id') id: string) {
     return await this.categoryService.getOne(id);
   }
 
+  @ApiOperation({ summary: 'get all products' })
   @Get()
   async getAllproducts() {
     return await this.categoryService.getAll();

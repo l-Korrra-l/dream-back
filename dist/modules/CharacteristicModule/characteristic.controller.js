@@ -14,6 +14,7 @@ var __param = (this && this.__param) || function (paramIndex, decorator) {
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.CharacteristicController = void 0;
 const common_1 = require("@nestjs/common");
+const swagger_1 = require("@nestjs/swagger");
 const roles_decorator_1 = require("../../decorators/roles.decorator");
 const role_enum_1 = require("../../enums/role.enum");
 const jwt_guard_1 = require("../AuthModule/guards/jwt.guard");
@@ -65,13 +66,17 @@ __decorate([
     __metadata("design:returntype", Promise)
 ], CharacteristicController.prototype, "updateCharacteristic", null);
 __decorate([
-    (0, common_1.Get)('/'),
+    (0, swagger_1.ApiOperation)({
+        summary: 'получить характеристику по имени, либо все',
+    }),
+    (0, common_1.Get)(),
     __param(0, (0, common_1.Query)('name')),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", [String]),
     __metadata("design:returntype", Promise)
 ], CharacteristicController.prototype, "getCharacteristicByName", null);
 __decorate([
+    (0, swagger_1.ApiOperation)({ summary: 'получить характеристику по id' }),
     (0, common_1.Get)('/:id'),
     __param(0, (0, common_1.Param)('id')),
     __metadata("design:type", Function),
@@ -79,6 +84,7 @@ __decorate([
     __metadata("design:returntype", Promise)
 ], CharacteristicController.prototype, "getCharacteristic", null);
 __decorate([
+    (0, swagger_1.ApiOperation)({ summary: 'удалить характеристику по имени' }),
     (0, common_1.Delete)('/'),
     __param(0, (0, common_1.Query)('name')),
     __metadata("design:type", Function),
@@ -86,6 +92,7 @@ __decorate([
     __metadata("design:returntype", Promise)
 ], CharacteristicController.prototype, "deleteCharacteristicByName", null);
 __decorate([
+    (0, swagger_1.ApiOperation)({ summary: 'получить характеристику по id' }),
     (0, common_1.Delete)('/:id'),
     __param(0, (0, common_1.Param)('id')),
     __metadata("design:type", Function),
