@@ -20,18 +20,18 @@ async function bootstrap() {
     .setTitle('Vinyl store')
     .setDescription('The store API description')
     .setVersion('1.0')
-    .addBearerAuth(
-      {
-        // I was also testing it without prefix 'Bearer ' before the JWT
-        description: `Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6IkVtYWlsQG1haWxsM2w1NjEucnUiLCJyb2xlIjoiYWRtaW4iLCJ1c2VySWQiOjIsImlhdCI6MTY1NjY2NTg0Nn0.ZuReR7M5hDJMf5OSKus0aHJKMCv4aE_RWmKWWu2NQ7Q`,
-        name: 'Authorization',
-        bearerFormat: 'Bearer', // I`ve tested not to use this field, but the result was the same
-        scheme: 'Bearer',
-        type: 'http', // I`ve attempted type: 'apiKey' too
-        in: 'Header',
-      },
-      'access-token', // This name here is important for matching up with @ApiBearerAuth() in your controller!
-    )
+    // .addBearerAuth(
+    //   {
+    //     // I was also testing it without prefix 'Bearer ' before the JWT
+    //     description: `Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6IkVtYWlsQG1haWxsM2w1NjEucnUiLCJyb2xlIjoiYWRtaW4iLCJ1c2VySWQiOjIsImlhdCI6MTY1NjY2NTg0Nn0.ZuReR7M5hDJMf5OSKus0aHJKMCv4aE_RWmKWWu2NQ7Q`,
+    //     name: 'Authorization',
+    //     bearerFormat: 'Bearer', // I`ve tested not to use this field, but the result was the same
+    //     scheme: 'Bearer',
+    //     type: 'http', // I`ve attempted type: 'apiKey' too
+    //     in: 'Header',
+    //   },
+    //   'access-token', // This name here is important for matching up with @ApiBearerAuth() in your controller!
+    // )
     .build();
   const document = SwaggerModule.createDocument(app, config);
   SwaggerModule.setup('api/swagger', app, document);

@@ -16,14 +16,6 @@ async function bootstrap() {
         .setTitle('Vinyl store')
         .setDescription('The store API description')
         .setVersion('1.0')
-        .addBearerAuth({
-        description: `Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6IkVtYWlsQG1haWxsM2w1NjEucnUiLCJyb2xlIjoiYWRtaW4iLCJ1c2VySWQiOjIsImlhdCI6MTY1NjY2NTg0Nn0.ZuReR7M5hDJMf5OSKus0aHJKMCv4aE_RWmKWWu2NQ7Q`,
-        name: 'Authorization',
-        bearerFormat: 'Bearer',
-        scheme: 'Bearer',
-        type: 'http',
-        in: 'Header',
-    }, 'access-token')
         .build();
     const document = swagger_1.SwaggerModule.createDocument(app, config);
     swagger_1.SwaggerModule.setup('api/swagger', app, document);
