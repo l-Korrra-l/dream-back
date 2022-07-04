@@ -23,7 +23,7 @@ import { SliderService } from './silder.service';
 import { SliderForCreate } from './dto/SliderForCreate';
 import { v4 as uuid } from 'uuid';
 import { extname } from 'path';
-import { ApiOperation } from '@nestjs/swagger';
+import { ApiBearerAuth, ApiOperation } from '@nestjs/swagger';
 
 @Controller('slider')
 export class SliderController {
@@ -44,6 +44,7 @@ export class SliderController {
   )
   @UseGuards(JwtAuthGuard, RolesGuard)
   @Roles(Role.Admin)
+  @ApiBearerAuth('access-token')
   async createProduct(
     @Body()
     sliderForCreate: SliderForCreate,
@@ -54,7 +55,9 @@ export class SliderController {
     return await this.sliderService.createSlider(sliderForCreate);
   }
 
-  @ApiOperation({ summary: 'изменить объект карусели по id' })
+  @ApiOperation({
+    summary: 'изменить объект карусели по id',
+  })
   @Patch('/:id')
   @UseInterceptors(
     FileInterceptor('file', {
@@ -69,6 +72,7 @@ export class SliderController {
   )
   @UseGuards(JwtAuthGuard, RolesGuard)
   @Roles(Role.Admin)
+  @ApiBearerAuth('access-token')
   async updateProduct(
     @Body()
     sliderForCreate: SliderForCreate,
@@ -80,23 +84,29 @@ export class SliderController {
     return await this.sliderService.updateSlider(id, sliderForCreate);
   }
 
-  @ApiOperation({ summary: 'получить объект карусели по id' })
+  @ApiOperation({
+    summary: 'получить объект карусели по id',
+  })
   @Get('/:id')
   async getSlider(@Param('id') id: string) {
     return await this.sliderService.getOne(id);
   }
 
-  @ApiOperation({ summary: 'получить все объекты карусели' })
+  @ApiOperation({
+    summary: 'получить все объекты карусели',
+  })
   @Get()
   async getAllSliders() {
     const order = await this.sliderService.getAll();
     return order;
   }
 
-
-  @ApiOperation({ summary: 'удалить объект карусели по id' })
+  @ApiOperation({
+    summary: 'удалить объект карусели по id',
+  })
   @UseGuards(JwtAuthGuard, RolesGuard)
   @Roles(Role.Admin)
+  @ApiBearerAuth('access-token')
   @Delete('/:id')
   async deleteSlider(@Param('id') id: string) {
     return await this.sliderService.deleteSlider(id);

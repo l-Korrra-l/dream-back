@@ -24,6 +24,7 @@ import { InformationService } from './information.service';
 import { diskStorage } from 'multer';
 import { imageFileFilter } from 'src/helpers/imageFilter.helpers';
 import { InformationForCreate } from './dto/informationforcreate.dto';
+import { ApiBearerAuth } from '@nestjs/swagger';
 
 @Controller('information')
 export class InformationController {
@@ -32,6 +33,7 @@ export class InformationController {
   @Post()
   @UseGuards(JwtAuthGuard, RolesGuard)
   @Roles(Role.Admin)
+  @ApiBearerAuth('access-token')
   @UseInterceptors(
     FileInterceptor('file', {
       storage: diskStorage({
@@ -58,6 +60,7 @@ export class InformationController {
 
   @UseGuards(JwtAuthGuard, RolesGuard)
   @Roles(Role.Admin)
+  @ApiBearerAuth('access-token')
   @UseInterceptors(
     FileInterceptor('file', {
       storage: diskStorage({

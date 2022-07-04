@@ -26,7 +26,7 @@ import { diskStorage } from 'multer';
 import { imageFileFilter } from 'src/helpers/imageFilter.helpers';
 import { OrderService } from './order.service';
 import { OrderForCreate } from './dto/OrderForCreate';
-import { ApiOperation } from '@nestjs/swagger';
+import { ApiBearerAuth, ApiOperation } from '@nestjs/swagger';
 import EmailService from '../EmailModule/email.service';
 
 @Controller('order')
@@ -38,7 +38,8 @@ export class OrderController {
 
   @Post()
   @ApiOperation({
-    summary: 'добавление заказа массив корзин {buckets: {prodid:, quantity:}}',
+    summary:
+      'добавление заказа массив корзин {buckets: {prodid:, quantity:}}',
   })
   async createProduct(
     @CurrentUser()
@@ -95,6 +96,7 @@ export class OrderController {
 
   // @UseGuards(JwtAuthGuard, RolesGuard)
   // @Roles(Role.Admin)
+  // @ApiBearerAuth('access-token')
   // @UseInterceptors(
   //   FileInterceptor('file', {
   //     storage: diskStorage({

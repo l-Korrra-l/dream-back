@@ -23,6 +23,7 @@ import { RolesGuard } from '../AuthModule/guards/roles.guard';
 import { DiscountService } from './discount.service';
 import { diskStorage } from 'multer';
 import { imageFileFilter } from 'src/helpers/imageFilter.helpers';
+import { ApiBearerAuth } from '@nestjs/swagger';
 
 @Controller('discount')
 export class DiscountController {
@@ -31,6 +32,7 @@ export class DiscountController {
   @Post()
   @UseGuards(JwtAuthGuard, RolesGuard)
   @Roles(Role.Admin)
+  @ApiBearerAuth('access-token')
   async createDiscount(
     // @Body()
     // discountForCreate: DiscountForCreate,
@@ -42,6 +44,7 @@ export class DiscountController {
 
   @UseGuards(JwtAuthGuard, RolesGuard)
   @Roles(Role.Admin)
+  @ApiBearerAuth('access-token')
   @Patch(':id')
   async updateDiscount(
     @Param('id') discountId: string,

@@ -37,7 +37,7 @@ import { ColorService } from '../ColorModule/color.service';
 import { MemoryService } from '../MemoryModule/memory.service';
 import { MaterialService } from '../MaterialModule/material.service';
 import { InformationService } from '../InformationModule/information.service';
-import { ApiBody, ApiOperation } from '@nestjs/swagger';
+import { ApiBearerAuth, ApiBody, ApiOperation } from '@nestjs/swagger';
 
 @Controller('product')
 export class ProductController {
@@ -54,6 +54,7 @@ export class ProductController {
   @Post()
   @UseGuards(JwtAuthGuard, RolesGuard)
   @Roles(Role.Admin)
+  @ApiBearerAuth('access-token')
   @UseInterceptors(
     FileInterceptor('file', {
       storage: diskStorage({
@@ -170,6 +171,7 @@ export class ProductController {
   @ApiOperation({ summary: 'изменить продукт по id' })
   @UseGuards(JwtAuthGuard, RolesGuard)
   @Roles(Role.Admin)
+  @ApiBearerAuth('access-token')
   @UseInterceptors(
     FileInterceptor('file', {
       storage: diskStorage({

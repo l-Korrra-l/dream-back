@@ -6,6 +6,7 @@ import {
   Param,
   UseGuards,
 } from '@nestjs/common';
+import { ApiBearerAuth } from '@nestjs/swagger';
 import { Roles } from 'src/decorators/roles.decorator';
 import { Role } from 'src/enums/role.enum';
 import { JwtAuthGuard } from '../AuthModule/guards/jwt.guard';
@@ -18,6 +19,7 @@ export class AdminController {
 
   @UseGuards(JwtAuthGuard, RolesGuard)
   @Roles(Role.Admin)
+  @ApiBearerAuth('access-token')
   @Delete('/user/:id')
   @HttpCode(HttpStatus.OK)
   async deleteUserByAdmin(@Param('id') userId) {
@@ -26,6 +28,7 @@ export class AdminController {
 
   @UseGuards(JwtAuthGuard, RolesGuard)
   @Roles(Role.Admin)
+  @ApiBearerAuth('access-token')
   @Delete('/productd/:id')
   @HttpCode(HttpStatus.OK)
   async deleteProductByAdmin(@Param('id') productId) {
@@ -34,6 +37,7 @@ export class AdminController {
 
   @UseGuards(JwtAuthGuard, RolesGuard)
   @Roles(Role.Admin)
+  @ApiBearerAuth('access-token')
   @Delete('/review/:id')
   @HttpCode(HttpStatus.OK)
   async deleteReviewByAdmin(@Param('id') recordId) {

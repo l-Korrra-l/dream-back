@@ -32,7 +32,7 @@ import { SortingBy } from 'src/decorators/sortbyheader.decorator';
 import { ServiceService } from './service.service';
 import { ServiceForCreate } from './dto/serviceforcreate.dto';
 import { ServiceForUpdate } from './dto/serviceforupdate.dto';
-import { ApiOperation } from '@nestjs/swagger';
+import { ApiBearerAuth, ApiOperation } from '@nestjs/swagger';
 
 @Controller('service')
 export class ServiceController {
@@ -41,6 +41,7 @@ export class ServiceController {
   @Post()
   @UseGuards(JwtAuthGuard, RolesGuard)
   @Roles(Role.Admin)
+  @ApiBearerAuth('access-token')
   @UseInterceptors(
     FileInterceptor('file', {
       storage: diskStorage({
@@ -63,7 +64,8 @@ export class ServiceController {
   }
 
   @ApiOperation({
-    summary: 'получить все продукты (параметры сортировки asc/desc)',
+    summary:
+      'получить все продукты (параметры сортировки asc/desc)',
   })
   @Get()
   async getAllproducts(@Sorting() sort: Sort, @SortingBy() sortby: string) {
@@ -89,7 +91,9 @@ export class ServiceController {
     return await this.serviceService.findByFilters(filters, sort, sortby);
   }
 
-  @ApiOperation({ summary: 'оставить отзыв о услуге по id' })
+  @ApiOperation({
+    summary: 'оставить отзыв о услуге по id',
+  })
   @UseGuards(JwtAuthGuard)
   @Post('makereview/:serviceId')
   @HttpCode(HttpStatus.CREATED)
@@ -106,9 +110,12 @@ export class ServiceController {
     );
   }
 
-  @ApiOperation({ summary: 'изменить информацию о услуге по id' })
+  @ApiOperation({
+    summary: 'изменить информацию о услуге по id',
+  })
   @UseGuards(JwtAuthGuard, RolesGuard)
   @Roles(Role.Admin)
+  @ApiBearerAuth('access-token')
   @UseInterceptors(
     FileInterceptor('file', {
       storage: diskStorage({
@@ -134,7 +141,9 @@ export class ServiceController {
     );
   }
 
-  @ApiOperation({ summary: 'получить информацию о услуге по id' })
+  @ApiOperation({
+    summary: 'получить информацию о услуге по id',
+  })
   @Get('/:id')
   async getService(@Param('id') id: string) {
     return await this.serviceService.getOne(id);

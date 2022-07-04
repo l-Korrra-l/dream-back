@@ -13,6 +13,7 @@ import {
   UseGuards,
   UseInterceptors,
 } from '@nestjs/common';
+import { ApiBearerAuth } from '@nestjs/swagger';
 import { Roles } from 'src/decorators/roles.decorator';
 import { Role } from 'src/enums/role.enum';
 import { JwtAuthGuard } from '../AuthModule/guards/jwt.guard';
@@ -27,6 +28,7 @@ export class CharactValueController {
   @Post()
   @UseGuards(JwtAuthGuard, RolesGuard)
   @Roles(Role.Admin)
+  @ApiBearerAuth('access-token')
   async createCharactValue(
     @Body()
     charactvalueForCreate: CharacteristicValueForCreate,
@@ -38,6 +40,7 @@ export class CharactValueController {
 
   @UseGuards(JwtAuthGuard, RolesGuard)
   @Roles(Role.Admin)
+  @ApiBearerAuth('access-token')
   @Patch(':id')
   async updateCharactValue(
     @Param('id') charactvalueId: string,

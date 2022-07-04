@@ -9,7 +9,7 @@ import {
   Post,
   UseGuards,
 } from '@nestjs/common';
-import { ApiOperation } from '@nestjs/swagger';
+import { ApiBearerAuth, ApiOperation } from '@nestjs/swagger';
 import { Roles } from 'src/decorators/roles.decorator';
 import { Role } from 'src/enums/role.enum';
 import { JwtAuthGuard } from '../AuthModule/guards/jwt.guard';
@@ -26,6 +26,7 @@ export class CurrencyController {
   @Post()
   @UseGuards(JwtAuthGuard, RolesGuard)
   @Roles(Role.Admin)
+  @ApiBearerAuth('access-token')
   async createCurrency(@Body() rate: any) {
     return await this.currencyService.createCurrency(rate.rate);
   }
@@ -36,6 +37,7 @@ export class CurrencyController {
   @Patch()
   @UseGuards(JwtAuthGuard, RolesGuard)
   @Roles(Role.Admin)
+  @ApiBearerAuth('access-token')
   async updateCurrency(@Body() rate: string) {
     return await this.currencyService.createCurrency(rate);
   }

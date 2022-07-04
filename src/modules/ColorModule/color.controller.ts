@@ -24,6 +24,7 @@ import { ColorService } from './color.service';
 import { diskStorage } from 'multer';
 import { imageFileFilter } from 'src/helpers/imageFilter.helpers';
 import { ColorForCreate } from './dto/colorforcreate.dto';
+import { ApiBearerAuth } from '@nestjs/swagger';
 
 @Controller('color')
 export class ColorController {
@@ -32,6 +33,7 @@ export class ColorController {
   @Post()
   @UseGuards(JwtAuthGuard, RolesGuard)
   @Roles(Role.Admin)
+  @ApiBearerAuth('access-token')
   @UseInterceptors(
     FileInterceptor('file', {
       storage: diskStorage({
@@ -56,6 +58,7 @@ export class ColorController {
 
   @UseGuards(JwtAuthGuard, RolesGuard)
   @Roles(Role.Admin)
+  @ApiBearerAuth('access-token')
   @UseInterceptors(
     FileInterceptor('file', {
       storage: diskStorage({

@@ -24,6 +24,7 @@ import { MemoryService } from './memory.service';
 import { diskStorage } from 'multer';
 import { imageFileFilter } from 'src/helpers/imageFilter.helpers';
 import { MemoryForCreate } from './dto/memoryforcreate.dto';
+import { ApiBearerAuth } from '@nestjs/swagger';
 
 @Controller('memory')
 export class MemoryController {
@@ -32,6 +33,7 @@ export class MemoryController {
   @Post()
   @UseGuards(JwtAuthGuard, RolesGuard)
   @Roles(Role.Admin)
+  @ApiBearerAuth('access-token')
   async createMemory(
     @Body()
     memoryForCreate: MemoryForCreate,
@@ -41,6 +43,7 @@ export class MemoryController {
 
   @UseGuards(JwtAuthGuard, RolesGuard)
   @Roles(Role.Admin)
+  @ApiBearerAuth('access-token')
   @Patch(':id')
   async updateMemory(
     @Param('id') memoryId: string,

@@ -24,6 +24,7 @@ import { MaterialService } from './material.service';
 import { diskStorage } from 'multer';
 import { imageFileFilter } from 'src/helpers/imageFilter.helpers';
 import { MaterialForCreate } from './dto/materailforcreate.dto';
+import { ApiBearerAuth } from '@nestjs/swagger';
 
 @Controller('material')
 export class MaterialController {
@@ -32,6 +33,7 @@ export class MaterialController {
   @Post()
   @UseGuards(JwtAuthGuard, RolesGuard)
   @Roles(Role.Admin)
+  @ApiBearerAuth('access-token')
   @UseInterceptors(
     FileInterceptor('file', {
       storage: diskStorage({
@@ -56,6 +58,7 @@ export class MaterialController {
 
   @UseGuards(JwtAuthGuard, RolesGuard)
   @Roles(Role.Admin)
+  @ApiBearerAuth('access-token')
   @UseInterceptors(
     FileInterceptor('file', {
       storage: diskStorage({

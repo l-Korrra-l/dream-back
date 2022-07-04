@@ -13,7 +13,7 @@ import {
   UseGuards,
   UseInterceptors,
 } from '@nestjs/common';
-import { ApiOperation } from '@nestjs/swagger';
+import { ApiBearerAuth, ApiOperation } from '@nestjs/swagger';
 import { Roles } from 'src/decorators/roles.decorator';
 import { Role } from 'src/enums/role.enum';
 import { JwtAuthGuard } from '../AuthModule/guards/jwt.guard';
@@ -27,6 +27,7 @@ export class CharacteristicController {
   @Post()
   @UseGuards(JwtAuthGuard, RolesGuard)
   @Roles(Role.Admin)
+  @ApiBearerAuth('access-token')
   async createCharacteristic(
     @Body()
     characteristicForCreate: any,
@@ -38,6 +39,7 @@ export class CharacteristicController {
 
   @UseGuards(JwtAuthGuard, RolesGuard)
   @Roles(Role.Admin)
+  @ApiBearerAuth('access-token')
   @Patch(':id')
   async updateCharacteristic(
     @Param('id') characteristicId: string,
@@ -51,7 +53,8 @@ export class CharacteristicController {
   }
 
   @ApiOperation({
-    summary: 'получить характеристику по имени, либо все',
+    summary:
+      'получить характеристику по имени, либо все',
   })
   @Get()
   async getCharacteristicByName(@Query('name') name: string) {
@@ -60,19 +63,25 @@ export class CharacteristicController {
     else return await this.characteristicService.getAll();
   }
 
-  @ApiOperation({ summary: 'получить характеристику по id' })
+  @ApiOperation({
+    summary: 'получить характеристику по id',
+  })
   @Get('/:id')
   async getCharacteristic(@Param('id') id: string) {
     return await this.characteristicService.getOne(id);
   }
 
-  @ApiOperation({ summary: 'удалить характеристику по имени' })
+  @ApiOperation({
+    summary: 'удалить характеристику по имени',
+  })
   @Delete('/')
   async deleteCharacteristicByName(@Query('name') name: string) {
     return await this.characteristicService.deleteCharacteristicByName(name);
   }
 
-  @ApiOperation({ summary: 'получить характеристику по id' })
+  @ApiOperation({
+    summary: 'получить характеристику по id',
+  })
   @Delete('/:id')
   async deleteCharacteristic(@Param('id') id: string) {
     return await this.characteristicService.deleteCharacteristic(id);
