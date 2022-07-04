@@ -58,11 +58,6 @@ export class InformationController {
   }
 
   @UseGuards(JwtAuthGuard, RolesGuard)
-<<<<<<< HEAD
- 
-=======
-  @ApiBearerAuth('access-token')
->>>>>>> 376e95b7e43aca62c19acf6875d918e5ba556cad
   @UseInterceptors(
     FileInterceptor('file', {
       storage: diskStorage({

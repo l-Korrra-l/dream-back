@@ -62,10 +62,6 @@ __decorate([
         fileFilter: imageFilter_helpers_1.imageFileFilter,
     })),
     (0, common_1.UseGuards)(jwt_guard_1.JwtAuthGuard, roles_guard_1.RolesGuard),
-<<<<<<< HEAD
-=======
-    (0, swagger_1.ApiBearerAuth)('access-token'),
->>>>>>> 376e95b7e43aca62c19acf6875d918e5ba556cad
     __param(0, (0, common_1.Body)()),
     __param(1, (0, common_1.UploadedFile)()),
     __metadata("design:type", Function),
@@ -87,10 +83,6 @@ __decorate([
         fileFilter: imageFilter_helpers_1.imageFileFilter,
     })),
     (0, common_1.UseGuards)(jwt_guard_1.JwtAuthGuard, roles_guard_1.RolesGuard),
-<<<<<<< HEAD
-=======
-    (0, swagger_1.ApiBearerAuth)('access-token'),
->>>>>>> 376e95b7e43aca62c19acf6875d918e5ba556cad
     __param(0, (0, common_1.Body)()),
     __param(1, (0, common_1.UploadedFile)()),
     __param(2, (0, common_1.Param)('id')),
@@ -122,10 +114,6 @@ __decorate([
         summary: 'удалить объект карусели по id',
     }),
     (0, common_1.UseGuards)(jwt_guard_1.JwtAuthGuard, roles_guard_1.RolesGuard),
-<<<<<<< HEAD
-=======
-    (0, swagger_1.ApiBearerAuth)('access-token'),
->>>>>>> 376e95b7e43aca62c19acf6875d918e5ba556cad
     (0, common_1.Delete)('/:id'),
     __param(0, (0, common_1.Param)('id')),
     __metadata("design:type", Function),
