@@ -37,34 +37,36 @@ export class OrderController {
   ) {}
 
   @Post()
-  @UseGuards(JwtAuthGuard, RolesGuard)
-  @Roles(Role.User)
-  @ApiOperation({ summary: ' add array of {buckets: {prodid:, quantity:}}' })
+  @ApiOperation({
+    summary: 'добавление заказа массив корзин {buckets: {prodid:, quantity:}}',
+  })
   async createProduct(
     @CurrentUser()
     user: CurrentUserInfo,
     @Body()
     orderForCreate: OrderForCreate,
   ) {
-    console.log(user);
+    this.emailservice.sendMail({
+      to: user.email,
+      subject: 'Dreamstore заказ',
+      text: 'Ваш заказ оформлен',
+    });
     return await this.orderService.createOrder(orderForCreate, user.userId);
   }
 
-  @ApiOperation({ summary: 'get order by id' })
+  @ApiOperation({ summary: 'получить заказ по id' })
   @Get('/:id')
   async getOrder(@Param('id') id: string) {
     return await this.orderService.getOne(id);
   }
 
   @Get()
+  @ApiOperation({
+    summary:
+      'все заказы текущего пользователя, либо все для неавторизованного/админа',
+  })
   async getAllproducts(@CurrentUser() user: CurrentUserInfo) {
-    const order = await this.orderService.getAll(user);
-    this.emailservice.sendMail({
-      to: user.email,
-      subject: 'Dreamstore заказ',
-      text: 'Ваш заказ оформлен',
-    });
-    return order;
+    return await this.orderService.getAll(user);
   }
 
   // @Get('search/:value')

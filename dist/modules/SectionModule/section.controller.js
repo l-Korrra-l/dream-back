@@ -14,6 +14,7 @@ var __param = (this && this.__param) || function (paramIndex, decorator) {
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.SectionController = void 0;
 const common_1 = require("@nestjs/common");
+const swagger_1 = require("@nestjs/swagger");
 const roles_decorator_1 = require("../../decorators/roles.decorator");
 const role_enum_1 = require("../../enums/role.enum");
 const jwt_guard_1 = require("../AuthModule/guards/jwt.guard");
@@ -46,6 +47,7 @@ let SectionController = class SectionController {
     }
 };
 __decorate([
+    (0, swagger_1.ApiOperation)({ summary: 'добавить раздел описания' }),
     (0, common_1.Post)(),
     (0, common_1.UseGuards)(jwt_guard_1.JwtAuthGuard, roles_guard_1.RolesGuard),
     (0, roles_decorator_1.Roles)(role_enum_1.Role.Admin),
@@ -55,6 +57,7 @@ __decorate([
     __metadata("design:returntype", Promise)
 ], SectionController.prototype, "createSection", null);
 __decorate([
+    (0, swagger_1.ApiOperation)({ summary: 'изменить раздел описания по id' }),
     (0, common_1.UseGuards)(jwt_guard_1.JwtAuthGuard, roles_guard_1.RolesGuard),
     (0, roles_decorator_1.Roles)(role_enum_1.Role.Admin),
     (0, common_1.Patch)(':id'),
@@ -65,6 +68,7 @@ __decorate([
     __metadata("design:returntype", Promise)
 ], SectionController.prototype, "updateSection", null);
 __decorate([
+    (0, swagger_1.ApiOperation)({ summary: 'получить разделы описания по имени, либо все' }),
     (0, common_1.Get)('/'),
     __param(0, (0, common_1.Query)('name')),
     __metadata("design:type", Function),
@@ -72,6 +76,7 @@ __decorate([
     __metadata("design:returntype", Promise)
 ], SectionController.prototype, "getSectionByName", null);
 __decorate([
+    (0, swagger_1.ApiOperation)({ summary: 'получить раздел описания по id' }),
     (0, common_1.Get)('/:id'),
     __param(0, (0, common_1.Param)('id')),
     __metadata("design:type", Function),
@@ -79,6 +84,7 @@ __decorate([
     __metadata("design:returntype", Promise)
 ], SectionController.prototype, "getSection", null);
 __decorate([
+    (0, swagger_1.ApiOperation)({ summary: 'удалить раздел описания по имени' }),
     (0, common_1.Delete)('/'),
     __param(0, (0, common_1.Query)('name')),
     __metadata("design:type", Function),
@@ -86,6 +92,7 @@ __decorate([
     __metadata("design:returntype", Promise)
 ], SectionController.prototype, "deleteSectionByName", null);
 __decorate([
+    (0, swagger_1.ApiOperation)({ summary: 'удалить раздел описания по id' }),
     (0, common_1.Delete)('/:id'),
     __param(0, (0, common_1.Param)('id')),
     __metadata("design:type", Function),

@@ -37,6 +37,7 @@ import { ColorService } from '../ColorModule/color.service';
 import { MemoryService } from '../MemoryModule/memory.service';
 import { MaterialService } from '../MaterialModule/material.service';
 import { InformationService } from '../InformationModule/information.service';
+import { ApiOperation } from '@nestjs/swagger';
 
 @Controller('product')
 export class ProductController {
@@ -49,6 +50,7 @@ export class ProductController {
     private informationService: InformationService,
   ) {}
 
+  @ApiOperation({ summary: 'добавить продукт' })
   @Post()
   @UseGuards(JwtAuthGuard, RolesGuard)
   @Roles(Role.Admin)
@@ -115,6 +117,7 @@ export class ProductController {
     return prod;
   }
 
+  @ApiOperation({ summary: 'получить все продукты' })
   @Get()
   async getAllproducts(@Sorting() sort: Sort, @SortingBy() sortby: string) {
     return await this.productService.getAll(sort, sortby);
@@ -129,6 +132,7 @@ export class ProductController {
   // return await this.productService.findByValue(name, author);
   // }
 
+  @ApiOperation({ summary: 'поиск продукта по фильтрам' })
   @Post('search')
   async searchProductss(
     @Sorting() sort: Sort,
@@ -148,6 +152,7 @@ export class ProductController {
     return await this.productService.findByFilters(filters, sort, sortby);
   }
 
+  @ApiOperation({ summary: 'оставить отзыв на продукт по id' })
   @UseGuards(JwtAuthGuard)
   @Post('makereview/:productId')
   @HttpCode(HttpStatus.CREATED)
@@ -164,6 +169,8 @@ export class ProductController {
     );
   }
 
+
+  @ApiOperation({ summary: 'изменить продукт по id' })
   @UseGuards(JwtAuthGuard, RolesGuard)
   @Roles(Role.Admin)
   @UseInterceptors(
@@ -199,6 +206,7 @@ export class ProductController {
       );
   }
 
+  @ApiOperation({ summary: 'получить продукт по id' })
   @Get('/:id')
   async getProduct(@Param('id') id: string) {
     const prod = await this.productService.getOne(id);

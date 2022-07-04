@@ -27,6 +27,7 @@ const multer_1 = require("multer");
 const imageFilter_helpers_1 = require("../../helpers/imageFilter.helpers");
 const uuid_1 = require("uuid");
 const path_1 = require("path");
+const swagger_1 = require("@nestjs/swagger");
 let UserController = class UserController {
     constructor(userService) {
         this.userService = userService;
@@ -43,6 +44,7 @@ __decorate([
     (0, common_1.UseGuards)(jwt_guard_1.JwtAuthGuard),
     (0, roles_decorator_1.Roles)(role_enum_1.Role.User, role_enum_1.Role.Admin),
     (0, common_1.Get)(),
+    (0, swagger_1.ApiOperation)({ summary: 'получить данные авторизованного пользователя' }),
     __param(0, (0, currentuser_decorator_1.CurrentUser)()),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", [Object]),
@@ -60,6 +62,7 @@ __decorate([
         }),
         fileFilter: imageFilter_helpers_1.imageFileFilter,
     })),
+    (0, swagger_1.ApiOperation)({ summary: 'изменить данные авторизованного пользователя' }),
     (0, common_1.Patch)(),
     __param(0, (0, currentuser_decorator_1.CurrentUser)()),
     __param(1, (0, common_1.Body)(new joivalidation_pipe_1.JoiValidationPipe(userForUpdate_schema_1.userForUpdateSchema))),

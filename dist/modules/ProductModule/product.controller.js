@@ -47,6 +47,7 @@ const color_service_1 = require("../ColorModule/color.service");
 const memory_service_1 = require("../MemoryModule/memory.service");
 const material_service_1 = require("../MaterialModule/material.service");
 const information_service_1 = require("../InformationModule/information.service");
+const swagger_1 = require("@nestjs/swagger");
 let ProductController = class ProductController {
     constructor(productService, charactValueService, colorService, memoryService, materialService, informationService) {
         this.productService = productService;
@@ -141,6 +142,7 @@ let ProductController = class ProductController {
     }
 };
 __decorate([
+    (0, swagger_1.ApiOperation)({ summary: 'добавить продукт' }),
     (0, common_1.Post)(),
     (0, common_1.UseGuards)(jwt_guard_1.JwtAuthGuard, roles_guard_1.RolesGuard),
     (0, roles_decorator_1.Roles)(role_enum_1.Role.Admin),
@@ -160,6 +162,7 @@ __decorate([
     __metadata("design:returntype", Promise)
 ], ProductController.prototype, "createProduct", null);
 __decorate([
+    (0, swagger_1.ApiOperation)({ summary: 'получить все продукты' }),
     (0, common_1.Get)(),
     __param(0, (0, sortheader_decorator_1.Sorting)()),
     __param(1, (0, sortbyheader_decorator_1.SortingBy)()),
@@ -168,6 +171,7 @@ __decorate([
     __metadata("design:returntype", Promise)
 ], ProductController.prototype, "getAllproducts", null);
 __decorate([
+    (0, swagger_1.ApiOperation)({ summary: 'поиск продукта по фильтрам' }),
     (0, common_1.Post)('search'),
     __param(0, (0, sortheader_decorator_1.Sorting)()),
     __param(1, (0, sortbyheader_decorator_1.SortingBy)()),
@@ -182,6 +186,7 @@ __decorate([
     __metadata("design:returntype", Promise)
 ], ProductController.prototype, "searchProductss", null);
 __decorate([
+    (0, swagger_1.ApiOperation)({ summary: 'оставить отзыв на продукт по id' }),
     (0, common_1.UseGuards)(jwt_guard_1.JwtAuthGuard),
     (0, common_1.Post)('makereview/:productId'),
     (0, common_1.HttpCode)(common_1.HttpStatus.CREATED),
@@ -193,6 +198,7 @@ __decorate([
     __metadata("design:returntype", Promise)
 ], ProductController.prototype, "makeReviewForProduct", null);
 __decorate([
+    (0, swagger_1.ApiOperation)({ summary: 'изменить продукт по id' }),
     (0, common_1.UseGuards)(jwt_guard_1.JwtAuthGuard, roles_guard_1.RolesGuard),
     (0, roles_decorator_1.Roles)(role_enum_1.Role.Admin),
     (0, common_1.UseInterceptors)((0, platform_express_1.FileInterceptor)('file', {
@@ -213,6 +219,7 @@ __decorate([
     __metadata("design:returntype", Promise)
 ], ProductController.prototype, "updateProduct", null);
 __decorate([
+    (0, swagger_1.ApiOperation)({ summary: 'получить продукт по id' }),
     (0, common_1.Get)('/:id'),
     __param(0, (0, common_1.Param)('id')),
     __metadata("design:type", Function),

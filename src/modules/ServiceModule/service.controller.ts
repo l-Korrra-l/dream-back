@@ -79,6 +79,7 @@ export class ServiceController {
   // return await this.serviceService.findByValue(name, author);
   // }
 
+  @ApiOperation({ summary: 'поиск услуг по фильтрам' })
   @Post('search')
   async searchServices(
     @Sorting() sort: Sort,
@@ -88,6 +89,7 @@ export class ServiceController {
     return await this.serviceService.findByFilters(filters, sort, sortby);
   }
 
+  @ApiOperation({ summary: 'оставить отзыв о услуге по id' })
   @UseGuards(JwtAuthGuard)
   @Post('makereview/:serviceId')
   @HttpCode(HttpStatus.CREATED)
@@ -104,6 +106,7 @@ export class ServiceController {
     );
   }
 
+  @ApiOperation({ summary: 'изменить информацию о услуге по id' })
   @UseGuards(JwtAuthGuard, RolesGuard)
   @Roles(Role.Admin)
   @UseInterceptors(
@@ -131,6 +134,7 @@ export class ServiceController {
     );
   }
 
+  @ApiOperation({ summary: 'получить информацию о услуге по id' })
   @Get('/:id')
   async getService(@Param('id') id: string) {
     return await this.serviceService.getOne(id);

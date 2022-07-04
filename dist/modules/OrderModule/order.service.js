@@ -71,7 +71,7 @@ let OrderService = class OrderService {
         return await this.orderRepository.findOne(id);
     }
     async getAll(user) {
-        if (user.role == role_enum_1.Role.User)
+        if ((user === null || user === void 0 ? void 0 : user.role) == role_enum_1.Role.User)
             return await this.orderRepository.findByUser(user.userId);
         else
             return await this.orderRepository.findAll();

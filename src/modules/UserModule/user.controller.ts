@@ -21,6 +21,7 @@ import { diskStorage } from 'multer';
 import { imageFileFilter } from 'src/helpers/imageFilter.helpers';
 import { v4 as uuid } from 'uuid';
 import { extname } from 'path';
+import { ApiOperation } from '@nestjs/swagger';
 
 @Controller('user')
 export class UserController {
@@ -29,6 +30,7 @@ export class UserController {
   @UseGuards(JwtAuthGuard)
   @Roles(Role.User, Role.Admin)
   @Get()
+  @ApiOperation({ summary: 'получить данные авторизованного пользователя' })
   async getUserProfile(@CurrentUser() user: CurrentUserInfo) {
     return await this.userService.getProfile(user.userId);
   }
@@ -46,6 +48,7 @@ export class UserController {
       fileFilter: imageFileFilter,
     }),
   )
+  @ApiOperation({ summary: 'изменить данные авторизованного пользователя' })
   @Patch()
   async updateuserProfile(
     @CurrentUser() currentUser: CurrentUserInfo,

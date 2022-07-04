@@ -25,6 +25,7 @@ const silder_service_1 = require("./silder.service");
 const SliderForCreate_1 = require("./dto/SliderForCreate");
 const uuid_1 = require("uuid");
 const path_1 = require("path");
+const swagger_1 = require("@nestjs/swagger");
 let SliderController = class SliderController {
     constructor(sliderService) {
         this.sliderService = sliderService;
@@ -51,6 +52,7 @@ let SliderController = class SliderController {
     }
 };
 __decorate([
+    (0, swagger_1.ApiOperation)({ summary: 'добавить объект карусели' }),
     (0, common_1.Post)(),
     (0, common_1.UseInterceptors)((0, platform_express_1.FileInterceptor)('file', {
         storage: (0, multer_1.diskStorage)({
@@ -70,6 +72,7 @@ __decorate([
     __metadata("design:returntype", Promise)
 ], SliderController.prototype, "createProduct", null);
 __decorate([
+    (0, swagger_1.ApiOperation)({ summary: 'изменить объект карусели по id' }),
     (0, common_1.Patch)('/:id'),
     (0, common_1.UseInterceptors)((0, platform_express_1.FileInterceptor)('file', {
         storage: (0, multer_1.diskStorage)({
@@ -90,6 +93,7 @@ __decorate([
     __metadata("design:returntype", Promise)
 ], SliderController.prototype, "updateProduct", null);
 __decorate([
+    (0, swagger_1.ApiOperation)({ summary: 'получить объект карусели по id' }),
     (0, common_1.Get)('/:id'),
     __param(0, (0, common_1.Param)('id')),
     __metadata("design:type", Function),
@@ -97,12 +101,14 @@ __decorate([
     __metadata("design:returntype", Promise)
 ], SliderController.prototype, "getSlider", null);
 __decorate([
+    (0, swagger_1.ApiOperation)({ summary: 'получить все объекты карусели' }),
     (0, common_1.Get)(),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", []),
     __metadata("design:returntype", Promise)
 ], SliderController.prototype, "getAllSliders", null);
 __decorate([
+    (0, swagger_1.ApiOperation)({ summary: 'удалить объект карусели по id' }),
     (0, common_1.UseGuards)(jwt_guard_1.JwtAuthGuard, roles_guard_1.RolesGuard),
     (0, roles_decorator_1.Roles)(role_enum_1.Role.Admin),
     (0, common_1.Delete)('/:id'),

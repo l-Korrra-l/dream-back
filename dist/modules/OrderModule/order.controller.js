@@ -15,10 +15,6 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.OrderController = void 0;
 const common_1 = require("@nestjs/common");
 const currentuser_decorator_1 = require("../../decorators/currentuser.decorator");
-const roles_decorator_1 = require("../../decorators/roles.decorator");
-const role_enum_1 = require("../../enums/role.enum");
-const jwt_guard_1 = require("../AuthModule/guards/jwt.guard");
-const roles_guard_1 = require("../AuthModule/guards/roles.guard");
 const order_service_1 = require("./order.service");
 const OrderForCreate_1 = require("./dto/OrderForCreate");
 const swagger_1 = require("@nestjs/swagger");
@@ -29,27 +25,25 @@ let OrderController = class OrderController {
         this.emailservice = emailservice;
     }
     async createProduct(user, orderForCreate) {
-        console.log(user);
+        this.emailservice.sendMail({
+            to: user.email,
+            subject: 'Dreamstore �����',
+            text: '��� ����� ��������',
+        });
         return await this.orderService.createOrder(orderForCreate, user.userId);
     }
     async getOrder(id) {
         return await this.orderService.getOne(id);
     }
     async getAllproducts(user) {
-        const order = await this.orderService.getAll(user);
-        this.emailservice.sendMail({
-            to: user.email,
-            subject: 'Dreamstore �����',
-            text: '��� ����� ��������',
-        });
-        return order;
+        return await this.orderService.getAll(user);
     }
 };
 __decorate([
     (0, common_1.Post)(),
-    (0, common_1.UseGuards)(jwt_guard_1.JwtAuthGuard, roles_guard_1.RolesGuard),
-    (0, roles_decorator_1.Roles)(role_enum_1.Role.User),
-    (0, swagger_1.ApiOperation)({ summary: ' add array of {buckets: {prodid:, quantity:}}' }),
+    (0, swagger_1.ApiOperation)({
+        summary: '���������� ������ ������ ������ {buckets: {prodid:, quantity:}}',
+    }),
     __param(0, (0, currentuser_decorator_1.CurrentUser)()),
     __param(1, (0, common_1.Body)()),
     __metadata("design:type", Function),
@@ -57,7 +51,7 @@ __decorate([
     __metadata("design:returntype", Promise)
 ], OrderController.prototype, "createProduct", null);
 __decorate([
-    (0, swagger_1.ApiOperation)({ summary: 'get order by id' }),
+    (0, swagger_1.ApiOperation)({ summary: '�������� ����� �� id' }),
     (0, common_1.Get)('/:id'),
     __param(0, (0, common_1.Param)('id')),
     __metadata("design:type", Function),
@@ -66,6 +60,9 @@ __decorate([
 ], OrderController.prototype, "getOrder", null);
 __decorate([
     (0, common_1.Get)(),
+    (0, swagger_1.ApiOperation)({
+        summary: '��� ������ �������� ������������, ���� ��� ��� �����������������/������',
+    }),
     __param(0, (0, currentuser_decorator_1.CurrentUser)()),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", [Object]),

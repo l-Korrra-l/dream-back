@@ -13,6 +13,7 @@ import {
   UseGuards,
   UseInterceptors,
 } from '@nestjs/common';
+import { ApiOperation } from '@nestjs/swagger';
 import { Roles } from 'src/decorators/roles.decorator';
 import { Role } from 'src/enums/role.enum';
 import { JwtAuthGuard } from '../AuthModule/guards/jwt.guard';
@@ -23,6 +24,7 @@ import { SectionService } from './section.service';
 export class SectionController {
   constructor(private sectionService: SectionService) {}
 
+  @ApiOperation({ summary: 'добавить раздел описания' })
   @Post()
   @UseGuards(JwtAuthGuard, RolesGuard)
   @Roles(Role.Admin)
@@ -33,6 +35,7 @@ export class SectionController {
     return await this.sectionService.createSection(sectionForCreate);
   }
 
+  @ApiOperation({ summary: 'изменить раздел описания по id' })
   @UseGuards(JwtAuthGuard, RolesGuard)
   @Roles(Role.Admin)
   @Patch(':id')
@@ -44,6 +47,7 @@ export class SectionController {
     return await this.sectionService.updateSection(sectionId, sectionForUpdate);
   }
 
+  @ApiOperation({ summary: 'получить разделы описания по имени, либо все' })
   @Get('/')
   async getSectionByName(@Query('name') name: string) {
     if (name != null && name != undefined && name != '')
@@ -51,16 +55,19 @@ export class SectionController {
     else return await this.sectionService.getAll();
   }
 
+  @ApiOperation({ summary: 'получить раздел описания по id' })
   @Get('/:id')
   async getSection(@Param('id') id: string) {
     return await this.sectionService.getOne(id);
   }
 
+  @ApiOperation({ summary: 'удалить раздел описания по имени' })
   @Delete('/')
   async deleteSectionByName(@Query('name') name: string) {
     return await this.sectionService.deleteSectionByName(name);
   }
 
+  @ApiOperation({ summary: 'удалить раздел описания по id' })
   @Delete('/:id')
   async deleteSection(@Param('id') id: string) {
     return await this.sectionService.deleteSection(id);
