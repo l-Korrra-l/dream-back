@@ -31,6 +31,8 @@ import { CharacteristicModule } from './modules/CharacteristicModule/characteris
 import { CharactValueModule } from './modules/CharactValueModule/charactValue.module';
 import { SectionModule } from './modules/SectionModule/section.module';
 import { InformationModule } from './modules/InformationModule/information.module';
+import { DiscountModule } from './modules/DiscountModule/discount.module';
+import { DiscountSeasonModule } from './modules/DiscountSeasonModule/discountSeason.module';
 
 @Module({
   imports: [
@@ -70,6 +72,8 @@ import { InformationModule } from './modules/InformationModule/information.modul
     CharactValueModule,
     SectionModule,
     InformationModule,
+    DiscountModule,
+    DiscountSeasonModule,
   ],
   controllers: [AppController],
   providers: [AppService],

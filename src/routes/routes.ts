@@ -7,6 +7,8 @@ import { CharacteristicModule } from 'src/modules/CharacteristicModule/character
 import { CharactValueModule } from 'src/modules/CharactValueModule/charactValue.module';
 import { ColorModule } from 'src/modules/ColorModule/color.module';
 import { CurrencyModule } from 'src/modules/Currencymodule/currency.module';
+import { DiscountModule } from 'src/modules/DiscountModule/discount.module';
+import { DiscountSeasonModule } from 'src/modules/DiscountSeasonModule/discountSeason.module';
 import { EmailModule } from 'src/modules/EmailModule/email.module';
 import { InformationModule } from 'src/modules/InformationModule/information.module';
 import { MaterialModule } from 'src/modules/MaterialModule/material.module';
@@ -96,5 +98,13 @@ export const routes: Routes = [
   {
     path: '/api',
     module: InformationModule,
+  },
+  {
+    path: '/api',
+    module: DiscountModule,
+  },
+  {
+    path: '/api',
+    module: DiscountSeasonModule,
   },
 ];

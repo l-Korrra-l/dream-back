@@ -51,6 +51,7 @@ model Product {
   CharactValue  CharactValue[]
   Memory        Memory[]
   Information   Information[]
+  Discount      Discount[]
 }
 
 model Characteristic {
@@ -187,4 +188,22 @@ model Slider {
   description String?
   img_path    String?
   product     Product? @relation(fields: [prodId], references: [id])
+}
+
+model Discount {
+  id       Int             @id @default(autoincrement())
+  prodId   Int?
+  product  Product?        @relation(fields: [prodId], references: [id])
+  discId   Int?
+  discount DiscountSeason? @relation(fields: [discId], references: [id])
+  value    Decimal
+}
+
+model DiscountSeason {
+  id          Int        @id @default(autoincrement())
+  name        String?
+  description String?
+  Discount    Discount[]
+  start_date  DateTime
+  end_date    DateTime
 }

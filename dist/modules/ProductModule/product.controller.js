@@ -83,9 +83,12 @@ let ProductController = class ProductController {
     async getAllproducts(sort, sortby) {
         return await this.productService.getAll(sort, sortby);
     }
-    async searchProductss(sort, sortby, filters, name, text) {
+    async searchProductss(sort, sortby, filters, name, text, min_price, max_price, producer) {
         filters.name = name;
         filters.text = text;
+        filters.min_price = min_price;
+        filters.max_price = max_price;
+        filters.producer = producer;
         return await this.productService.findByFilters(filters, sort, sortby);
     }
     async makeReviewForProduct(productId, currentUser, review) {
@@ -171,8 +174,11 @@ __decorate([
     __param(2, (0, common_1.Body)()),
     __param(3, (0, common_1.Query)('name')),
     __param(4, (0, common_1.Query)('text')),
+    __param(5, (0, common_1.Query)('minprice')),
+    __param(6, (0, common_1.Query)('maxprice')),
+    __param(7, (0, common_1.Query)('producer')),
     __metadata("design:type", Function),
-    __metadata("design:paramtypes", [String, String, Object, String, String]),
+    __metadata("design:paramtypes", [String, String, Object, String, String, String, String, String]),
     __metadata("design:returntype", Promise)
 ], ProductController.prototype, "searchProductss", null);
 __decorate([

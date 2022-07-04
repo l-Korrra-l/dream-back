@@ -35,6 +35,8 @@ const characteristic_module_1 = require("./modules/CharacteristicModule/characte
 const charactValue_module_1 = require("./modules/CharactValueModule/charactValue.module");
 const section_module_1 = require("./modules/SectionModule/section.module");
 const information_module_1 = require("./modules/InformationModule/information.module");
+const discount_module_1 = require("./modules/DiscountModule/discount.module");
+const discountSeason_module_1 = require("./modules/DiscountSeasonModule/discountSeason.module");
 let AppModule = class AppModule {
     configure(consumer) {
         consumer.apply(index_middleware_1.FrontendMiddleware).forRoutes({
@@ -79,6 +81,8 @@ AppModule = __decorate([
             charactValue_module_1.CharactValueModule,
             section_module_1.SectionModule,
             information_module_1.InformationModule,
+            discount_module_1.DiscountModule,
+            discountSeason_module_1.DiscountSeasonModule,
         ],
         controllers: [app_controller_1.AppController],
         providers: [app_service_1.AppService],

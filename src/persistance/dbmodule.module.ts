@@ -7,6 +7,8 @@ import { CharacteristicRepository } from './repository/characteristic.repository
 import { CharactValueRepository } from './repository/charactValue.repository';
 import { ColorRepository } from './repository/color.repository';
 import { CurrencyRepository } from './repository/currency.repository';
+import { DiscountRepository } from './repository/discount.repository';
+import { DiscountSeasonRepository } from './repository/discountSeason.repository';
 import { InformationRepository } from './repository/information.repository';
 import { MaterialRepository } from './repository/material.repository';
 import { MemoryRepository } from './repository/memory.repository';
@@ -37,6 +39,8 @@ import { UserRepository } from './repository/user.repository';
     CharactValueRepository,
     SectionRepository,
     InformationRepository,
+    DiscountRepository,
+    DiscountSeasonRepository,
   ],
   exports: [
     UserRepository,
@@ -55,6 +59,8 @@ import { UserRepository } from './repository/user.repository';
     CharactValueRepository,
     SectionRepository,
     InformationRepository,
+    DiscountRepository,
+    DiscountSeasonRepository,
   ],
 })
 export class DbModule {}

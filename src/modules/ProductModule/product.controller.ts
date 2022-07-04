@@ -136,9 +136,15 @@ export class ProductController {
     @Body() filters: any,
     @Query('name') name: string,
     @Query('text') text: string,
+    @Query('minprice') min_price: string,
+    @Query('maxprice') max_price: string,
+    @Query('producer') producer: string,
   ) {
     filters.name = name;
     filters.text = text;
+    filters.min_price = min_price;
+    filters.max_price = max_price;
+    filters.producer = producer;
     return await this.productService.findByFilters(filters, sort, sortby);
   }
 

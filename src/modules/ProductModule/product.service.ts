@@ -57,12 +57,11 @@ export class ProductService {
     sortby: string,
   ): Promise<Product[]> {
     let arr;
-    console.log(filters.name)
-    if (filters.name != null && filters.name != undefined){
+    console.log(filters.name);
+    if (filters.name != null && filters.name != undefined) {
       arr = await this.productRepository.findByName(filters.name, sort);
-      console.log(arr)
-    }
-    else if (filters.text != null && filters.text != undefined)
+      console.log(arr);
+    } else if (filters.text != null && filters.text != undefined)
       arr = await this.productRepository.findByText(filters.text, sort);
     else if (filters.producer != null && filters.producer != undefined)
       return await this.productRepository.findByProducer(

@@ -9,6 +9,8 @@ const characteristic_module_1 = require("../modules/CharacteristicModule/charact
 const charactValue_module_1 = require("../modules/CharactValueModule/charactValue.module");
 const color_module_1 = require("../modules/ColorModule/color.module");
 const currency_module_1 = require("../modules/Currencymodule/currency.module");
+const discount_module_1 = require("../modules/DiscountModule/discount.module");
+const discountSeason_module_1 = require("../modules/DiscountSeasonModule/discountSeason.module");
 const email_module_1 = require("../modules/EmailModule/email.module");
 const information_module_1 = require("../modules/InformationModule/information.module");
 const material_module_1 = require("../modules/MaterialModule/material.module");
@@ -96,6 +98,14 @@ exports.routes = [
     {
         path: '/api',
         module: information_module_1.InformationModule,
+    },
+    {
+        path: '/api',
+        module: discount_module_1.DiscountModule,
+    },
+    {
+        path: '/api',
+        module: discountSeason_module_1.DiscountSeasonModule,
     },
 ];
 //# sourceMappingURL=routes.js.map
