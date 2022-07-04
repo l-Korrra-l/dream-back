@@ -37,7 +37,7 @@ import { ColorService } from '../ColorModule/color.service';
 import { MemoryService } from '../MemoryModule/memory.service';
 import { MaterialService } from '../MaterialModule/material.service';
 import { InformationService } from '../InformationModule/information.service';
-import { ApiOperation } from '@nestjs/swagger';
+import { ApiBody, ApiOperation } from '@nestjs/swagger';
 
 @Controller('product')
 export class ProductController {
@@ -52,6 +52,7 @@ export class ProductController {
 
   @ApiOperation({ summary: 'добавить продукт' })
   @Post()
+  @ApiBody({ type: [ProductForCreate] })
   @UseGuards(JwtAuthGuard, RolesGuard)
   @Roles(Role.Admin)
   @UseInterceptors(
