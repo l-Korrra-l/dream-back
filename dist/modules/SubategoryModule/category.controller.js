@@ -52,6 +52,10 @@ let CategoryController = class CategoryController {
 __decorate([
     (0, common_1.Post)(),
     (0, common_1.UseGuards)(jwt_guard_1.JwtAuthGuard, roles_guard_1.RolesGuard),
+<<<<<<< HEAD
+=======
+    (0, swagger_1.ApiBearerAuth)('access-token'),
+>>>>>>> 376e95b7e43aca62c19acf6875d918e5ba556cad
     (0, common_1.UseInterceptors)((0, platform_express_1.FileInterceptor)('file', {
         storage: (0, multer_1.diskStorage)({
             destination: 'public',
@@ -85,6 +89,10 @@ __decorate([
 __decorate([
     (0, common_1.Delete)('/:id'),
     (0, common_1.UseGuards)(jwt_guard_1.JwtAuthGuard, roles_guard_1.RolesGuard),
+<<<<<<< HEAD
+=======
+    (0, swagger_1.ApiBearerAuth)('access-token'),
+>>>>>>> 376e95b7e43aca62c19acf6875d918e5ba556cad
     __param(0, (0, common_1.Param)('id')),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", [String]),
@@ -93,6 +101,10 @@ __decorate([
 __decorate([
     (0, common_1.Patch)('/:id'),
     (0, common_1.UseGuards)(jwt_guard_1.JwtAuthGuard, roles_guard_1.RolesGuard),
+<<<<<<< HEAD
+=======
+    (0, swagger_1.ApiBearerAuth)('access-token'),
+>>>>>>> 376e95b7e43aca62c19acf6875d918e5ba556cad
     (0, common_1.UseInterceptors)((0, platform_express_1.FileInterceptor)('file', {
         storage: (0, multer_1.diskStorage)({
             destination: 'public',

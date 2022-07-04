@@ -44,6 +44,10 @@ export class SliderController {
   )
   @UseGuards(JwtAuthGuard, RolesGuard)
  
+<<<<<<< HEAD
+=======
+  @ApiBearerAuth('access-token')
+>>>>>>> 376e95b7e43aca62c19acf6875d918e5ba556cad
   async createProduct(
     @Body()
     sliderForCreate: SliderForCreate,
@@ -104,6 +108,10 @@ export class SliderController {
   })
   @UseGuards(JwtAuthGuard, RolesGuard)
  
+<<<<<<< HEAD
+=======
+  @ApiBearerAuth('access-token')
+>>>>>>> 376e95b7e43aca62c19acf6875d918e5ba556cad
   @Delete('/:id')
   async deleteSlider(@Param('id') id: string) {
     return await this.sliderService.deleteSlider(id);

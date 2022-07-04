@@ -73,6 +73,10 @@ export class CategoryController {
   @Delete('/:id')
   @UseGuards(JwtAuthGuard, RolesGuard)
  
+<<<<<<< HEAD
+=======
+  @ApiBearerAuth('access-token')
+>>>>>>> 376e95b7e43aca62c19acf6875d918e5ba556cad
   async deleteProduct(@Param('id') id: string) {
     return await this.categoryService.delete(id);
   }
@@ -80,6 +84,10 @@ export class CategoryController {
   @Patch('/:id')
   @UseGuards(JwtAuthGuard, RolesGuard)
  
+<<<<<<< HEAD
+=======
+  @ApiBearerAuth('access-token')
+>>>>>>> 376e95b7e43aca62c19acf6875d918e5ba556cad
   @UseInterceptors(
     FileInterceptor('file', {
       storage: diskStorage({

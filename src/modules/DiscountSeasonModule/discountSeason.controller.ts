@@ -31,7 +31,6 @@ export class DiscountSeasonController {
 
   @Post()
   @UseGuards(JwtAuthGuard, RolesGuard)
- 
   async createDiscountSeason(
     // @Body()
     // discountseasonForCreate: DiscountSeasonForCreate,
@@ -44,7 +43,6 @@ export class DiscountSeasonController {
   }
 
   @UseGuards(JwtAuthGuard, RolesGuard)
- 
   @Patch(':id')
   async updateDiscountSeason(
     @Param('id') discountseasonId: string,

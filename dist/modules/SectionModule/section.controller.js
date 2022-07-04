@@ -48,6 +48,10 @@ __decorate([
     (0, swagger_1.ApiOperation)({ summary: 'добавить раздел описания' }),
     (0, common_1.Post)(),
     (0, common_1.UseGuards)(jwt_guard_1.JwtAuthGuard, roles_guard_1.RolesGuard),
+<<<<<<< HEAD
+=======
+    (0, swagger_1.ApiBearerAuth)('access-token'),
+>>>>>>> 376e95b7e43aca62c19acf6875d918e5ba556cad
     __param(0, (0, common_1.Body)()),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", [Object]),
@@ -58,6 +62,10 @@ __decorate([
         summary: 'изменить раздел описания по id',
     }),
     (0, common_1.UseGuards)(jwt_guard_1.JwtAuthGuard, roles_guard_1.RolesGuard),
+<<<<<<< HEAD
+=======
+    (0, swagger_1.ApiBearerAuth)('access-token'),
+>>>>>>> 376e95b7e43aca62c19acf6875d918e5ba556cad
     (0, common_1.Patch)(':id'),
     __param(0, (0, common_1.Param)('id')),
     __param(1, (0, common_1.Body)()),
