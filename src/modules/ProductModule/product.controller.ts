@@ -52,7 +52,6 @@ export class ProductController {
 
   @ApiOperation({ summary: 'добавить продукт' })
   @Post()
-  @ApiBody({ type: [ProductForCreate] })
   @UseGuards(JwtAuthGuard, RolesGuard)
   @Roles(Role.Admin)
   @UseInterceptors(

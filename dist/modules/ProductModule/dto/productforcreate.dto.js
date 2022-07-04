@@ -12,6 +12,11 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.ProductForCreate = void 0;
 const swagger_1 = require("@nestjs/swagger");
 const runtime_1 = require("@prisma/client/runtime");
+const characteristicvalueforcreate_prod_dto_1 = require("../../CharactValueModule/dto/characteristicvalueforcreate.prod.dto");
+const colorforcreate_prod_dto_1 = require("../../ColorModule/dto/colorforcreate.prod.dto");
+const informationforcreate_prod_dto_1 = require("../../InformationModule/dto/informationforcreate.prod.dto");
+const materailforcreate_prod_dto_1 = require("../../MaterialModule/dto/materailforcreate.prod.dto");
+const memoryforcreate_prod_dto_1 = require("../../MemoryModule/dto/memoryforcreate.prod.dto");
 class ProductForCreate {
 }
 __decorate([
@@ -57,23 +62,23 @@ __decorate([
     __metadata("design:type", runtime_1.Decimal)
 ], ProductForCreate.prototype, "raiting", void 0);
 __decorate([
-    (0, swagger_1.ApiPropertyOptional)(),
+    (0, swagger_1.ApiPropertyOptional)({ type: [characteristicvalueforcreate_prod_dto_1.CharacteristicValueForCreateFromProd] }),
     __metadata("design:type", Array)
 ], ProductForCreate.prototype, "characteristics", void 0);
 __decorate([
-    (0, swagger_1.ApiPropertyOptional)(),
+    (0, swagger_1.ApiPropertyOptional)({ type: [colorforcreate_prod_dto_1.ColorForCreateFromProd] }),
     __metadata("design:type", Array)
 ], ProductForCreate.prototype, "colors", void 0);
 __decorate([
-    (0, swagger_1.ApiPropertyOptional)(),
+    (0, swagger_1.ApiPropertyOptional)({ type: [materailforcreate_prod_dto_1.MaterialForCreateFromProd] }),
     __metadata("design:type", Array)
 ], ProductForCreate.prototype, "materials", void 0);
 __decorate([
-    (0, swagger_1.ApiPropertyOptional)(),
+    (0, swagger_1.ApiPropertyOptional)({ type: [memoryforcreate_prod_dto_1.MemoryForCreateFromProd] }),
     __metadata("design:type", Array)
 ], ProductForCreate.prototype, "memory", void 0);
 __decorate([
-    (0, swagger_1.ApiPropertyOptional)(),
+    (0, swagger_1.ApiPropertyOptional)({ type: [informationforcreate_prod_dto_1.InformationForCreateFromProd] }),
     __metadata("design:type", Array)
 ], ProductForCreate.prototype, "information", void 0);
 exports.ProductForCreate = ProductForCreate;

@@ -1,5 +1,6 @@
 import { ApiProperty, ApiPropertyOptional } from '@nestjs/swagger';
 import { Decimal } from '@prisma/client/runtime';
+import { array } from 'joi';
 import { CharacteristicValueForCreate } from 'src/modules/CharactValueModule/dto/characteristicvalueforcreate.dto';
 import { CharacteristicValueForCreateFromProd } from 'src/modules/CharactValueModule/dto/characteristicvalueforcreate.prod.dto';
 import { ColorForCreateFromProd } from 'src/modules/ColorModule/dto/colorforcreate.prod.dto';
@@ -32,14 +33,14 @@ export class ProductForCreate {
   @ApiPropertyOptional({ default: 0 })
   raiting: Decimal;
 
-  @ApiPropertyOptional()
+  @ApiPropertyOptional({ type: [CharacteristicValueForCreateFromProd] })
   characteristics: CharacteristicValueForCreateFromProd[];
-  @ApiPropertyOptional()
+  @ApiPropertyOptional({ type: [ColorForCreateFromProd] })
   colors: ColorForCreateFromProd[];
-  @ApiPropertyOptional()
+  @ApiPropertyOptional({ type: [MaterialForCreateFromProd] })
   materials: MaterialForCreateFromProd[];
-  @ApiPropertyOptional()
+  @ApiPropertyOptional({ type: [MemoryForCreateFromProd] })
   memory: MemoryForCreateFromProd[];
-  @ApiPropertyOptional()
+  @ApiPropertyOptional({ type: [InformationForCreateFromProd] })
   information: InformationForCreateFromProd[];
 }
