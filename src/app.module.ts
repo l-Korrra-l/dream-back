@@ -33,6 +33,7 @@ import { SectionModule } from './modules/SectionModule/section.module';
 import { InformationModule } from './modules/InformationModule/information.module';
 import { DiscountModule } from './modules/DiscountModule/discount.module';
 import { DiscountSeasonModule } from './modules/DiscountSeasonModule/discountSeason.module';
+import { SubcategoryModule } from './modules/SubcategoryModule/subcategory.module';
 
 @Module({
   imports: [
@@ -64,6 +65,7 @@ import { DiscountSeasonModule } from './modules/DiscountSeasonModule/discountSea
     CurrencyModule,
     SliderModule,
     CategoryModule,
+    SubcategoryModule,
     ServiceModule,
     ColorModule,
     MemoryModule,

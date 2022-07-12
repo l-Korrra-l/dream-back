@@ -9,33 +9,33 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.CategoryService = void 0;
+exports.SubcategoryService = void 0;
 const common_1 = require("@nestjs/common");
-const category_repository_1 = require("../../persistance/repository/category.repository");
-let CategoryService = class CategoryService {
-    constructor(categoryRepository) {
-        this.categoryRepository = categoryRepository;
+const subcategory_repository_1 = require("../../persistance/repository/subcategory.repository");
+let SubcategoryService = class SubcategoryService {
+    constructor(subcategoryRepository) {
+        this.subcategoryRepository = subcategoryRepository;
     }
-    async createCategory(inputCategory) {
-        const product = await this.categoryRepository.create(inputCategory);
+    async createSubcategory(inputSubcategory) {
+        const product = await this.subcategoryRepository.create(inputSubcategory);
         return product;
     }
     async getOne(id) {
-        return await this.categoryRepository.findOne(id);
+        return await this.subcategoryRepository.findOne(id);
     }
     async getAll() {
-        return await this.categoryRepository.findAll();
+        return await this.subcategoryRepository.findAll();
     }
     async delete(id) {
-        return await this.categoryRepository.delete(id);
+        return await this.subcategoryRepository.delete(id);
     }
-    async updateCategory(id, categoryForUpdate) {
-        return await this.categoryRepository.update(id, categoryForUpdate);
+    async updateSubcategory(id, subcategoryForUpdate) {
+        return await this.subcategoryRepository.update(id, subcategoryForUpdate);
     }
 };
-CategoryService = __decorate([
+SubcategoryService = __decorate([
     (0, common_1.Injectable)(),
-    __metadata("design:paramtypes", [category_repository_1.CategoryRepository])
-], CategoryService);
-exports.CategoryService = CategoryService;
-//# sourceMappingURL=category.service.js.map
+    __metadata("design:paramtypes", [subcategory_repository_1.SubcategoryRepository])
+], SubcategoryService);
+exports.SubcategoryService = SubcategoryService;
+//# sourceMappingURL=subcategory.service.js.map

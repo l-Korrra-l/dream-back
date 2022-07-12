@@ -27,6 +27,7 @@ const review_repository_1 = require("./repository/review.repository");
 const section_repository_1 = require("./repository/section.repository");
 const service_repository_1 = require("./repository/service.repository");
 const slider_repository_1 = require("./repository/slider.repository");
+const subcategory_repository_1 = require("./repository/subcategory.repository");
 const user_repository_1 = require("./repository/user.repository");
 let DbModule = class DbModule {
 };
@@ -52,6 +53,7 @@ DbModule = __decorate([
             information_repository_1.InformationRepository,
             discount_repository_1.DiscountRepository,
             discountSeason_repository_1.DiscountSeasonRepository,
+            subcategory_repository_1.SubcategoryRepository,
         ],
         exports: [
             user_repository_1.UserRepository,
@@ -72,6 +74,7 @@ DbModule = __decorate([
             information_repository_1.InformationRepository,
             discount_repository_1.DiscountRepository,
             discountSeason_repository_1.DiscountSeasonRepository,
+            subcategory_repository_1.SubcategoryRepository,
         ],
     })
 ], DbModule);

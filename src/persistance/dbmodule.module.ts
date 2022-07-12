@@ -18,6 +18,7 @@ import { ReviewRepository } from './repository/review.repository';
 import { SectionRepository } from './repository/section.repository';
 import { ServiceRepository } from './repository/service.repository';
 import { SliderRepository } from './repository/slider.repository';
+import { SubcategoryRepository } from './repository/subcategory.repository';
 import { UserRepository } from './repository/user.repository';
 
 @Module({
@@ -41,6 +42,7 @@ import { UserRepository } from './repository/user.repository';
     InformationRepository,
     DiscountRepository,
     DiscountSeasonRepository,
+    SubcategoryRepository,
   ],
   exports: [
     UserRepository,
@@ -61,6 +63,7 @@ import { UserRepository } from './repository/user.repository';
     InformationRepository,
     DiscountRepository,
     DiscountSeasonRepository,
+    SubcategoryRepository,
   ],
 })
 export class DbModule {}

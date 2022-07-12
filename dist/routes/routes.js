@@ -20,6 +20,7 @@ const product_module_1 = require("../modules/ProductModule/product.module");
 const section_module_1 = require("../modules/SectionModule/section.module");
 const service_module_1 = require("../modules/ServiceModule/service.module");
 const slider_module_1 = require("../modules/SliderModule/slider.module");
+const subcategory_module_1 = require("../modules/SubcategoryModule/subcategory.module");
 const user_module_1 = require("../modules/UserModule/user.module");
 const dbmodule_module_1 = require("../persistance/dbmodule.module");
 exports.routes = [
@@ -62,6 +63,10 @@ exports.routes = [
     {
         path: '/api',
         module: category_module_1.CategoryModule,
+    },
+    {
+        path: '/api',
+        module: subcategory_module_1.SubcategoryModule,
     },
     {
         path: '/api',

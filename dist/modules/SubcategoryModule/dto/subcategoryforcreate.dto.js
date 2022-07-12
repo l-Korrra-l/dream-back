@@ -9,25 +9,17 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.CategoryForCreate = void 0;
+exports.SubcategoryForCreate = void 0;
 const swagger_1 = require("@nestjs/swagger");
-class CategoryForCreate {
+class SubcategoryForCreate {
 }
 __decorate([
     (0, swagger_1.ApiProperty)(),
     __metadata("design:type", String)
-], CategoryForCreate.prototype, "categoryName", void 0);
+], SubcategoryForCreate.prototype, "name", void 0);
 __decorate([
     (0, swagger_1.ApiPropertyOptional)(),
-    __metadata("design:type", String)
-], CategoryForCreate.prototype, "img_path", void 0);
-__decorate([
-    (0, swagger_1.ApiPropertyOptional)(),
-    __metadata("design:type", String)
-], CategoryForCreate.prototype, "block_type", void 0);
-__decorate([
-    (0, swagger_1.ApiPropertyOptional)(),
-    __metadata("design:type", Boolean)
-], CategoryForCreate.prototype, "main_page", void 0);
-exports.CategoryForCreate = CategoryForCreate;
-//# sourceMappingURL=categoryforcreate.dto.js.map
+    __metadata("design:type", Number)
+], SubcategoryForCreate.prototype, "categoryId", void 0);
+exports.SubcategoryForCreate = SubcategoryForCreate;
+//# sourceMappingURL=subcategoryforcreate.dto.js.map

@@ -37,6 +37,7 @@ const section_module_1 = require("./modules/SectionModule/section.module");
 const information_module_1 = require("./modules/InformationModule/information.module");
 const discount_module_1 = require("./modules/DiscountModule/discount.module");
 const discountSeason_module_1 = require("./modules/DiscountSeasonModule/discountSeason.module");
+const subcategory_module_1 = require("./modules/SubcategoryModule/subcategory.module");
 let AppModule = class AppModule {
     configure(consumer) {
         consumer.apply(index_middleware_1.FrontendMiddleware).forRoutes({
@@ -73,6 +74,7 @@ AppModule = __decorate([
             currency_module_1.CurrencyModule,
             slider_module_1.SliderModule,
             category_module_1.CategoryModule,
+            subcategory_module_1.SubcategoryModule,
             service_module_1.ServiceModule,
             color_module_1.ColorModule,
             memory_module_1.MemoryModule,

@@ -6,19 +6,19 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.CategoryModule = void 0;
+exports.SubcategoryModule = void 0;
 const common_1 = require("@nestjs/common");
 const dbmodule_module_1 = require("../../persistance/dbmodule.module");
-const category_controller_1 = require("./category.controller");
-const category_service_1 = require("./category.service");
-let CategoryModule = class CategoryModule {
+const subcategory_controller_1 = require("./subcategory.controller");
+const subcategory_service_1 = require("./subcategory.service");
+let SubcategoryModule = class SubcategoryModule {
 };
-CategoryModule = __decorate([
+SubcategoryModule = __decorate([
     (0, common_1.Module)({
         imports: [dbmodule_module_1.DbModule],
-        controllers: [category_controller_1.CategoryController],
-        providers: [category_service_1.CategoryService],
+        controllers: [subcategory_controller_1.SubcategoryController],
+        providers: [subcategory_service_1.SubcategoryService],
     })
-], CategoryModule);
-exports.CategoryModule = CategoryModule;
-//# sourceMappingURL=category.module.js.map
+], SubcategoryModule);
+exports.SubcategoryModule = SubcategoryModule;
+//# sourceMappingURL=subcategory.module.js.map
