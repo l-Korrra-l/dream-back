@@ -44,8 +44,7 @@ let ServiceController = class ServiceController {
     }
     async searchServicess(sort, sortby, name, text, min_price, max_price) {
         let filters = { name: null };
-        if (name)
-            filters.name = name;
+        filters.text = name;
         if (text)
             filters.text = text;
         if (min_price)

@@ -161,7 +161,9 @@ export class ProductController {
     @Query('producer') producer: string,
   ) {
     let filters: any = { name: null };
-    if (name) filters.name = name;
+    //TODO
+    filters.text = name;
+    // if (name) filters.name = name;
     if (text) filters.text = text;
     if (min_price) filters.min_price = min_price;
     if (max_price) filters.max_price = max_price;

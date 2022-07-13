@@ -38,8 +38,7 @@ import { ApiBearerAuth, ApiOperation } from '@nestjs/swagger';
 export class ServiceController {
   constructor(private serviceService: ServiceService) {}
 
-   @Post()
- 
+  @Post()
   @UseInterceptors(
     FileInterceptor('file', {
       storage: diskStorage({
@@ -90,7 +89,9 @@ export class ServiceController {
     @Query('maxprice') max_price: string,
   ) {
     let filters: any = { name: null };
-    if (name) filters.name = name;
+    //TODO
+    filters.text = name;
+    // if (name) filters.name = name;
     if (text) filters.text = text;
     if (min_price) filters.min_price = min_price;
     if (max_price) filters.max_price = max_price;
@@ -121,7 +122,6 @@ export class ServiceController {
     summary: 'РёР·РјРµРЅРёС‚СЊ РёРЅС„РѕСЂРјР°С†РёСЋ Рѕ СѓСЃР»СѓРіРµ РїРѕ id',
   })
   // @UseGuards(JwtAuthGuard, RolesGuard)
- 
   @UseInterceptors(
     FileInterceptor('file', {
       storage: diskStorage({
