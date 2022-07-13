@@ -1,7 +1,7 @@
 import { Module } from '@nestjs/common';
 import { DbModule } from 'src/persistance/dbmodule.module';
-import { SearchController } from './search.controller';
-import { SearchService } from './search.service';
+import { SearchController } from 'src/modules/SearchModule/search.controller';
+import { SearchService } from 'src/modules/SearchModule/search.service';
 
 @Module({
   imports: [DbModule],
