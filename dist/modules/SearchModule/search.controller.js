@@ -30,7 +30,7 @@ let SearchController = class SearchController {
         if (max_price)
             filters.max_price = max_price;
         if (!sort)
-            sort = sort_enum_1.Sort.asc;
+            sort = sort_enum_1.Sort.desc;
         return await this.searchService.findByFilters(filters, sort, sortby);
     }
 };

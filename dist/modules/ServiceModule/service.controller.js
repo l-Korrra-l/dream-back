@@ -51,7 +51,7 @@ let ServiceController = class ServiceController {
         if (max_price)
             filters.max_price = max_price;
         if (!sort)
-            sort = sort_enum_1.Sort.asc;
+            sort = sort_enum_1.Sort.desc;
         return await this.serviceService.findByFilters(filters, sort, sortby);
     }
     async makeReviewForService(serviceId, currentUser, review) {

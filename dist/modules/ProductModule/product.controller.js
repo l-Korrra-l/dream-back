@@ -89,7 +89,7 @@ let ProductController = class ProductController {
         if (max_price)
             filters.max_price = max_price;
         if (!sort)
-            sort = sort_enum_1.Sort.asc;
+            sort = sort_enum_1.Sort.desc;
         return await this.productService.findByFilters(filters, sort, sortby);
     }
     async searchProductss(sort, sortby, name, text, min_price, max_price, producer) {
@@ -101,7 +101,7 @@ let ProductController = class ProductController {
         if (max_price)
             filters.max_price = max_price;
         if (!sort)
-            sort = sort_enum_1.Sort.asc;
+            sort = sort_enum_1.Sort.desc;
         return await this.productService.findByFilters(filters, sort, sortby);
     }
     async makeReviewForProduct(productId, currentUser, review) {
