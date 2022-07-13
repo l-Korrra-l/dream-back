@@ -160,7 +160,7 @@ export class ProductController {
     @Query('maxprice') max_price: string,
     @Query('producer') producer: string,
   ) {
-    let filters: any;
+    let filters: any = {};
     //TODO
     if (name) filters.text = name;
     // if (name) filters.name = name;

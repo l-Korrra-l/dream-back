@@ -91,7 +91,7 @@ let ProductController = class ProductController {
         return await this.productService.findByFilters(filters, sort, sortby);
     }
     async searchProductss(sort, sortby, name, text, min_price, max_price, producer) {
-        let filters;
+        let filters = {};
         if (name)
             filters.text = name;
         if (min_price)

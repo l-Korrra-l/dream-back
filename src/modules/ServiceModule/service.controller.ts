@@ -88,7 +88,7 @@ export class ServiceController {
     @Query('minprice') min_price: string,
     @Query('maxprice') max_price: string,
   ) {
-    let filters: any;
+    let filters: any = {};
     //TODO
     if (name) filters.text = name;
     // if (name) filters.name = name;

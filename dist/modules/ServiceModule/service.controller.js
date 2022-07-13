@@ -43,7 +43,7 @@ let ServiceController = class ServiceController {
         return await this.serviceService.getAll(sort, sortby);
     }
     async searchServicess(sort, sortby, name, text, min_price, max_price) {
-        let filters;
+        let filters = {};
         if (name)
             filters.text = name;
         if (min_price)
