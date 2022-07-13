@@ -10,7 +10,7 @@ export declare class ServiceController {
     constructor(serviceService: ServiceService);
     createService(serviceForCreate: ServiceForCreate, file: Express.Multer.File): Promise<import(".prisma/client").Service>;
     getAllproducts(sort: Sort, sortby: string): Promise<import(".prisma/client").Service[]>;
-    searchServices(sort: Sort, sortby: string, filters: any): Promise<import(".prisma/client").Service[]>;
+    searchServicess(sort: Sort, sortby: string, name: string, text: string, min_price: string, max_price: string): Promise<import(".prisma/client").Service[]>;
     makeReviewForService(serviceId: any, currentUser: CurrentUserInfo, review: ReviewFromUser): Promise<import(".prisma/client").Review>;
     updateService(serviceId: string, serviceForUpdate: ServiceForUpdate, file: any): Promise<import(".prisma/client").Service>;
     getService(id: string): Promise<import(".prisma/client").Service>;

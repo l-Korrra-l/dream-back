@@ -216,12 +216,8 @@ let ProductRepository = class ProductRepository {
                 category: true,
                 subcategory: true,
             },
-            orderBy: {
-                _relevance: {
-                    fields: 'name',
-                    search: name,
-                    sort: sort,
-                },
+            where: {
+                name: name,
             },
         });
     }

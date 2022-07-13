@@ -42,7 +42,18 @@ let ServiceController = class ServiceController {
     async getAllproducts(sort, sortby) {
         return await this.serviceService.getAll(sort, sortby);
     }
-    async searchServices(sort, sortby, filters) {
+    async searchServicess(sort, sortby, name, text, min_price, max_price) {
+        let filters = { name: null };
+        if (name)
+            filters.name = name;
+        if (text)
+            filters.text = text;
+        if (min_price)
+            filters.min_price = min_price;
+        if (max_price)
+            filters.max_price = max_price;
+        if (!sort)
+            sort = sort_enum_1.Sort.asc;
         return await this.serviceService.findByFilters(filters, sort, sortby);
     }
     async makeReviewForService(serviceId, currentUser, review) {
@@ -74,7 +85,7 @@ __decorate([
 ], ServiceController.prototype, "createService", null);
 __decorate([
     (0, swagger_1.ApiOperation)({
-        summary: 'получить все продукты (параметры сортировки asc/desc)',
+        summary: 'РїРѕР»СѓС‡РёС‚СЊ РІСЃРµ РїСЂРѕРґСѓРєС‚С‹ (РїР°СЂР°РјРµС‚СЂС‹ СЃРѕСЂС‚РёСЂРѕРІРєРё asc/desc)',
     }),
     (0, common_1.Get)(),
     __param(0, (0, sortheader_decorator_1.Sorting)()),
@@ -84,18 +95,21 @@ __decorate([
     __metadata("design:returntype", Promise)
 ], ServiceController.prototype, "getAllproducts", null);
 __decorate([
-    (0, swagger_1.ApiOperation)({ summary: 'поиск услуг по фильтрам' }),
-    (0, common_1.Post)('search'),
-    __param(0, (0, sortheader_decorator_1.Sorting)()),
-    __param(1, (0, sortbyheader_decorator_1.SortingBy)()),
-    __param(2, (0, common_1.Body)()),
+    (0, swagger_1.ApiOperation)({ summary: 'РїРѕРёСЃРє СѓСЃР»СѓРі РїРѕ С„РёР»СЊС‚СЂР°Рј' }),
+    (0, common_1.Get)('search'),
+    __param(0, (0, common_1.Query)('sort')),
+    __param(1, (0, common_1.Query)('by')),
+    __param(2, (0, common_1.Query)('name')),
+    __param(3, (0, common_1.Query)('text')),
+    __param(4, (0, common_1.Query)('minprice')),
+    __param(5, (0, common_1.Query)('maxprice')),
     __metadata("design:type", Function),
-    __metadata("design:paramtypes", [String, String, Object]),
+    __metadata("design:paramtypes", [String, String, String, String, String, String]),
     __metadata("design:returntype", Promise)
-], ServiceController.prototype, "searchServices", null);
+], ServiceController.prototype, "searchServicess", null);
 __decorate([
     (0, swagger_1.ApiOperation)({
-        summary: 'оставить отзыв о услуге по id',
+        summary: 'РѕСЃС‚Р°РІРёС‚СЊ РѕС‚Р·С‹РІ Рѕ СѓСЃР»СѓРіРµ РїРѕ id',
     }),
     (0, common_1.Post)('makereview/:serviceId'),
     (0, common_1.HttpCode)(common_1.HttpStatus.CREATED),
@@ -108,7 +122,7 @@ __decorate([
 ], ServiceController.prototype, "makeReviewForService", null);
 __decorate([
     (0, swagger_1.ApiOperation)({
-        summary: 'изменить информацию о услуге по id',
+        summary: 'РёР·РјРµРЅРёС‚СЊ РёРЅС„РѕСЂРјР°С†РёСЋ Рѕ СѓСЃР»СѓРіРµ РїРѕ id',
     }),
     (0, common_1.UseInterceptors)((0, platform_express_1.FileInterceptor)('file', {
         storage: (0, multer_1.diskStorage)({
@@ -129,7 +143,7 @@ __decorate([
 ], ServiceController.prototype, "updateService", null);
 __decorate([
     (0, swagger_1.ApiOperation)({
-        summary: 'получить информацию о услуге по id',
+        summary: 'РїРѕР»СѓС‡РёС‚СЊ РёРЅС„РѕСЂРјР°С†РёСЋ Рѕ СѓСЃР»СѓРіРµ РїРѕ id',
     }),
     (0, common_1.Get)('/:id'),
     __param(0, (0, common_1.Param)('id')),

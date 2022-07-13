@@ -17,6 +17,7 @@ const material_module_1 = require("../modules/MaterialModule/material.module");
 const memory_module_1 = require("../modules/MemoryModule/memory.module");
 const order_module_1 = require("../modules/OrderModule/order.module");
 const product_module_1 = require("../modules/ProductModule/product.module");
+const seacrh_module_1 = require("../modules/SearchModule/seacrh.module");
 const section_module_1 = require("../modules/SectionModule/section.module");
 const service_module_1 = require("../modules/ServiceModule/service.module");
 const slider_module_1 = require("../modules/SliderModule/slider.module");
@@ -51,10 +52,6 @@ exports.routes = [
     {
         path: '/api',
         module: order_module_1.OrderModule,
-    },
-    {
-        path: '/api',
-        module: email_module_1.EmailModule,
     },
     {
         path: '/api',
@@ -111,6 +108,14 @@ exports.routes = [
     {
         path: '/api',
         module: discountSeason_module_1.DiscountSeasonModule,
+    },
+    {
+        path: '/api',
+        module: seacrh_module_1.SearchModule,
+    },
+    {
+        path: '/api',
+        module: email_module_1.EmailModule,
     },
 ];
 //# sourceMappingURL=routes.js.map

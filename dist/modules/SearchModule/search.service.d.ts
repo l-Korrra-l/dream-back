@@ -1,13 +1,9 @@
-import { BucketRepository } from 'src/persistance/repository/bucket.repository';
-import { OrderRepository } from 'src/persistance/repository/order.repository';
+import { Sort } from 'src/enums/sort.enum';
 import { ProductRepository } from 'src/persistance/repository/product.repository';
-import { ReviewRepository } from 'src/persistance/repository/review.repository';
-import { UserRepository } from 'src/persistance/repository/user.repository';
+import { ServiceRepository } from 'src/persistance/repository/service.repository';
 export declare class SearchService {
-    private userRepository;
     private productRepository;
-    private orderRepository;
-    private reviewRepository;
-    private bucketRepository;
-    constructor(userRepository: UserRepository, productRepository: ProductRepository, orderRepository: OrderRepository, reviewRepository: ReviewRepository, bucketRepository: BucketRepository);
+    private serviceRepository;
+    constructor(productRepository: ProductRepository, serviceRepository: ServiceRepository);
+    findByFilters(filters: any, sort: Sort, sortby: string): Promise<any>;
 }

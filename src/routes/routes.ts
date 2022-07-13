@@ -15,6 +15,7 @@ import { MaterialModule } from 'src/modules/MaterialModule/material.module';
 import { MemoryModule } from 'src/modules/MemoryModule/memory.module';
 import { OrderModule } from 'src/modules/OrderModule/order.module';
 import { ProductModule } from 'src/modules/ProductModule/product.module';
+import { SearchModule } from 'src/modules/SearchModule/seacrh.module';
 import { SectionModule } from 'src/modules/SectionModule/section.module';
 import { ServiceModule } from 'src/modules/ServiceModule/service.module';
 import { SliderModule } from 'src/modules/SliderModule/slider.module';
@@ -51,11 +52,6 @@ export const routes: Routes = [
     path: '/api',
     module: OrderModule,
   },
-  {
-    path: '/api',
-    module: EmailModule,
-  },
-
   {
     path: '/api',
     module: ServiceModule,
@@ -111,5 +107,13 @@ export const routes: Routes = [
   {
     path: '/api',
     module: DiscountSeasonModule,
+  },
+  {
+    path: '/api',
+    module: SearchModule,
+  },
+  {
+    path: '/api',
+    module: EmailModule,
   },
 ];

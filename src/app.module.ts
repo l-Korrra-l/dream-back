@@ -34,6 +34,7 @@ import { InformationModule } from './modules/InformationModule/information.modul
 import { DiscountModule } from './modules/DiscountModule/discount.module';
 import { DiscountSeasonModule } from './modules/DiscountSeasonModule/discountSeason.module';
 import { SubcategoryModule } from './modules/SubcategoryModule/subcategory.module';
+import { SearchModule } from './modules/SearchModule/seacrh.module';
 
 @Module({
   imports: [
@@ -61,7 +62,6 @@ import { SubcategoryModule } from './modules/SubcategoryModule/subcategory.modul
     ProductModule,
     BucketModule,
     OrderModule,
-    EmailModule,
     CurrencyModule,
     SliderModule,
     CategoryModule,
@@ -76,6 +76,8 @@ import { SubcategoryModule } from './modules/SubcategoryModule/subcategory.modul
     InformationModule,
     DiscountModule,
     DiscountSeasonModule,
+    SearchModule,
+    EmailModule,
   ],
   controllers: [AppController],
   providers: [AppService],

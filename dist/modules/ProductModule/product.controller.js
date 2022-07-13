@@ -81,12 +81,29 @@ let ProductController = class ProductController {
     async getAllproducts(sort, sortby) {
         return await this.productService.getAll(sort, sortby);
     }
-    async searchProductss(sort, sortby, filters, name, text, min_price, max_price, producer) {
+    async searchProductspost(sort, sortby, filters, name, text, min_price, max_price, producer) {
         filters.name = name;
         filters.text = text;
         filters.min_price = min_price;
         filters.max_price = max_price;
         filters.producer = producer;
+        console.log(filters);
+        return await this.productService.findByFilters(filters, sort, sortby);
+    }
+    async searchProductss(sort, sortby, name, text, min_price, max_price, producer) {
+        let filters = { name: null };
+        if (name)
+            filters.name = name;
+        if (text)
+            filters.text = text;
+        if (min_price)
+            filters.min_price = min_price;
+        if (max_price)
+            filters.max_price = max_price;
+        if (producer)
+            filters.producer = producer;
+        if (!sort)
+            sort = sort_enum_1.Sort.asc;
         return await this.productService.findByFilters(filters, sort, sortby);
     }
     async makeReviewForProduct(productId, currentUser, review) {
@@ -168,8 +185,8 @@ __decorate([
 __decorate([
     (0, swagger_1.ApiOperation)({ summary: 'поиск продукта по фильтрам' }),
     (0, common_1.Post)('search'),
-    __param(0, (0, sortheader_decorator_1.Sorting)()),
-    __param(1, (0, sortbyheader_decorator_1.SortingBy)()),
+    __param(0, (0, common_1.Query)('sort')),
+    __param(1, (0, common_1.Query)('by')),
     __param(2, (0, common_1.Body)()),
     __param(3, (0, common_1.Query)('name')),
     __param(4, (0, common_1.Query)('text')),
@@ -178,6 +195,20 @@ __decorate([
     __param(7, (0, common_1.Query)('producer')),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", [String, String, Object, String, String, String, String, String]),
+    __metadata("design:returntype", Promise)
+], ProductController.prototype, "searchProductspost", null);
+__decorate([
+    (0, swagger_1.ApiOperation)({ summary: 'поиск продукта по фильтрам' }),
+    (0, common_1.Get)('search'),
+    __param(0, (0, common_1.Query)('sort')),
+    __param(1, (0, common_1.Query)('by')),
+    __param(2, (0, common_1.Query)('name')),
+    __param(3, (0, common_1.Query)('text')),
+    __param(4, (0, common_1.Query)('minprice')),
+    __param(5, (0, common_1.Query)('maxprice')),
+    __param(6, (0, common_1.Query)('producer')),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [String, String, String, String, String, String, String]),
     __metadata("design:returntype", Promise)
 ], ProductController.prototype, "searchProductss", null);
 __decorate([

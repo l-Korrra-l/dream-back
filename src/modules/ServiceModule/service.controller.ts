@@ -63,7 +63,7 @@ export class ServiceController {
 
   @ApiOperation({
     summary:
-      'получить все продукты (параметры сортировки asc/desc)',
+      'РїРѕР»СѓС‡РёС‚СЊ РІСЃРµ РїСЂРѕРґСѓРєС‚С‹ (РїР°СЂР°РјРµС‚СЂС‹ СЃРѕСЂС‚РёСЂРѕРІРєРё asc/desc)',
   })
   @Get()
   async getAllproducts(@Sorting() sort: Sort, @SortingBy() sortby: string) {
@@ -79,18 +79,27 @@ export class ServiceController {
   // return await this.serviceService.findByValue(name, author);
   // }
 
-  @ApiOperation({ summary: 'поиск услуг по фильтрам' })
-  @Post('search')
-  async searchServices(
-    @Sorting() sort: Sort,
-    @SortingBy() sortby: string,
-    @Body() filters: any,
+  @ApiOperation({ summary: 'РїРѕРёСЃРє СѓСЃР»СѓРі РїРѕ С„РёР»СЊС‚СЂР°Рј' })
+  @Get('search')
+  async searchServicess(
+    @Query('sort') sort: Sort,
+    @Query('by') sortby: string,
+    @Query('name') name: string,
+    @Query('text') text: string,
+    @Query('minprice') min_price: string,
+    @Query('maxprice') max_price: string,
   ) {
+    let filters: any = { name: null };
+    if (name) filters.name = name;
+    if (text) filters.text = text;
+    if (min_price) filters.min_price = min_price;
+    if (max_price) filters.max_price = max_price;
+    if (!sort) sort = Sort.asc;
     return await this.serviceService.findByFilters(filters, sort, sortby);
   }
 
   @ApiOperation({
-    summary: 'оставить отзыв о услуге по id',
+    summary: 'РѕСЃС‚Р°РІРёС‚СЊ РѕС‚Р·С‹РІ Рѕ СѓСЃР»СѓРіРµ РїРѕ id',
   })
   // @UseGuards(JwtAuthGuard)
   @Post('makereview/:serviceId')
@@ -109,7 +118,7 @@ export class ServiceController {
   }
 
   @ApiOperation({
-    summary: 'изменить информацию о услуге по id',
+    summary: 'РёР·РјРµРЅРёС‚СЊ РёРЅС„РѕСЂРјР°С†РёСЋ Рѕ СѓСЃР»СѓРіРµ РїРѕ id',
   })
   // @UseGuards(JwtAuthGuard, RolesGuard)
  
@@ -139,7 +148,7 @@ export class ServiceController {
   }
 
   @ApiOperation({
-    summary: 'получить информацию о услуге по id',
+    summary: 'РїРѕР»СѓС‡РёС‚СЊ РёРЅС„РѕСЂРјР°С†РёСЋ Рѕ СѓСЃР»СѓРіРµ РїРѕ id',
   })
   @Get('/:id')
   async getService(@Param('id') id: string) {

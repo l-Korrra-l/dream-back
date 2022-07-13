@@ -38,6 +38,7 @@ const information_module_1 = require("./modules/InformationModule/information.mo
 const discount_module_1 = require("./modules/DiscountModule/discount.module");
 const discountSeason_module_1 = require("./modules/DiscountSeasonModule/discountSeason.module");
 const subcategory_module_1 = require("./modules/SubcategoryModule/subcategory.module");
+const seacrh_module_1 = require("./modules/SearchModule/seacrh.module");
 let AppModule = class AppModule {
     configure(consumer) {
         consumer.apply(index_middleware_1.FrontendMiddleware).forRoutes({
@@ -70,7 +71,6 @@ AppModule = __decorate([
             product_module_1.ProductModule,
             bucket_module_1.BucketModule,
             order_module_1.OrderModule,
-            email_module_1.EmailModule,
             currency_module_1.CurrencyModule,
             slider_module_1.SliderModule,
             category_module_1.CategoryModule,
@@ -85,6 +85,8 @@ AppModule = __decorate([
             information_module_1.InformationModule,
             discount_module_1.DiscountModule,
             discountSeason_module_1.DiscountSeasonModule,
+            seacrh_module_1.SearchModule,
+            email_module_1.EmailModule,
         ],
         controllers: [app_controller_1.AppController],
         providers: [app_service_1.AppService],

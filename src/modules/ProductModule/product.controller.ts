@@ -51,8 +51,7 @@ export class ProductController {
   ) {}
 
   @ApiOperation({ summary: 'добавить продукт' })
-   @Post()
- 
+  @Post()
   @UseInterceptors(
     FileInterceptor('file', {
       storage: diskStorage({
@@ -131,9 +130,9 @@ export class ProductController {
 
   @ApiOperation({ summary: 'поиск продукта по фильтрам' })
   @Post('search')
-  async searchProductss(
-    @Sorting() sort: Sort,
-    @SortingBy() sortby: string,
+  async searchProductspost(
+    @Query('sort') sort: Sort,
+    @Query('by') sortby: string,
     @Body() filters: any,
     @Query('name') name: string,
     @Query('text') text: string,
@@ -146,6 +145,28 @@ export class ProductController {
     filters.min_price = min_price;
     filters.max_price = max_price;
     filters.producer = producer;
+    console.log(filters);
+    return await this.productService.findByFilters(filters, sort, sortby);
+  }
+
+  @ApiOperation({ summary: 'поиск продукта по фильтрам' })
+  @Get('search')
+  async searchProductss(
+    @Query('sort') sort: Sort,
+    @Query('by') sortby: string,
+    @Query('name') name: string,
+    @Query('text') text: string,
+    @Query('minprice') min_price: string,
+    @Query('maxprice') max_price: string,
+    @Query('producer') producer: string,
+  ) {
+    let filters: any = { name: null };
+    if (name) filters.name = name;
+    if (text) filters.text = text;
+    if (min_price) filters.min_price = min_price;
+    if (max_price) filters.max_price = max_price;
+    if (producer) filters.producer = producer;
+    if (!sort) sort = Sort.asc;
     return await this.productService.findByFilters(filters, sort, sortby);
   }
 

@@ -40,13 +40,9 @@ let ServiceService = class ServiceService {
             filters.min_price = -1;
         if (!filters.max_price)
             filters.max_price = Number.MAX_VALUE / 2;
-        if (filters.producer != null && filters.producer != undefined)
-            arr.map((i) => {
-                if (i.producer.includes(filters.producer))
-                    return i;
-            });
         return arr.map((i) => {
-            if (i.price > filters.min_price && i.price < filters.max_price)
+            if (i.price > parseFloat(filters.min_price) &&
+                i.price < parseFloat(filters.max_price))
                 return i;
         });
     }
