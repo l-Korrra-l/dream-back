@@ -91,16 +91,13 @@ let ProductController = class ProductController {
         return await this.productService.findByFilters(filters, sort, sortby);
     }
     async searchProductss(sort, sortby, name, text, min_price, max_price, producer) {
-        let filters = { name: null };
-        filters.text = name;
-        if (text)
-            filters.text = text;
+        let filters;
+        if (name)
+            filters.text = name;
         if (min_price)
             filters.min_price = min_price;
         if (max_price)
             filters.max_price = max_price;
-        if (producer)
-            filters.producer = producer;
         if (!sort)
             sort = sort_enum_1.Sort.asc;
         return await this.productService.findByFilters(filters, sort, sortby);

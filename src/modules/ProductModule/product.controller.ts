@@ -160,14 +160,13 @@ export class ProductController {
     @Query('maxprice') max_price: string,
     @Query('producer') producer: string,
   ) {
-    let filters: any = { name: null };
+    let filters: any;
     //TODO
-    filters.text = name;
+    if (name) filters.text = name;
     // if (name) filters.name = name;
-    if (text) filters.text = text;
+    // if (text) filters.text = text;
     if (min_price) filters.min_price = min_price;
     if (max_price) filters.max_price = max_price;
-    if (producer) filters.producer = producer;
     if (!sort) sort = Sort.asc;
     return await this.productService.findByFilters(filters, sort, sortby);
   }
