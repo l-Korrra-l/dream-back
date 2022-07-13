@@ -9,15 +9,15 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.SearchModule = void 0;
 const common_1 = require("@nestjs/common");
 const dbmodule_module_1 = require("../../persistance/dbmodule.module");
-const search_controller_1 = require("./search.controller");
-const search_service_1 = require("./search.service");
+const Search_controller_1 = require("./Search.controller");
+const Search_service_1 = require("./Search.service");
 let SearchModule = class SearchModule {
 };
 SearchModule = __decorate([
     (0, common_1.Module)({
         imports: [dbmodule_module_1.DbModule],
-        controllers: [search_controller_1.SearchController],
-        providers: [search_service_1.SearchService],
+        controllers: [Search_controller_1.SearchController],
+        providers: [Search_service_1.SearchService],
     })
 ], SearchModule);
 exports.SearchModule = SearchModule;

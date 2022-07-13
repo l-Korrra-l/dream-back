@@ -57,4 +57,4 @@ SearchController = __decorate([
     __metadata("design:paramtypes", [search_service_1.SearchService])
 ], SearchController);
 exports.SearchController = SearchController;
-//# sourceMappingURL=search.controller.js.map
+//# sourceMappingURL=Search.controller.js.map
