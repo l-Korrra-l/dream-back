@@ -14,7 +14,7 @@ export declare class ProductService {
     constructor(productRepository: ProductRepository, reviewRepository: ReviewRepository, categoryRepository: CategoryRepository, caractValueRepository: CharactValueRepository);
     createProduct(inputProduct: any): Promise<Product>;
     getOne(id: string): Promise<any>;
-    getAll(sort: Sort, sortby: string): Promise<Product[]>;
+    getAll(sort: Sort, sortby: string, page: string): Promise<Product[]>;
     findByValue(name: string, author: string): Promise<Product[]>;
     findByFilters(filters: any, sort: Sort, sortby: string): Promise<Product[]>;
     makeReview(userId: string, author: string, productId: string, review: ReviewFromUser): Promise<import(".prisma/client").Review>;

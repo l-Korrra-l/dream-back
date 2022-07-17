@@ -18,4 +18,5 @@ export declare class ServiceService {
     findByFilters(filters: any, sort: Sort, sortby: string): Promise<Service[]>;
     makeReview(userId: string, author: string, serviceId: string, review: ReviewFromUser): Promise<import(".prisma/client").Review>;
     updateService(serviceId: string, serviceForUpdate: ServiceForUpdate, newImage: string): Promise<Service>;
+    updateServiceWithoutPic(serviceId: string, serviceForUpdate: ServiceForUpdate): Promise<Service>;
 }

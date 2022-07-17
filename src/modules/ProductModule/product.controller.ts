@@ -115,18 +115,14 @@ export class ProductController {
 
   @ApiOperation({ summary: 'получить все продукты' })
   @Get()
-  async getAllproducts(@Sorting() sort: Sort, @SortingBy() sortby: string) {
-    return await this.productService.getAll(sort, sortby);
+  async getAllproducts(
+    @Sorting() sort: Sort,
+    @SortingBy() sortby: string,
+    @Query('p') page: string,
+  ) {
+    if (!page) page = '1';
+    return await this.productService.getAll(sort, sortby, page);
   }
-
-  // @Get('search/:value')
-  // async searchProducts(@Param('value') valueForSearch: string) {
-  //   console.log('here');
-  // const name = valueForSearch;
-  // const author = valueForSearch;
-
-  // return await this.productService.findByValue(name, author);
-  // }
 
   @ApiOperation({ summary: 'поиск продукта по фильтрам' })
   @Post('search')
@@ -139,6 +135,7 @@ export class ProductController {
     @Query('minprice') min_price: string,
     @Query('maxprice') max_price: string,
     @Query('producer') producer: string,
+    @Query('p') page: string,
   ) {
     //TODO
     if (name) filters.text = name;
@@ -159,7 +156,8 @@ export class ProductController {
     @Query('text') text: string,
     @Query('minprice') min_price: string,
     @Query('maxprice') max_price: string,
-    @Query('producer') producer: string,
+    @Query('prod') producer: string,
+    @Query('p') page: string,
   ) {
     let filters: any = {};
     //TODO

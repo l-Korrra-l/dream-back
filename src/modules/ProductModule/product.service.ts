@@ -44,8 +44,8 @@ export class ProductService {
     return await this.productRepository.findOne(id);
   }
 
-  async getAll(sort: Sort, sortby: string): Promise<Product[]> {
-    return await this.productRepository.findAllWithSorting(sort, sortby);
+  async getAll(sort: Sort, sortby: string, page: string): Promise<Product[]> {
+    return await this.productRepository.findAllWithSorting(sort, sortby, page);
   }
 
   async findByValue(name: string, author: string) {

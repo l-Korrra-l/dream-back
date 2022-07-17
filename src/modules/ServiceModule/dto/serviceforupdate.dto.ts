@@ -1,4 +1,4 @@
-import { ApiProperty } from '@nestjs/swagger';
+import { ApiProperty, ApiPropertyOptional } from '@nestjs/swagger';
 import { Decimal } from '@prisma/client/runtime';
 
 export class ServiceForUpdate {
@@ -14,4 +14,6 @@ export class ServiceForUpdate {
   raiting?: number;
   @ApiProperty()
   short_descr?: string;
+  @ApiPropertyOptional()
+  prod_ids: number[];
 }

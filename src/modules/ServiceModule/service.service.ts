@@ -100,6 +100,21 @@ export class ServiceService {
   ) {
     const service = await this.serviceRepository.findOne(serviceId);
     serviceForUpdate.img_path = newImage;
-    return await this.serviceRepository.update(serviceId, serviceForUpdate);
+    const { prod_ids, ...servUpd } = serviceForUpdate;
+    prod_ids.forEach((id) => {
+      this.serviceRepository.connectProduct(Number(serviceId), id);
+    });
+    return await this.serviceRepository.update(serviceId, servUpd);
+  }
+
+  async updateServiceWithoutPic(
+    serviceId: string,
+    serviceForUpdate: ServiceForUpdate,
+  ) {
+    const { prod_ids, ...servUpd } = serviceForUpdate;
+    prod_ids.forEach((id) => {
+      this.serviceRepository.connectProduct(Number(serviceId), id);
+    });
+    return await this.serviceRepository.update(serviceId, servUpd);
   }
 }

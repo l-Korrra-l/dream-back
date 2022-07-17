@@ -186,22 +186,32 @@ export class ProductRepository
     });
   }
   //asc, desc
-  async findAllWithSorting(sort: Sort, sortby: string): Promise<Product[]> {
+  async findAllWithSorting(
+    sort: Sort,
+    sortby: string,
+    page: string,
+  ): Promise<Product[]> {
     if (sort == Sort.none) sort = Sort.asc;
     if (sortby == 'price' || sortby == undefined || sortby == null)
       return await this.prisma.product.findMany({
+        take: 30,
+        skip: 30 * (Number(page) - 1),
         orderBy: {
           price: sort,
         },
       });
     if (sortby == 'raiting')
       return await this.prisma.product.findMany({
+        take: 30,
+        skip: 30 * (Number(page) - 1),
         orderBy: {
           raiting: sort,
         },
       });
     if (sortby == 'name')
       return await this.prisma.product.findMany({
+        take: 30,
+        skip: 30 * (Number(page) - 1),
         orderBy: {
           name: sort,
         },

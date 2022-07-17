@@ -43,8 +43,8 @@ let ProductService = class ProductService {
     async getOne(id) {
         return await this.productRepository.findOne(id);
     }
-    async getAll(sort, sortby) {
-        return await this.productRepository.findAllWithSorting(sort, sortby);
+    async getAll(sort, sortby, page) {
+        return await this.productRepository.findAllWithSorting(sort, sortby, page);
     }
     async findByValue(name, author) {
         return await this.productRepository.findByValue(name, author);

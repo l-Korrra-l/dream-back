@@ -35,13 +35,15 @@ let ServiceController = class ServiceController {
         this.serviceService = serviceService;
     }
     async createService(serviceForCreate, file) {
-        serviceForCreate.img_path =
-            'http://194.62.19.52:7000/' + file.path.split('\\')[1];
+        var _a;
+        if (file)
+            serviceForCreate.img_path =
+                'http://194.62.19.52:7000/' + file.path.split('\\')[1];
         const serv = await this.serviceService.createService(serviceForCreate);
-        serviceForCreate.prod_ids.forEach(id => {
+        (_a = serviceForCreate.prod_ids) === null || _a === void 0 ? void 0 : _a.forEach((id) => {
             this.serviceService.connectProduct(serv.id, id);
         });
-        return;
+        return serv;
     }
     async getAllproducts(sort, sortby) {
         return await this.serviceService.getAll(sort, sortby);
@@ -62,7 +64,10 @@ let ServiceController = class ServiceController {
         return await this.serviceService.makeReview(currentUser.userId, currentUser.email, serviceId, review);
     }
     async updateService(serviceId, serviceForUpdate, file) {
-        return await this.serviceService.updateService(serviceId, serviceForUpdate, 'http://194.62.19.52:7000/' + file.path.split('\\')[1]);
+        if (file)
+            return await this.serviceService.updateService(serviceId, serviceForUpdate, 'http://194.62.19.52:7000/' + file.path.split('\\')[1]);
+        else
+            return await this.serviceService.updateServiceWithoutPic(serviceId, serviceForUpdate);
     }
     async getService(id) {
         return await this.serviceService.getOne(id);

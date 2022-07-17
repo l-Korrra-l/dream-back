@@ -55,13 +55,14 @@ export class ServiceController {
     serviceForCreate: ServiceForCreate,
     @UploadedFile() file: Express.Multer.File,
   ) {
-    serviceForCreate.img_path =
-      'http://194.62.19.52:7000/' + file.path.split('\\')[1];
-      const serv = await this.serviceService.createService(serviceForCreate);
-    serviceForCreate.prod_ids.forEach(id => {
+    if (file)
+      serviceForCreate.img_path =
+        'http://194.62.19.52:7000/' + file.path.split('\\')[1];
+    const serv = await this.serviceService.createService(serviceForCreate);
+    serviceForCreate.prod_ids?.forEach((id) => {
       this.serviceService.connectProduct(serv.id, id);
     });
-    return 
+    return serv;
   }
 
   @ApiOperation({
@@ -144,11 +145,17 @@ export class ServiceController {
     serviceForUpdate: ServiceForUpdate,
     @UploadedFile() file: any,
   ) {
-    return await this.serviceService.updateService(
-      serviceId,
-      serviceForUpdate,
-      'http://194.62.19.52:7000/' + file.path.split('\\')[1],
-    );
+    if (file)
+      return await this.serviceService.updateService(
+        serviceId,
+        serviceForUpdate,
+        'http://194.62.19.52:7000/' + file.path.split('\\')[1],
+      );
+    else
+      return await this.serviceService.updateServiceWithoutPic(
+        serviceId,
+        serviceForUpdate,
+      );
   }
 
   @ApiOperation({

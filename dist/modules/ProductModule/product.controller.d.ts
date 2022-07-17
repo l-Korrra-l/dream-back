@@ -18,9 +18,9 @@ export declare class ProductController {
     private informationService;
     constructor(productService: ProductService, charactValueService: CharactValueService, colorService: ColorService, memoryService: MemoryService, materialService: MaterialService, informationService: InformationService);
     createProduct(productForCreate: ProductForCreate, file: Express.Multer.File): Promise<import(".prisma/client").Product>;
-    getAllproducts(sort: Sort, sortby: string): Promise<import(".prisma/client").Product[]>;
-    searchProductspost(sort: Sort, sortby: string, filters: any, name: string, text: string, min_price: string, max_price: string, producer: string): Promise<import(".prisma/client").Product[]>;
-    searchProductss(sort: Sort, sortby: string, name: string, text: string, min_price: string, max_price: string, producer: string): Promise<import(".prisma/client").Product[]>;
+    getAllproducts(sort: Sort, sortby: string, page: string): Promise<import(".prisma/client").Product[]>;
+    searchProductspost(sort: Sort, sortby: string, filters: any, name: string, text: string, min_price: string, max_price: string, producer: string, page: string): Promise<import(".prisma/client").Product[]>;
+    searchProductss(sort: Sort, sortby: string, name: string, text: string, min_price: string, max_price: string, producer: string, page: string): Promise<import(".prisma/client").Product[]>;
     makeReviewForProduct(productId: any, currentUser: CurrentUserInfo, review: ReviewFromUser): Promise<import(".prisma/client").Review>;
     updateProduct(productId: string, productForUpdate: any, file: any): Promise<import(".prisma/client").Product>;
     getProduct(id: string): Promise<{

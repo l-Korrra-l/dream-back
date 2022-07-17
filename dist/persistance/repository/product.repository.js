@@ -170,23 +170,29 @@ let ProductRepository = class ProductRepository {
             },
         });
     }
-    async findAllWithSorting(sort, sortby) {
+    async findAllWithSorting(sort, sortby, page) {
         if (sort == sort_enum_1.Sort.none)
             sort = sort_enum_1.Sort.asc;
         if (sortby == 'price' || sortby == undefined || sortby == null)
             return await this.prisma.product.findMany({
+                take: 30,
+                skip: 30 * (Number(page) - 1),
                 orderBy: {
                     price: sort,
                 },
             });
         if (sortby == 'raiting')
             return await this.prisma.product.findMany({
+                take: 30,
+                skip: 30 * (Number(page) - 1),
                 orderBy: {
                     raiting: sort,
                 },
             });
         if (sortby == 'name')
             return await this.prisma.product.findMany({
+                take: 30,
+                skip: 30 * (Number(page) - 1),
                 orderBy: {
                     name: sort,
                 },

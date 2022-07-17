@@ -78,10 +78,12 @@ let ProductController = class ProductController {
         });
         return prod;
     }
-    async getAllproducts(sort, sortby) {
-        return await this.productService.getAll(sort, sortby);
+    async getAllproducts(sort, sortby, page) {
+        if (!page)
+            page = '1';
+        return await this.productService.getAll(sort, sortby, page);
     }
-    async searchProductspost(sort, sortby, filters, name, text, min_price, max_price, producer) {
+    async searchProductspost(sort, sortby, filters, name, text, min_price, max_price, producer, page) {
         if (name)
             filters.text = name;
         if (min_price)
@@ -92,7 +94,7 @@ let ProductController = class ProductController {
             sort = sort_enum_1.Sort.desc;
         return await this.productService.findByFilters(filters, sort, sortby);
     }
-    async searchProductss(sort, sortby, name, text, min_price, max_price, producer) {
+    async searchProductss(sort, sortby, name, text, min_price, max_price, producer, page) {
         let filters = {};
         if (name)
             filters.text = name;
@@ -176,8 +178,9 @@ __decorate([
     (0, common_1.Get)(),
     __param(0, (0, sortheader_decorator_1.Sorting)()),
     __param(1, (0, sortbyheader_decorator_1.SortingBy)()),
+    __param(2, (0, common_1.Query)('p')),
     __metadata("design:type", Function),
-    __metadata("design:paramtypes", [String, String]),
+    __metadata("design:paramtypes", [String, String, String]),
     __metadata("design:returntype", Promise)
 ], ProductController.prototype, "getAllproducts", null);
 __decorate([
@@ -191,8 +194,9 @@ __decorate([
     __param(5, (0, common_1.Query)('minprice')),
     __param(6, (0, common_1.Query)('maxprice')),
     __param(7, (0, common_1.Query)('producer')),
+    __param(8, (0, common_1.Query)('p')),
     __metadata("design:type", Function),
-    __metadata("design:paramtypes", [String, String, Object, String, String, String, String, String]),
+    __metadata("design:paramtypes", [String, String, Object, String, String, String, String, String, String]),
     __metadata("design:returntype", Promise)
 ], ProductController.prototype, "searchProductspost", null);
 __decorate([
@@ -204,9 +208,10 @@ __decorate([
     __param(3, (0, common_1.Query)('text')),
     __param(4, (0, common_1.Query)('minprice')),
     __param(5, (0, common_1.Query)('maxprice')),
-    __param(6, (0, common_1.Query)('producer')),
+    __param(6, (0, common_1.Query)('prod')),
+    __param(7, (0, common_1.Query)('p')),
     __metadata("design:type", Function),
-    __metadata("design:paramtypes", [String, String, String, String, String, String, String]),
+    __metadata("design:paramtypes", [String, String, String, String, String, String, String, String]),
     __metadata("design:returntype", Promise)
 ], ProductController.prototype, "searchProductss", null);
 __decorate([

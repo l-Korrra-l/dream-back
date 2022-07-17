@@ -5,4 +5,5 @@ export declare class ServiceForUpdate {
     price: number;
     raiting?: number;
     short_descr?: string;
+    prod_ids: number[];
 }
