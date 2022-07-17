@@ -57,7 +57,11 @@ export class ServiceController {
   ) {
     serviceForCreate.img_path =
       'http://194.62.19.52:7000/' + file.path.split('\\')[1];
-    return await this.serviceService.createService(serviceForCreate);
+      const serv = await this.serviceService.createService(serviceForCreate);
+    serviceForCreate.prod_ids.forEach(id => {
+      this.serviceService.connectProduct(serv.id, id);
+    });
+    return 
   }
 
   @ApiOperation({

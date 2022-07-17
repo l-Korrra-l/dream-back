@@ -8,6 +8,7 @@ export declare class ServiceRepository implements Repository<string, Prisma.Serv
     constructor(prisma: PrismaService);
     create(data: Prisma.ServiceCreateInput): Promise<Service>;
     update(id: string, data: Prisma.ServiceUpdateInput): Promise<Service>;
+    connectProduct(serv_id: number, id: number): Promise<Service>;
     delete(id: string): Promise<boolean>;
     findOne(id: string): Promise<ServiceWithReviews>;
     getById(id: number): Promise<Service>;

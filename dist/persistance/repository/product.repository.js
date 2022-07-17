@@ -26,6 +26,7 @@ let ProductRepository = class ProductRepository {
                 colors: true,
                 Memory: true,
                 materials: true,
+                services: true,
             },
             data,
         });
@@ -38,6 +39,7 @@ let ProductRepository = class ProductRepository {
                 materials: true,
                 category: true,
                 subcategory: true,
+                services: true,
             },
             where: {
                 id: product.id,
@@ -52,6 +54,7 @@ let ProductRepository = class ProductRepository {
                 colors: true,
                 Memory: true,
                 materials: true,
+                services: true,
             },
             where: {
                 id: Number(id),
@@ -73,6 +76,7 @@ let ProductRepository = class ProductRepository {
     async findOne(id) {
         const product = await this.prisma.product.findFirst({
             include: {
+                services: true,
                 reviews: {
                     select: {
                         body: true,
@@ -126,6 +130,7 @@ let ProductRepository = class ProductRepository {
         const product = await this.prisma.product.findFirst({
             include: {
                 reviews: true,
+                services: true,
             },
             where: {
                 id: Number(id),
@@ -146,6 +151,7 @@ let ProductRepository = class ProductRepository {
                 materials: true,
                 category: true,
                 subcategory: true,
+                services: true,
             },
             where: {
                 id: id,
@@ -160,6 +166,7 @@ let ProductRepository = class ProductRepository {
         return await this.prisma.product.findMany({
             include: {
                 reviews: true,
+                services: true,
             },
         });
     }
@@ -195,6 +202,7 @@ let ProductRepository = class ProductRepository {
                 materials: true,
                 category: true,
                 subcategory: true,
+                services: true,
             },
             where: {
                 name: {
@@ -215,6 +223,7 @@ let ProductRepository = class ProductRepository {
                 materials: true,
                 category: true,
                 subcategory: true,
+                services: true,
             },
             where: {
                 name: name,

@@ -26,6 +26,7 @@ export class ProductRepository
         colors: true,
         Memory: true,
         materials: true,
+        services: true,
       },
       data,
     });
@@ -39,6 +40,7 @@ export class ProductRepository
         materials: true,
         category: true,
         subcategory: true,
+        services: true,
       },
       where: {
         id: product.id,
@@ -54,6 +56,7 @@ export class ProductRepository
         colors: true,
         Memory: true,
         materials: true,
+        services: true,
       },
       where: {
         id: Number(id),
@@ -79,6 +82,7 @@ export class ProductRepository
   async findOne(id: string): Promise<any> {
     const product = await this.prisma.product.findFirst({
       include: {
+        services: true,
         reviews: {
           select: {
             body: true,
@@ -135,6 +139,7 @@ export class ProductRepository
     const product = await this.prisma.product.findFirst({
       include: {
         reviews: true,
+        services: true,
       },
       where: {
         id: Number(id),
@@ -158,6 +163,7 @@ export class ProductRepository
         materials: true,
         category: true,
         subcategory: true,
+        services: true,
       },
       where: {
         id: id,
@@ -175,6 +181,7 @@ export class ProductRepository
     return await this.prisma.product.findMany({
       include: {
         reviews: true,
+        services: true,
       },
     });
   }
@@ -211,6 +218,7 @@ export class ProductRepository
         materials: true,
         category: true,
         subcategory: true,
+        services: true,
       },
       where: {
         name: {
@@ -231,6 +239,7 @@ export class ProductRepository
         materials: true,
         category: true,
         subcategory: true,
+        services: true,
       },
       where: {
         name: name,

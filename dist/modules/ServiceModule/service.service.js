@@ -24,6 +24,9 @@ let ServiceService = class ServiceService {
         const service = await this.serviceRepository.create(Object.assign({ raiting: 0 }, inputService));
         return service;
     }
+    async connectProduct(servId, id) {
+        return await this.serviceRepository.connectProduct(servId, id);
+    }
     async getOne(id) {
         return await this.serviceRepository.findOne(id);
     }

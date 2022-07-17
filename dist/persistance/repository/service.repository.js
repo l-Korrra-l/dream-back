@@ -28,11 +28,30 @@ let ServiceRepository = class ServiceRepository {
         return await this.prisma.service.update({
             include: {
                 reviews: true,
+                products: true,
             },
             where: {
                 id: Number(id),
             },
             data,
+        });
+    }
+    async connectProduct(serv_id, id) {
+        return await this.prisma.service.update({
+            where: {
+                id: serv_id,
+            },
+            include: {
+                reviews: true,
+                products: true,
+            },
+            data: {
+                products: {
+                    connect: {
+                        id: id,
+                    },
+                },
+            },
         });
     }
     async delete(id) {
@@ -50,6 +69,7 @@ let ServiceRepository = class ServiceRepository {
         const service = await this.prisma.service.findFirst({
             include: {
                 reviews: true,
+                products: true,
             },
             where: {
                 id: Number(id),
@@ -62,6 +82,10 @@ let ServiceRepository = class ServiceRepository {
     }
     async getById(id) {
         const service = await this.prisma.service.findFirst({
+            include: {
+                reviews: true,
+                products: true,
+            },
             where: {
                 id: id,
             },
@@ -75,6 +99,7 @@ let ServiceRepository = class ServiceRepository {
         return await this.prisma.service.findMany({
             include: {
                 reviews: true,
+                products: true,
             },
         });
     }
@@ -109,6 +134,7 @@ let ServiceRepository = class ServiceRepository {
                 img_path: true,
                 price: true,
                 raiting: true,
+                products: true,
                 reviews: {
                     select: {
                         id: true,

@@ -12,6 +12,7 @@ export declare class ServiceService {
     private categoryRepository;
     constructor(serviceRepository: ServiceRepository, reviewRepository: ReviewRepository, categoryRepository: CategoryRepository);
     createService(inputService: ServiceForCreate): Promise<Service>;
+    connectProduct(servId: number, id: number): Promise<Service>;
     getOne(id: string): Promise<Service>;
     getAll(sort: Sort, sortby: string): Promise<Service[]>;
     findByFilters(filters: any, sort: Sort, sortby: string): Promise<Service[]>;

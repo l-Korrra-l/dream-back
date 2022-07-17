@@ -33,5 +33,9 @@ __decorate([
     (0, swagger_1.ApiProperty)(),
     __metadata("design:type", String)
 ], ServiceForCreate.prototype, "short_descr", void 0);
+__decorate([
+    (0, swagger_1.ApiPropertyOptional)(),
+    __metadata("design:type", Array)
+], ServiceForCreate.prototype, "prod_ids", void 0);
 exports.ServiceForCreate = ServiceForCreate;
 //# sourceMappingURL=serviceforcreate.dto.js.map

@@ -52,6 +52,7 @@ model Product {
   Memory        Memory[]
   Information   Information[]
   Discount      Discount[]
+  services      Service[]
 }
 
 model Characteristic {
@@ -119,6 +120,7 @@ model Service {
   img_path    String?
   raiting     Float
   reviews     Review[]
+  products     Product[]
 }
 
 model Category {

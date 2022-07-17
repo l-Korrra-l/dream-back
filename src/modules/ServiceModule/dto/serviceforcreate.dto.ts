@@ -1,4 +1,4 @@
-import { ApiProperty } from '@nestjs/swagger';
+import { ApiProperty, ApiPropertyOptional } from '@nestjs/swagger';
 
 export class ServiceForCreate {
   @ApiProperty()
@@ -11,4 +11,6 @@ export class ServiceForCreate {
   price: number;
   @ApiProperty()
   short_descr?: string;
+  @ApiPropertyOptional()
+  prod_ids: number[];
 }

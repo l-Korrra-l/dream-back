@@ -26,6 +26,10 @@ export class ServiceService {
     return service;
   }
 
+  async connectProduct(servId: number, id: number): Promise<Service> {
+    return await this.serviceRepository.connectProduct(servId, id);
+  }
+
   async getOne(id: string): Promise<Service> {
     return await this.serviceRepository.findOne(id);
   }

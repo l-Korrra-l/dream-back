@@ -4,4 +4,5 @@ export declare class ServiceForCreate {
     img_path?: string;
     price: number;
     short_descr?: string;
+    prod_ids: number[];
 }
