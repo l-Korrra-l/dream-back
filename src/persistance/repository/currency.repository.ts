@@ -28,7 +28,6 @@ export class CurrencyRepository
   }
 
   async create(data: Prisma.CurrencyCreateInput): Promise<Currency> {
-    console.log(data);
     const currency = await this.prisma.currency.create({
       data,
     });
@@ -41,11 +40,6 @@ export class CurrencyRepository
     data: Prisma.CurrencyUpdateInput,
   ): Promise<Currency> {
     return (await this.prisma.currency.update({
-      select: {
-        id: true,
-        rate: true,
-        date: true,
-      },
       where: {
         id: Number(currId),
       },

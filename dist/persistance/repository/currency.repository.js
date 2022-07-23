@@ -26,7 +26,6 @@ let CurrencyRepository = class CurrencyRepository {
         return await this.prisma.currency.findMany();
     }
     async create(data) {
-        console.log(data);
         const currency = await this.prisma.currency.create({
             data,
         });
@@ -34,11 +33,6 @@ let CurrencyRepository = class CurrencyRepository {
     }
     async update(currId, data) {
         return (await this.prisma.currency.update({
-            select: {
-                id: true,
-                rate: true,
-                date: true,
-            },
             where: {
                 id: Number(currId),
             },

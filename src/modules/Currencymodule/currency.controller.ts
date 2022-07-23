@@ -23,10 +23,11 @@ export class CurrencyController {
   @ApiOperation({
     summary: 'добавить курс валюты',
   })
-   @Post()
- 
+  @Post()
   async createCurrency(@Body() rate: any) {
-    return await this.currencyService.createCurrency(rate.rate);
+    if (!(await this.currencyService.getOne()))
+      return await this.currencyService.createCurrency(rate.rate);
+    else return await this.currencyService.updateCurrency(rate.rate);
   }
 
   @ApiOperation({
@@ -34,9 +35,8 @@ export class CurrencyController {
   })
   @Patch()
   // @UseGuards(JwtAuthGuard, RolesGuard)
- 
   async updateCurrency(@Body() rate: string) {
-    return await this.currencyService.createCurrency(rate);
+    return await this.currencyService.updateCurrency(rate);
   }
 
   @ApiOperation({

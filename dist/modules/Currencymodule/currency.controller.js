@@ -21,10 +21,13 @@ let CurrencyController = class CurrencyController {
         this.currencyService = currencyService;
     }
     async createCurrency(rate) {
-        return await this.currencyService.createCurrency(rate.rate);
+        if (!(await this.currencyService.getOne()))
+            return await this.currencyService.createCurrency(rate.rate);
+        else
+            return await this.currencyService.updateCurrency(rate.rate);
     }
     async updateCurrency(rate) {
-        return await this.currencyService.createCurrency(rate);
+        return await this.currencyService.updateCurrency(rate);
     }
     async getCurrency() {
         return await this.currencyService.getOne();

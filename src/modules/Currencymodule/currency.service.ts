@@ -24,9 +24,9 @@ export class CurrencyService {
 
   async updateCurrency(newRate: string) {
     const curr = await this.currencyRepository.update('1', {
-      rate: Number(newRate),
+      rate: parseFloat(newRate),
       date: new Date(),
-    } as Prisma.CurrencyCreateInput);
+    } as Prisma.CurrencyUpdateInput);
 
     return curr;
   }
